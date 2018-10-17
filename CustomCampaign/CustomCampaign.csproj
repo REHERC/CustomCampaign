@@ -64,10 +64,10 @@
   <ItemGroup>
     <Compile Include="Entry.cs" />
     <Compile Include="LetMeIn.cs" />
-    <Compile Include="Magic.cs" />
-    <Compile Include="LevelGridMenu.CreateEntries.cs" />
+    <Compile Include="Patches.cs" />
     <Compile Include="PiecesOfThePastMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SectorNames.cs" />
     <Compile Include="Shared.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>

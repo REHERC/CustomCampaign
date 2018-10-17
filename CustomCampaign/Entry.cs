@@ -12,9 +12,7 @@ namespace CustomCampaign
         {
             SharedResources.Init();
             HarmonyInstance Harmony = HarmonyInstance.Create($"com.CustomCampaign.{ipcIdentifier}");
-            Harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-            
+            Harmony.PatchAll(Assembly.GetExecutingAssembly()); 
         }
     }
 }
