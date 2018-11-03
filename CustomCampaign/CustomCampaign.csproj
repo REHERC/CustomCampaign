@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entry.cs" />
-    <Compile Include="LetMeIn.cs" />
+    <Compile Include="AccessExtensions.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="PiecesOfThePastMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

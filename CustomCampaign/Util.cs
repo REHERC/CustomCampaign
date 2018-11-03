@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CustomCampaign
 {
-    internal class Util
+    internal static class Util
     {
         public static GameObject FindByName(string name)
         {
@@ -15,12 +15,36 @@ namespace CustomCampaign
             return null;
         }
 
-        public static bool ResourceExists<T>(string name) where T: UnityEngine.Object
+        public static bool ResourceExists<T>(string name) where T : UnityEngine.Object
         {
             T resource = Resources.Load<T>(name);
             bool exists = !(resource == null);
             Console.WriteLine($"{name} : {exists}");
-            return true;
+            return exists;
+        }
+
+        public static string TrimLeft(string Input, string Cut)
+        {
+            if (Input.StartsWith(Cut))
+            {
+                return Input.Substring(Input.Length - 1, Input.Length - Cut.Length);
+            }
+            else return Input;
+        }
+
+
+        public static string PluginLevelRedirect(this string path)
+        {
+            if (path.Replace("/", @"\").StartsWith(SharedResources.GetLevelsFolder().Replace("/", @"\") + @"\CustomCampaign"))
+            {
+                return (SharedResources.GetPluginFolder() + @"\Levels" + path.Substring((SharedResources.GetLevelsFolder() + @"\CustomCampaign").Length)).Replace("/", @"\");
+            }
+            return path;
+        }
+
+        public static void PathNormalize(this string path)
+        {
+            path = path.Replace("/", @"\");
         }
     }
 }

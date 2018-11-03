@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Harmony;
 using Serializers;
 using UnityEngine;
@@ -19,12 +17,23 @@ namespace CustomCampaign
 
             if (flag_campaignmode)
             {
+                string ResourcesFolder = SharedResources.GetResourcesFolder().Replace(@"\", "/");
+                string LevelsFolder = SharedResources.GetLevelsFolder().Replace(@"\", "/");
+
+
                 LevelSet set = new LevelSet();
 
-                //set.AddLevel("Broken Symmetry", "G:/Steam/steamapps/common/Distance/Distance_Data/Resources/Levels/Broken Symmetry.bytes", LevelType.Official);
-                //set.AddLevel("Lost Society", "G:/Steam/steamapps/common/Distance/Distance_Data/Resources/Levels/Lost Society.bytes", LevelType.Official);
-                set.AddLevel("Factory Reset", "C:/Users/amaury/Documents/My Games/Distance/Levels/MyLevels/factory reset.bytes", LevelType.Official);
-                set.AddLevel("Obscuration", "C:/Users/amaury/Documents/My Games/Distance/Levels/MyLevels/Obscuration.bytes", LevelType.Official);
+                /*
+                set.AddLevel("Instantiation", $"{ResourcesFolder}/Levels/Instantiation.bytes", LevelType.Official);
+                set.AddLevel("Lost Society", $"{ResourcesFolder}/Levels/Lost Society.bytes", LevelType.Official);
+                set.AddLevel("Long Ago", $"{ResourcesFolder}/Levels/Long Ago.bytes", LevelType.Official);
+                
+                */
+                Console.WriteLine(LevelsFolder);
+                set.AddLevel("Broken Symmetry", $@"{ResourcesFolder}/Levels/Broken Symmetry.bytes", LevelType.Official);
+                set.AddLevel("Factory Reset", $@"{LevelsFolder}/factory reset.bytes", LevelType.Official);
+                set.AddLevel("Test", $@"{LevelsFolder}/Folder/test.bytes", LevelType.Official);
+
 
 
                 GameModeID gameModeID = GameModeID.LostToEchoes;
@@ -37,64 +46,62 @@ namespace CustomCampaign
         }
     }
 
-    [HarmonyPatch(typeof(BinaryDeserializer))]
-    [HarmonyPatch("StartReading", new Type[] {typeof(string)})]
-    public class BinaryDeserializer__StartReading__Patch
-    {
-        static void Prefix(ref string fileName)
-        {
-            if (fileName.Contains(".bytes"))
-            {
-                //Console.WriteLine($"BinaryDeserializer::StartReading<string>(\"{fileName}\");");
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(File))]
-    [HarmonyPatch("Exists", new Type[] { typeof(string) })]
+    //[HarmonyPatch(typeof(File))]
+    //[HarmonyPatch("Exists", new Type[] { typeof(string) })]
     public class File__Exists__Patch
     {
-        /*static bool Prefix(string path)
+        static bool Prefix(ref string path)
         {
-            if (path.Contains(".bytes"))
-            {
-                Console.WriteLine($"File::Exists<string>(\"{path}\");");
-            }
+            path.PathNormalize();
+            path = path.PluginLevelRedirect();
             return true;
-        }*/
-
-        static void Postfix(bool __result, string path)
-        {
-            if (__result && path.Contains(".bytes"))
-            {
-                Console.WriteLine($"File::Exists<string>(\"{path}\");");
-            }
         }
     }
 
-    [HarmonyPatch(typeof(BlackFadeLogic))]
-    [HarmonyPatch("GetSectorNames")]
-    public class BlackFadeLogic__GetSectorNames__Patch
+    //[HarmonyPatch(typeof(File))]
+    //[HarmonyPatch("Open", new Type[] { typeof(string), typeof(FileMode), typeof(FileAccess) })]
+    public class File__Open__Patch
     {
-        static bool Prefix(BlackFadeLogic __instance, string[] __result)
+        //static bool Prefix(bool __result, ref string path)
+        //{
+            
+        //}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    [HarmonyPatch(typeof(BinaryDeserializer))]
+    [HarmonyPatch("LoadFromFile", new Type[] { typeof(string) })]
+    public class BinaryDeserializer__StartReading__Patch
+    {
+        static bool Prefix(BinaryDeserializer __instance, ref string fileName)
         {
-            if (G.Sys.GameManager_.ModeID_ == GameModeID.LostToEchoes)
+            if (fileName.StartsWith("Assets/"))
             {
-                __result = SectorNames.CustomSectors;
+                TextAsset level = SharedResources.EmbeddedResources.Bundle.LoadAsset<TextAsset>(fileName);
+
+                if ((UnityEngine.Object)level != (UnityEngine.Object)null)
+                {
+                    __instance.CallPrivateMethod("Initialize", (Dictionary<uint, object>)null);
+                    __instance.CallPrivateMethod("StartReading", new MemoryStream(level.bytes));
+                }
                 return false;
             }
             return true;
         }
     }
-
-
-    [HarmonyPatch(typeof(LevelSet))]
-    [HarmonyPatch("AddLevel")]
-    public class LevelSet__AddLevel__Patch
-    {
-        static void Prefix(LevelSet __instance, string levelName, string normalizedAbsoluteLevelPath)
-        {
-            //Console.WriteLine($"Added level to set: \"{levelName}\"@\"{normalizedAbsoluteLevelPath}\"");
-        }
-    }
+    */
 }

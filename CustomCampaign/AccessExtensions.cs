@@ -53,23 +53,4 @@ public static class PrivateAccess
         MethodInfo method = type.GetMethod(name, flags);
         method.Invoke(obj, param);
     }
-
-
-    /*
-    public static T CallGenericPrivateFunction<T>(this object obj, Type[] generic, string name, params object[] param)
-    {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        Type type = obj.GetType();
-        MethodInfo method = type.GetMethod(name, flags);
-        MethodInfo genericmethod = method.MakeGenericMethod(generic);
-        return (T)genericmethod.Invoke(obj, param);
-    }
-    public static void CallGenericPrivateMethod(this object obj, Type[] generic, string name, params object[] param)
-    {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        Type type = obj.GetType();
-        MethodInfo method = type.GetMethod(name, flags);
-        MethodInfo genericmethod = method.MakeGenericMethod(generic);
-        genericmethod.Invoke(obj, param);
-    }*/
 }
