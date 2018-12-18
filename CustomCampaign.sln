@@ -1,11 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign", "CustomCampaign\CustomCampaign.csproj", "{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Playlist", "CustomCampaign.Playlist\CustomCampaign.Playlist.shproj", "{60D03882-D06F-4FF8-98F6-4F056CD08269}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Editor", "CampaignEditor\CustomCampaign.Editor.csproj", "{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
+		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
+		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{60d03882-d06f-4ff8-98f6-4f056cd08269}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -15,8 +24,15 @@ Global
 		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57889824-D145-4309-8774-BD511135D278}
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,4 @@
-﻿using Spectrum.API.Experimental;
-using Spectrum.API.Logging;
+﻿using Spectrum.API.Logging;
 using Spectrum.API.Storage;
 
 namespace CustomCampaign
@@ -8,10 +7,10 @@ namespace CustomCampaign
     {
         public static void Init()
         {
-            Log = new Logger("CustomCampaignDev");
-            Log.WriteToConsole = true;
-
-            EmbeddedResources = new Assets("resources.pak");
+            Log = new Logger("CustomCampaign")
+            {
+                WriteToConsole = true
+            };
 
             File = new FileSystem();
         }
@@ -37,6 +36,5 @@ namespace CustomCampaign
 
         public static FileSystem File;
         public static Logger Log;
-        public static Assets EmbeddedResources;
     }
 }
