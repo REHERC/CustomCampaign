@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
+#pragma warning disable CS1591
 public static class Extensions
 {
     public static string Cipher(this string input, int key)

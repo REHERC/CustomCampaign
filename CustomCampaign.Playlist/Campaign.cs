@@ -33,8 +33,9 @@ public partial class Campaign
                     string levelpath = reader.ReadStringSecure();
                     string levelname = reader.ReadStringSecure();
                     string levelnamesub = reader.ReadStringSecure();
+                    string levelwallpaper = reader.ReadStringSecure();
 
-                    int len = (levelpath.Length + levelname.Length + levelnamesub.Length) % 32;
+                    int len = (levelpath.Length + levelname.Length + levelnamesub.Length + levelwallpaper.Length) % 32;
                     int len_rd = reader.ReadInt32();
                     
                     if (len == len_rd)
@@ -63,8 +64,9 @@ public partial class Campaign
                 writer.WriteStringSecure(level.file);
                 writer.WriteStringSecure(level.levelname);
                 writer.WriteStringSecure(level.levelname_sub);
+                writer.WriteStringSecure(level.loading_wallpaper);
 
-                int len = (level.file.Length + level.levelname.Length + level.levelname_sub.Length) % 32;
+                int len = (level.file.Length + level.levelname.Length + level.levelname_sub.Length + level.loading_wallpaper.Length) % 32;
                 writer.Write(len);
             }
         }

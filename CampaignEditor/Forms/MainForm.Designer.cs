@@ -30,11 +30,28 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Levels/Factory Reset.bytes",
+            "Factory Reset",
+            "Ferne Corporation",
+            "Levels/Loading.Factory Reset.png"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Levels/Level 02.bytes",
+            "Level 02",
+            "600 B.C.",
+            "Levels/Loading.Level 02.png"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Levels/Level 03.bytes",
+            "Level 03",
+            "400 B.C",
+            "Levels/Loading.Level 03.png"}, -1);
             this.MenuBar = new System.Windows.Forms.ToolStrip();
             this.NewBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.OpenBtn = new System.Windows.Forms.ToolStripButton();
-            this.SaveBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveAsBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.EditorTabs = new System.Windows.Forms.TabControl();
             this.SettingsTab = new System.Windows.Forms.TabPage();
@@ -45,13 +62,18 @@
             this.CampaignNameLbl = new System.Windows.Forms.Label();
             this.CampaignNameBox = new System.Windows.Forms.TextBox();
             this.LevelsTab = new System.Windows.Forms.TabPage();
-            this.LevelsBox = new System.Windows.Forms.ListView();
+            this.LevelsBox = new ReorderableListView();
+            this.LevelFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LevelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LevelSubName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LoadingWallpaper = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LevelsContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addANewLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLevelInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelsMenuBar = new System.Windows.Forms.ToolStrip();
             this.Status = new System.Windows.Forms.ToolStripLabel();
+            this.Icons = new System.Windows.Forms.ImageList(this.components);
             this.MenuBar.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.EditorTabs.SuspendLayout();
@@ -65,101 +87,111 @@
             // 
             // MenuBar
             // 
-            this.MenuBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(60)))), ((int)(((byte)(86)))));
             this.MenuBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.MenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewBtn,
+            this.toolStripSeparator2,
             this.OpenBtn,
-            this.SaveBtn,
-            this.SaveAsBtn});
+            this.toolStripSeparator3,
+            this.SaveAsBtn,
+            this.toolStripSeparator1});
             this.MenuBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
             this.MenuBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.MenuBar.Size = new System.Drawing.Size(784, 41);
+            this.MenuBar.Size = new System.Drawing.Size(784, 38);
             this.MenuBar.TabIndex = 0;
             this.MenuBar.Text = "Menu";
             // 
             // NewBtn
             // 
-            this.NewBtn.Font = new System.Drawing.Font("Arial", 12F);
-            this.NewBtn.ForeColor = System.Drawing.Color.White;
-            this.NewBtn.Image = ((System.Drawing.Image)(resources.GetObject("NewBtn.Image")));
-            this.NewBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NewBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.NewBtn.Image = global::CustomCampaign.Properties.Resources.Text_001;
+            this.NewBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.NewBtn.ImageTransparentColor = System.Drawing.Color.Black;
             this.NewBtn.Name = "NewBtn";
-            this.NewBtn.Size = new System.Drawing.Size(43, 38);
+            this.NewBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.NewBtn.Size = new System.Drawing.Size(35, 35);
             this.NewBtn.Text = "&New";
             this.NewBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
+            // 
             // OpenBtn
             // 
-            this.OpenBtn.Font = new System.Drawing.Font("Arial", 12F);
-            this.OpenBtn.ForeColor = System.Drawing.Color.White;
-            this.OpenBtn.Image = ((System.Drawing.Image)(resources.GetObject("OpenBtn.Image")));
-            this.OpenBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpenBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.OpenBtn.Image = global::CustomCampaign.Properties.Resources.Open_005;
+            this.OpenBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.OpenBtn.ImageTransparentColor = System.Drawing.Color.Black;
             this.OpenBtn.Name = "OpenBtn";
-            this.OpenBtn.Size = new System.Drawing.Size(50, 38);
+            this.OpenBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.OpenBtn.Size = new System.Drawing.Size(40, 35);
             this.OpenBtn.Text = "&Open";
             this.OpenBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.OpenBtn.Click += new System.EventHandler(this.OpenBtn_Click);
             // 
-            // SaveBtn
+            // toolStripSeparator3
             // 
-            this.SaveBtn.Font = new System.Drawing.Font("Arial", 12F);
-            this.SaveBtn.ForeColor = System.Drawing.Color.White;
-            this.SaveBtn.Image = ((System.Drawing.Image)(resources.GetObject("SaveBtn.Image")));
-            this.SaveBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(48, 38);
-            this.SaveBtn.Text = "&Save";
-            this.SaveBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
             // 
             // SaveAsBtn
             // 
-            this.SaveAsBtn.Font = new System.Drawing.Font("Arial", 12F);
-            this.SaveAsBtn.ForeColor = System.Drawing.Color.White;
+            this.SaveAsBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.SaveAsBtn.Image = ((System.Drawing.Image)(resources.GetObject("SaveAsBtn.Image")));
-            this.SaveAsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SaveAsBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SaveAsBtn.ImageTransparentColor = System.Drawing.Color.Black;
             this.SaveAsBtn.Name = "SaveAsBtn";
-            this.SaveAsBtn.Size = new System.Drawing.Size(69, 38);
-            this.SaveAsBtn.Text = "Save as";
+            this.SaveAsBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SaveAsBtn.Size = new System.Drawing.Size(35, 35);
+            this.SaveAsBtn.Text = "Save";
             this.SaveAsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.SaveAsBtn.Click += new System.EventHandler(this.SaveAsBtn_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
             // 
             // MainPanel
             // 
             this.MainPanel.Controls.Add(this.EditorTabs);
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(0, 41);
+            this.MainPanel.Location = new System.Drawing.Point(0, 38);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(784, 521);
+            this.MainPanel.Size = new System.Drawing.Size(784, 324);
             this.MainPanel.TabIndex = 1;
             // 
             // EditorTabs
             // 
             this.EditorTabs.Controls.Add(this.SettingsTab);
             this.EditorTabs.Controls.Add(this.LevelsTab);
+            this.EditorTabs.Cursor = System.Windows.Forms.Cursors.Default;
             this.EditorTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EditorTabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditorTabs.ImageList = this.Icons;
             this.EditorTabs.Location = new System.Drawing.Point(0, 0);
             this.EditorTabs.Name = "EditorTabs";
             this.EditorTabs.SelectedIndex = 0;
-            this.EditorTabs.Size = new System.Drawing.Size(784, 521);
+            this.EditorTabs.Size = new System.Drawing.Size(784, 324);
             this.EditorTabs.TabIndex = 0;
             // 
             // SettingsTab
             // 
             this.SettingsTab.AutoScroll = true;
-            this.SettingsTab.BackColor = System.Drawing.Color.Gray;
             this.SettingsTab.Controls.Add(this.SettingsPanel);
-            this.SettingsTab.Location = new System.Drawing.Point(4, 29);
+            this.SettingsTab.ImageIndex = 7;
+            this.SettingsTab.Location = new System.Drawing.Point(4, 23);
             this.SettingsTab.Name = "SettingsTab";
             this.SettingsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SettingsTab.Size = new System.Drawing.Size(776, 488);
+            this.SettingsTab.Size = new System.Drawing.Size(776, 297);
             this.SettingsTab.TabIndex = 0;
             this.SettingsTab.Text = "Campaign settings";
             // 
             // SettingsPanel
             // 
-            this.SettingsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(85)))), ((int)(((byte)(104)))));
             this.SettingsPanel.ColumnCount = 2;
             this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -174,7 +206,7 @@
             this.SettingsPanel.RowCount = 2;
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SettingsPanel.Size = new System.Drawing.Size(770, 482);
+            this.SettingsPanel.Size = new System.Drawing.Size(770, 291);
             this.SettingsPanel.TabIndex = 0;
             // 
             // CampaignDescriptionContainer
@@ -183,34 +215,31 @@
             this.CampaignDescriptionContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CampaignDescriptionContainer.Controls.Add(this.CampaignDescriptionBox);
             this.CampaignDescriptionContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignDescriptionContainer.Location = new System.Drawing.Point(152, 23);
+            this.CampaignDescriptionContainer.Location = new System.Drawing.Point(116, 20);
             this.CampaignDescriptionContainer.Margin = new System.Windows.Forms.Padding(0);
-            this.CampaignDescriptionContainer.MaximumSize = new System.Drawing.Size(0, 23);
-            this.CampaignDescriptionContainer.MinimumSize = new System.Drawing.Size(0, 23);
+            this.CampaignDescriptionContainer.MaximumSize = new System.Drawing.Size(0, 25);
+            this.CampaignDescriptionContainer.MinimumSize = new System.Drawing.Size(0, 25);
             this.CampaignDescriptionContainer.Name = "CampaignDescriptionContainer";
-            this.CampaignDescriptionContainer.Size = new System.Drawing.Size(618, 23);
+            this.CampaignDescriptionContainer.Size = new System.Drawing.Size(654, 25);
             this.CampaignDescriptionContainer.TabIndex = 2;
             // 
             // CampaignDescriptionBox
             // 
             this.CampaignDescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignDescriptionBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CampaignDescriptionBox.Location = new System.Drawing.Point(0, 0);
             this.CampaignDescriptionBox.Margin = new System.Windows.Forms.Padding(0);
             this.CampaignDescriptionBox.Name = "CampaignDescriptionBox";
-            this.CampaignDescriptionBox.Size = new System.Drawing.Size(618, 23);
+            this.CampaignDescriptionBox.Size = new System.Drawing.Size(654, 20);
             this.CampaignDescriptionBox.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 23);
+            this.label1.Location = new System.Drawing.Point(0, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 459);
+            this.label1.Size = new System.Drawing.Size(116, 271);
             this.label1.TabIndex = 2;
             this.label1.Text = "Campaign description :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -219,12 +248,10 @@
             // 
             this.CampaignNameLbl.AutoSize = true;
             this.CampaignNameLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CampaignNameLbl.ForeColor = System.Drawing.Color.White;
             this.CampaignNameLbl.Location = new System.Drawing.Point(0, 0);
             this.CampaignNameLbl.Margin = new System.Windows.Forms.Padding(0);
             this.CampaignNameLbl.Name = "CampaignNameLbl";
-            this.CampaignNameLbl.Size = new System.Drawing.Size(152, 23);
+            this.CampaignNameLbl.Size = new System.Drawing.Size(116, 20);
             this.CampaignNameLbl.TabIndex = 0;
             this.CampaignNameLbl.Text = "Campaign name :";
             this.CampaignNameLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -232,35 +259,73 @@
             // CampaignNameBox
             // 
             this.CampaignNameBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CampaignNameBox.Location = new System.Drawing.Point(152, 0);
+            this.CampaignNameBox.Location = new System.Drawing.Point(116, 0);
             this.CampaignNameBox.Margin = new System.Windows.Forms.Padding(0);
             this.CampaignNameBox.Name = "CampaignNameBox";
-            this.CampaignNameBox.Size = new System.Drawing.Size(618, 23);
+            this.CampaignNameBox.Size = new System.Drawing.Size(654, 20);
             this.CampaignNameBox.TabIndex = 1;
             // 
             // LevelsTab
             // 
+            this.LevelsTab.BackColor = System.Drawing.SystemColors.Control;
             this.LevelsTab.Controls.Add(this.LevelsBox);
             this.LevelsTab.Controls.Add(this.levelsMenuBar);
-            this.LevelsTab.Location = new System.Drawing.Point(4, 29);
+            this.LevelsTab.ImageIndex = 3;
+            this.LevelsTab.Location = new System.Drawing.Point(4, 23);
             this.LevelsTab.Name = "LevelsTab";
-            this.LevelsTab.Size = new System.Drawing.Size(776, 488);
+            this.LevelsTab.Size = new System.Drawing.Size(776, 297);
             this.LevelsTab.TabIndex = 1;
             this.LevelsTab.Text = "Levels";
-            this.LevelsTab.UseVisualStyleBackColor = true;
             // 
             // LevelsBox
             // 
-            this.LevelsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(85)))), ((int)(((byte)(104)))));
-            this.LevelsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LevelsBox.AllowDrop = true;
+            this.LevelsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.LevelFile,
+            this.LevelName,
+            this.LevelSubName,
+            this.LoadingWallpaper});
             this.LevelsBox.ContextMenuStrip = this.LevelsContextMenu;
             this.LevelsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LevelsBox.FullRowSelect = true;
+            this.LevelsBox.GridLines = true;
+            this.LevelsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.LevelsBox.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
+            this.LevelsBox.LineAfter = -1;
+            this.LevelsBox.LineBefore = -1;
             this.LevelsBox.Location = new System.Drawing.Point(0, 0);
+            this.LevelsBox.MultiSelect = false;
             this.LevelsBox.Name = "LevelsBox";
-            this.LevelsBox.Size = new System.Drawing.Size(776, 463);
+            this.LevelsBox.Size = new System.Drawing.Size(776, 272);
             this.LevelsBox.TabIndex = 0;
             this.LevelsBox.UseCompatibleStateImageBehavior = false;
+            this.LevelsBox.View = System.Windows.Forms.View.Details;
+            this.LevelsBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseDown);
+            this.LevelsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseMove);
+            this.LevelsBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseUp);
+            // 
+            // LevelFile
+            // 
+            this.LevelFile.Text = "Level file";
+            this.LevelFile.Width = 160;
+            // 
+            // LevelName
+            // 
+            this.LevelName.Text = "Level name";
+            this.LevelName.Width = 128;
+            // 
+            // LevelSubName
+            // 
+            this.LevelSubName.Text = "Level sector name";
+            this.LevelSubName.Width = 128;
+            // 
+            // LoadingWallpaper
+            // 
+            this.LoadingWallpaper.Text = "Loading wallpaper";
+            this.LoadingWallpaper.Width = 180;
             // 
             // LevelsContextMenu
             // 
@@ -293,12 +358,11 @@
             // 
             // levelsMenuBar
             // 
-            this.levelsMenuBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(60)))), ((int)(((byte)(86)))));
             this.levelsMenuBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.levelsMenuBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.levelsMenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Status});
-            this.levelsMenuBar.Location = new System.Drawing.Point(0, 463);
+            this.levelsMenuBar.Location = new System.Drawing.Point(0, 272);
             this.levelsMenuBar.Name = "levelsMenuBar";
             this.levelsMenuBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.levelsMenuBar.Size = new System.Drawing.Size(776, 25);
@@ -307,25 +371,37 @@
             // 
             // Status
             // 
-            this.Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Status.ForeColor = System.Drawing.Color.White;
             this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(609, 22);
+            this.Status.Size = new System.Drawing.Size(514, 22);
             this.Status.Text = "Right-click to add a level, modify it\'s info or to remove one. Use drag and drop " +
     "to re-order them.";
             // 
+            // Icons
+            // 
+            this.Icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Icons.ImageStream")));
+            this.Icons.TransparentColor = System.Drawing.Color.Transparent;
+            this.Icons.Images.SetKeyName(0, "Application.ico");
+            this.Icons.Images.SetKeyName(1, "FileError.ico");
+            this.Icons.Images.SetKeyName(2, "New.ico");
+            this.Icons.Images.SetKeyName(3, "Object.ico");
+            this.Icons.Images.SetKeyName(4, "Open.ico");
+            this.Icons.Images.SetKeyName(5, "Pack.ico");
+            this.Icons.Images.SetKeyName(6, "Save.ico");
+            this.Icons.Images.SetKeyName(7, "Settings.ico");
+            this.Icons.Images.SetKeyName(8, "Text.ico");
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(85)))), ((int)(((byte)(104)))));
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(784, 362);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.MenuBar);
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Custom Campaign Editor";
+            this.Text = "Custom Campaign SDK";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();
@@ -360,14 +436,21 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox CampaignDescriptionBox;
         private System.Windows.Forms.Panel CampaignDescriptionContainer;
-        private System.Windows.Forms.ToolStripButton SaveBtn;
         private System.Windows.Forms.ToolStrip MenuBar;
-        private System.Windows.Forms.ListView LevelsBox;
+        private ReorderableListView LevelsBox;
         private System.Windows.Forms.ToolStrip levelsMenuBar;
         private System.Windows.Forms.ToolStripLabel Status;
         private System.Windows.Forms.ContextMenuStrip LevelsContextMenu;
         private System.Windows.Forms.ToolStripMenuItem addANewLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editLevelInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeLevelToolStripMenuItem;
+        private System.Windows.Forms.ImageList Icons;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ColumnHeader LevelFile;
+        private System.Windows.Forms.ColumnHeader LevelName;
+        private System.Windows.Forms.ColumnHeader LevelSubName;
+        private System.Windows.Forms.ColumnHeader LoadingWallpaper;
     }
 }
