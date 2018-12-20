@@ -7,6 +7,7 @@ public partial class Campaign
 {
     public string Name;
     public string Description;
+    public string LogoPath;
 
     public List<Level> Levels;
     
@@ -25,6 +26,7 @@ public partial class Campaign
 
                 Name = reader.ReadStringSecure();
                 Description = reader.ReadStringSecure();
+                LogoPath = reader.ReadStringSecure();
 
                 int _levelcount = reader.ReadInt32();
                 
@@ -40,7 +42,7 @@ public partial class Campaign
                     
                     if (len == len_rd)
                     {
-                        Levels.Add(new Level(levelpath, levelname, levelnamesub));
+                        Levels.Add(new Level(levelpath, levelname, levelnamesub, levelwallpaper));
                     }
                     else
                     {
@@ -58,7 +60,9 @@ public partial class Campaign
         {
             writer.WriteStringSecure(Name);
             writer.WriteStringSecure(Description);
+            writer.WriteStringSecure(LogoPath);
             writer.Write(Levels.Count);
+
             foreach (Level level in Levels)
             {
                 writer.WriteStringSecure(level.file);

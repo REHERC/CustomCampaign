@@ -70,6 +70,12 @@
     <Compile Include="Controls\ReorderableListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\AddLevelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddLevelForm.Designer.cs">
+      <DependentUpon>AddLevelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AddLevelForm.resx">
+      <DependentUpon>AddLevelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,18 +146,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Application.ico" />
-    <None Include="Resources\Text-001.png" />
-    <None Include="Resources\Settings-001.png" />
-    <None Include="Resources\Save-001.png" />
-    <None Include="Resources\Pack-000.png" />
-    <None Include="Resources\Open-005.png" />
-    <None Include="Resources\New-001.png" />
-    <None Include="Resources\Application-001.png" />
-    <None Include="Resources\Save-002.png" />
-    <None Include="Resources\Pack-004.png" />
-    <None Include="Resources\Open-001.png" />
-    <None Include="Resources\New-000.png" />
-    <None Include="Resources\FileError-001.png" />
+    <None Include="Resources\Save16.png" />
+    <None Include="Resources\Pack16.png" />
+    <None Include="Resources\Open16.png" />
+    <None Include="Resources\New16.png" />
   </ItemGroup>
   <Import Project="..\CustomCampaign.Playlist\CustomCampaign.Playlist.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
