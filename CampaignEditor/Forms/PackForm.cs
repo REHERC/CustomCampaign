@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Forms
@@ -10,9 +11,9 @@ namespace CustomCampaign.Forms
         public PackForm()
         {InitializeComponent();}
 
-        public string PakFile = "";
-        public string PakFileDir = "";
-        Campaign campaign;
+        public string _PakFile = "";
+        public string _PakFileDir = "";
+        Campaign _campaign;
 
         public PackForm(string file)
         {
@@ -20,8 +21,8 @@ namespace CustomCampaign.Forms
 
             if (file != "" && file != null && File.Exists(file))
             {
-                PakFile = file;
-                PakFileDir = Path.GetDirectoryName(file) + Path.DirectorySeparatorChar;
+                _PakFile = file;
+                _PakFileDir = Path.GetDirectoryName(file) + Path.DirectorySeparatorChar;
 
                 ListFiles();
 
@@ -48,11 +49,11 @@ namespace CustomCampaign.Forms
 
             errorcount = 0;
 
-            campaign = new Campaign();
-            campaign.Load(PakFile);
+            _campaign = new Campaign();
+            _campaign.Load(_PakFile);
 
-            AddItem(campaign.LogoPath);
-            foreach (Campaign.Level level in campaign.Levels)
+            AddItem(_campaign.LogoPath);
+            foreach (Campaign.Level level in _campaign.Levels)
             {
                 AddItem(level.file);
                 AddItem(level.file + ".png");
@@ -83,7 +84,7 @@ namespace CustomCampaign.Forms
 
         bool FileExists(string file)
         {
-            return File.Exists(PakFileDir + file.Replace('/', Path.DirectorySeparatorChar));
+            return File.Exists(_PakFileDir + file.Replace('/', Path.DirectorySeparatorChar));
         }
 
         private void RefreshBtn_Click(object sender, EventArgs e)
@@ -95,10 +96,45 @@ namespace CustomCampaign.Forms
         {
             if (errorcount == 0)
             {
+                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
+                {
+                    FileName = "Campaign.zip",
+                    Filter = "ZIP archive|*.zip",
+                    DefaultExt = ".zip",
+                    Title = "Export campaign as",
+                    ValidateNames = true,
+                    OverwritePrompt = true,
+                    AddExtension = true
+                };
 
+                if (dlg.ShowDialog() == true)
+                {
+                    string _ZipFile = dlg.FileName;
+                    string _ZipFileDir = Path.GetDirectoryName(_ZipFile);
+
+                    if (File.Exists(_ZipFile))
+                        File.Delete(_ZipFile);
+                    
+                    _ZipFileDir = Path.GetFullPath(_ZipFileDir);
+                    if (!_ZipFileDir.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                        _ZipFileDir += Path.DirectorySeparatorChar;
+                    
+                    using (ZipArchive archive = ZipFile.Open(_ZipFile, ZipArchiveMode.Create))
+                    {
+                        archive.CreateEntryFromFile(_PakFile, "Campaign.pak");
+
+                        foreach (ListViewItem item in LevelsBox.Items)
+                        {
+                            string file = Path.GetFullPath(Path.Combine(_PakFileDir, item.Text));
+
+                            archive.CreateEntryFromFile(file, item.Text);
+                            
+                        }
+                    }
+                }
             }
             else
-                MessageBox.Show("Campaign export failed.\n" + ((errorcount == 1) ? $"{errorcount} file was not found !" : $"{errorcount} files were not found !"));
+                MessageBox.Show("Campaign export failed due to missing files.\n" + ((errorcount == 1) ? $"{errorcount} file was not found !" : $"{errorcount} files were not found !"));
         }
     }
 }

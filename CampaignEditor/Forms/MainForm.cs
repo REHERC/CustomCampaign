@@ -27,7 +27,7 @@ namespace CustomCampaign.Forms
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
             {
                 FileName = "Campaign.pak",
-                Filter = "Packaged campaign playlist (.pak)|*.pak",
+                Filter = "Campaign playlist|*.pak",
                 DefaultExt = ".pak",
                 Title = "Save file as",
                 ValidateNames = true,
@@ -63,7 +63,7 @@ namespace CustomCampaign.Forms
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
             {
                 FileName = "Campaign.pak",
-                Filter = "Packaged campaign playlist (.pak)|*.pak",
+                Filter = "Campaign playlist|*.pak",
                 DefaultExt = ".pak",
                 Title = "Open file",
                 ValidateNames = true,
@@ -282,7 +282,7 @@ namespace CustomCampaign.Forms
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
             {
                 FileName = "Campaign.pak",
-                Filter = "Packaged campaign playlist (.pak)|*.pak",
+                Filter = "Campaign playlist|*.pak",
                 DefaultExt = ".pak",
                 Title = "Open file for packaging",
                 ValidateNames = true,

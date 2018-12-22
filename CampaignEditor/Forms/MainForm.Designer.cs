@@ -34,6 +34,7 @@
             this.EditorTabs = new System.Windows.Forms.TabControl();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.SettingsPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.AuthorsBox = new System.Windows.Forms.TextBox();
             this.AuthorsLbl = new System.Windows.Forms.Label();
             this.CampaignLogoLbl = new System.Windows.Forms.Label();
             this.CampaignDescriptionLbl = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
             this.SaveBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.PackBtn = new System.Windows.Forms.ToolStripButton();
-            this.AuthorsBox = new System.Windows.Forms.TextBox();
             this.MainPanel.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.SettingsTab.SuspendLayout();
@@ -133,6 +133,15 @@
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.SettingsPanel.Size = new System.Drawing.Size(770, 291);
             this.SettingsPanel.TabIndex = 0;
+            // 
+            // AuthorsBox
+            // 
+            this.AuthorsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AuthorsBox.Location = new System.Drawing.Point(198, 60);
+            this.AuthorsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.AuthorsBox.Name = "AuthorsBox";
+            this.AuthorsBox.Size = new System.Drawing.Size(572, 20);
+            this.AuthorsBox.TabIndex = 5;
             // 
             // AuthorsLbl
             // 
@@ -408,15 +417,6 @@
             this.PackBtn.Text = "Pack files";
             this.PackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.PackBtn.Click += new System.EventHandler(this.PackBtn_Click);
-            // 
-            // AuthorsBox
-            // 
-            this.AuthorsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AuthorsBox.Location = new System.Drawing.Point(198, 60);
-            this.AuthorsBox.Margin = new System.Windows.Forms.Padding(0);
-            this.AuthorsBox.Name = "AuthorsBox";
-            this.AuthorsBox.Size = new System.Drawing.Size(572, 20);
-            this.AuthorsBox.TabIndex = 5;
             // 
             // MainForm
             // 
