@@ -9,6 +9,24 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Playlist", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Editor", "CampaignEditor\CustomCampaign.Editor.csproj", "{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wiki", "Wiki", "{B9D9FDC6-B54A-4672-9374-8D79A4659079}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{819D1152-F8AB-425B-ADE9-822C78112C67}"
+	ProjectSection(SolutionItems) = preProject
+		Wiki\Images\Add level 01.PNG = Wiki\Images\Add level 01.PNG
+		Wiki\Images\Add level 02.PNG = Wiki\Images\Add level 02.PNG
+		Wiki\Images\Edit a level 01.PNG = Wiki\Images\Edit a level 01.PNG
+		Wiki\Images\Editor 01.png = Wiki\Images\Editor 01.png
+		Wiki\Images\Editor 02.png = Wiki\Images\Editor 02.png
+		Wiki\Images\Editor 03.png = Wiki\Images\Editor 03.png
+		Wiki\Images\Editor 04.png = Wiki\Images\Editor 04.png
+		Wiki\Images\Editor 05.png = Wiki\Images\Editor 05.png
+		Wiki\Images\Editor 06.png = Wiki\Images\Editor 06.png
+		Wiki\Images\Pack files.png = Wiki\Images\Pack files.png
+		Wiki\Images\Packager 01.PNG = Wiki\Images\Packager 01.PNG
+		Wiki\Images\Packager 02.PNG = Wiki\Images\Packager 02.PNG
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
@@ -31,6 +49,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{819D1152-F8AB-425B-ADE9-822C78112C67} = {B9D9FDC6-B54A-4672-9374-8D79A4659079}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57889824-D145-4309-8774-BD511135D278}
