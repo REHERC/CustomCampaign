@@ -15,8 +15,8 @@ namespace CampaignEditor
         static void Main()
         {
             //Application.EnableVisualStyles();
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
             //Application.Run(new AddLevelForm());

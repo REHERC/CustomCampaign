@@ -29,26 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Levels/Factory Reset.bytes",
-            "Factory Reset",
-            "Ferne Corporation",
-            "Levels/Loading.Factory Reset.png"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Levels/Level 02.bytes",
-            "Level 02",
-            "600 B.C.",
-            "Levels/Loading.Level 02.png"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Levels/Level 03.bytes",
-            "Level 03",
-            "400 B.C",
-            "Levels/Loading.Level 03.png"}, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainPanel = new System.Windows.Forms.Panel();
             this.EditorTabs = new System.Windows.Forms.TabControl();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.SettingsPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.AuthorsLbl = new System.Windows.Forms.Label();
             this.CampaignLogoLbl = new System.Windows.Forms.Label();
             this.CampaignDescriptionLbl = new System.Windows.Forms.Label();
             this.CampaignNameLbl = new System.Windows.Forms.Label();
@@ -76,6 +62,7 @@
             this.SaveBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.PackBtn = new System.Windows.Forms.ToolStripButton();
+            this.AuthorsBox = new System.Windows.Forms.TextBox();
             this.MainPanel.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.SettingsTab.SuspendLayout();
@@ -126,6 +113,8 @@
             this.SettingsPanel.ColumnCount = 2;
             this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.SettingsPanel.Controls.Add(this.AuthorsBox, 1, 3);
+            this.SettingsPanel.Controls.Add(this.AuthorsLbl, 0, 3);
             this.SettingsPanel.Controls.Add(this.CampaignLogoLbl, 0, 2);
             this.SettingsPanel.Controls.Add(this.CampaignDescriptionLbl, 0, 1);
             this.SettingsPanel.Controls.Add(this.CampaignNameLbl, 0, 0);
@@ -136,13 +125,26 @@
             this.SettingsPanel.Location = new System.Drawing.Point(3, 3);
             this.SettingsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.SettingsPanel.Name = "SettingsPanel";
-            this.SettingsPanel.RowCount = 3;
+            this.SettingsPanel.RowCount = 4;
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.SettingsPanel.Size = new System.Drawing.Size(770, 291);
             this.SettingsPanel.TabIndex = 0;
+            // 
+            // AuthorsLbl
+            // 
+            this.AuthorsLbl.AutoSize = true;
+            this.AuthorsLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AuthorsLbl.Location = new System.Drawing.Point(0, 60);
+            this.AuthorsLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.AuthorsLbl.Name = "AuthorsLbl";
+            this.AuthorsLbl.Size = new System.Drawing.Size(198, 231);
+            this.AuthorsLbl.TabIndex = 4;
+            this.AuthorsLbl.Text = "Authors (separate two names with \";\"):";
+            this.AuthorsLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // CampaignLogoLbl
             // 
@@ -151,7 +153,7 @@
             this.CampaignLogoLbl.Location = new System.Drawing.Point(0, 40);
             this.CampaignLogoLbl.Margin = new System.Windows.Forms.Padding(0);
             this.CampaignLogoLbl.Name = "CampaignLogoLbl";
-            this.CampaignLogoLbl.Size = new System.Drawing.Size(113, 251);
+            this.CampaignLogoLbl.Size = new System.Drawing.Size(198, 20);
             this.CampaignLogoLbl.TabIndex = 3;
             this.CampaignLogoLbl.Text = "Campaign logo file:";
             this.CampaignLogoLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -163,7 +165,7 @@
             this.CampaignDescriptionLbl.Location = new System.Drawing.Point(0, 20);
             this.CampaignDescriptionLbl.Margin = new System.Windows.Forms.Padding(0);
             this.CampaignDescriptionLbl.Name = "CampaignDescriptionLbl";
-            this.CampaignDescriptionLbl.Size = new System.Drawing.Size(113, 20);
+            this.CampaignDescriptionLbl.Size = new System.Drawing.Size(198, 20);
             this.CampaignDescriptionLbl.TabIndex = 2;
             this.CampaignDescriptionLbl.Text = "Campaign description:";
             this.CampaignDescriptionLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -175,7 +177,7 @@
             this.CampaignNameLbl.Location = new System.Drawing.Point(0, 0);
             this.CampaignNameLbl.Margin = new System.Windows.Forms.Padding(0);
             this.CampaignNameLbl.Name = "CampaignNameLbl";
-            this.CampaignNameLbl.Size = new System.Drawing.Size(113, 20);
+            this.CampaignNameLbl.Size = new System.Drawing.Size(198, 20);
             this.CampaignNameLbl.TabIndex = 0;
             this.CampaignNameLbl.Text = "Campaign name:";
             this.CampaignNameLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -183,28 +185,28 @@
             // CampaignNameBox
             // 
             this.CampaignNameBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignNameBox.Location = new System.Drawing.Point(113, 0);
+            this.CampaignNameBox.Location = new System.Drawing.Point(198, 0);
             this.CampaignNameBox.Margin = new System.Windows.Forms.Padding(0);
             this.CampaignNameBox.Name = "CampaignNameBox";
-            this.CampaignNameBox.Size = new System.Drawing.Size(657, 20);
+            this.CampaignNameBox.Size = new System.Drawing.Size(572, 20);
             this.CampaignNameBox.TabIndex = 0;
             // 
             // CampaignLogoBox
             // 
             this.CampaignLogoBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignLogoBox.Location = new System.Drawing.Point(113, 40);
+            this.CampaignLogoBox.Location = new System.Drawing.Point(198, 40);
             this.CampaignLogoBox.Margin = new System.Windows.Forms.Padding(0);
             this.CampaignLogoBox.Name = "CampaignLogoBox";
-            this.CampaignLogoBox.Size = new System.Drawing.Size(657, 20);
+            this.CampaignLogoBox.Size = new System.Drawing.Size(572, 20);
             this.CampaignLogoBox.TabIndex = 2;
             // 
             // CampaignDescriptionBox
             // 
             this.CampaignDescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignDescriptionBox.Location = new System.Drawing.Point(113, 20);
+            this.CampaignDescriptionBox.Location = new System.Drawing.Point(198, 20);
             this.CampaignDescriptionBox.Margin = new System.Windows.Forms.Padding(0);
             this.CampaignDescriptionBox.Name = "CampaignDescriptionBox";
-            this.CampaignDescriptionBox.Size = new System.Drawing.Size(657, 20);
+            this.CampaignDescriptionBox.Size = new System.Drawing.Size(572, 20);
             this.CampaignDescriptionBox.TabIndex = 1;
             // 
             // LevelsTab
@@ -232,10 +234,6 @@
             this.LevelsBox.FullRowSelect = true;
             this.LevelsBox.GridLines = true;
             this.LevelsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.LevelsBox.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
             this.LevelsBox.LineAfter = -1;
             this.LevelsBox.LineBefore = -1;
             this.LevelsBox.Location = new System.Drawing.Point(0, 0);
@@ -403,13 +401,22 @@
             // 
             // PackBtn
             // 
-            this.PackBtn.Enabled = false;
             this.PackBtn.Image = global::CustomCampaign.Properties.Resources.Pack16;
             this.PackBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PackBtn.Name = "PackBtn";
-            this.PackBtn.Size = new System.Drawing.Size(36, 35);
-            this.PackBtn.Text = "Pack";
+            this.PackBtn.Size = new System.Drawing.Size(60, 35);
+            this.PackBtn.Text = "Pack files";
             this.PackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.PackBtn.Click += new System.EventHandler(this.PackBtn_Click);
+            // 
+            // AuthorsBox
+            // 
+            this.AuthorsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AuthorsBox.Location = new System.Drawing.Point(198, 60);
+            this.AuthorsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.AuthorsBox.Name = "AuthorsBox";
+            this.AuthorsBox.Size = new System.Drawing.Size(572, 20);
+            this.AuthorsBox.TabIndex = 5;
             // 
             // MainForm
             // 
@@ -474,5 +481,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton PackBtn;
         private System.Windows.Forms.ToolStripLabel Status;
+        private System.Windows.Forms.Label AuthorsLbl;
+        private System.Windows.Forms.TextBox AuthorsBox;
     }
 }

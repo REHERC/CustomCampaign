@@ -70,11 +70,11 @@
     <Compile Include="Controls\ReorderableListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\AddLevelForm.cs">
+    <Compile Include="Forms\LevelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddLevelForm.Designer.cs">
-      <DependentUpon>AddLevelForm.cs</DependentUpon>
+    <Compile Include="Forms\LevelForm.Designer.cs">
+      <DependentUpon>LevelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -82,13 +82,23 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PackForm.Designer.cs">
+      <DependentUpon>PackForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\AddLevelForm.resx">
-      <DependentUpon>AddLevelForm.cs</DependentUpon>
+    <Compile Include="Static\CreateExampleCampaign.cs" />
+    <EmbeddedResource Include="Forms\LevelForm.resx">
+      <DependentUpon>LevelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PackForm.resx">
+      <DependentUpon>PackForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

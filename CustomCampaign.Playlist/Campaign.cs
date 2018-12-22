@@ -9,6 +9,8 @@ public partial class Campaign
     public string Description;
     public string LogoPath;
 
+    public string Authors;
+
     public List<Level> Levels;
     
     public Campaign()
@@ -27,6 +29,8 @@ public partial class Campaign
                 Name = reader.ReadStringSecure();
                 Description = reader.ReadStringSecure();
                 LogoPath = reader.ReadStringSecure();
+
+                Authors = reader.ReadStringSecure();
 
                 int _levelcount = reader.ReadInt32();
                 
@@ -61,6 +65,9 @@ public partial class Campaign
             writer.WriteStringSecure(Name);
             writer.WriteStringSecure(Description);
             writer.WriteStringSecure(LogoPath);
+
+            writer.WriteStringSecure(Authors);
+
             writer.Write(Levels.Count);
 
             foreach (Level level in Levels)

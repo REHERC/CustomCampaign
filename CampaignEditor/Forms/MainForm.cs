@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+#pragma warning disable CS1690
 namespace CustomCampaign.Forms
 {
     public partial class MainForm : Form
@@ -18,30 +19,7 @@ namespace CustomCampaign.Forms
                              System.Reflection.BindingFlags.Instance)
                .SetValue(LevelsBox, true, null);
 
-            string path = $@"{Application.StartupPath}\Campaign.pak";
-
-            Campaign c;
-
-            c = new Campaign()
-            {
-                Name = "Space base Frontier-1",
-                Description = "Welcome to space base Frontier-1, our newest space colony. We're waiting for you!",
-                LogoPath = "Images/Campaign.png",
-                Levels = new System.Collections.Generic.List<Campaign.Level>()
-                {
-                    new Campaign.Level("Levels/SJ_Arrival.bytes","[7BA7C6]Transportation Hub[-]","Terminal Aplha","Images/Loading.Arrival.png"),
-                    new Campaign.Level("Levels/SJ_FarAway.bytes","[7BA7C6]Transportation Hub[-]","Terminal Alpha","Images/Loading.FarAway.png"),
-                    new Campaign.Level("Levels/SJ_NewHome.bytes","[7BA7C6]Residential District[-]","Station Omicron","Images/Loading.NewHome.png"),
-                    new Campaign.Level("Levels/SJ_Biosynthesis.bytes","[7BA7C6]Greenhouse[-]","Station Delta","Images/Loading.Biosynthesis.png"),
-                    new Campaign.Level("Levels/SJ_Oxydation.bytes","[7BA7C6]Oxygen Production[-]","Station Epsilon","Images/Loading.Oxydation.png"),
-                    new Campaign.Level("Levels/SJ_Gravity.bytes","[7BA7C6]Gravity Field Generator[-]","Station Theta","Images/Loading.Gravity.png"),
-                    new Campaign.Level("Levels/SJ_Maintenance.bytes","[992F2F]Error[-]","[C45858]Maintenance required[-]","Images/Loading.Maintenance.png"),
-                    new Campaign.Level("Levels/SJ_Threat.bytes","[992F2F]Evacuation Order[-]","[C45858]Leave the station immediately[-]","Images/Loading.Threat.png"),
-                    new Campaign.Level("Levels/SJ_Contemplation.bytes","[7BA7C6]Transportation Hub[-]","Terminal Aplha","Images/Loading.Contemplation.png")
-                }
-            };
-
-            c.Save(path);
+            ExampleCampaign.Create02();
         }
 
         void SaveAs()
@@ -57,7 +35,27 @@ namespace CustomCampaign.Forms
                 AddExtension = true
             };
 
-            dlg.ShowDialog();
+            if (dlg.ShowDialog() == true)
+            {
+                Campaign c = new Campaign() {
+                    Name = CampaignNameBox.Text,
+                    Description = CampaignDescriptionBox.Text,
+                    LogoPath = CampaignLogoBox.Text,
+                    Authors = AuthorsBox.Text
+                };
+
+                c.Levels = new System.Collections.Generic.List<Campaign.Level>();
+                foreach (ListViewItem item in LevelsBox.Items)
+                {
+                    c.Levels.Add(new Campaign.Level(
+                            item.SubItems[0].Text,
+                            item.SubItems[1].Text,
+                            item.SubItems[2].Text,
+                            item.SubItems[3].Text
+                        ));
+                }
+                c.Save(dlg.FileName);
+            }
         }
 
         void Open()
@@ -88,6 +86,8 @@ namespace CustomCampaign.Forms
             CampaignNameBox.Text = c.Name;
             CampaignDescriptionBox.Text = c.Description;
             CampaignLogoBox.Text = c.LogoPath;
+            
+            AuthorsBox.Text = c.Authors;
 
             LevelsBox.Items.Clear();
 
@@ -180,25 +180,40 @@ namespace CustomCampaign.Forms
         {
             LevelsBox.LineAfter = LevelsBox.LineBefore = -1;
             LevelsBox.Invalidate();
-            MessageBox.Show(item.Text);
+
+            LevelForm form = new LevelForm(item)
+            {
+                Text = "Custom Campaign SDK - Edit a level"
+            };
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                item.SubItems[0].Text = form.value.file;
+                item.SubItems[1].Text = form.value.levelname;
+                item.SubItems[2].Text = form.value.levelname_sub;
+                item.SubItems[3].Text = form.value.loading_wallpaper;
+            }
         }
 
         private void AddANewLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddLevelForm form = new AddLevelForm();
+            LevelForm form = new LevelForm()
+            {
+                Text = "Custom Campaign SDK - Add a level"
+            };
+            
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                ListViewItem selectedItem = LevelsBox.SelectedItems.Count > 0 ? LevelsBox.SelectedItems[0] : null;
 
-            form.ShowDialog();
-
-            ListViewItem selectedItem = LevelsBox.SelectedItems.Count > 0 ? LevelsBox.SelectedItems[0] : null;
-
-            ListViewItem item = new ListViewItem(new string[]{
-                form.value.file,
-                form.value.levelname,
-                form.value.levelname_sub,
-                form.value.loading_wallpaper
-            });
-
-            LevelsBox.Items.Insert(selectedItem != null ? selectedItem.Index + 1 : LevelsBox.Items.Count, item);
+                ListViewItem item = new ListViewItem(new string[]{
+                    form.value.file,
+                    form.value.levelname,
+                    form.value.levelname_sub,
+                    form.value.loading_wallpaper
+                });
+                LevelsBox.Items.Insert(selectedItem != null ? selectedItem.Index + 1 : LevelsBox.Items.Count, item);
+            }
         }
 
         private void LevelsContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -222,7 +237,7 @@ namespace CustomCampaign.Forms
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to close this application?\nAny unsaved changes will be discarded!", "Quit application?", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (MessageBox.Show("Are you sure you want to close this application ?\nAny unsaved changes will be discarded !", "Quit application ?", MessageBoxButtons.YesNo) == DialogResult.No)
             {
                 e.Cancel = true;
             }
@@ -256,9 +271,29 @@ namespace CustomCampaign.Forms
 
         private void NewBtn_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to create a new file?\nAny unsaved changes will be discarded!", "Create new file", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to create a new file ?\nAny unsaved changes will be discarded !", "Create new file", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 LoadCampaign(new Campaign());
+            }
+        }
+
+        private void PackBtn_Click(object sender, EventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            {
+                FileName = "Campaign.pak",
+                Filter = "Packaged campaign playlist (.pak)|*.pak",
+                DefaultExt = ".pak",
+                Title = "Open file for packaging",
+                ValidateNames = true,
+                AddExtension = true,
+                CheckFileExists = true,
+                CheckPathExists = true
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                PackForm form = new PackForm(dlg.FileName);
             }
         }
     }

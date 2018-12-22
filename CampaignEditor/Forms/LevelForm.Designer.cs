@@ -1,6 +1,6 @@
 ﻿namespace CustomCampaign.Forms
 {
-    partial class AddLevelForm
+    partial class LevelForm
     {
         /// <summary>
         /// Required designer variable.
@@ -227,7 +227,7 @@
             this.LevelNameBox.Size = new System.Drawing.Size(310, 20);
             this.LevelNameBox.TabIndex = 1;
             // 
-            // AddLevelForm
+            // LevelForm
             // 
             this.AcceptButton = this.OkBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,9 +242,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddLevelForm";
+            this.Name = "LevelForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add a level";
             this.ButtonsPanel.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             this.SettingsPanel.ResumeLayout(false);

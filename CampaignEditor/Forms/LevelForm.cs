@@ -1,21 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Forms
 {
-    public partial class AddLevelForm : Form
+    public partial class LevelForm : Form
     {
         public Campaign.Level value;
-
-        public AddLevelForm()
+        
+        public LevelForm()
         {
             InitializeComponent();
+        }
+
+        public LevelForm(ListViewItem item)
+        {
+            InitializeComponent();
+
+            if (item.SubItems.Count == 4)
+            {
+                value = new Campaign.Level(
+                    item.SubItems[0].Text,
+                    item.SubItems[1].Text,
+                    item.SubItems[2].Text,
+                    item.SubItems[3].Text
+                );
+
+                LevelFileBox.Text = value.file;
+                LevelNameBox.Text = value.levelname;
+                LevelSectorNameBox.Text = value.levelname_sub;
+                LoadingBackgroundBox.Text = value.loading_wallpaper;
+            }
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
