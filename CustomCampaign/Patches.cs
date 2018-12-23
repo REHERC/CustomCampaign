@@ -57,8 +57,6 @@ namespace CustomCampaign
     {
         static void Postfix(LevelSetsManager __instance)
         {
-            //__instance.AllLevelPaths_.Add("C:/Users/amaury/Documents/my games/Distance/Levels/MyLevels/Folder/test.bytes");
-
             FileSystem fs = new FileSystem();
 
             string path = $@"{fs.RootDirectory}/Data/Levels";
@@ -68,28 +66,4 @@ namespace CustomCampaign
             }
         }
     }
-
-
-            /*
-            [HarmonyPatch(typeof(BinaryDeserializer))]
-            [HarmonyPatch("LoadFromFile", new Type[] { typeof(string) })]
-            public class BinaryDeserializer__StartReading__Patch
-            {
-                static bool Prefix(BinaryDeserializer __instance, ref string fileName)
-                {
-                    if (fileName.StartsWith("Assets/"))
-                    {
-                        TextAsset level = SharedResources.EmbeddedResources.Bundle.LoadAsset<TextAsset>(fileName);
-
-                        if ((UnityEngine.Object)level != (UnityEngine.Object)null)
-                        {
-                            __instance.CallPrivateMethod("Initialize", (Dictionary<uint, object>)null);
-                            __instance.CallPrivateMethod("StartReading", new MemoryStream(level.bytes));
-                        }
-                        return false;
-                    }
-                    return true;
-                }
-            }
-            */
-        }
+}
