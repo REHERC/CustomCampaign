@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 
 namespace CustomCampaign
@@ -42,9 +43,9 @@ namespace CustomCampaign
             return path;
         }
 
-        public static void PathNormalize(this string path)
+        public static string GetForwardPath(this string path)
         {
-            path = path.Replace("/", @"\");
+            return path;//.Replace(Path.DirectorySeparatorChar, '/');
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Spectrum.API.Logging;
 using Spectrum.API.Storage;
+using System.Collections.Generic;
 
 namespace CustomCampaign
 {
@@ -13,6 +14,8 @@ namespace CustomCampaign
             };
 
             File = new FileSystem();
+
+            LevelFilesAndInfo = new Dictionary<string, CampaignLevelInfo>();
         }
 
         public static string GetLevelsFolder()
@@ -36,5 +39,7 @@ namespace CustomCampaign
 
         public static FileSystem File;
         public static Logger Log;
+
+        public static Dictionary<string, CampaignLevelInfo> LevelFilesAndInfo;
     }
 }

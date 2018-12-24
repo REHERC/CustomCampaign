@@ -94,6 +94,8 @@ namespace CustomCampaign.Forms
 
         private void ExportBtn_Click(object sender, EventArgs e)
         {
+            if (!new Campaign().Validate(_PakFile))
+                ListFiles();
             if (errorcount == 0)
             {
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog

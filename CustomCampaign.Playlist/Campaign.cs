@@ -57,6 +57,33 @@ public partial class Campaign
         }
     }
     
+    public bool Validate(string path)
+    {
+        string root = Path.GetDirectoryName(path);
+        if (File.Exists(path))
+        {
+            Campaign c = new Campaign();
+
+            try { c.Load(path); } catch (Exception e) { Console.WriteLine(path + " : file format error"); return false; }
+
+            foreach (Level level in c.Levels)
+            {
+                if (!FileExists(root, level.file) 
+                ||  !FileExists(root, level.file + ".png") 
+                ||  (!FileExists(root, level.loading_wallpaper) 
+                  && level.loading_wallpaper != ""))
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private bool FileExists(string root, string file)
+    {
+        return File.Exists(Path.GetFullPath(Path.Combine(root,file)));
+    }
+
 #if EDITOR
     public void Save(string FileName)
     {

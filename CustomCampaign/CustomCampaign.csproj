@@ -62,14 +62,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CampaignLevelInfo.cs" />
     <Compile Include="Entry.cs" />
-    <Compile Include="AccessExtensions.cs" />
+    <Compile Include="Utilities\AccessExtensions.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SectorNames.cs" />
     <Compile Include="Shared.cs" />
     <Compile Include="TODO.cs" />
-    <Compile Include="Util.cs" />
+    <Compile Include="Utilities\Util.cs" />
   </ItemGroup>
   <Import Project="..\CustomCampaign.Playlist\CustomCampaign.Playlist.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
