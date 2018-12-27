@@ -82,7 +82,7 @@ namespace CustomCampaign
                         LevelSettings levelsettings = LevelSettings.CreateAndLoadFromPath(levelpath.GetForwardPath(), out bool settingsvalidlevelpath);
                         
                         LevelInfo levelinfo = LevelInfo.Create(levelpath.GetForwardPath(), levelsettings);
-                        levelinfo.fileNameWithoutExtension_ = levelpath;
+                        levelinfo.fileNameWithoutExtension_ = /*"test" + new System.Random().Next(int.MinValue,int.MaxValue);*/levelpath.GetForwardPath();
                         levelinfo.levelType_ = LevelType.Official;
 
                         Console.WriteLine("adding level to internal registry : " + levelpath);
