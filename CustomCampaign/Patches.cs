@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using Harmony;
-using Serializers;
-using Spectrum.API.Storage;
 
 namespace CustomCampaign
 {
@@ -14,11 +11,9 @@ namespace CustomCampaign
         static void Postfix(LevelGridMenu __instance)
         {
             bool flag_campaignmode = __instance.GetPrivateField<bool>("isCampaignMode_");
-
-            FileSystem fs = new FileSystem();
-            string path = $@"{fs.RootDirectory}/Data/Campaigns/";
-
-
+            
+            string path = $@"{Plugin.Files.RootDirectory}/Data/Campaigns/";
+            
             if (flag_campaignmode)
             {
                 foreach (string campaignroot in Directory.GetDirectories(path))
@@ -62,8 +57,7 @@ namespace CustomCampaign
     {
         static void Postfix(LevelSetsManager __instance)
         {
-            FileSystem fs = new FileSystem();
-            string path = $@"{fs.RootDirectory}/Data/Campaigns/";
+            string path = $@"{Plugin.Files.RootDirectory}/Data/Campaigns/";
 
             foreach (string campaignroot in Directory.GetDirectories(path))
             {
@@ -82,7 +76,10 @@ namespace CustomCampaign
                         LevelSettings levelsettings = LevelSettings.CreateAndLoadFromPath(levelpath.GetForwardPath(), out bool settingsvalidlevelpath);
                         
                         LevelInfo levelinfo = LevelInfo.Create(levelpath.GetForwardPath(), levelsettings);
-                        levelinfo.fileNameWithoutExtension_ = /*"test" + new System.Random().Next(int.MinValue,int.MaxValue);*/levelpath.GetForwardPath();
+                        //levelinfo.fileNameWithoutExtension_ = /*"test" + new System.Random().Next(int.MinValue,int.MaxValue);*/levelpath.GetForwardPath();
+                        levelinfo.fileNameWithoutExtension_ = Resource.GetFileNameWithoutExtension(levelpath);
+                        
+                        
                         levelinfo.levelType_ = LevelType.Official;
 
                         Console.WriteLine("adding level to internal registry : " + levelpath);
@@ -112,34 +109,26 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelSetsManager))]
+    [HarmonyPatch("AddOrUpdateLevelUsingLevelInfo")]
+    public class LevelSetsManager__AddOrUpdateLevelUsingLevelInfo__Patch
+    {
+        void Prefix()
+        {
+            Console.WriteLine("----------------------------------------");
+            //Console.WriteLine(levelInfo.levelName_);
+            //Console.WriteLine(normalizedLevelPath);
+            //Console.WriteLine(levelInfo.fileNameWithoutExtension_);
+            //Console.WriteLine("----------------------------------------");
+        }
+    }
+
+    [HarmonyPatch(typeof(LevelSetsManager))]
     [HarmonyPatch("CanLevelBeLoadedInEditor")]
     public class LevelSetsManager__CanLevelBeLoadedInEditor__Patch
     {
         void Postfix(bool __result, string normalizedAboluteLevelPath)
         {
             __result |= SharedResources.LevelFilesAndInfo.ContainsKey(normalizedAboluteLevelPath);
-        }
-    }
-
-    [HarmonyPatch(typeof(LevelSetsManager))]
-    [HarmonyPatch("LevelExists")]
-    public class LevelSetsManager__LevelExists__Patch
-    {
-        void Postfix(bool __result, string normalizedAboluteLevelPath)
-        {
-            __result |= SharedResources.LevelFilesAndInfo.ContainsKey(normalizedAboluteLevelPath);
-        }
-    }
-
-    [HarmonyPatch(typeof(BinaryDeserializer), "LoadFromFile", new Type[] { typeof(string)})]
-    public class BinaryDeserializer__ctor_string__Patch
-    {
-        void Postfix(string path)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("BinaryDeserializer::LoadFromFile");
-            Console.WriteLine(path);
-            Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }

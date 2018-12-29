@@ -64,7 +64,7 @@ public partial class Campaign
         {
             Campaign c = new Campaign();
 
-            try { c.Load(path); } catch (Exception e) { Console.WriteLine(path + " : file format error"); return false; }
+            try { c.Load(path); } catch (Exception pizza) { Console.WriteLine(path + " : file format error"); return false; }
 
             foreach (Level level in c.Levels)
             {
