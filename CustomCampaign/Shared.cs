@@ -1,5 +1,4 @@
 ﻿using Spectrum.API.Logging;
-using Spectrum.API.Storage;
 using System.Collections.Generic;
 
 namespace CustomCampaign
@@ -12,32 +11,27 @@ namespace CustomCampaign
             {
                 WriteToConsole = true
             };
-
-            File = new FileSystem();
-
-            LevelFilesAndInfo = new Dictionary<string, CampaignLevelInfo>();
         }
 
-        public static string GetLevelsFolder()
+        public static string LevelsFolder()
         {
             string Documents = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-            string LevelPath = $@"{Documents}/My Games/Distance/Levels/MyLevels";
+            string LevelPath = $@"{Documents}/My Games/Distance/Levels";
 
-            return LevelPath.Replace("\\", "/");
+            return Resource.NormalizePath(LevelPath);
         }
 
         public static string GetResourcesFolder()
         {
             string Data = UnityEngine.Application.dataPath;
-            return $@"{Data}/Resources".Replace("\\", "/");
+            return Resource.NormalizePath($@"{Data}/Resources");
         }
 
         public static string GetPluginFolder()
         {
-            return File.RootDirectory.Replace("\\", "/");
+            return Resource.NormalizePath(Plugin.Files.RootDirectory);
         }
 
-        public static FileSystem File;
         public static Logger Log;
 
         public static Dictionary<string, CampaignLevelInfo> LevelFilesAndInfo;

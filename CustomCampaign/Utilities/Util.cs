@@ -35,9 +35,9 @@ namespace CustomCampaign
 
         public static string PluginLevelRedirect(this string path)
         {
-            if (path.Replace("/", @"\").StartsWith(SharedResources.GetLevelsFolder().Replace("/", @"\") + @"\CustomCampaign"))
+            if (path.Replace("/", @"\").StartsWith(SharedResources.LevelsFolder().Replace("/", @"\") + @"\CustomCampaign"))
             {
-                return (SharedResources.GetPluginFolder() + @"\Levels" + path.Substring((SharedResources.GetLevelsFolder() + @"\CustomCampaign").Length)).Replace("/", @"\");
+                return (SharedResources.GetPluginFolder() + @"\Levels" + path.Substring((SharedResources.LevelsFolder() + @"\CustomCampaign").Length)).Replace("/", @"\");
             }
             return path;
         }

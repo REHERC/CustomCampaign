@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Harmony;
 using Spectrum.API.Interfaces.Plugins;
 using Spectrum.API.Interfaces.Systems;
@@ -10,10 +11,19 @@ namespace CustomCampaign
     {
         public void Initialize(IManager manager, string ipcIdentifier)
         {
-            Plugin.Files = new FileSystem();
-            SharedResources.Init();
-            HarmonyInstance Harmony = HarmonyInstance.Create($"com.CustomCampaign.{ipcIdentifier}");
-            Harmony.PatchAll(Assembly.GetExecutingAssembly());
+            try
+            {
+                Plugin.Files = new FileSystem();
+                SharedResources.Init();
+                HarmonyInstance Harmony = HarmonyInstance.Create($"com.CustomCampaign.{ipcIdentifier}");
+                Harmony.PatchAll(Assembly.GetExecutingAssembly());
+
+                Tests.Execute();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 
