@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="CampaignLevelInfo.cs" />
     <Compile Include="Entry.cs" />
-    <Compile Include="Tests.cs" />
+    <Compile Include="Storage.cs" />
     <Compile Include="Utilities\AccessExtensions.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

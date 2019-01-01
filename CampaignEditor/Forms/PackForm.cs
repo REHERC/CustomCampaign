@@ -94,7 +94,7 @@ namespace CustomCampaign.Forms
 
         private void ExportBtn_Click(object sender, EventArgs e)
         {
-            if (!new Campaign().Validate(_PakFile))
+            if (!Campaign.Validate(_PakFile))
                 ListFiles();
             if (errorcount == 0)
             {

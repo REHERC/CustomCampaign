@@ -57,7 +57,7 @@ public partial class Campaign
         }
     }
     
-    public bool Validate(string path)
+    public static bool Validate(string path)
     {
         string root = Path.GetDirectoryName(path);
         if (File.Exists(path))
@@ -68,9 +68,9 @@ public partial class Campaign
 
             foreach (Level level in c.Levels)
             {
-                if (!FileExists(root, level.file) 
-                ||  !FileExists(root, level.file + ".png") 
-                ||  (!FileExists(root, level.loading_wallpaper) 
+                if (!Campaign.FileExists(root, level.file) 
+                ||  !Campaign.FileExists(root, level.file + ".png") 
+                ||  (!Campaign.FileExists(root, level.loading_wallpaper) 
                   && level.loading_wallpaper != ""))
                 return false;
             }
@@ -79,7 +79,7 @@ public partial class Campaign
         return false;
     }
 
-    private bool FileExists(string root, string file)
+    public static bool FileExists(string root, string file)
     {
         return File.Exists(Path.GetFullPath(Path.Combine(root,file)));
     }

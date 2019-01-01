@@ -12,5 +12,7 @@
             this.sector = _sector;
             this.wallpaper = _wallpaper;
         }
+
+        public CampaignLevelInfo(Campaign.Level level) : this(level.levelname, level.levelname_sub, level.loading_wallpaper) { }
     }
 }

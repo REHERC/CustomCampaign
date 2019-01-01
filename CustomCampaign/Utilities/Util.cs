@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 
 namespace CustomCampaign
@@ -35,16 +36,21 @@ namespace CustomCampaign
 
         public static string PluginLevelRedirect(this string path)
         {
-            if (path.Replace("/", @"\").StartsWith(SharedResources.LevelsFolder().Replace("/", @"\") + @"\CustomCampaign"))
+            if (path.Replace("/", @"\").StartsWith(Plugin.LevelsFolder().Replace("/", @"\") + @"\CustomCampaign"))
             {
-                return (SharedResources.GetPluginFolder() + @"\Levels" + path.Substring((SharedResources.LevelsFolder() + @"\CustomCampaign").Length)).Replace("/", @"\");
+                return (Plugin.GetPluginFolder() + @"\Levels" + path.Substring((Plugin.LevelsFolder() + @"\CustomCampaign").Length)).Replace("/", @"\");
             }
             return path;
         }
 
         public static string GetForwardPath(this string path)
         {
-            return path;//.Replace(Path.DirectorySeparatorChar, '/');
+            return path.Replace(Path.DirectorySeparatorChar, '/');
+        }
+
+        public static string NormPath(this string input)
+        {
+            return Resource.NormalizePath(input.ToLower()).Normalize();
         }
     }
 }

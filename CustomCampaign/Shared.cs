@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CustomCampaign
 {
-    public static class SharedResources
+    public static partial class Plugin
     {
         public static void Init()
         {
@@ -11,6 +11,8 @@ namespace CustomCampaign
             {
                 WriteToConsole = true
             };
+
+            LevelData = new Dictionary<string, CampaignLevelInfo>();
         }
 
         public static string LevelsFolder()
@@ -21,7 +23,7 @@ namespace CustomCampaign
             return Resource.NormalizePath(LevelPath);
         }
 
-        public static string GetResourcesFolder()
+        public static string ResourcesFolder()
         {
             string Data = UnityEngine.Application.dataPath;
             return Resource.NormalizePath($@"{Data}/Resources");
@@ -34,6 +36,6 @@ namespace CustomCampaign
 
         public static Logger Log;
 
-        public static Dictionary<string, CampaignLevelInfo> LevelFilesAndInfo;
+        public static Dictionary<string, CampaignLevelInfo> LevelData;
     }
 }
