@@ -42,12 +42,11 @@ namespace CustomCampaign
                 if (File.Exists(pakfile) && Campaign.Validate(pakfile)) {
                     Campaign c = new Campaign();
                     c.Load(pakfile);
-                    Storage.CampaignInfo cinfo = new Storage.CampaignInfo(c);
-                    string Workspace = new DirectoryInfo(campaigndir).Name;
+                    Storage.CampaignInfo cinfo = new Storage.CampaignInfo(campaigndir,c);
+                    string Workspace = cinfo.DirectoryName;
                     string WorkshopRoot = $@"{WorkshopLevels}/{Workspace}";
                     if (!Directory.Exists(WorkshopRoot))
                         Directory.CreateDirectory(WorkshopRoot);
-                    Console.WriteLine(c.Name);
                     foreach (Campaign.Level level in c.Levels)
                     {
                         string Source = Path.GetFullPath(Path.Combine(campaigndir, level.file));
@@ -57,7 +56,7 @@ namespace CustomCampaign
 
                         cinfo.Levels.AddLevel("level", Resource.NormalizePath(Destination), LevelType.Official);
 
-                        Storage.Levelnfos.Add(Resource.NormalizePath(Destination), new CampaignLevelInfo(level));
+                        Storage.Levelnfos.Add(Destination.NormPath(), new CampaignLevelInfo(level));
                     }
                     Storage.Campaigns.Add(cinfo);
                 }

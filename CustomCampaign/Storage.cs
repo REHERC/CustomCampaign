@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -18,7 +19,7 @@ namespace CustomCampaign
 
         public struct CampaignInfo
         {
-            public CampaignInfo(Campaign c)
+            public CampaignInfo(string dir,Campaign c)
             {
                 this.Name = c.Name;
                 this.Description = c.Description;
@@ -26,6 +27,9 @@ namespace CustomCampaign
                 this.LogoPath = c.LogoPath;
 
                 this.Levels = new LevelSet();
+
+                this.Directory = dir;
+                this.DirectoryName = new DirectoryInfo(dir).Name;
             }
 
             public string Name;
@@ -33,6 +37,9 @@ namespace CustomCampaign
             public string LogoPath;
 
             public string Authors;
+
+            public string Directory;
+            public string DirectoryName;
 
             public LevelSet Levels;
         }
