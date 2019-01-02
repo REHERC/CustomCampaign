@@ -1,6 +1,7 @@
 ﻿using Harmony;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -47,6 +48,12 @@ namespace CustomCampaign
                 {
                     Console.WriteLine(campaign.Description);
                     __instance.modeDescription_.text = __instance.gridDescription_.text = campaign.Description;
+
+                    byte[] image = File.ReadAllBytes(Path.GetFullPath($"{campaign.Directory}/{campaign.LogoPath}"));
+                    Texture2D logo = new Texture2D(2, 2);
+                    logo.LoadImage(image);
+
+                    __instance.campaignLogo_.mainTexture = logo;
                 }
             }
         }
