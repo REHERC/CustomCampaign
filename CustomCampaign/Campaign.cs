@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -67,19 +66,19 @@ namespace CustomCampaign
 
         public static string GetLevelTitle()
         {
-            return string.Empty;
+            CampaignLevelInfo level = GetLevel(LevelPath(LevelContext.Current));
+            return level is null ? string.Empty : level.name;
         }
 
         public static string GetLevelSubTitle()
         {
-            return string.Empty;
+            CampaignLevelInfo level = GetLevel(LevelPath(LevelContext.Current));
+            return level is null ? string.Empty : level.sector;
         }
 
         public static Texture GetLevelLoadingBackground()
         {
-            string currentlevelpath = G.Sys.GameManager_.NextLevelPath_;
-
-            CampaignLevelInfo level = GetLevel(currentlevelpath);
+            CampaignLevelInfo level = GetLevel(LevelPath(LevelContext.Next));
 
             if (level != null && level.wallpaper != "" && File.Exists(level.wallpaper))
             {

@@ -1,5 +1,4 @@
 ﻿using Harmony;
-using System;
 using UnityEngine;
 
 namespace CustomCampaign
@@ -62,7 +61,7 @@ namespace CustomCampaign
                 __instance.subtitleText_.alpha = __instance.titleLabel_.alpha;
 
                 __instance.titleLabel_.text = Mod.GetLevelTitle();
-                __instance.subtitleText_.text = "- LEVEL NAME SUBTITLE -";
+                __instance.subtitleText_.text = Mod.GetLevelSubTitle();
             }
         }
     }
