@@ -1,14 +1,10 @@
 ﻿using Harmony;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using UnityEngine;
 
 namespace CustomCampaign
 {
-    [HarmonyPatch(typeof(LevelGridMenu))]
-    [HarmonyPatch("CreateEntries")]
+    [HarmonyPatch(typeof(LevelGridMenu), "CreateEntries")]
     public class LevelGridMenu__CreateEntries__Patch
     {
         static void Postfix(LevelGridMenu __instance)
@@ -27,33 +23,61 @@ namespace CustomCampaign
         }
     }
 
-    [HarmonyPatch(typeof(LevelGridMenu))]
-    [HarmonyPatch("SetDisplayedInfoForSelectedPlaylist")]
+    [HarmonyPatch(typeof(LevelGridMenu), "SetDisplayedInfoForSelectedPlaylist")]
     public class LevelGridMenu__SetDisplayedInfoForSelectedPlaylist__Patch
     {
         static void Postfix(LevelGridMenu __instance)
         {
-            LevelPlaylist levels = __instance.DisplayedEntry_.Playlist_;
-            List<LevelNameAndPathPair> levellist = levels.GetLevelSet();
-            string firstpath = levellist[0].levelPath_;
-            string workshoppath = $"{Plugin.LevelsFolder()}/WorkshopLevels/".NormPath();
-            if (firstpath.NormPath().StartsWith(workshoppath))
+            if (__instance.isActiveAndEnabled)
             {
-                string reducedpath = firstpath.Substring(workshoppath.Length);
-                string campaignname = reducedpath.Substring(0, reducedpath.NormPath().IndexOf("/"));
-
-                Console.WriteLine(campaignname);
-                var linq_query = from c in Storage.Campaigns where c.DirectoryName.ToLower() == campaignname.ToLower() select c;
-                foreach (var campaign in linq_query)
+                Mod.SelectedPlaylist = __instance.DisplayedEntry_.Playlist_;
+                if (Mod.IsCustomCampaignPlaylist())
                 {
-                    Console.WriteLine(campaign.Description);
-                    __instance.modeDescription_.text = __instance.gridDescription_.text = campaign.Description;
+                    __instance.modeDescription_.text = __instance.gridDescription_.text = Mod.GetCampaignDescription();
+                    __instance.campaignLogo_.mainTexture = Mod.GetCampaignLogo();
+                }
+            }
+        }
+    }
 
-                    byte[] image = File.ReadAllBytes(Path.GetFullPath($"{campaign.Directory}/{campaign.LogoPath}"));
-                    Texture2D logo = new Texture2D(2, 2);
-                    logo.LoadImage(image);
+    [HarmonyPatch(typeof(LevelIntroTitleLogic), "SetIdlePosition")]
+    public class LevelIntroTitleLogic__SetIdlePosition__Patch
+    {
+        static void Postfix(LevelIntroTitleLogic __instance)
+        {
+            if (Mod.IsCustomCampaignLevel(Mod.LevelContext.Current))
+            {
+                __instance.subtitleText_.gameObject.SetActive(true);
+            }
+        }
+    }
+    
+    [HarmonyPatch(typeof(LevelIntroTitleLogic), "Update")]
+    public class LevelIntroTitleLogic__Update__Patch
+    {
+        static void Postfix(LevelIntroTitleLogic __instance)
+        {
+            if (Mod.IsCustomCampaignLevel(Mod.LevelContext.Current))
+            {
+                __instance.subtitleText_.alpha = __instance.titleLabel_.alpha;
 
-                    __instance.campaignLogo_.mainTexture = logo;
+                __instance.titleLabel_.text = Mod.GetLevelTitle();
+                __instance.subtitleText_.text = "- LEVEL NAME SUBTITLE -";
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(BlackFadeLogic), "FinishFadeOut")]
+    public class BlackFadeLogic__FinishFadeOut__Patch
+    {
+        static void Postfix(BlackFadeLogic __instance)
+        {
+            if (Mod.IsCustomCampaignLevel(Mod.LevelContext.Next))
+            {
+                Texture background = Mod.GetLevelLoadingBackground();
+                if (background != null)
+                {
+                    __instance.GetPrivateField<LevelLoadingOverlay>("menu_").loadingTexture_.mainTexture = background;
                 }
             }
         }

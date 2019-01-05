@@ -56,7 +56,7 @@ namespace CustomCampaign
 
                         cinfo.Levels.AddLevel("level", Resource.NormalizePath(Destination), LevelType.Official);
 
-                        Storage.Levelnfos.Add(Destination.NormPath(), new CampaignLevelInfo(level));
+                        Storage.Levelnfos.Add(Destination.NormPath(), new CampaignLevelInfo(campaigndir, level));
                     }
                     Storage.Campaigns.Add(cinfo);
                 }

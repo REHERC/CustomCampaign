@@ -33,16 +33,6 @@ namespace CustomCampaign
             else return Input;
         }
 
-
-        public static string PluginLevelRedirect(this string path)
-        {
-            if (path.Replace("/", @"\").StartsWith(Plugin.LevelsFolder().Replace("/", @"\") + @"\CustomCampaign"))
-            {
-                return (Plugin.GetPluginFolder() + @"\Levels" + path.Substring((Plugin.LevelsFolder() + @"\CustomCampaign").Length)).Replace("/", @"\");
-            }
-            return path;
-        }
-
         public static string GetForwardPath(this string path)
         {
             return path.Replace(Path.DirectorySeparatorChar, '/');
@@ -50,6 +40,7 @@ namespace CustomCampaign
 
         public static string NormPath(this string input)
         {
+            if (input is null || input == "" || input == string.Empty) return "";
             return Resource.NormalizePath(input.ToLower()).Normalize();
         }
     }
