@@ -6,6 +6,7 @@ using Spectrum.API.Interfaces.Plugins;
 using Spectrum.API.Interfaces.Systems;
 using Spectrum.API.Storage;
 using static CustomCampaign.Plugin;
+using static CustomCampaign.Storage;
 
 namespace CustomCampaign
 {
@@ -32,9 +33,9 @@ namespace CustomCampaign
 
         public void Make()
         {
-            string WorkshopLevels = Path.GetFullPath($@"{LevelsFolder()}/WorkshopLevels");
-            if (!Directory.Exists(WorkshopLevels))
-                Directory.CreateDirectory(WorkshopLevels);
+            string CampaignLevels = Path.GetFullPath($@"{LevelsFolder()}/WorkshopLevels");
+            if (!Directory.Exists(CampaignLevels))
+                Directory.CreateDirectory(CampaignLevels);
             string path = $@"{Plugin.Files.RootDirectory}/Data/Campaigns/";
             foreach (string campaigndir in Directory.GetDirectories(path))
             {
@@ -44,7 +45,7 @@ namespace CustomCampaign
                     c.Load(pakfile);
                     Storage.CampaignInfo cinfo = new Storage.CampaignInfo(campaigndir,c);
                     string Workspace = cinfo.DirectoryName;
-                    string WorkshopRoot = $@"{WorkshopLevels}/{Workspace}";
+                    string WorkshopRoot = $@"{CampaignLevels}/{Workspace}";
                     if (!Directory.Exists(WorkshopRoot))
                         Directory.CreateDirectory(WorkshopRoot);
                     foreach (Campaign.Level level in c.Levels)

@@ -1,5 +1,6 @@
 ﻿using Spectrum.API.Logging;
 using System.Collections.Generic;
+using static CustomCampaign.Storage;
 
 namespace CustomCampaign
 {

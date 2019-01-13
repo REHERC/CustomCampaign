@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.RefreshBtn = new System.Windows.Forms.Button();
             this.ExportBtn = new System.Windows.Forms.Button();
             this.CancelBtn = new System.Windows.Forms.Button();
             this.SeparatorLight = new System.Windows.Forms.Panel();
@@ -37,7 +38,6 @@
             this.LevelsBox = new ReorderableListView();
             this.FileColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StatusColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RefreshBtn = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +53,18 @@
             this.ButtonsPanel.Padding = new System.Windows.Forms.Padding(4, 12, 4, 12);
             this.ButtonsPanel.Size = new System.Drawing.Size(584, 48);
             this.ButtonsPanel.TabIndex = 2;
+            // 
+            // RefreshBtn
+            // 
+            this.RefreshBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.RefreshBtn.Location = new System.Drawing.Point(9, 12);
+            this.RefreshBtn.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.RefreshBtn.Name = "RefreshBtn";
+            this.RefreshBtn.Size = new System.Drawing.Size(80, 24);
+            this.RefreshBtn.TabIndex = 6;
+            this.RefreshBtn.Text = "Refresh";
+            this.RefreshBtn.UseVisualStyleBackColor = true;
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
             // ExportBtn
             // 
@@ -141,18 +153,6 @@
             this.StatusColumn.Text = "Status";
             this.StatusColumn.Width = 100;
             // 
-            // RefreshBtn
-            // 
-            this.RefreshBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.RefreshBtn.Location = new System.Drawing.Point(9, 12);
-            this.RefreshBtn.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
-            this.RefreshBtn.Name = "RefreshBtn";
-            this.RefreshBtn.Size = new System.Drawing.Size(80, 24);
-            this.RefreshBtn.TabIndex = 6;
-            this.RefreshBtn.Text = "Refresh";
-            this.RefreshBtn.UseVisualStyleBackColor = true;
-            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
-            // 
             // PackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,7 +167,7 @@
             this.MinimizeBox = false;
             this.Name = "PackForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Custom Campaign SDK - Campaign packaging";
+            this.Text = "Custom Campaign Authoring Tool - Campaign packaging";
             this.Load += new System.EventHandler(this.PackForm_Load);
             this.ButtonsPanel.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);

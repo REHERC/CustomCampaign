@@ -41,7 +41,7 @@ namespace CustomCampaign
         public static string NormPath(this string input)
         {
             if (input is null || input == "" || input == string.Empty) return "";
-            return Resource.NormalizePath(input.ToLower()).Normalize();
+            return Resource.NormalizePath(input.ToLower()).Normalize() + (input.EndsWith(Path.DirectorySeparatorChar.ToString()) || input.EndsWith(Path.AltDirectorySeparatorChar.ToString()) ? "" : "/");
         }
     }
 }

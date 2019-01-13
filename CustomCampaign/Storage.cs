@@ -3,15 +3,15 @@ using System.IO;
 
 namespace CustomCampaign
 {
-    public static class Storage
+    public static partial class Storage
     {
         public static List<Storage.CampaignInfo> Campaigns;
-        public static Dictionary<string, CampaignLevelInfo> Levelnfos;
+        public static Dictionary<string, Storage.CampaignLevelInfo> Levelnfos;
 
         public static void Init()
         {
             Campaigns = new List<CampaignInfo>();
-            Levelnfos = new Dictionary<string, CampaignLevelInfo>();
+            Levelnfos = new Dictionary<string, Storage.CampaignLevelInfo>();
         }
 
         public struct CampaignInfo

@@ -183,7 +183,7 @@ namespace CustomCampaign.Forms
 
             LevelForm form = new LevelForm(item)
             {
-                Text = "Custom Campaign SDK - Edit a level"
+                Text = "Custom Campaign Authoring Tool - Edit a level"
             };
 
             if (form.ShowDialog() == DialogResult.OK)
@@ -199,7 +199,7 @@ namespace CustomCampaign.Forms
         {
             LevelForm form = new LevelForm()
             {
-                Text = "Custom Campaign SDK - Add a level"
+                Text = "Custom Campaign Authoring Tooldiscord - Add a level"
             };
             
             if (form.ShowDialog() == DialogResult.OK)

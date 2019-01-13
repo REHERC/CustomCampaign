@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using static CustomCampaign.Storage;
 
 namespace CustomCampaign
 {
@@ -61,24 +62,24 @@ namespace CustomCampaign
         {
             foreach (var level in from lvl in Storage.Levelnfos where path.NormPath() == lvl.Key.NormPath() select lvl.Value)
                 return level;
-            return (CampaignLevelInfo)null;
+            return (Storage.CampaignLevelInfo)null;
         }
 
         public static string GetLevelTitle()
         {
-            CampaignLevelInfo level = GetLevel(LevelPath(LevelContext.Current));
+            Storage.CampaignLevelInfo level = GetLevel(LevelPath(LevelContext.Current));
             return level is null ? string.Empty : level.name;
         }
 
         public static string GetLevelSubTitle()
         {
-            CampaignLevelInfo level = GetLevel(LevelPath(LevelContext.Current));
+            Storage.CampaignLevelInfo level = GetLevel(LevelPath(LevelContext.Current));
             return level is null ? string.Empty : level.sector;
         }
 
         public static Texture GetLevelLoadingBackground()
         {
-            CampaignLevelInfo level = GetLevel(LevelPath(LevelContext.Next));
+            Storage.CampaignLevelInfo level = GetLevel(LevelPath(LevelContext.Next));
 
             if (level != null && level.wallpaper != "" && File.Exists(level.wallpaper))
             {
