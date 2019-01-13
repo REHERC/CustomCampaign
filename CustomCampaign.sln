@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{819D11
 		Wiki\Images\Packager 02.PNG = Wiki\Images\Packager 02.PNG
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.SDK", "CustomCampaign.SDK\CustomCampaign.SDK.csproj", "{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
@@ -46,6 +48,10 @@ Global
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

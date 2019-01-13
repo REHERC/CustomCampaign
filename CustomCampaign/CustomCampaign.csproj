@@ -70,6 +70,12 @@
     <Compile Include="TODO.cs" />
     <Compile Include="Utilities\Util.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomCampaign.SDK\CustomCampaign.SDK.csproj">
+      <Project>{5ae74124-fb0f-46e6-8c97-cd6af24b982f}</Project>
+      <Name>CustomCampaign.SDK</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\CustomCampaign.Playlist\CustomCampaign.Playlist.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
