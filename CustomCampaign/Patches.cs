@@ -130,6 +130,7 @@ namespace CustomCampaign.Patches
                 __instance.soloTitleLabel_.enabled = true;
                 __instance.soloTitleLabel_.text = entry.LevelInfo_.levelName_;
 
+                //NOTE: Part of the locking system
                 //__instance.lockedIcon_.SetActive(true);
 
             }

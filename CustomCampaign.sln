@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign", "CustomCam
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Playlist", "CustomCampaign.Playlist\CustomCampaign.Playlist.shproj", "{60D03882-D06F-4FF8-98F6-4F056CD08269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Editor", "CampaignEditor\CustomCampaign.Editor.csproj", "{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wiki", "Wiki", "{B9D9FDC6-B54A-4672-9374-8D79A4659079}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{819D1152-F8AB-425B-ADE9-822C78112C67}"
@@ -29,11 +27,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{819D11
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.SDK", "CustomCampaign.SDK\CustomCampaign.SDK.csproj", "{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Editor", "CustomCampaign.Editor\CustomCampaign.Editor.csproj", "{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Serialization", "CustomCampaign.Serialization\CustomCampaign.Serialization.shproj", "{AF942756-CFE7-4371-819E-867BA60FF14D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.ModLoader", "CustomCampaign.ModLoader\CustomCampaign.ModLoader.shproj", "{3E683CB1-DD77-4EEF-9184-BCCD76DEF499}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
+		CustomCampaign.ModLoader\CustomCampaign.ModLoader.projitems*{3e683cb1-dd77-4eef-9184-bccd76def499}*SharedItemsImports = 13
+		CustomCampaign.ModLoader\CustomCampaign.ModLoader.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
+		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{60d03882-d06f-4ff8-98f6-4f056cd08269}*SharedItemsImports = 13
+		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{af942756-cfe7-4371-819e-867ba60ff14d}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,14 +52,14 @@ Global
 		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AE74124-FB0F-46E6-8C97-CD6AF24B982F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
