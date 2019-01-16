@@ -19,6 +19,8 @@ namespace CustomCampaign.Forms
                              System.Reflection.BindingFlags.Instance)
                .SetValue(LevelsBox, true, null);
 
+            LoadCampaign(new Campaign());
+
             ExampleCampaign.Create02();
         }
 
@@ -88,6 +90,8 @@ namespace CustomCampaign.Forms
             CampaignLogoBox.Text = c.LogoPath;
             
             AuthorsBox.Text = c.Authors;
+
+            UnlockStyleBox.SelectedIndex = 0;
 
             LevelsBox.Items.Clear();
 

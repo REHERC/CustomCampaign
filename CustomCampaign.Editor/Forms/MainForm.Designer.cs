@@ -34,6 +34,7 @@
             this.EditorTabs = new System.Windows.Forms.TabControl();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.SettingsPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.UnlockStyleLbl = new System.Windows.Forms.Label();
             this.AuthorsBox = new System.Windows.Forms.TextBox();
             this.AuthorsLbl = new System.Windows.Forms.Label();
             this.CampaignLogoLbl = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.CampaignNameBox = new System.Windows.Forms.TextBox();
             this.CampaignLogoBox = new System.Windows.Forms.TextBox();
             this.CampaignDescriptionBox = new System.Windows.Forms.TextBox();
+            this.UnlockStyleBox = new System.Windows.Forms.ComboBox();
             this.LevelsTab = new System.Windows.Forms.TabPage();
             this.LevelsBox = new ReorderableListView();
             this.LevelFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,9 +54,13 @@
             this.addANewLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLevelInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.levelsMenuBar = new System.Windows.Forms.ToolStrip();
-            this.Status = new System.Windows.Forms.ToolStripLabel();
-            this.Icons = new System.Windows.Forms.ImageList(this.components);
+            this.LevelsMenuBar = new System.Windows.Forms.ToolStrip();
+            this.LevelsStatus = new System.Windows.Forms.ToolStripLabel();
+            this.AddonTab = new System.Windows.Forms.TabPage();
+            this.AddonsBox = new ReorderableListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AddonMenuBar = new System.Windows.Forms.ToolStrip();
+            this.AddonStatus = new System.Windows.Forms.ToolStripLabel();
             this.MenuBar = new System.Windows.Forms.ToolStrip();
             this.NewBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -63,14 +69,21 @@
             this.SaveBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.PackBtn = new System.Windows.Forms.ToolStripButton();
+            this.AddonContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.MainPanel.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.SettingsTab.SuspendLayout();
             this.SettingsPanel.SuspendLayout();
             this.LevelsTab.SuspendLayout();
             this.LevelsContextMenu.SuspendLayout();
-            this.levelsMenuBar.SuspendLayout();
+            this.LevelsMenuBar.SuspendLayout();
+            this.AddonTab.SuspendLayout();
+            this.AddonMenuBar.SuspendLayout();
             this.MenuBar.SuspendLayout();
+            this.AddonContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -87,10 +100,11 @@
             // 
             this.EditorTabs.Controls.Add(this.SettingsTab);
             this.EditorTabs.Controls.Add(this.LevelsTab);
+            this.EditorTabs.Controls.Add(this.AddonTab);
             this.EditorTabs.Cursor = System.Windows.Forms.Cursors.Default;
             this.EditorTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EditorTabs.ImageList = this.Icons;
             this.EditorTabs.Location = new System.Drawing.Point(0, 38);
+            this.EditorTabs.Margin = new System.Windows.Forms.Padding(0);
             this.EditorTabs.Name = "EditorTabs";
             this.EditorTabs.SelectedIndex = 0;
             this.EditorTabs.Size = new System.Drawing.Size(784, 324);
@@ -113,6 +127,7 @@
             this.SettingsPanel.ColumnCount = 2;
             this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.SettingsPanel.Controls.Add(this.UnlockStyleLbl, 0, 4);
             this.SettingsPanel.Controls.Add(this.AuthorsBox, 1, 3);
             this.SettingsPanel.Controls.Add(this.AuthorsLbl, 0, 3);
             this.SettingsPanel.Controls.Add(this.CampaignLogoLbl, 0, 2);
@@ -121,18 +136,31 @@
             this.SettingsPanel.Controls.Add(this.CampaignNameBox, 1, 0);
             this.SettingsPanel.Controls.Add(this.CampaignLogoBox, 1, 2);
             this.SettingsPanel.Controls.Add(this.CampaignDescriptionBox, 1, 1);
+            this.SettingsPanel.Controls.Add(this.UnlockStyleBox, 1, 4);
             this.SettingsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SettingsPanel.Location = new System.Drawing.Point(3, 3);
             this.SettingsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.SettingsPanel.Name = "SettingsPanel";
-            this.SettingsPanel.RowCount = 4;
+            this.SettingsPanel.RowCount = 5;
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.SettingsPanel.Size = new System.Drawing.Size(770, 291);
             this.SettingsPanel.TabIndex = 0;
+            // 
+            // UnlockStyleLbl
+            // 
+            this.UnlockStyleLbl.AutoSize = true;
+            this.UnlockStyleLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UnlockStyleLbl.Location = new System.Drawing.Point(0, 80);
+            this.UnlockStyleLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.UnlockStyleLbl.Name = "UnlockStyleLbl";
+            this.UnlockStyleLbl.Size = new System.Drawing.Size(198, 211);
+            this.UnlockStyleLbl.TabIndex = 6;
+            this.UnlockStyleLbl.Text = "Level unlocking style:";
+            this.UnlockStyleLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // AuthorsBox
             // 
@@ -150,7 +178,7 @@
             this.AuthorsLbl.Location = new System.Drawing.Point(0, 60);
             this.AuthorsLbl.Margin = new System.Windows.Forms.Padding(0);
             this.AuthorsLbl.Name = "AuthorsLbl";
-            this.AuthorsLbl.Size = new System.Drawing.Size(198, 231);
+            this.AuthorsLbl.Size = new System.Drawing.Size(198, 20);
             this.AuthorsLbl.TabIndex = 4;
             this.AuthorsLbl.Text = "Authors (separate two names with \";\"):";
             this.AuthorsLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -218,11 +246,25 @@
             this.CampaignDescriptionBox.Size = new System.Drawing.Size(572, 20);
             this.CampaignDescriptionBox.TabIndex = 1;
             // 
+            // UnlockStyleBox
+            // 
+            this.UnlockStyleBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UnlockStyleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UnlockStyleBox.FormattingEnabled = true;
+            this.UnlockStyleBox.Items.AddRange(new object[] {
+            "Campaign (unlock levels by completing previous ones)",
+            "Level set (everything unlocked)"});
+            this.UnlockStyleBox.Location = new System.Drawing.Point(198, 80);
+            this.UnlockStyleBox.Margin = new System.Windows.Forms.Padding(0);
+            this.UnlockStyleBox.Name = "UnlockStyleBox";
+            this.UnlockStyleBox.Size = new System.Drawing.Size(572, 22);
+            this.UnlockStyleBox.TabIndex = 7;
+            // 
             // LevelsTab
             // 
             this.LevelsTab.BackColor = System.Drawing.SystemColors.Control;
             this.LevelsTab.Controls.Add(this.LevelsBox);
-            this.LevelsTab.Controls.Add(this.levelsMenuBar);
+            this.LevelsTab.Controls.Add(this.LevelsMenuBar);
             this.LevelsTab.ImageIndex = 3;
             this.LevelsTab.Location = new System.Drawing.Point(4, 23);
             this.LevelsTab.Name = "LevelsTab";
@@ -310,39 +352,83 @@
             this.removeLevelToolStripMenuItem.Text = "Remove";
             this.removeLevelToolStripMenuItem.Click += new System.EventHandler(this.RemoveLevelToolStripMenuItem_Click);
             // 
-            // levelsMenuBar
+            // LevelsMenuBar
             // 
-            this.levelsMenuBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.levelsMenuBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.levelsMenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Status});
-            this.levelsMenuBar.Location = new System.Drawing.Point(0, 272);
-            this.levelsMenuBar.Name = "levelsMenuBar";
-            this.levelsMenuBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.levelsMenuBar.Size = new System.Drawing.Size(776, 25);
-            this.levelsMenuBar.TabIndex = 1;
-            this.levelsMenuBar.Text = "Menu";
+            this.LevelsMenuBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LevelsMenuBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.LevelsMenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LevelsStatus});
+            this.LevelsMenuBar.Location = new System.Drawing.Point(0, 272);
+            this.LevelsMenuBar.Name = "LevelsMenuBar";
+            this.LevelsMenuBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.LevelsMenuBar.Size = new System.Drawing.Size(776, 25);
+            this.LevelsMenuBar.TabIndex = 1;
+            this.LevelsMenuBar.Text = "Menu";
             // 
-            // Status
+            // LevelsStatus
             // 
-            this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(568, 22);
-            this.Status.Text = "Right-click to add/edit/remove a level. Use drag and drop to re-order items. Doub" +
+            this.LevelsStatus.Name = "LevelsStatus";
+            this.LevelsStatus.Size = new System.Drawing.Size(568, 22);
+            this.LevelsStatus.Text = "Right-click to add/edit/remove a level. Use drag and drop to re-order items. Doub" +
     "le-click an item to edit it.";
             // 
-            // Icons
+            // AddonTab
             // 
-            this.Icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Icons.ImageStream")));
-            this.Icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.Icons.Images.SetKeyName(0, "Application.ico");
-            this.Icons.Images.SetKeyName(1, "FileError.ico");
-            this.Icons.Images.SetKeyName(2, "New.ico");
-            this.Icons.Images.SetKeyName(3, "Object.ico");
-            this.Icons.Images.SetKeyName(4, "Open.ico");
-            this.Icons.Images.SetKeyName(5, "Pack.ico");
-            this.Icons.Images.SetKeyName(6, "Save.ico");
-            this.Icons.Images.SetKeyName(7, "Settings.ico");
-            this.Icons.Images.SetKeyName(8, "Text.ico");
+            this.AddonTab.Controls.Add(this.AddonsBox);
+            this.AddonTab.Controls.Add(this.AddonMenuBar);
+            this.AddonTab.Location = new System.Drawing.Point(4, 23);
+            this.AddonTab.Margin = new System.Windows.Forms.Padding(0);
+            this.AddonTab.Name = "AddonTab";
+            this.AddonTab.Size = new System.Drawing.Size(776, 297);
+            this.AddonTab.TabIndex = 2;
+            this.AddonTab.Text = "Add-on";
+            this.AddonTab.UseVisualStyleBackColor = true;
+            // 
+            // AddonsBox
+            // 
+            this.AddonsBox.AllowDrop = true;
+            this.AddonsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.AddonsBox.ContextMenuStrip = this.AddonContextMenu;
+            this.AddonsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddonsBox.FullRowSelect = true;
+            this.AddonsBox.GridLines = true;
+            this.AddonsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.AddonsBox.LineAfter = -1;
+            this.AddonsBox.LineBefore = -1;
+            this.AddonsBox.Location = new System.Drawing.Point(0, 0);
+            this.AddonsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.AddonsBox.MultiSelect = false;
+            this.AddonsBox.Name = "AddonsBox";
+            this.AddonsBox.Size = new System.Drawing.Size(776, 272);
+            this.AddonsBox.TabIndex = 3;
+            this.AddonsBox.UseCompatibleStateImageBehavior = false;
+            this.AddonsBox.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Manifest file";
+            this.columnHeader1.Width = 752;
+            // 
+            // AddonMenuBar
+            // 
+            this.AddonMenuBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddonMenuBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.AddonMenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddonStatus});
+            this.AddonMenuBar.Location = new System.Drawing.Point(0, 272);
+            this.AddonMenuBar.Name = "AddonMenuBar";
+            this.AddonMenuBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.AddonMenuBar.Size = new System.Drawing.Size(776, 25);
+            this.AddonMenuBar.TabIndex = 2;
+            this.AddonMenuBar.Text = "Menu";
+            // 
+            // AddonStatus
+            // 
+            this.AddonStatus.Name = "AddonStatus";
+            this.AddonStatus.Size = new System.Drawing.Size(585, 22);
+            this.AddonStatus.Text = "Right-click to add/edit/remove an addon. Use drag and drop to re-order items. Dou" +
+    "ble-click an item to edit it.";
             // 
             // MenuBar
             // 
@@ -418,6 +504,35 @@
             this.PackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.PackBtn.Click += new System.EventHandler(this.PackBtn_Click);
             // 
+            // AddonContextMenu
+            // 
+            this.AddonContextMenu.BackColor = System.Drawing.Color.White;
+            this.AddonContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.AddonContextMenu.Name = "LevelsContextMenu";
+            this.AddonContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.AddonContextMenu.Size = new System.Drawing.Size(118, 70);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.toolStripMenuItem1.Text = "Add";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(117, 22);
+            this.toolStripMenuItem2.Text = "Edit";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(117, 22);
+            this.toolStripMenuItem3.Text = "Remove";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -441,10 +556,15 @@
             this.LevelsTab.ResumeLayout(false);
             this.LevelsTab.PerformLayout();
             this.LevelsContextMenu.ResumeLayout(false);
-            this.levelsMenuBar.ResumeLayout(false);
-            this.levelsMenuBar.PerformLayout();
+            this.LevelsMenuBar.ResumeLayout(false);
+            this.LevelsMenuBar.PerformLayout();
+            this.AddonTab.ResumeLayout(false);
+            this.AddonTab.PerformLayout();
+            this.AddonMenuBar.ResumeLayout(false);
+            this.AddonMenuBar.PerformLayout();
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();
+            this.AddonContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -459,12 +579,11 @@
         private System.Windows.Forms.TabPage LevelsTab;
         private System.Windows.Forms.Label CampaignDescriptionLbl;
         private ReorderableListView LevelsBox;
-        private System.Windows.Forms.ToolStrip levelsMenuBar;
+        private System.Windows.Forms.ToolStrip LevelsMenuBar;
         private System.Windows.Forms.ContextMenuStrip LevelsContextMenu;
         private System.Windows.Forms.ToolStripMenuItem addANewLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editLevelInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeLevelToolStripMenuItem;
-        private System.Windows.Forms.ImageList Icons;
         private System.Windows.Forms.ColumnHeader LevelFile;
         private System.Windows.Forms.ColumnHeader LevelName;
         private System.Windows.Forms.ColumnHeader LevelSubName;
@@ -480,8 +599,19 @@
         private System.Windows.Forms.ToolStripButton SaveBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton PackBtn;
-        private System.Windows.Forms.ToolStripLabel Status;
+        private System.Windows.Forms.ToolStripLabel LevelsStatus;
         private System.Windows.Forms.Label AuthorsLbl;
         private System.Windows.Forms.TextBox AuthorsBox;
+        private System.Windows.Forms.Label UnlockStyleLbl;
+        private System.Windows.Forms.ComboBox UnlockStyleBox;
+        private System.Windows.Forms.TabPage AddonTab;
+        private ReorderableListView AddonsBox;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ToolStrip AddonMenuBar;
+        private System.Windows.Forms.ToolStripLabel AddonStatus;
+        private System.Windows.Forms.ContextMenuStrip AddonContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }

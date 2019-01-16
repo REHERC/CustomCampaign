@@ -1,20 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace CustomCampaign.SDK.Data
 {
-    class AddOnManifest
+    [DataContract, Serializable]
+    public class AddOnManifest
     {
-        public string AddonName { get; set; } = "Addon";
-        public List<Author> Authors { get; set; } = new List<Author>();
-        public string ModuleFile { get; set; } = "Addon.dll";
-        public string EntryClass { get; set; } = "Entry";
-        public string[] Dependencies { get; set; } = {};
-        public bool Enabled { get; set; } = true;
+        [DataMember]
+        public string AddonName { get; set; }
+        [DataMember]
+        public List<Author> Authors { get; set; }
+        [DataMember]
+        public string ModuleFile { get; set; }
+        [DataMember]
+        public string EntryClass { get; set; }
+        [DataMember]
+        public List<string> Dependencies { get; set; }
     }
 
-    class Author
+    [DataContract, Serializable]
+    public class Author
     {
+        [DataMember]
         public string Name { get; set; } = "Author";
+        [DataMember]
         public string Contact { get; set; } = "author@mail.com";
+
+        public Author(string _name, string _contact)
+        {
+            this.Name = _name;
+            this.Contact = _contact;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Photon.Serialization
         public DATA_TYPE Data;
         private ISerializer<DATA_TYPE> DataSerializer;
         
-        public Serializer(SerializerType Type, string FileName, bool LoadOnCtor = true, bool AbsolutePath = true)
+        public Serializer(SerializerType Type, string FileName, bool LoadOnCtor = false, bool AbsolutePath = true)
         {
             switch (Type)
             {

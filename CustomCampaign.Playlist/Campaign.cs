@@ -11,6 +11,14 @@ public partial class Campaign
 
     public string Authors;
 
+    public UnlockStyle LockMode;
+
+    public enum UnlockStyle
+    {
+        Campaign = 0,
+        LevelSet = 1
+    }
+
     public List<Level> Levels;
     
     public Campaign()
@@ -31,6 +39,8 @@ public partial class Campaign
                 LogoPath = reader.ReadStringSecure();
 
                 Authors = reader.ReadStringSecure();
+
+                LockMode = (UnlockStyle)reader.ReadInt32();
 
                 int _levelcount = reader.ReadInt32();
                 
@@ -66,6 +76,8 @@ public partial class Campaign
 
             try { c.Load(path); } catch (Exception pizza) { Console.WriteLine(path + " : file format error"); return false; }
 
+            if (c.LogoPath != "" && !Campaign.FileExists(root, c.LogoPath)) return false;
+
             foreach (Level level in c.Levels)
             {
                 if (!Campaign.FileExists(root, level.file) 
@@ -94,6 +106,8 @@ public partial class Campaign
             writer.WriteStringSecure(LogoPath);
 
             writer.WriteStringSecure(Authors);
+
+            writer.Write((int)LockMode);
 
             writer.Write(Levels.Count);
 

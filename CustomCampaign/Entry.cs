@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using CustomCampaign.SDK.Data;
 using Harmony;
+using Photon.Serialization;
 using Spectrum.API.Interfaces.Plugins;
 using Spectrum.API.Interfaces.Systems;
 using Spectrum.API.Storage;
@@ -19,6 +22,28 @@ namespace CustomCampaign
                 Plugin.Files = new FileSystem();
                 Plugin.Init();
                 Storage.Init();
+
+                string path = $@"{Plugin.Files.RootDirectory}\Manifest.json";
+                Console.WriteLine(path);
+
+                Serializer<AddOnManifest> serial = new Serializer<AddOnManifest>(SerializerType.Json, path, false);
+                serial.Data.AddonName = "Nonsense";
+                serial.Data.ModuleFile = "Nonsense.dll";
+                serial.Data.EntryClass = "Entry";
+                serial.Data.Dependencies = new List<string>
+                {
+                    "CustomCampaign.SDK.dll"
+                };
+                serial.Data.Authors = new List<Author>
+                {
+                    new Author("Jack", "jack@mail.com"),
+                    new Author("Michael", "michael@mail.com")
+                };
+                serial.Save();
+
+                Serializer<AddOnManifest> deserial = new Serializer<AddOnManifest>(SerializerType.Json, path, true);
+                Console.WriteLine(deserial.Data.AddonName);
+                
 
                 Make();
 

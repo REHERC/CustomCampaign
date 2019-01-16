@@ -36,6 +36,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
+		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
 		CustomCampaign.ModLoader\CustomCampaign.ModLoader.projitems*{3e683cb1-dd77-4eef-9184-bccd76def499}*SharedItemsImports = 13
 		CustomCampaign.ModLoader\CustomCampaign.ModLoader.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4

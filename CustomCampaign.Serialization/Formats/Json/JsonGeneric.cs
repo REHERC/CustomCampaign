@@ -10,7 +10,10 @@ namespace Photon.Serialization
         {
             if (File.Exists(FilePath))
                 File.Delete(FilePath);
-            JsonSerializer SERIALIZER = new JsonSerializer();
+            JsonSerializer SERIALIZER = new JsonSerializer
+            {
+                NullValueHandling = NullValueHandling.Include,
+            };
             using (StreamWriter FILE_STREAM = new StreamWriter(FilePath))
             {
                 using (JsonWriter JSON_WRITER = new JsonTextWriter(FILE_STREAM))

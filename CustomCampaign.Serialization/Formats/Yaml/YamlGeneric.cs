@@ -12,7 +12,6 @@ namespace Photon.Serialization
                 File.Delete(FilePath);
 
             YamlDotNet.Serialization.ISerializer SERIALIZER = new YamlDotNet.Serialization.SerializerBuilder()
-                .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();
 
             using (StreamWriter YAML_STREAM = new StreamWriter(FilePath))
@@ -30,10 +29,8 @@ namespace Photon.Serialization
                     return new SERIALIZER_TYPE();
             SERIALIZER_TYPE DESERIALIZED_OBJECT = new SERIALIZER_TYPE();
 
-            YamlDotNet.Serialization.IDeserializer DESERIALIZER = new YamlDotNet.Serialization.DeserializerBuilder()
-                .WithNamingConvention(new CamelCaseNamingConvention())
-                .Build();
-            using (StringReader YAML_STREAM = new StringReader(FilePath))
+            YamlDotNet.Serialization.Deserializer DESERIALIZER = new YamlDotNet.Serialization.Deserializer();
+            using (TextReader YAML_STREAM = new StreamReader(FilePath))
             {
                 DESERIALIZED_OBJECT = DESERIALIZER.Deserialize<SERIALIZER_TYPE>(YAML_STREAM);
             }

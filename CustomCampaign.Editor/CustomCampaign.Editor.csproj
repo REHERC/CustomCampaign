@@ -32,7 +32,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;EDITOR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -177,6 +177,13 @@
     <None Include="Resources\Open16.png" />
     <None Include="Resources\New16.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomCampaign.SDK\CustomCampaign.SDK.csproj">
+      <Project>{5ae74124-fb0f-46e6-8c97-cd6af24b982f}</Project>
+      <Name>CustomCampaign.SDK</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\CustomCampaign.Playlist\CustomCampaign.Playlist.projitems" Label="Shared" />
+  <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

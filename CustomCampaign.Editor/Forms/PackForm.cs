@@ -52,7 +52,8 @@ namespace CustomCampaign.Forms
             _campaign = new Campaign();
             _campaign.Load(_PakFile);
 
-            AddItem(_campaign.LogoPath);
+            if (_campaign.LogoPath != "")
+                AddItem(_campaign.LogoPath);
             foreach (Campaign.Level level in _campaign.Levels)
             {
                 AddItem(level.file);
