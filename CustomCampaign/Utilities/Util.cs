@@ -38,10 +38,10 @@ namespace CustomCampaign
             return path.Replace(Path.DirectorySeparatorChar, '/');
         }
 
-        public static string NormPath(this string input)
+        public static string NormPath(this string input, bool file = false)
         {
             if (input is null || input == "" || input == string.Empty) return "";
-            return Resource.NormalizePath(input.ToLower()).Normalize() + (input.EndsWith(Path.DirectorySeparatorChar.ToString()) || input.EndsWith(Path.AltDirectorySeparatorChar.ToString()) ? "" : "/");
+            return Resource.NormalizePath(input.ToLower()).Normalize() + (input.EndsWith(Path.DirectorySeparatorChar.ToString()) || input.EndsWith(Path.AltDirectorySeparatorChar.ToString()) ? file ? "/" : "" : file ? "" : "/");
         }
     }
 }

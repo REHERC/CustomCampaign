@@ -1,7 +1,5 @@
 ﻿using CustomCampaign.Forms;
 using System;
-using System.Globalization;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace CampaignEditor
@@ -15,11 +13,8 @@ namespace CampaignEditor
         static void Main()
         {
             //Application.EnableVisualStyles();
-            //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
-            //Application.Run(new AddLevelForm());
         }
     }
 }

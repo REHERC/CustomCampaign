@@ -15,7 +15,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -65,14 +66,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Storage.Types.cs" />
+    <Compile Include="Data\Progress.cs" />
+    <Compile Include="Storage\LockingManager.cs" />
+    <Compile Include="Storage\Storage.Types.cs" />
     <Compile Include="Entry.cs" />
-    <Compile Include="Mod.cs" />
-    <Compile Include="Storage.cs" />
+    <Compile Include="Utilities\Mod.cs" />
+    <Compile Include="Storage\Storage.cs" />
     <Compile Include="Utilities\AccessExtensions.cs" />
-    <Compile Include="Patches.cs" />
+    <Compile Include="Harmony\Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shared.cs" />
+    <Compile Include="Utilities\Shared.cs" />
     <Compile Include="TODO.cs" />
     <Compile Include="Utilities\Util.cs" />
   </ItemGroup>
@@ -85,6 +88,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\CustomCampaign.Playlist\CustomCampaign.Playlist.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.ModLoader\CustomCampaign.ModLoader.projitems" Label="Shared" />

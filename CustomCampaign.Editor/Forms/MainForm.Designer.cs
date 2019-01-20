@@ -45,11 +45,6 @@
             this.CampaignDescriptionBox = new System.Windows.Forms.TextBox();
             this.UnlockStyleBox = new System.Windows.Forms.ComboBox();
             this.LevelsTab = new System.Windows.Forms.TabPage();
-            this.LevelsBox = new ReorderableListView();
-            this.LevelFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LevelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LevelSubName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LoadingWallpaper = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LevelsContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addANewLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLevelInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,8 +52,10 @@
             this.LevelsMenuBar = new System.Windows.Forms.ToolStrip();
             this.LevelsStatus = new System.Windows.Forms.ToolStripLabel();
             this.AddonTab = new System.Windows.Forms.TabPage();
-            this.AddonsBox = new ReorderableListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AddonContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddAddon = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditAddon = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveAddon = new System.Windows.Forms.ToolStripMenuItem();
             this.AddonMenuBar = new System.Windows.Forms.ToolStrip();
             this.AddonStatus = new System.Windows.Forms.ToolStripLabel();
             this.MenuBar = new System.Windows.Forms.ToolStrip();
@@ -69,10 +66,13 @@
             this.SaveBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.PackBtn = new System.Windows.Forms.ToolStripButton();
-            this.AddonContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.LevelsBox = new ReorderableListView();
+            this.LevelFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LevelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LevelSubName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LoadingWallpaper = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AddonsBox = new ReorderableListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MainPanel.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.SettingsTab.SuspendLayout();
@@ -81,9 +81,9 @@
             this.LevelsContextMenu.SuspendLayout();
             this.LevelsMenuBar.SuspendLayout();
             this.AddonTab.SuspendLayout();
+            this.AddonContextMenu.SuspendLayout();
             this.AddonMenuBar.SuspendLayout();
             this.MenuBar.SuspendLayout();
-            this.AddonContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -272,53 +272,6 @@
             this.LevelsTab.TabIndex = 1;
             this.LevelsTab.Text = "Levels";
             // 
-            // LevelsBox
-            // 
-            this.LevelsBox.AllowDrop = true;
-            this.LevelsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.LevelFile,
-            this.LevelName,
-            this.LevelSubName,
-            this.LoadingWallpaper});
-            this.LevelsBox.ContextMenuStrip = this.LevelsContextMenu;
-            this.LevelsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LevelsBox.FullRowSelect = true;
-            this.LevelsBox.GridLines = true;
-            this.LevelsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.LevelsBox.LineAfter = -1;
-            this.LevelsBox.LineBefore = -1;
-            this.LevelsBox.Location = new System.Drawing.Point(0, 0);
-            this.LevelsBox.MultiSelect = false;
-            this.LevelsBox.Name = "LevelsBox";
-            this.LevelsBox.Size = new System.Drawing.Size(776, 272);
-            this.LevelsBox.TabIndex = 0;
-            this.LevelsBox.UseCompatibleStateImageBehavior = false;
-            this.LevelsBox.View = System.Windows.Forms.View.Details;
-            this.LevelsBox.DoubleClick += new System.EventHandler(this.LevelsBox_DoubleClick);
-            this.LevelsBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseDown);
-            this.LevelsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseMove);
-            this.LevelsBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseUp);
-            // 
-            // LevelFile
-            // 
-            this.LevelFile.Text = "Level file";
-            this.LevelFile.Width = 180;
-            // 
-            // LevelName
-            // 
-            this.LevelName.Text = "Level name";
-            this.LevelName.Width = 180;
-            // 
-            // LevelSubName
-            // 
-            this.LevelSubName.Text = "Level sector name";
-            this.LevelSubName.Width = 220;
-            // 
-            // LoadingWallpaper
-            // 
-            this.LoadingWallpaper.Text = "Loading wallpaper";
-            this.LoadingWallpaper.Width = 180;
-            // 
             // LevelsContextMenu
             // 
             this.LevelsContextMenu.BackColor = System.Drawing.Color.White;
@@ -381,34 +334,41 @@
             this.AddonTab.Name = "AddonTab";
             this.AddonTab.Size = new System.Drawing.Size(776, 297);
             this.AddonTab.TabIndex = 2;
-            this.AddonTab.Text = "Add-on";
+            this.AddonTab.Text = "Add-ons";
             this.AddonTab.UseVisualStyleBackColor = true;
             // 
-            // AddonsBox
+            // AddonContextMenu
             // 
-            this.AddonsBox.AllowDrop = true;
-            this.AddonsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.AddonsBox.ContextMenuStrip = this.AddonContextMenu;
-            this.AddonsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddonsBox.FullRowSelect = true;
-            this.AddonsBox.GridLines = true;
-            this.AddonsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.AddonsBox.LineAfter = -1;
-            this.AddonsBox.LineBefore = -1;
-            this.AddonsBox.Location = new System.Drawing.Point(0, 0);
-            this.AddonsBox.Margin = new System.Windows.Forms.Padding(0);
-            this.AddonsBox.MultiSelect = false;
-            this.AddonsBox.Name = "AddonsBox";
-            this.AddonsBox.Size = new System.Drawing.Size(776, 272);
-            this.AddonsBox.TabIndex = 3;
-            this.AddonsBox.UseCompatibleStateImageBehavior = false;
-            this.AddonsBox.View = System.Windows.Forms.View.Details;
+            this.AddonContextMenu.BackColor = System.Drawing.Color.White;
+            this.AddonContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddAddon,
+            this.EditAddon,
+            this.RemoveAddon});
+            this.AddonContextMenu.Name = "LevelsContextMenu";
+            this.AddonContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.AddonContextMenu.Size = new System.Drawing.Size(118, 70);
+            this.AddonContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.AddonContextMenu_Opening);
             // 
-            // columnHeader1
+            // AddAddon
             // 
-            this.columnHeader1.Text = "Manifest file";
-            this.columnHeader1.Width = 752;
+            this.AddAddon.Name = "AddAddon";
+            this.AddAddon.Size = new System.Drawing.Size(117, 22);
+            this.AddAddon.Text = "Add";
+            this.AddAddon.Click += new System.EventHandler(this.AddAddon_Click);
+            // 
+            // EditAddon
+            // 
+            this.EditAddon.Name = "EditAddon";
+            this.EditAddon.Size = new System.Drawing.Size(117, 22);
+            this.EditAddon.Text = "Edit";
+            this.EditAddon.Click += new System.EventHandler(this.EditAddon_Click);
+            // 
+            // RemoveAddon
+            // 
+            this.RemoveAddon.Name = "RemoveAddon";
+            this.RemoveAddon.Size = new System.Drawing.Size(117, 22);
+            this.RemoveAddon.Text = "Remove";
+            this.RemoveAddon.Click += new System.EventHandler(this.RemoveAddon_Click);
             // 
             // AddonMenuBar
             // 
@@ -426,9 +386,8 @@
             // AddonStatus
             // 
             this.AddonStatus.Name = "AddonStatus";
-            this.AddonStatus.Size = new System.Drawing.Size(585, 22);
-            this.AddonStatus.Text = "Right-click to add/edit/remove an addon. Use drag and drop to re-order items. Dou" +
-    "ble-click an item to edit it.";
+            this.AddonStatus.Size = new System.Drawing.Size(395, 22);
+            this.AddonStatus.Text = "Right-click to add/edit/remove an add-on. Double-click an item to edit it.";
             // 
             // MenuBar
             // 
@@ -504,34 +463,79 @@
             this.PackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.PackBtn.Click += new System.EventHandler(this.PackBtn_Click);
             // 
-            // AddonContextMenu
+            // LevelsBox
             // 
-            this.AddonContextMenu.BackColor = System.Drawing.Color.White;
-            this.AddonContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3});
-            this.AddonContextMenu.Name = "LevelsContextMenu";
-            this.AddonContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.AddonContextMenu.Size = new System.Drawing.Size(118, 70);
+            this.LevelsBox.AllowDrop = true;
+            this.LevelsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.LevelFile,
+            this.LevelName,
+            this.LevelSubName,
+            this.LoadingWallpaper});
+            this.LevelsBox.ContextMenuStrip = this.LevelsContextMenu;
+            this.LevelsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LevelsBox.FullRowSelect = true;
+            this.LevelsBox.GridLines = true;
+            this.LevelsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.LevelsBox.LineAfter = -1;
+            this.LevelsBox.LineBefore = -1;
+            this.LevelsBox.Location = new System.Drawing.Point(0, 0);
+            this.LevelsBox.MultiSelect = false;
+            this.LevelsBox.Name = "LevelsBox";
+            this.LevelsBox.Size = new System.Drawing.Size(776, 272);
+            this.LevelsBox.TabIndex = 0;
+            this.LevelsBox.UseCompatibleStateImageBehavior = false;
+            this.LevelsBox.View = System.Windows.Forms.View.Details;
+            this.LevelsBox.DoubleClick += new System.EventHandler(this.LevelsBox_DoubleClick);
+            this.LevelsBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseDown);
+            this.LevelsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseMove);
+            this.LevelsBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseUp);
             // 
-            // toolStripMenuItem1
+            // LevelFile
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
-            this.toolStripMenuItem1.Text = "Add";
+            this.LevelFile.Text = "Level file";
+            this.LevelFile.Width = 180;
             // 
-            // toolStripMenuItem2
+            // LevelName
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(117, 22);
-            this.toolStripMenuItem2.Text = "Edit";
+            this.LevelName.Text = "Level name";
+            this.LevelName.Width = 180;
             // 
-            // toolStripMenuItem3
+            // LevelSubName
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(117, 22);
-            this.toolStripMenuItem3.Text = "Remove";
+            this.LevelSubName.Text = "Level sector name";
+            this.LevelSubName.Width = 220;
+            // 
+            // LoadingWallpaper
+            // 
+            this.LoadingWallpaper.Text = "Loading wallpaper";
+            this.LoadingWallpaper.Width = 180;
+            // 
+            // AddonsBox
+            // 
+            this.AddonsBox.AllowDrop = true;
+            this.AddonsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.AddonsBox.ContextMenuStrip = this.AddonContextMenu;
+            this.AddonsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddonsBox.FullRowSelect = true;
+            this.AddonsBox.GridLines = true;
+            this.AddonsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.AddonsBox.LineAfter = -1;
+            this.AddonsBox.LineBefore = -1;
+            this.AddonsBox.Location = new System.Drawing.Point(0, 0);
+            this.AddonsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.AddonsBox.MultiSelect = false;
+            this.AddonsBox.Name = "AddonsBox";
+            this.AddonsBox.Size = new System.Drawing.Size(776, 272);
+            this.AddonsBox.TabIndex = 3;
+            this.AddonsBox.UseCompatibleStateImageBehavior = false;
+            this.AddonsBox.View = System.Windows.Forms.View.Details;
+            this.AddonsBox.DoubleClick += new System.EventHandler(this.AddonsBox_DoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Manifest file";
+            this.columnHeader1.Width = 752;
             // 
             // MainForm
             // 
@@ -560,11 +564,11 @@
             this.LevelsMenuBar.PerformLayout();
             this.AddonTab.ResumeLayout(false);
             this.AddonTab.PerformLayout();
+            this.AddonContextMenu.ResumeLayout(false);
             this.AddonMenuBar.ResumeLayout(false);
             this.AddonMenuBar.PerformLayout();
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();
-            this.AddonContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -610,8 +614,8 @@
         private System.Windows.Forms.ToolStrip AddonMenuBar;
         private System.Windows.Forms.ToolStripLabel AddonStatus;
         private System.Windows.Forms.ContextMenuStrip AddonContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem AddAddon;
+        private System.Windows.Forms.ToolStripMenuItem RemoveAddon;
+        private System.Windows.Forms.ToolStripMenuItem EditAddon;
     }
 }

@@ -162,10 +162,9 @@
             this.Controls.Add(this.SeparatorDark);
             this.Controls.Add(this.SeparatorLight);
             this.Controls.Add(this.ButtonsPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PackForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Custom Campaign Authoring Tool - Campaign packaging";
             this.Load += new System.EventHandler(this.PackForm_Load);

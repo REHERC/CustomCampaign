@@ -12,16 +12,19 @@ namespace CustomCampaign
             {
                 WriteToConsole = true
             };
-
-            LevelData = new Dictionary<string, CampaignLevelInfo>();
+            LevelData = new Dictionary<string, CustomCampaign.Storage.CampaignLevelInfo>();
         }
 
         public static string LevelsFolder()
         {
             string Documents = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-            string LevelPath = $@"{Documents}/My Games/Distance/Levels";
+            return $@"{Documents}/My Games/Distance/Levels";
+        }
 
-            return Resource.NormalizePath(LevelPath);
+        public static string ProfilesFolder()
+        {
+            string Documents = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            return $@"{Documents}/My Games/Distance/Profiles";
         }
 
         public static string ResourcesFolder()
@@ -36,7 +39,6 @@ namespace CustomCampaign
         }
 
         public static Logger Log;
-
-        public static Dictionary<string, CampaignLevelInfo> LevelData;
+        public static Dictionary<string, Storage.CampaignLevelInfo> LevelData;
     }
 }

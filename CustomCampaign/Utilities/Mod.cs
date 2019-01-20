@@ -45,13 +45,13 @@ namespace CustomCampaign
                         return true;
                 }
             }
-            
+
             return false;
         }
 
         public static bool IsCustomCampaignPlaylist()
         {
-            if (SelectedPlaylist is null && SelectedPlaylist.Playlist_.Count == 0) return false;
+            if (SelectedPlaylist is null || SelectedPlaylist.Playlist_.Count == 0) return false;
             List<LevelNameAndPathPair> levellist = SelectedPlaylist.GetLevelSet();
             string firstpath = levellist[0].levelPath_;
             string workshoppath = $"{Plugin.LevelsFolder()}/WorkshopLevels/".NormPath();
@@ -88,13 +88,13 @@ namespace CustomCampaign
                 background.LoadImage(image);
                 return background;
             }
-            
+
             return (Texture)null;
         }
 
         public static Texture GetCampaignLogo()
         {
-            if (SelectedPlaylist is null && SelectedPlaylist.Playlist_.Count == 0) return (Texture)null;
+            if (SelectedPlaylist is null || SelectedPlaylist.Playlist_.Count == 0) return (Texture)null;
 
             List<LevelNameAndPathPair> levellist = SelectedPlaylist.GetLevelSet();
             string firstpath = levellist[0].levelPath_;
@@ -103,7 +103,7 @@ namespace CustomCampaign
             {
                 string reducedpath = firstpath.Substring(workshoppath.Length);
                 string campaignname = reducedpath.Substring(0, reducedpath.NormPath().IndexOf("/"));
-                
+
                 var linq_query = from c in Storage.Campaigns where c.DirectoryName.ToLower() == campaignname.ToLower() select c;
                 foreach (var campaign in linq_query)
                 {
@@ -117,9 +117,28 @@ namespace CustomCampaign
             return (Texture)null;
         }
 
+        public static string GetCampaignRoot()
+        {
+            if (SelectedPlaylist is null || SelectedPlaylist.Playlist_.Count == 0) return null;
+
+            List<LevelNameAndPathPair> levellist = SelectedPlaylist.GetLevelSet();
+            string firstpath = levellist[0].levelPath_;
+            string workshoppath = $"{Plugin.LevelsFolder()}/WorkshopLevels/".NormPath();
+            if (firstpath.NormPath().StartsWith(workshoppath))
+            {
+                string reducedpath = firstpath.Substring(workshoppath.Length);
+                string campaignname = reducedpath.Substring(0, reducedpath.NormPath().IndexOf("/"));
+
+                var linq_query = from c in Storage.Campaigns where c.DirectoryName.ToLower() == campaignname.ToLower() select c;
+                foreach (var campaign in linq_query)
+                    return $"{Plugin.LevelsFolder()}/WorkshopLevels/{campaign.DirectoryName}".NormPath(); ;
+            }
+            return null;
+        }
+
         public static string GetCampaignName()
         {
-            if (SelectedPlaylist is null && SelectedPlaylist.Playlist_.Count == 0) return string.Empty;
+            if (SelectedPlaylist is null || SelectedPlaylist.Playlist_.Count == 0) return string.Empty;
 
             List<LevelNameAndPathPair> levellist = SelectedPlaylist.GetLevelSet();
             string firstpath = levellist[0].levelPath_;
@@ -138,7 +157,7 @@ namespace CustomCampaign
 
         public static string GetCampaignDescription()
         {
-            if (SelectedPlaylist is null && SelectedPlaylist.Playlist_.Count == 0) return string.Empty;
+            if (SelectedPlaylist is null || SelectedPlaylist.Playlist_.Count == 0) return string.Empty;
 
             List<LevelNameAndPathPair> levellist = SelectedPlaylist.GetLevelSet();
             string firstpath = levellist[0].levelPath_;

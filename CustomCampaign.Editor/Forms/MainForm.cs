@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using static Campaign;
 
 #pragma warning disable CS1690
 namespace CustomCampaign.Forms
@@ -43,10 +45,11 @@ namespace CustomCampaign.Forms
                     Name = CampaignNameBox.Text,
                     Description = CampaignDescriptionBox.Text,
                     LogoPath = CampaignLogoBox.Text,
-                    Authors = AuthorsBox.Text
+                    Authors = AuthorsBox.Text,
+                    LockMode = (UnlockStyle)UnlockStyleBox.SelectedIndex
                 };
 
-                c.Levels = new System.Collections.Generic.List<Campaign.Level>();
+                c.Levels = new List<Campaign.Level>();
                 foreach (ListViewItem item in LevelsBox.Items)
                 {
                     c.Levels.Add(new Campaign.Level(
@@ -56,6 +59,13 @@ namespace CustomCampaign.Forms
                             item.SubItems[3].Text
                         ));
                 }
+
+                c.Addons = new List<string>();
+                foreach (ListViewItem item in AddonsBox.Items)
+                {
+                    c.Addons.Add(item.SubItems[0].Text);
+                }
+
                 c.Save(dlg.FileName);
             }
         }
@@ -76,8 +86,7 @@ namespace CustomCampaign.Forms
 
             if (dlg.ShowDialog() == true)
             {
-                Campaign c = new Campaign();
-                c.Load(dlg.FileName);
+                Campaign c = Campaign.FromFile(dlg.FileName);
 
                 LoadCampaign(c);
             }
@@ -88,13 +97,9 @@ namespace CustomCampaign.Forms
             CampaignNameBox.Text = c.Name;
             CampaignDescriptionBox.Text = c.Description;
             CampaignLogoBox.Text = c.LogoPath;
-            
             AuthorsBox.Text = c.Authors;
-
-            UnlockStyleBox.SelectedIndex = 0;
-
+            UnlockStyleBox.SelectedIndex = (int)c.LockMode;
             LevelsBox.Items.Clear();
-
             foreach (Campaign.Level level in c.Levels)
             {
                 LevelsBox.Items.Add(new ListViewItem(new string[] {
@@ -104,6 +109,15 @@ namespace CustomCampaign.Forms
                         level.loading_wallpaper
                     }));
             }
+
+            AddonsBox.Items.Clear();
+
+            foreach (string addon in c.Addons)
+            {
+                AddonsBox.Items.Add(new ListViewItem(new string[] {
+                        addon
+                    }));
+            }
         }
 
         private ListViewItem LevelsBoxItem = null;
@@ -111,30 +125,19 @@ namespace CustomCampaign.Forms
         private void LevelsBox_MouseDown(object sender, MouseEventArgs e)
         {
             LevelsBoxItem = LevelsBox.GetItemAt(0,e.Y);
-
-            if (LevelsBoxItem != null)
-            {
-                //LevelsBox.DoDragDrop(LevelsBoxItem, DragDropEffects.Move);
-            }
         }
 
         private void LevelsBox_MouseUp(object sender, MouseEventArgs e)
         {
             LevelsBox.LineAfter =
             LevelsBox.LineBefore = -1;
-
             if (LevelsBoxItem == null)
                 return;
-
             ListViewItem ItemOver = LevelsBox.GetItemAt(0, e.Y);
-
             if (ItemOver != null)
             {
-
                 Rectangle ItemOverRec = ItemOver.GetBounds(ItemBoundsPortion.Entire);
-
                 bool InsertBefore = (e.Y < ItemOverRec.Top + (ItemOverRec.Height / 2));
-
                 if (ItemOver != LevelsBoxItem)
                 {
                     LevelsBox.Items.Remove(LevelsBoxItem);
@@ -147,9 +150,6 @@ namespace CustomCampaign.Forms
                 LevelsBox.Items.Insert(LevelsBox.Items.Count, LevelsBoxItem);
             }
             LevelsBoxItem = null;
-            
-            //Cursor.Current = Cursors.Default;
-
             LevelsBox.Invalidate();
         }
 
@@ -162,19 +162,15 @@ namespace CustomCampaign.Forms
                 if (ItemOver != null)
                 {
                     Rectangle ItemOverRec = ItemOver.GetBounds(ItemBoundsPortion.Entire);
-
                     bool InsertBefore = (e.Y < ItemOverRec.Top + (ItemOverRec.Height / 2));
-
                     LevelsBox.LineBefore = InsertBefore ? ItemOver.Index : -1;
                     LevelsBox.LineAfter = InsertBefore ? -1 : ItemOver.Index;
-
                     LevelsBox.Invalidate();
                 }
                 else
                 {
                     LevelsBox.LineBefore = -1;
                     LevelsBox.LineAfter = LevelsBox.Items.Count - 1;
-
                     LevelsBox.Invalidate();
                 }
             }
@@ -184,12 +180,10 @@ namespace CustomCampaign.Forms
         {
             LevelsBox.LineAfter = LevelsBox.LineBefore = -1;
             LevelsBox.Invalidate();
-
             LevelForm form = new LevelForm(item)
             {
                 Text = "Custom Campaign Authoring Tool - Edit a level"
             };
-
             if (form.ShowDialog() == DialogResult.OK)
             {
                 item.SubItems[0].Text = form.value.file;
@@ -203,13 +197,12 @@ namespace CustomCampaign.Forms
         {
             LevelForm form = new LevelForm()
             {
-                Text = "Custom Campaign Authoring Tooldiscord - Add a level"
+                Text = "Custom Campaign Authoring Tool - Add a level"
             };
             
             if (form.ShowDialog() == DialogResult.OK)
             {
                 ListViewItem selectedItem = LevelsBox.SelectedItems.Count > 0 ? LevelsBox.SelectedItems[0] : null;
-
                 ListViewItem item = new ListViewItem(new string[]{
                     form.value.file,
                     form.value.levelname,
@@ -223,16 +216,13 @@ namespace CustomCampaign.Forms
         private void LevelsContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             bool active = LevelsBox.SelectedItems.Count > 0;
-
-            removeLevelToolStripMenuItem.Enabled = active;
-            editLevelInfoToolStripMenuItem.Enabled = active;
+            removeLevelToolStripMenuItem.Enabled = editLevelInfoToolStripMenuItem.Enabled = active;
         }
 
         private void RemoveLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ListViewItem item = LevelsBox.SelectedItems[0];
-
-
+            
             if (item != null && MessageBox.Show($"Are you sure you want to remove \"{item.Text}\" from the playlist ?", $"Remove \"{item.SubItems[1].Text}\" from the playlist", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 LevelsBox.Items.Remove(item);
@@ -258,7 +248,6 @@ namespace CustomCampaign.Forms
         private void EditLevelInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ListViewItem selectedItem = LevelsBox.SelectedItems.Count > 0 ? LevelsBox.SelectedItems[0] : null;
-
             if (selectedItem != null)
                 EditItem(ref selectedItem);
         }
@@ -299,6 +288,74 @@ namespace CustomCampaign.Forms
             {
                 PackForm form = new PackForm(dlg.FileName);
             }
+        }
+
+        private void AddAddon_Click(object sender, EventArgs e)
+        {
+            AddonForm form = new AddonForm()
+            {
+                Text = "Custom Campaign Authoring Tool - Add an add-on"
+            };
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                ListViewItem selectedItem = AddonsBox.SelectedItems.Count > 0 ? AddonsBox.SelectedItems[0] : null;
+
+                ListViewItem item = new ListViewItem(new string[]{
+                    form.value
+                });
+                AddonsBox.Items.Insert(selectedItem != null ? selectedItem.Index + 1 : AddonsBox.Items.Count, item);
+            }
+        }
+
+        private void AddonContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            bool active = AddonsBox.SelectedItems.Count > 0;
+
+            RemoveAddon.Enabled = EditAddon.Enabled = active;
+            
+        }
+
+        private void EditAddon_Click(object sender, EventArgs e)
+        {
+            ListViewItem selectedItem = AddonsBox.SelectedItems.Count > 0 ? AddonsBox.SelectedItems[0] : null;
+
+            if (selectedItem != null)
+                EditAddonItem(ref selectedItem);
+        }
+
+        private void EditAddonItem(ref ListViewItem item)
+        {
+            AddonsBox.LineAfter = AddonsBox.LineBefore = -1;
+            AddonsBox.Invalidate();
+
+            AddonForm form = new AddonForm(item)
+            {
+                Text = "Custom Campaign Authoring Tool - Edit an add-on"
+            };
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                item.SubItems[0].Text = form.value;
+            }
+        }
+
+        private void RemoveAddon_Click(object sender, EventArgs e)
+        {
+            ListViewItem item = AddonsBox.SelectedItems[0];
+
+            if (item != null && MessageBox.Show($"Are you sure you want to remove \"{item.Text}\" from the add-ons ?", $"Remove \"{item.SubItems[0].Text}\" from the add-ons", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                AddonsBox.Items.Remove(item);
+            }
+        }
+
+        private void AddonsBox_DoubleClick(object sender, EventArgs e)
+        {
+            ListViewItem selectedItem = AddonsBox.SelectedItems.Count > 0 ? AddonsBox.SelectedItems[0] : null;
+
+            if (selectedItem != null)
+                EditAddonItem(ref selectedItem);
         }
     }
 }

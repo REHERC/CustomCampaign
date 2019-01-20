@@ -1,7 +1,5 @@
 ﻿using Harmony;
 using System;
-using System.Linq;
-using System.IO;
 using UnityEngine;
 using static CustomCampaign.Plugin;
 using System.Collections.Generic;
@@ -24,6 +22,8 @@ namespace CustomCampaign.Patches
                     __instance.buttonList_.SortAndUpdateVisibleButtons();
                 }
             }
+
+            LockingManager.Load();
         }
     }
 
@@ -100,11 +100,11 @@ namespace CustomCampaign.Patches
         }
     }
 
-    [HarmonyPatch(typeof(LevelGridMenu), "CreateAndAddLevelSet", new Type[] { typeof(LevelSet), typeof(string), typeof(LevelGridMenu.PlaylistEntry.Type), typeof(LevelGroupFlags)})]
+    [HarmonyPatch(typeof(LevelGridMenu), "CreateAndAddLevelSet", new Type[] { typeof(LevelSet), typeof(string), typeof(LevelGridMenu.PlaylistEntry.Type), typeof(LevelGroupFlags) })]
     class LevelGridMenu__CreateAndAddLevelSet__Patch
     {
         static void Prefix(
-            LevelGridMenu __instance, 
+            LevelGridMenu __instance,
             ref LevelSelectMenuAbstract.DisplayType ___displayType_,
             ref LevelSet set, ref string name, ref LevelGridMenu.PlaylistEntry.Type type)
         {
@@ -119,7 +119,7 @@ namespace CustomCampaign.Patches
     [HarmonyPatch(typeof(LevelGridCell), "OnDisplayedVirtual")]
     class LevelGridCell__OnDisplayedVirtual__Patch
     {
-        static void Postfix(LevelGridCell __instance)
+        static void Postfix(LevelGridCell __instance, ref UIButton ___button_)
         {
             LevelGridGrid.LevelEntry entry = __instance.entry_ as LevelGridGrid.LevelEntry;
             string path = entry.AbsolutePath_.NormPath();
@@ -128,13 +128,28 @@ namespace CustomCampaign.Patches
                 __instance.titleLabel_.enabled = false;
                 __instance.authorLabel_.enabled = false;
                 __instance.soloTitleLabel_.enabled = true;
-                __instance.soloTitleLabel_.text = entry.LevelInfo_.levelName_;
-
-                //NOTE: Part of the locking system
-                //__instance.lockedIcon_.SetActive(true);
-
+                if (LockingManager.IsLevelLocked(path))
+                {
+                    __instance.lockedIcon_.SetActive(true);
+                    ___button_.onClick.Clear();
+                    string leveltitle = "";
+                    foreach (char c in entry.LevelInfo_.levelName_)
+                        leveltitle += c.ToString() == " " ? " " : "?";
+                    __instance.soloTitleLabel_.text = leveltitle;
+                }
+                else
+                    __instance.soloTitleLabel_.text = entry.LevelInfo_.levelName_;
             }
+        }
+    }
 
+    [HarmonyPatch(typeof(LevelGridMenu), "OnGridCellClicked")]
+    class LevelGridMenu__OnGridCellClicked__Patch
+    {
+        static bool Prefix(LevelGridMenu __instance, ref int index)
+        {
+            string level = Mod.SelectedPlaylist.Playlist_[index].levelNameAndPath_.levelPath_;
+            return !LockingManager.IsLevelLocked(level);
         }
     }
 }

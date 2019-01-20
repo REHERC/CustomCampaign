@@ -22,29 +22,7 @@ namespace CustomCampaign
                 Plugin.Files = new FileSystem();
                 Plugin.Init();
                 Storage.Init();
-
-                string path = $@"{Plugin.Files.RootDirectory}\Manifest.json";
-                Console.WriteLine(path);
-
-                Serializer<AddOnManifest> serial = new Serializer<AddOnManifest>(SerializerType.Json, path, false);
-                serial.Data.AddonName = "Nonsense";
-                serial.Data.ModuleFile = "Nonsense.dll";
-                serial.Data.EntryClass = "Entry";
-                serial.Data.Dependencies = new List<string>
-                {
-                    "CustomCampaign.SDK.dll"
-                };
-                serial.Data.Authors = new List<Author>
-                {
-                    new Author("Jack", "jack@mail.com"),
-                    new Author("Michael", "michael@mail.com")
-                };
-                serial.Save();
-
-                Serializer<AddOnManifest> deserial = new Serializer<AddOnManifest>(SerializerType.Json, path, true);
-                Console.WriteLine(deserial.Data.AddonName);
                 
-
                 Make();
 
                 HarmonyInstance Harmony = HarmonyInstance.Create($"com.CustomCampaign.{ipcIdentifier}");
@@ -73,16 +51,16 @@ namespace CustomCampaign
                     string WorkshopRoot = $@"{CampaignLevels}/{Workspace}";
                     if (!Directory.Exists(WorkshopRoot))
                         Directory.CreateDirectory(WorkshopRoot);
+                    int index = 1;
                     foreach (Campaign.Level level in c.Levels)
                     {
                         string Source = Path.GetFullPath(Path.Combine(campaigndir, level.file));
                         string Destination = Path.GetFullPath(Path.Combine(WorkshopRoot, Path.GetFileName(Source)));
                         File.Copy(Source, Destination, true);
                         File.Copy(Source + ".png", Destination + ".png", true);
-
                         cinfo.Levels.AddLevel("level", Resource.NormalizePath(Destination), LevelType.Official);
-
-                        Storage.Levelnfos.Add(Destination.NormPath(), new CampaignLevelInfo(campaigndir, level));
+                        Storage.Levelnfos.Add(Destination.NormPath(), new Storage.CampaignLevelInfo(campaigndir, level, c.LockMode == Campaign.UnlockStyle.Campaign ? index : 1));
+                        index++;
                     }
                     Storage.Campaigns.Add(cinfo);
                 }

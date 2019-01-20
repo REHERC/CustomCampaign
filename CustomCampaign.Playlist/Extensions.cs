@@ -11,7 +11,7 @@ public static class Extensions
         string output = string.Empty;
 
         foreach (char ch in input)
-            output += (char)(ch - (key % 16));
+            output += (char)(ch - (key % 32));
 
         return output;
     }
