@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Progress.cs" />
+    <Compile Include="GameEvents.cs" />
     <Compile Include="Storage\LockingManager.cs" />
     <Compile Include="Storage\Storage.Types.cs" />
     <Compile Include="Entry.cs" />

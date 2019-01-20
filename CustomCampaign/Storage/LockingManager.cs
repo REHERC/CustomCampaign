@@ -23,12 +23,45 @@ namespace CustomCampaign
                 while (lvl.EndsWith("/"))
                     lvl = lvl.TrimEnd('/');
                 if (lvl == file)
+                {
                     index = level.Value.index - 1;
+                }
             }
             int progress = GetCampaignProgress(campaign);
             return index > progress;
         }
-        
+
+        public static void UnlockLevel(string levelfile)
+        {
+            string file = levelfile.NormPath(true);
+            string workshop = $"{LevelsFolder()}/WorkshopLevels/".NormPath();
+            string relativepath = file.Substring(workshop.Length);
+            string campaign = relativepath.Split('/')[0].ToLowerInvariant();
+            while (file.EndsWith("/"))
+                file = file.TrimEnd('/');
+            int index = 1;
+            foreach (var level in Storage.Levelnfos)
+            {
+                string lvl = level.Key.NormPath(true);
+                while (lvl.EndsWith("/"))
+                    lvl = lvl.TrimEnd('/');
+                if (lvl == file)
+                {
+                    index = level.Value.index - 1;
+                }
+            }
+            int progress = GetCampaignProgress(campaign);
+            if (index > progress)
+            {
+                Serializer<Dictionary<string, int>> Progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, ProgressFilePath(), true);
+                if (Progress.Data.ContainsKey(campaign.ToLower()))
+                    Progress.Data[campaign.ToLower()] = index;
+                else
+                    Progress.Data.Add(campaign.ToLower(), index);
+                Progress.Save();
+            }
+        }
+
         public static int GetCampaignProgress(string campaign)
         {
             Serializer<Dictionary<string, int>> Progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, ProgressFilePath(), true);

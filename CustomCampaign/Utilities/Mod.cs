@@ -45,7 +45,21 @@ namespace CustomCampaign
                         return true;
                 }
             }
+            return false;
+        }
 
+        public static bool IsCustomCampaignLevel(string file)
+        {
+            string currentpath = file.NormPath();
+            foreach (var campaign in Storage.Campaigns)
+            {
+                foreach (var level in campaign.Levels.GetAllLevelNameAndPathPairs())
+                {
+                    string path = level.levelPath_.NormPath();
+                    if (currentpath == path)
+                        return true;
+                }
+            }
             return false;
         }
 

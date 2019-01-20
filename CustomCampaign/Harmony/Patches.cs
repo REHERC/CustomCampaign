@@ -149,7 +149,7 @@ namespace CustomCampaign.Patches
         static bool Prefix(LevelGridMenu __instance, ref int index)
         {
             string level = Mod.SelectedPlaylist.Playlist_[index].levelNameAndPath_.levelPath_;
-            return !LockingManager.IsLevelLocked(level);
+            return !LockingManager.IsLevelLocked(level) || !Mod.IsCustomCampaignLevel(level);
         }
     }
 }

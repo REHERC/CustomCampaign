@@ -22,6 +22,8 @@ namespace CustomCampaign
                 Plugin.Files = new FileSystem();
                 Plugin.Init();
                 Storage.Init();
+
+                GameEvents.SubscribeAll();
                 
                 Make();
 
