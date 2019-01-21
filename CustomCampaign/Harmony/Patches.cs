@@ -156,19 +156,4 @@ namespace CustomCampaign.Patches
             return !LockingManager.IsLevelLocked(level) || !Mod.IsCustomCampaignLevel(level);
         }
     }
-
-    [HarmonyPatch(typeof(ProfilesMenu), "OnRenameProfileClicked")]
-    class ProfilesMenu__OnRenameProfileClicked__Patch
-    {
-        static bool Prefix(ProfilesMenu __instance, ref UIInput ___profileNameInput_, ref ProfileManager ___profileManager_)
-        {
-            Profile currentProfile = ___profileManager_.CurrentProfile_;
-            string filename = ___profileNameInput_.value;
-            if (!___profileManager_.CheckForValidName(filename, currentProfile.Name_))
-                return false;
-            //TODO: Add profile file renaming
-
-            return true;
-        }
-    }
 }
