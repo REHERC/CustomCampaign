@@ -45,6 +45,11 @@
             this.CampaignDescriptionBox = new System.Windows.Forms.TextBox();
             this.UnlockStyleBox = new System.Windows.Forms.ComboBox();
             this.LevelsTab = new System.Windows.Forms.TabPage();
+            this.LevelsBox = new ReorderableListView();
+            this.LevelFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LevelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LevelSubName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LoadingWallpaper = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LevelsContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addANewLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLevelInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +57,8 @@
             this.LevelsMenuBar = new System.Windows.Forms.ToolStrip();
             this.LevelsStatus = new System.Windows.Forms.ToolStripLabel();
             this.AddonTab = new System.Windows.Forms.TabPage();
+            this.AddonsBox = new ReorderableListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AddonContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddAddon = new System.Windows.Forms.ToolStripMenuItem();
             this.EditAddon = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,13 +73,6 @@
             this.SaveBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.PackBtn = new System.Windows.Forms.ToolStripButton();
-            this.LevelsBox = new ReorderableListView();
-            this.LevelFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LevelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LevelSubName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LoadingWallpaper = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AddonsBox = new ReorderableListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MainPanel.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.SettingsTab.SuspendLayout();
@@ -272,6 +272,53 @@
             this.LevelsTab.TabIndex = 1;
             this.LevelsTab.Text = "Levels";
             // 
+            // LevelsBox
+            // 
+            this.LevelsBox.AllowDrop = true;
+            this.LevelsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.LevelFile,
+            this.LevelName,
+            this.LevelSubName,
+            this.LoadingWallpaper});
+            this.LevelsBox.ContextMenuStrip = this.LevelsContextMenu;
+            this.LevelsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LevelsBox.FullRowSelect = true;
+            this.LevelsBox.GridLines = true;
+            this.LevelsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.LevelsBox.LineAfter = -1;
+            this.LevelsBox.LineBefore = -1;
+            this.LevelsBox.Location = new System.Drawing.Point(0, 0);
+            this.LevelsBox.MultiSelect = false;
+            this.LevelsBox.Name = "LevelsBox";
+            this.LevelsBox.Size = new System.Drawing.Size(776, 272);
+            this.LevelsBox.TabIndex = 0;
+            this.LevelsBox.UseCompatibleStateImageBehavior = false;
+            this.LevelsBox.View = System.Windows.Forms.View.Details;
+            this.LevelsBox.DoubleClick += new System.EventHandler(this.LevelsBox_DoubleClick);
+            this.LevelsBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseDown);
+            this.LevelsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseMove);
+            this.LevelsBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseUp);
+            // 
+            // LevelFile
+            // 
+            this.LevelFile.Text = "Level file";
+            this.LevelFile.Width = 180;
+            // 
+            // LevelName
+            // 
+            this.LevelName.Text = "Level name";
+            this.LevelName.Width = 180;
+            // 
+            // LevelSubName
+            // 
+            this.LevelSubName.Text = "Level sector name";
+            this.LevelSubName.Width = 220;
+            // 
+            // LoadingWallpaper
+            // 
+            this.LoadingWallpaper.Text = "Loading wallpaper";
+            this.LoadingWallpaper.Width = 180;
+            // 
             // LevelsContextMenu
             // 
             this.LevelsContextMenu.BackColor = System.Drawing.Color.White;
@@ -336,6 +383,33 @@
             this.AddonTab.TabIndex = 2;
             this.AddonTab.Text = "Add-ons";
             this.AddonTab.UseVisualStyleBackColor = true;
+            // 
+            // AddonsBox
+            // 
+            this.AddonsBox.AllowDrop = true;
+            this.AddonsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.AddonsBox.ContextMenuStrip = this.AddonContextMenu;
+            this.AddonsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddonsBox.FullRowSelect = true;
+            this.AddonsBox.GridLines = true;
+            this.AddonsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.AddonsBox.LineAfter = -1;
+            this.AddonsBox.LineBefore = -1;
+            this.AddonsBox.Location = new System.Drawing.Point(0, 0);
+            this.AddonsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.AddonsBox.MultiSelect = false;
+            this.AddonsBox.Name = "AddonsBox";
+            this.AddonsBox.Size = new System.Drawing.Size(776, 272);
+            this.AddonsBox.TabIndex = 3;
+            this.AddonsBox.UseCompatibleStateImageBehavior = false;
+            this.AddonsBox.View = System.Windows.Forms.View.Details;
+            this.AddonsBox.DoubleClick += new System.EventHandler(this.AddonsBox_DoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Manifest file";
+            this.columnHeader1.Width = 752;
             // 
             // AddonContextMenu
             // 
@@ -462,80 +536,6 @@
             this.PackBtn.Text = "Pack files";
             this.PackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.PackBtn.Click += new System.EventHandler(this.PackBtn_Click);
-            // 
-            // LevelsBox
-            // 
-            this.LevelsBox.AllowDrop = true;
-            this.LevelsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.LevelFile,
-            this.LevelName,
-            this.LevelSubName,
-            this.LoadingWallpaper});
-            this.LevelsBox.ContextMenuStrip = this.LevelsContextMenu;
-            this.LevelsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LevelsBox.FullRowSelect = true;
-            this.LevelsBox.GridLines = true;
-            this.LevelsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.LevelsBox.LineAfter = -1;
-            this.LevelsBox.LineBefore = -1;
-            this.LevelsBox.Location = new System.Drawing.Point(0, 0);
-            this.LevelsBox.MultiSelect = false;
-            this.LevelsBox.Name = "LevelsBox";
-            this.LevelsBox.Size = new System.Drawing.Size(776, 272);
-            this.LevelsBox.TabIndex = 0;
-            this.LevelsBox.UseCompatibleStateImageBehavior = false;
-            this.LevelsBox.View = System.Windows.Forms.View.Details;
-            this.LevelsBox.DoubleClick += new System.EventHandler(this.LevelsBox_DoubleClick);
-            this.LevelsBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseDown);
-            this.LevelsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseMove);
-            this.LevelsBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LevelsBox_MouseUp);
-            // 
-            // LevelFile
-            // 
-            this.LevelFile.Text = "Level file";
-            this.LevelFile.Width = 180;
-            // 
-            // LevelName
-            // 
-            this.LevelName.Text = "Level name";
-            this.LevelName.Width = 180;
-            // 
-            // LevelSubName
-            // 
-            this.LevelSubName.Text = "Level sector name";
-            this.LevelSubName.Width = 220;
-            // 
-            // LoadingWallpaper
-            // 
-            this.LoadingWallpaper.Text = "Loading wallpaper";
-            this.LoadingWallpaper.Width = 180;
-            // 
-            // AddonsBox
-            // 
-            this.AddonsBox.AllowDrop = true;
-            this.AddonsBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.AddonsBox.ContextMenuStrip = this.AddonContextMenu;
-            this.AddonsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddonsBox.FullRowSelect = true;
-            this.AddonsBox.GridLines = true;
-            this.AddonsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.AddonsBox.LineAfter = -1;
-            this.AddonsBox.LineBefore = -1;
-            this.AddonsBox.Location = new System.Drawing.Point(0, 0);
-            this.AddonsBox.Margin = new System.Windows.Forms.Padding(0);
-            this.AddonsBox.MultiSelect = false;
-            this.AddonsBox.Name = "AddonsBox";
-            this.AddonsBox.Size = new System.Drawing.Size(776, 272);
-            this.AddonsBox.TabIndex = 3;
-            this.AddonsBox.UseCompatibleStateImageBehavior = false;
-            this.AddonsBox.View = System.Windows.Forms.View.Details;
-            this.AddonsBox.DoubleClick += new System.EventHandler(this.AddonsBox_DoubleClick);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Manifest file";
-            this.columnHeader1.Width = 752;
             // 
             // MainForm
             // 

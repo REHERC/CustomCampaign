@@ -37,8 +37,12 @@ namespace CustomCampaign.Patches
                 Mod.SelectedPlaylist = __instance.DisplayedEntry_.Playlist_;
                 if (Mod.IsCustomCampaignPlaylist())
                 {
-                    __instance.modeDescription_.text = __instance.gridDescription_.text = Mod.GetCampaignDescription();
-                    __instance.campaignLogo_.mainTexture = Mod.GetCampaignLogo();
+                    try
+                    {
+                        __instance.modeDescription_.text = __instance.gridDescription_.text = Mod.GetCampaignDescription();
+                        __instance.campaignLogo_.mainTexture = Mod.GetCampaignLogo();
+                    }
+                    catch (Exception pizza) { }
                 }
             }
         }
@@ -150,6 +154,21 @@ namespace CustomCampaign.Patches
         {
             string level = Mod.SelectedPlaylist.Playlist_[index].levelNameAndPath_.levelPath_;
             return !LockingManager.IsLevelLocked(level) || !Mod.IsCustomCampaignLevel(level);
+        }
+    }
+
+    [HarmonyPatch(typeof(ProfilesMenu), "OnRenameProfileClicked")]
+    class ProfilesMenu__OnRenameProfileClicked__Patch
+    {
+        static bool Prefix(ProfilesMenu __instance, ref UIInput ___profileNameInput_, ref ProfileManager ___profileManager_)
+        {
+            Profile currentProfile = ___profileManager_.CurrentProfile_;
+            string filename = ___profileNameInput_.value;
+            if (!___profileManager_.CheckForValidName(filename, currentProfile.Name_))
+                return false;
+            //TODO: Add profile file renaming
+
+            return true;
         }
     }
 }
