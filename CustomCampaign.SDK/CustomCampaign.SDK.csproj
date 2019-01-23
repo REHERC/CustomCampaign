@@ -51,9 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\AddOn.cs" />
-    <Compile Include="API\AddOnUpdate.cs" />
+    <Compile Include="API\Event.cs" />
+    <Compile Include="API\EventListenerAttribute.cs" />
+    <Compile Include="API\EventParams.cs" />
+    <Compile Include="API\IEvent.cs" />
     <Compile Include="Data\AddOnManifest.cs" />
+    <Compile Include="Mod\TestListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
