@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CustomCampaign.ModLoader
+﻿namespace CustomCampaign.ModLoader
 {
-    class ModLoader
+    static class ModLoader
     {
+        static void Init()
+        {
 
+        }
+        
+        static void AddManifest(string filepath)
+        {
+
+        }
     }
 }
