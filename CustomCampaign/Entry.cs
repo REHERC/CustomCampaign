@@ -20,6 +20,8 @@ namespace CustomCampaign
                 Storage.Init();
                 Plugin.LoadCampaigns();
 
+                GameEvents.SubscribeAll();
+
                 HarmonyInstance Harmony = HarmonyInstance.Create($"com.CustomCampaign.{ipcIdentifier}");
                 Harmony.PatchAll(Assembly.GetExecutingAssembly());
             }

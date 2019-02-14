@@ -39,8 +39,8 @@ namespace CustomCampaign
             string campaign = CampaignUtils.GetCampaignId(levelfile);
             int index = CampaignUtils.GetLevelIndex(levelfile);
             int campaign_progress = GetCampaignProgress(campaign);
-            if (campaign_progress > index)
-                progress.Data[campaign] = campaign_progress;
+            if (index > campaign_progress)
+                progress.Data[campaign] = index;
             progress.Save();
         }
 
