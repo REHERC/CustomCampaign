@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Windows.Forms;
 
+#pragma warning disable CS0168
 namespace CustomCampaign.Forms
 {
     public partial class PackForm : Form

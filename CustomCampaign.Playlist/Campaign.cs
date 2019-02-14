@@ -5,6 +5,7 @@ using System;
 using CustomCampaign.SDK.Data;
 using Photon.Serialization;
 
+#pragma warning disable CS0168
 public partial class Campaign
 {
     public string Name;
@@ -18,7 +19,6 @@ public partial class Campaign
     public List<Level> Levels;
 
     public List<string> Addons;
-    
     
     public Campaign()
     {
@@ -36,7 +36,6 @@ public partial class Campaign
     public void Load(string FileName)
     {
         if (File.Exists(FileName))
-        {
             using (BinaryReader reader = new BinaryReader(File.Open(FileName, FileMode.Open)))
             {
                 Levels = new List<Level>();
@@ -64,7 +63,6 @@ public partial class Campaign
                 for (int i = 0; i < _addoncount; i++)
                     Addons.Add(reader.ReadStringSecure());
             }
-        }
     }
     
     public static bool Validate(string path)
@@ -73,11 +71,8 @@ public partial class Campaign
         if (File.Exists(path))
         {
             Campaign c = new Campaign();
-
             try { c.Load(path); } catch (Exception pizza) { Console.WriteLine(path + " : file format error"); return false; }
-
             if (c.LogoPath != "" && !Campaign.FileExists(root, c.LogoPath)) return false;
-
             foreach (Level level in c.Levels)
             {
                 if (!Campaign.FileExists(root, level.file) 
@@ -86,7 +81,6 @@ public partial class Campaign
                   && level.loading_wallpaper != ""))
                 return false;
             }
-
             foreach (string addon in c.Addons)
             {
                 string addonfile = Path.GetFullPath(Path.Combine(root, addon));
