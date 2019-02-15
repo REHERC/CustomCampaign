@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-#pragma warning disable CS0168
+#pragma warning disable CS0168, RCS1001, RCS1206
 namespace CustomCampaign
 {
     public static class CampaignUtils
@@ -100,7 +100,7 @@ namespace CustomCampaign
                     index++;
                 }
             }
-            catch (Exception pizza) { }
+            catch (Exception pizza) { Plugin.Log.Exception(pizza); }
             return -1;
         }
 

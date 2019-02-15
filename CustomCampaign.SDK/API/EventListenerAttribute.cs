@@ -3,7 +3,7 @@
 namespace CustomCampaign.SDK.API
 {
     [AttributeUsage(AttributeTargets.Class)]
-    class ListenerAttribute : Attribute
+    public class ListenerAttribute : Attribute
     {
         public Event Event { get; set; }
 

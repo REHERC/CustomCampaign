@@ -1,6 +1,6 @@
 ﻿namespace CustomCampaign.SDK.API
 {
-    interface IEvent
+    public interface IEvent
     {
         void EventRaised(EventParams parameters);
     }

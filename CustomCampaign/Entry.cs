@@ -8,6 +8,7 @@ using Spectrum.API.Interfaces.Systems;
 using Spectrum.API.Logging;
 using Spectrum.API.Storage;
 
+#pragma warning disable RCS1163
 namespace CustomCampaign
 {
     public class Entry : IPlugin

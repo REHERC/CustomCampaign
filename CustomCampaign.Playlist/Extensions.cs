@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-#pragma warning disable CS1591
+#pragma warning disable CS1591, RCS1110
 public static partial class Extensions
 {
     public static string Cipher(this string input, int key)

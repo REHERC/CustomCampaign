@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 
+#pragma warning disable RCS1224, RCS1110
 public static partial class Extensions
 {
     public static string TrimStart(this string input, string cut)
@@ -63,11 +64,11 @@ public static partial class Extensions
     public static string NormPath(this string input, bool file = true)
     {
         string output = input.GetForwardPath().LowerCase().CutEnd('/');
-        if (input is null || input == "" || input == string.Empty) return "";
+        if (input.Length == 0) return "";
         bool directory = !file || input.EndsWith(Path.DirectorySeparatorChar) || input.EndsWith(Path.AltDirectorySeparatorChar);
         while (output.Contains("//"))
             output = output.Replace("//", "/");
-        return output + (directory ? "/" : "").ToString();
+        return output + (directory ? "/" : "");
     }
 
     public static void MakeDirectory(string directory)
@@ -90,7 +91,7 @@ public static class PrivateAccess
 {
     public static T GetPrivateField<T>(this object obj, string name)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
         FieldInfo field = type.GetField(name, flags);
         return (T)field.GetValue(obj);
@@ -98,7 +99,7 @@ public static class PrivateAccess
 
     public static T GetPrivateProperty<T>(this object obj, string name)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
         PropertyInfo field = type.GetProperty(name, flags);
         return (T)field.GetValue(obj, null);
@@ -106,7 +107,7 @@ public static class PrivateAccess
 
     public static void SetPrivateField(this object obj, string name, object value)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
         FieldInfo field = type.GetField(name, flags);
         field.SetValue(obj, value);
@@ -114,7 +115,7 @@ public static class PrivateAccess
 
     public static void SetPrivateProperty(this object obj, string name, object value)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
         PropertyInfo field = type.GetProperty(name, flags);
         field.SetValue(obj, value, null);
@@ -122,7 +123,7 @@ public static class PrivateAccess
 
     public static T CallPrivateFunction<T>(this object obj, string name, params object[] param)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
         MethodInfo method = type.GetMethod(name, flags);
         return (T)method.Invoke(obj, param);
@@ -130,7 +131,7 @@ public static class PrivateAccess
 
     public static void CallPrivateMethod(this object obj, string name, params object[] param)
     {
-        BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         Type type = obj.GetType();
         MethodInfo method = type.GetMethod(name, flags);
         method.Invoke(obj, param);

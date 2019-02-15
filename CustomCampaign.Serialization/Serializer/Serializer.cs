@@ -6,8 +6,8 @@ namespace Photon.Serialization
     {
         private readonly string FilePath;
         public DATA_TYPE Data;
-        private ISerializer<DATA_TYPE> DataSerializer;
-        
+        private readonly ISerializer<DATA_TYPE> DataSerializer;
+
         public Serializer(SerializerType Type, string FileName, bool LoadOnCtor = false, bool AbsolutePath = true)
         {
             switch (Type)
@@ -58,7 +58,7 @@ namespace Photon.Serialization
             else
                 Data = new DATA_TYPE();
         }
-        
+
         public void Save()
         {
             DataSerializer.Serialize(Data, FilePath);

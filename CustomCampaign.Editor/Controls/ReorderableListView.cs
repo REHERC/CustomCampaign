@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-
+#pragma warning disable RCS1110
 public class ReorderableListView : ListView
 {
     // from WinUser.h
@@ -13,25 +13,15 @@ public class ReorderableListView : ListView
         SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
     }
 
-    private int _LineBefore = -1;
     /// <summary>
     /// If set to a value >= 0, an insertion line is painted before the item with the given index.
     /// </summary>
-    public int LineBefore
-    {
-        get { return _LineBefore; }
-        set { _LineBefore = value; }
-    }
+    public int LineBefore { get; set; } = -1;
 
-    private int _LineAfter = -1;
     /// <summary>
     /// If set to a value >= 0, an insertion line is painted after the item with the given index.
     /// </summary>
-    public int LineAfter
-    {
-        get { return _LineAfter; }
-        set { _LineAfter = value; }
-    }
+    public int LineAfter { get; set; } = -1;
 
     protected override void WndProc(ref Message m)
     {
