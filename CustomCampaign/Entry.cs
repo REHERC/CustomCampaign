@@ -55,7 +55,7 @@ namespace CustomCampaign
             Files = new FileSystem();
             Log = new Logger("CustomCampaign.log")
             {
-                WriteToConsole = true
+                WriteToConsole = false
             };
         }
 

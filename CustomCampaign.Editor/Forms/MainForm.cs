@@ -329,9 +329,7 @@ namespace CustomCampaign.Forms
             };
 
             if (form.ShowDialog() == DialogResult.OK)
-            {
                 item.SubItems[0].Text = form.value;
-            }
         }
 
         private void RemoveAddon_Click(object sender, EventArgs e)

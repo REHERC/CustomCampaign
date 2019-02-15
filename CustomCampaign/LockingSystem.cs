@@ -1,4 +1,5 @@
 ﻿using Photon.Serialization;
+using System;
 using System.Collections.Generic;
 
 #pragma warning disable RCS1001
@@ -18,12 +19,17 @@ namespace CustomCampaign
         public static bool IsLevelLocked(string levelfile)
         {
             string file = levelfile.NormPath(true);
-            if (CampaignUtils.GetCampaignUnlockMode(levelfile) == Campaign.UnlockStyle.LevelSet)
-                return false;
-            string campaign = CampaignUtils.GetCampaignId(file);
-            Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
-            int completion = progress.Data[campaign];
-            return CampaignUtils.GetLevelIndex(levelfile) > completion;
+            try
+            {
+                if (CampaignUtils.GetCampaignUnlockMode(levelfile) == Campaign.UnlockStyle.LevelSet)
+                    return false;
+                string campaign = CampaignUtils.GetCampaignId(file);
+                Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
+                int completion = progress.Data[campaign];
+                return CampaignUtils.GetLevelIndex(levelfile) > completion;
+            }
+            catch (Exception pizza) { Plugin.Log.Exception(pizza); }
+            return false;
         }
 
         public static int GetCampaignProgress(string campaign)
