@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+#pragma warning disable RCS1001
 namespace CustomCampaign
 {
     public class CampaignInfo
@@ -16,7 +17,7 @@ namespace CustomCampaign
         public string Description { get; set; }
         public string[] Authors { get; set; }
         public Campaign.UnlockStyle LockMode { get; set; }
-        
+
         public CampaignInfo(string data_dir, string docs_dir, Campaign pak)
         {
             this.Id = new List<string>(data_dir.Split(new char[] { '/', '\\' })).Last().LowerCase();

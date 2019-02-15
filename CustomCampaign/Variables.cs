@@ -1,6 +1,7 @@
 ﻿using System;
 
-class Variables
+#pragma warning disable RCS1110
+internal static class Variables
 {
     public const string DocumentsFolder = "WorkshopLevels";
 

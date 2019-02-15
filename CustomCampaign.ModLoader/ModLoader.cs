@@ -1,13 +1,13 @@
 ﻿namespace CustomCampaign.ModLoader
 {
-    static class ModLoader
+    public static class ModLoader
     {
-        static void Init()
+        public static void Init()
         {
 
         }
-        
-        static void AddManifest(string filepath)
+
+        public static void AddManifest(string filepath)
         {
 
         }

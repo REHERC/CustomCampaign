@@ -5,21 +5,17 @@ using System;
 using CustomCampaign.SDK.Data;
 using Photon.Serialization;
 
-#pragma warning disable CS0168
+#pragma warning disable CS0168, RCS1001, RCS1110
 public partial class Campaign
 {
     public string Name;
     public string Description;
     public string LogoPath;
-
     public string Authors;
-
     public UnlockStyle LockMode;
-    
     public List<Level> Levels;
-
     public List<string> Addons;
-    
+
     public Campaign()
     {
         Levels = new List<Level>();
@@ -64,7 +60,7 @@ public partial class Campaign
                     Addons.Add(reader.ReadStringSecure());
             }
     }
-    
+
     public static bool Validate(string path)
     {
         string root = Path.GetDirectoryName(path);
@@ -75,9 +71,9 @@ public partial class Campaign
             if (c.LogoPath != "" && !Campaign.FileExists(root, c.LogoPath)) return false;
             foreach (Level level in c.Levels)
             {
-                if (!Campaign.FileExists(root, level.file) 
-                ||  !Campaign.FileExists(root, level.file + ".png") 
-                ||  (!Campaign.FileExists(root, level.loading_wallpaper) 
+                if (!Campaign.FileExists(root, level.file)
+                ||  !Campaign.FileExists(root, level.file + ".png")
+                ||  (!Campaign.FileExists(root, level.loading_wallpaper)
                   && level.loading_wallpaper != ""))
                 return false;
             }
@@ -86,8 +82,8 @@ public partial class Campaign
                 string addonfile = Path.GetFullPath(Path.Combine(root, addon));
                 AddOnManifest manifest;
                 try {
-                    manifest = new Serializer<AddOnManifest>(SerializerType.Json, addonfile, true).Data; 
-                    string filename = $"/{addon}".Substring($"/{addon}".Replace(@"\", @"/").LastIndexOf("/") + 1);
+                    manifest = new Serializer<AddOnManifest>(SerializerType.Json, addonfile, true).Data;
+                    string filename = $"/{addon}".Substring($"/{addon}".Replace(@"\", "/").LastIndexOf("/") + 1);
                     string fileroot = addon.Substring(0, addon.Length - filename.Length);
                     string addonroot = Path.GetFullPath(Path.Combine(root, fileroot));
                     if (!Campaign.FileExists(addonroot, manifest.ModuleFile)) return false;

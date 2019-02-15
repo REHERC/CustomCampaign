@@ -1,4 +1,5 @@
-﻿public partial class Campaign
+﻿#pragma warning disable RCS1110
+public partial class Campaign
 {
     public struct Level
     {

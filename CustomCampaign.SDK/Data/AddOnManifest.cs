@@ -9,12 +9,16 @@ namespace CustomCampaign.SDK.Data
     {
         [DataMember]
         public string AddonName { get; set; }
+
         [DataMember]
         public List<Author> Authors { get; set; }
+
         [DataMember]
         public string ModuleFile { get; set; }
+
         [DataMember]
         public string EntryClass { get; set; }
+
         [DataMember]
         public List<string> Dependencies { get; set; }
     }
@@ -24,6 +28,7 @@ namespace CustomCampaign.SDK.Data
     {
         [DataMember]
         public string Name { get; set; } = "Author";
+
         [DataMember]
         public string Contact { get; set; } = "author@mail.com";
 

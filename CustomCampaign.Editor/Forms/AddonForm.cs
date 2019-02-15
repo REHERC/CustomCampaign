@@ -6,7 +6,7 @@ namespace CustomCampaign.Forms
     public partial class AddonForm : Form
     {
         public string value = "";
-        
+
         public AddonForm()
         {
             InitializeComponent();
@@ -39,10 +39,7 @@ namespace CustomCampaign.Forms
 
         private void LevelFileBox_TextChanged(object sender, EventArgs e)
         {
-            bool requirements =
-                AddonFileBox.Text != "" &&
-                AddonFileBox.Text.ToLower().EndsWith(".json");
-
+            bool requirements = AddonFileBox.Text != "" && AddonFileBox.Text.EndsWith(".json", StringComparison.OrdinalIgnoreCase);
             OkBtn.Enabled = requirements;
         }
     }

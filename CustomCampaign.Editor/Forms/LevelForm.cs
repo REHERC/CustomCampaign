@@ -6,7 +6,7 @@ namespace CustomCampaign.Forms
     public partial class LevelForm : Form
     {
         public Campaign.Level value;
-        
+
         public LevelForm()
         {
             InitializeComponent();
@@ -15,7 +15,6 @@ namespace CustomCampaign.Forms
         public LevelForm(ListViewItem item)
         {
             InitializeComponent();
-
             if (item.SubItems.Count == 4)
             {
                 value = new Campaign.Level(
@@ -52,10 +51,7 @@ namespace CustomCampaign.Forms
 
         private void LevelFileBox_TextChanged(object sender, EventArgs e)
         {
-            bool requirements =
-                LevelFileBox.Text != "" &&
-                LevelFileBox.Text.ToLower().EndsWith(".bytes");
-
+            bool requirements = LevelFileBox.Text != "" && LevelFileBox.Text.EndsWith(".bytes", StringComparison.OrdinalIgnoreCase);
             OkBtn.Enabled = requirements;
         }
     }

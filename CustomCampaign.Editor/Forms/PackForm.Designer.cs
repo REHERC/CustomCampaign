@@ -167,7 +167,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Custom Campaign Authoring Tool - Campaign packaging";
-            this.Load += new System.EventHandler(this.PackForm_Load);
             this.ButtonsPanel.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             this.ResumeLayout(false);

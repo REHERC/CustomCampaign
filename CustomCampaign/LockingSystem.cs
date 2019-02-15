@@ -1,11 +1,11 @@
 ﻿using Photon.Serialization;
 using System.Collections.Generic;
 
+#pragma warning disable RCS1001
 namespace CustomCampaign
 {
-    static class LockingSystem
+    public static class LockingSystem
     {
-
         public static void CreateProfile()
         {
             Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);

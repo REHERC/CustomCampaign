@@ -3,7 +3,7 @@
 namespace CustomCampaign.Mod
 {
     [Listener(Event.Mod_Setup)]
-    class Entry : IEvent
+    public class Entry : IEvent
     {
         public void EventRaised(EventParams parameters)
         {

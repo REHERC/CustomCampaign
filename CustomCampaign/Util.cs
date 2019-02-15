@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+#pragma warning disable RCS1001
 namespace CustomCampaign
 {
     internal static class Util

@@ -3,21 +3,21 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-#pragma warning disable CS0168
+#pragma warning disable CS0168, RCS1003, RCS1001
 namespace CustomCampaign
 {
-    class Patches
+    public static class Patches
     {
         [HarmonyPatch(typeof(LevelGridMenu), "CreateEntries")]
-        internal class LevelGridMenu__CreateEntries__Patch
+        internal static class LevelGridMenu__CreateEntries__Patch
         {
-            static void Postfix(LevelGridMenu __instance)
+            public static void Postfix(LevelGridMenu __instance)
             {
                 bool flag_campaignmode = __instance.GetPrivateField<bool>("isCampaignMode_");
                 if (flag_campaignmode)
                 {
-                    GameModeID campaign_mode = GameModeID.Nexus;
-                    LevelGridMenu.PlaylistEntry.UnlockStyle unlock_mode = LevelGridMenu.PlaylistEntry.UnlockStyle.PreviousLevels;
+                    const GameModeID campaign_mode = GameModeID.Nexus;
+                    const LevelGridMenu.PlaylistEntry.UnlockStyle unlock_mode = LevelGridMenu.PlaylistEntry.UnlockStyle.PreviousLevels;
                     foreach (CampaignInfo campaign in Storage.Campaigns)
                         __instance.CallPrivateMethod("CreateAndAddCampaignLevelSet", campaign.GetLevelSet(campaign_mode), campaign.Name, true, unlock_mode, campaign_mode);
                     __instance.buttonList_.SortAndUpdateVisibleButtons();
@@ -29,9 +29,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelIntroTitleLogic), "Update")]
-    class LevelIntroTitleLogic__Update__Patch
+    internal static class LevelIntroTitleLogic__Update__Patch
     {
-        static void Postfix(LevelIntroTitleLogic __instance)
+        public static void Postfix(LevelIntroTitleLogic __instance)
         {
             string path = G.Sys.GameManager_.LevelPath_;
             if (CampaignUtils.IsCustomCampaignLevel(path))
@@ -45,9 +45,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelGridMenu), "SetDisplayedInfoForSelectedPlaylist")]
-    class LevelGridMenu__SetDisplayedInfoForSelectedPlaylist__Patch
+    internal static class LevelGridMenu__SetDisplayedInfoForSelectedPlaylist__Patch
     {
-        static void Postfix(LevelGridMenu __instance)
+        public static void Postfix(LevelGridMenu __instance)
         {
             bool flag_campaignmode = __instance.GetPrivateField<bool>("isCampaignMode_");
             if (flag_campaignmode)
@@ -64,16 +64,16 @@ namespace CustomCampaign
                             __instance.campaignLogo_.mainTexture = CampaignUtils.GetCampaignLogo(level);
                         }
                     }
-                    catch (Exception pizza) { }
+                    catch (Exception pizza) { Plugin.Log.Exception(pizza); }
                 }
             }
         }
     }
 
     [HarmonyPatch(typeof(LevelGridCell), "OnDisplayedVirtual")]
-    class LevelGridCell__OnDisplayedVirtual__Patch
+    internal static class LevelGridCell__OnDisplayedVirtual__Patch
     {
-        static void Postfix(LevelGridCell __instance, ref UIButton ___button_)
+        public static void Postfix(LevelGridCell __instance, ref UIButton ___button_)
         {
             try
             {
@@ -97,14 +97,14 @@ namespace CustomCampaign
                         __instance.soloTitleLabel_.text = entry.LevelInfo_.levelName_;
                 }
             }
-            catch (Exception pizza) { }
+            catch (Exception pizza) { Plugin.Log.Exception(pizza); }
         }
     }
 
     [HarmonyPatch(typeof(BlackFadeLogic), "FinishFadeOut")]
-    class BlackFadeLogic__FinishFadeOut__Patch
+    internal static class BlackFadeLogic__FinishFadeOut__Patch
     {
-        static void Postfix(BlackFadeLogic __instance)
+        public static void Postfix(BlackFadeLogic __instance)
         {
             string path = G.Sys.GameManager_.NextLevelPath_;
             if (CampaignUtils.IsCustomCampaignLevel(path) && __instance.GetPrivateField<string>("storedSceneToLoad_") != "MainMenu")
@@ -117,9 +117,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(PauseMenuLogic), "Update")]
-    class PauseMenuLogic__Update__Patch
+    internal static class PauseMenuLogic__Update__Patch
     {
-        static void Postfix(PauseMenuLogic __instance)
+        public static void Postfix(PauseMenuLogic __instance)
         {
             string path = G.Sys.GameManager_.LevelPath_;
             if (G.Sys.GameManager_.PauseMenuOpen_ && CampaignUtils.IsCustomCampaignLevel(path))
@@ -136,12 +136,11 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelGridMenu), "CreateAndAddLevelSet", new Type[] { typeof(LevelSet), typeof(string), typeof(LevelGridMenu.PlaylistEntry.Type), typeof(LevelGroupFlags) })]
-    class LevelGridMenu__CreateAndAddLevelSet__Patch
+    internal static class LevelGridMenu__CreateAndAddLevelSet__Patch
     {
-        static void Prefix(
-            LevelGridMenu __instance,
+        public static void Prefix(
             ref LevelSelectMenuAbstract.DisplayType ___displayType_,
-            ref LevelSet set, ref string name, ref LevelGridMenu.PlaylistEntry.Type type)
+            ref LevelSet set, ref LevelGridMenu.PlaylistEntry.Type type)
         {
             if (type != LevelGridMenu.PlaylistEntry.Type.Campaign && ___displayType_ != LevelSelectMenuAbstract.DisplayType.Adventure)
                 foreach (LevelNameAndPathPair level in new List<LevelNameAndPathPair>(set.WorkshopLevelNameAndPathPairsInSet_))
@@ -151,9 +150,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelGridMenu), "OnGridCellClicked")]
-    class LevelGridMenu__OnGridCellClicked__Patch
+    internal static class LevelGridMenu__OnGridCellClicked__Patch
     {
-        static bool Prefix(LevelGridMenu __instance, ref int index)
+        public static bool Prefix(LevelGridMenu __instance, ref int index)
         {
             LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
             string level = playlist.Playlist_[index].levelNameAndPath_.levelPath_;

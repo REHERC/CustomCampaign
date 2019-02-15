@@ -17,8 +17,8 @@ namespace CustomCampaign.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             typeof(Control).GetProperty("DoubleBuffered",
-                             System.Reflection.BindingFlags.NonPublic |
-                             System.Reflection.BindingFlags.Instance)
+                             System.Reflection.BindingFlags.NonPublic
+                             | System.Reflection.BindingFlags.Instance)
                .SetValue(LevelsBox, true, null);
 
             LoadCampaign(new Campaign());
@@ -26,7 +26,7 @@ namespace CustomCampaign.Forms
             ExampleCampaign.Create02();
         }
 
-        void SaveAs()
+        public void SaveAs()
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
             {
@@ -70,7 +70,7 @@ namespace CustomCampaign.Forms
             }
         }
 
-        void Open()
+        public void Open()
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
             {
@@ -92,7 +92,7 @@ namespace CustomCampaign.Forms
             }
         }
 
-        void LoadCampaign(Campaign c)
+        public void LoadCampaign(Campaign c)
         {
             CampaignNameBox.Text = c.Name;
             CampaignDescriptionBox.Text = c.Description;
@@ -199,7 +199,6 @@ namespace CustomCampaign.Forms
             {
                 Text = "Custom Campaign Authoring Tool - Add a level"
             };
-            
             if (form.ShowDialog() == DialogResult.OK)
             {
                 ListViewItem selectedItem = LevelsBox.SelectedItems.Count > 0 ? LevelsBox.SelectedItems[0] : null;
@@ -222,11 +221,8 @@ namespace CustomCampaign.Forms
         private void RemoveLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ListViewItem item = LevelsBox.SelectedItems[0];
-            
             if (item != null && MessageBox.Show($"Are you sure you want to remove \"{item.Text}\" from the playlist ?", $"Remove \"{item.SubItems[1].Text}\" from the playlist", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
                 LevelsBox.Items.Remove(item);
-            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -311,9 +307,7 @@ namespace CustomCampaign.Forms
         private void AddonContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             bool active = AddonsBox.SelectedItems.Count > 0;
-
             RemoveAddon.Enabled = EditAddon.Enabled = active;
-            
         }
 
         private void EditAddon_Click(object sender, EventArgs e)

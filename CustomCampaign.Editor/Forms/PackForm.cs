@@ -6,7 +6,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Windows.Forms;
 
-#pragma warning disable CS0168
+#pragma warning disable CS0168, RCS1003
 namespace CustomCampaign.Forms
 {
     public partial class PackForm : Form
@@ -16,7 +16,7 @@ namespace CustomCampaign.Forms
 
         public string _PakFile = "";
         public string _PakFileDir = "";
-        Campaign _campaign;
+        private Campaign _campaign;
 
         public PackForm(string file)
         {
@@ -32,11 +32,6 @@ namespace CustomCampaign.Forms
             else Dispose();
         }
 
-        private void PackForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             Close();
@@ -44,7 +39,7 @@ namespace CustomCampaign.Forms
 
         private int errorcount = 0;
 
-        void ListFiles()
+        public void ListFiles()
         {
             string root = Path.GetDirectoryName(_PakFileDir);
             LevelsBox.Items.Clear();
@@ -71,16 +66,16 @@ namespace CustomCampaign.Forms
                 {
                     new Serializer<AddOnManifest>(SerializerType.Json, addonfile, true).Save();
                     manifest = new Serializer<AddOnManifest>(SerializerType.Json, addonfile, true).Data;
-                    string filename = $"/{addon}".Substring($"/{addon}".Replace(@"\", @"/").LastIndexOf("/") + 1);
+                    string filename = $"/{addon}".Substring($"/{addon}".Replace(@"\", "/").LastIndexOf("/") + 1);
                     string fileroot = addon.Substring(0, addon.Length - filename.Length);
                     AddItem(fileroot + manifest.ModuleFile);
                     foreach (string dependency in manifest.Dependencies)
                         AddItem(fileroot + dependency);
-                } catch (Exception pizza) { }
+                } catch (Exception pizza) { MessageBox.Show($"{pizza.Message}\n{pizza.Source}\n\n{pizza.StackTrace}", pizza.Message, MessageBoxButtons.OK ,MessageBoxIcon.Error); }
             }
         }
 
-        void AddItem(string file)
+        public void AddItem(string file)
         {
             bool exists = FileExists(file);
             ListViewItem item = new ListViewItem(new string[] {
@@ -96,7 +91,7 @@ namespace CustomCampaign.Forms
             errorcount += exists ? 0 : 1;
         }
 
-        bool FileExists(string file)
+        private bool FileExists(string file)
         {
             return File.Exists(_PakFileDir + file.Replace('/', Path.DirectorySeparatorChar));
         }
@@ -109,9 +104,7 @@ namespace CustomCampaign.Forms
         private void ExportBtn_Click(object sender, EventArgs e)
         {
             if (!Campaign.Validate(_PakFile))
-            {
                 ListFiles();
-            }
             if (errorcount == 0)
             {
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
