@@ -9,11 +9,11 @@ public static class ExampleCampaign
 
         Campaign c = new Campaign()
         {
-            Name = "Space base Frontier-1",
-            Description = "Welcome to space base Frontier-1, our newest space colony. We're waiting for you!",
-            LogoPath = "Images/Campaign.png",
-            Authors = "REHERC (Mich)",
-            Levels = new System.Collections.Generic.List<Campaign.Level>()
+            name = "Space base Frontier-1",
+            description = "Welcome to space base Frontier-1, our newest space colony. We're waiting for you!",
+            logopath = "Images/Campaign.png",
+            authors = "REHERC (Mich)",
+            levels = new System.Collections.Generic.List<Campaign.Level>()
                 {
                     new Campaign.Level("Levels/SJ_Arrival.bytes","[7BA7C6]Transportation Hub[-]","Terminal Aplha","Images/Loading.Arrival.png"),
                     new Campaign.Level("Levels/SJ_FarAway.bytes","[7BA7C6]Transportation Hub[-]","Terminal Alpha","Images/Loading.FarAway.png"),
@@ -36,11 +36,11 @@ public static class ExampleCampaign
 
         Campaign c = new Campaign()
         {
-            Name = "Example campaign",
-            Description = "This campaign is meant to demonstrate how the tool works. It will be re-written on each application startup.",
-            LogoPath = "Images/Campaign.png",
-            Authors = "Author 1;Author 2;Author 3",
-            Levels = new System.Collections.Generic.List<Campaign.Level>()
+            name = "Example campaign",
+            description = "This campaign is meant to demonstrate how the tool works. It will be re-written on each application startup.",
+            logopath = "Images/Campaign.png",
+            authors = "Author 1;Author 2;Author 3",
+            levels = new System.Collections.Generic.List<Campaign.Level>()
                 {
                     new Campaign.Level("Levels/01.bytes","Level 01","Sector 01","Images/Loading.01.png"),
                     new Campaign.Level("Levels/02.bytes","Level 02","Sector 02","Images/Loading.02.png")

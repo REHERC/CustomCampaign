@@ -16,10 +16,9 @@ namespace CustomCampaign
                 bool flag_campaignmode = __instance.GetPrivateField<bool>("isCampaignMode_");
                 if (flag_campaignmode)
                 {
-                    const GameModeID campaign_mode = GameModeID.Nexus;
                     const LevelGridMenu.PlaylistEntry.UnlockStyle unlock_mode = LevelGridMenu.PlaylistEntry.UnlockStyle.PreviousLevels;
                     foreach (CampaignInfo campaign in Storage.Campaigns)
-                        __instance.CallPrivateMethod("CreateAndAddCampaignLevelSet", campaign.GetLevelSet(campaign_mode), campaign.Name, true, unlock_mode, campaign_mode);
+                        __instance.CallPrivateMethod("CreateAndAddCampaignLevelSet", campaign.GetLevelSet(campaign.GameMode), campaign.Name, true, unlock_mode, campaign.GameMode);
                     __instance.buttonList_.SortAndUpdateVisibleButtons();
                 }
 
@@ -36,10 +35,10 @@ namespace CustomCampaign
             string path = G.Sys.GameManager_.LevelPath_;
             if (CampaignUtils.IsCustomCampaignLevel(path))
             {
+                __instance.titleLabel_.text = CampaignUtils.GetLevelTitle(path).Space(1);
+                __instance.subtitleText_.text = CampaignUtils.GetLevelSubTitle(path);
                 __instance.subtitleText_.gameObject.SetActive(true);
                 __instance.subtitleText_.alpha = __instance.titleLabel_.alpha;
-                __instance.titleLabel_.text = CampaignUtils.GetLevelTitle(path);
-                __instance.subtitleText_.text = CampaignUtils.GetLevelSubTitle(path);
             }
         }
     }
@@ -143,9 +142,9 @@ namespace CustomCampaign
             ref LevelSet set, ref LevelGridMenu.PlaylistEntry.Type type)
         {
             if (type != LevelGridMenu.PlaylistEntry.Type.Campaign && ___displayType_ != LevelSelectMenuAbstract.DisplayType.Adventure)
-                foreach (LevelNameAndPathPair level in new List<LevelNameAndPathPair>(set.WorkshopLevelNameAndPathPairsInSet_))
+                foreach (LevelNameAndPathPair level in set.GetAllLevelNameAndPathPairs())
                     if (CampaignUtils.IsCustomCampaignLevel(level.levelPath_))
-                        set.RemoveLevel(level.levelPath_);
+                        set.RemoveLevel(level.levelPath_.Normalize());
         }
     }
 
@@ -160,8 +159,28 @@ namespace CustomCampaign
                 return true;
             bool flag = !LockingSystem.IsLevelLocked(level) || !CampaignUtils.IsCustomCampaignLevel(level);
             if (!flag)
-                G.Sys.MenuPanelManager_.ShowTimedOk(10, "Complete previous levels to unlock.", "LEVEL LOCKED");
+                G.Sys.MenuPanelManager_.ShowTimedOk(10, Constants.Strings.LevelLocked_Message, Constants.Strings.LevelLocked_Title);
             return flag;
+        }
+    }
+
+    [HarmonyPatch(typeof(GameManager), "GetModeShowInLevelEditor")]
+    internal static class GameManager__GetModeShowInLevelEditor__Patch
+    {
+        public static List<GameModeID> Modes = new List<GameModeID>() {
+            GameModeID.Challenge,
+            GameModeID.ReverseTag,
+            GameModeID.Adventure,
+            GameModeID.Sprint,
+            GameModeID.Stunt,
+            GameModeID.LostToEchoes,
+            GameModeID.MainMenu,
+            GameModeID.Nexus
+        };
+
+        public static void Postfix(ref bool __result, GameModeID ID)
+        {
+            __result = Modes.Contains(ID);
         }
     }
 }

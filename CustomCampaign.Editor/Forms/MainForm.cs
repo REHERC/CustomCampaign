@@ -30,9 +30,9 @@ namespace CustomCampaign.Forms
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
             {
-                FileName = "Campaign.pak",
-                Filter = "Campaign playlist|*.pak",
-                DefaultExt = ".pak",
+                FileName = "Campaign",
+                Filter = "Campaign playlist|*.json",
+                DefaultExt = ".json",
                 Title = "Save file as",
                 ValidateNames = true,
                 OverwritePrompt = true,
@@ -42,17 +42,17 @@ namespace CustomCampaign.Forms
             if (dlg.ShowDialog() == true)
             {
                 Campaign c = new Campaign() {
-                    Name = CampaignNameBox.Text,
-                    Description = CampaignDescriptionBox.Text,
-                    LogoPath = CampaignLogoBox.Text,
-                    Authors = AuthorsBox.Text,
-                    LockMode = (UnlockStyle)UnlockStyleBox.SelectedIndex
+                    name = CampaignNameBox.Text,
+                    description = CampaignDescriptionBox.Text,
+                    logopath = CampaignLogoBox.Text,
+                    authors = AuthorsBox.Text,
+                    lockmode = (UnlockStyle)UnlockStyleBox.SelectedIndex
                 };
 
-                c.Levels = new List<Campaign.Level>();
+                c.levels = new List<Campaign.Level>();
                 foreach (ListViewItem item in LevelsBox.Items)
                 {
-                    c.Levels.Add(new Campaign.Level(
+                    c.levels.Add(new Campaign.Level(
                             item.SubItems[0].Text,
                             item.SubItems[1].Text,
                             item.SubItems[2].Text,
@@ -60,11 +60,13 @@ namespace CustomCampaign.Forms
                         ));
                 }
 
-                c.Addons = new List<string>();
+                c.addons = new List<string>();
                 foreach (ListViewItem item in AddonsBox.Items)
                 {
-                    c.Addons.Add(item.SubItems[0].Text);
+                    c.addons.Add(item.SubItems[0].Text);
                 }
+
+                c.gamemode = GameMode.GetMode(GameModeBox.SelectedIndex);
 
                 c.Save(dlg.FileName);
             }
@@ -74,9 +76,9 @@ namespace CustomCampaign.Forms
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
             {
-                FileName = "Campaign.pak",
-                Filter = "Campaign playlist|*.pak",
-                DefaultExt = ".pak",
+                FileName = "Campaign",
+                Filter = "Campaign playlist|*.json|Campaign playlist (old format)|*.pak",
+                DefaultExt = ".json",
                 Title = "Open file",
                 ValidateNames = true,
                 AddExtension = true,
@@ -94,13 +96,13 @@ namespace CustomCampaign.Forms
 
         public void LoadCampaign(Campaign c)
         {
-            CampaignNameBox.Text = c.Name;
-            CampaignDescriptionBox.Text = c.Description;
-            CampaignLogoBox.Text = c.LogoPath;
-            AuthorsBox.Text = c.Authors;
-            UnlockStyleBox.SelectedIndex = (int)c.LockMode;
+            CampaignNameBox.Text = c.name;
+            CampaignDescriptionBox.Text = c.description;
+            CampaignLogoBox.Text = c.logopath;
+            AuthorsBox.Text = c.authors;
+            UnlockStyleBox.SelectedIndex = (int)c.lockmode;
             LevelsBox.Items.Clear();
-            foreach (Campaign.Level level in c.Levels)
+            foreach (Campaign.Level level in c.levels)
             {
                 LevelsBox.Items.Add(new ListViewItem(new string[] {
                         level.file,
@@ -112,12 +114,14 @@ namespace CustomCampaign.Forms
 
             AddonsBox.Items.Clear();
 
-            foreach (string addon in c.Addons)
+            foreach (string addon in c.addons)
             {
                 AddonsBox.Items.Add(new ListViewItem(new string[] {
                         addon
                     }));
             }
+
+            GameModeBox.SelectedIndex = GameMode.GetIndex(c.gamemode);
         }
 
         private ListViewItem LevelsBoxItem = null;
@@ -270,9 +274,9 @@ namespace CustomCampaign.Forms
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
             {
-                FileName = "Campaign.pak",
-                Filter = "Campaign playlist|*.pak",
-                DefaultExt = ".pak",
+                FileName = "Campaign",
+                Filter = "Campaign playlist|*.json",
+                DefaultExt = ".json",
                 Title = "Open file for packaging",
                 ValidateNames = true,
                 AddExtension = true,

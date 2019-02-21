@@ -17,9 +17,6 @@ namespace CustomCampaign.SDK.Data
         public string ModuleFile { get; set; }
 
         [DataMember]
-        public string EntryClass { get; set; }
-
-        [DataMember]
         public List<string> Dependencies { get; set; }
     }
 

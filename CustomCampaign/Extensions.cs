@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-#pragma warning disable RCS1224, RCS1110
+#pragma warning disable RCS1224, RCS1110, RCS1001
 public static partial class Extensions
 {
     public static string TrimStart(this string input, string cut)
@@ -81,6 +81,21 @@ public static partial class Extensions
     {
         if (File.Exists(source))
             File.Copy(source, destination, overwrite);
+    }
+
+    public static string Space(this string input, int value, int maxlength = -1)
+    {
+        string output = "";
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (i > 0)
+                for (int j = 0; j < value; j++)
+                    output += " ";
+            output += input[i];
+        }
+        if (maxlength > 0 && output.Length > maxlength)
+            return input;
+        return output;
     }
 }
 

@@ -46,9 +46,9 @@ namespace CustomCampaign.Forms
             errorcount = 0;
             _campaign = new Campaign();
             _campaign.Load(_PakFile);
-            if (_campaign.LogoPath != "")
-                AddItem(_campaign.LogoPath);
-            foreach (Campaign.Level level in _campaign.Levels)
+            if (_campaign.logopath != "")
+                AddItem(_campaign.logopath);
+            foreach (Campaign.Level level in _campaign.levels)
             {
                 AddItem(level.file);
                 AddItem(level.file + ".png");
@@ -57,7 +57,7 @@ namespace CustomCampaign.Forms
                     AddItem(level.loading_wallpaper);
             }
 
-            foreach (string addon in _campaign.Addons)
+            foreach (string addon in _campaign.addons)
             {
                 AddItem(addon);
                 string addonfile = Path.GetFullPath(Path.Combine(root, addon));
@@ -128,7 +128,7 @@ namespace CustomCampaign.Forms
                         _ZipFileDir += Path.DirectorySeparatorChar;
                     using (ZipArchive archive = ZipFile.Open(_ZipFile, ZipArchiveMode.Create))
                     {
-                        archive.CreateEntryFromFile(_PakFile, "Campaign.pak");
+                        archive.CreateEntryFromFile(_PakFile, "Campaign.json");
                         foreach (ListViewItem item in LevelsBox.Items)
                         {
                             string file = Path.GetFullPath(Path.Combine(_PakFileDir, item.Text));

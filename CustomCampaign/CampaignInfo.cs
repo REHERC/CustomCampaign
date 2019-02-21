@@ -17,17 +17,18 @@ namespace CustomCampaign
         public string Description { get; set; }
         public string[] Authors { get; set; }
         public Campaign.UnlockStyle LockMode { get; set; }
+        public GameModeID GameMode;
 
         public CampaignInfo(string data_dir, string docs_dir, Campaign pak)
         {
             this.Id = new List<string>(data_dir.Split(new char[] { '/', '\\' })).Last().LowerCase();
             this.DataDirectory = data_dir;
             this.DocsDirectory = $"{docs_dir}/{this.Id}";
-            this.Name = pak.Name;
-            this.Description = pak.Description;
-            this.Authors = pak.Authors.Split(';');
-            this.LockMode = pak.LockMode;
-            string logo_path = $"{this.DataDirectory}/{pak.LogoPath}".NormPath();
+            this.Name = pak.name;
+            this.Description = pak.description;
+            this.Authors = pak.authors.Split(';');
+            this.LockMode = pak.lockmode;
+            string logo_path = $"{this.DataDirectory}/{pak.logopath}".NormPath();
             if (File.Exists(logo_path))
             {
                 byte[] image = File.ReadAllBytes(logo_path);
@@ -35,6 +36,7 @@ namespace CustomCampaign
                 this.Logo.LoadImage(image);
             }
             this.Levels = new List<Campaign.Level>();
+            this.GameMode = pak.gamemode;
         }
 
         public void Print()

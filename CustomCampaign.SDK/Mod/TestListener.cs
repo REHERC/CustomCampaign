@@ -7,7 +7,6 @@ namespace CustomCampaign.Mod
     {
         public void EventRaised(EventParams parameters)
         {
-
         }
     }
 }

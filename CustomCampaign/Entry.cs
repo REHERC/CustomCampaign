@@ -19,6 +19,7 @@ namespace CustomCampaign
             {
                 Plugin.Init();
                 Storage.Init();
+                ModLoader.Init();
                 Plugin.LoadCampaigns();
 
                 GameEvents.SubscribeAll();
@@ -65,13 +66,13 @@ namespace CustomCampaign
             string extract_root = Variables.LevelsDirectory();
             foreach (string campaign_directory in Directory.GetDirectories(campaign_root))
             {
-                string campaign_pak = $"{campaign_directory}/Campaign.pak";
+                string campaign_pak = $"{campaign_directory}/Campaign.json";
                 if (File.Exists(campaign_pak) && Campaign.Validate(campaign_pak))
                 {
                     Campaign campaign_data = Campaign.FromFile(campaign_pak);
                     CampaignInfo campaign_info = new CampaignInfo(campaign_directory, extract_root, campaign_data);
 
-                    foreach (Campaign.Level level in campaign_data.Levels)
+                    foreach (Campaign.Level level in campaign_data.levels)
                     {
                         string level_filename = new List<string>(level.file.NormPath().Split('/')).Last().LowerCase();
                         string data_filename = $"{campaign_directory}/{level.file}".NormPath();
@@ -90,10 +91,18 @@ namespace CustomCampaign
                         );
                         campaign_info.Levels.Add(level_info);
                     }
+
+                    foreach (string addon in campaign_data.addons)
+                    {
+                        string manifest = $"{campaign_directory}/{addon}".NormPath(true);
+                        AddonInfo addon_info = new AddonInfo(campaign_info, manifest);
+                        ModLoader.AddAddon(addon_info);
+                    }
                     campaign_info.Print();
                     Storage.Campaigns.Add(campaign_info);
                 }
             }
+            ModLoader.LoadAddons();
         }
     }
 }

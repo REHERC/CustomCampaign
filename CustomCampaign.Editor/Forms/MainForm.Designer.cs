@@ -33,17 +33,6 @@
             this.MainPanel = new System.Windows.Forms.Panel();
             this.EditorTabs = new System.Windows.Forms.TabControl();
             this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.SettingsPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.UnlockStyleLbl = new System.Windows.Forms.Label();
-            this.AuthorsBox = new System.Windows.Forms.TextBox();
-            this.AuthorsLbl = new System.Windows.Forms.Label();
-            this.CampaignLogoLbl = new System.Windows.Forms.Label();
-            this.CampaignDescriptionLbl = new System.Windows.Forms.Label();
-            this.CampaignNameLbl = new System.Windows.Forms.Label();
-            this.CampaignNameBox = new System.Windows.Forms.TextBox();
-            this.CampaignLogoBox = new System.Windows.Forms.TextBox();
-            this.CampaignDescriptionBox = new System.Windows.Forms.TextBox();
-            this.UnlockStyleBox = new System.Windows.Forms.ComboBox();
             this.LevelsTab = new System.Windows.Forms.TabPage();
             this.LevelsBox = new ReorderableListView();
             this.LevelFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -73,10 +62,22 @@
             this.SaveBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.PackBtn = new System.Windows.Forms.ToolStripButton();
+            this.UnlockStyleBox = new System.Windows.Forms.ComboBox();
+            this.CampaignDescriptionBox = new System.Windows.Forms.TextBox();
+            this.CampaignLogoBox = new System.Windows.Forms.TextBox();
+            this.CampaignNameBox = new System.Windows.Forms.TextBox();
+            this.CampaignNameLbl = new System.Windows.Forms.Label();
+            this.CampaignDescriptionLbl = new System.Windows.Forms.Label();
+            this.CampaignLogoLbl = new System.Windows.Forms.Label();
+            this.AuthorsLbl = new System.Windows.Forms.Label();
+            this.AuthorsBox = new System.Windows.Forms.TextBox();
+            this.UnlockStyleLbl = new System.Windows.Forms.Label();
+            this.SettingsPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.GameModeBox = new System.Windows.Forms.ComboBox();
+            this.GameModeLbl = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.SettingsTab.SuspendLayout();
-            this.SettingsPanel.SuspendLayout();
             this.LevelsTab.SuspendLayout();
             this.LevelsContextMenu.SuspendLayout();
             this.LevelsMenuBar.SuspendLayout();
@@ -84,6 +85,7 @@
             this.AddonContextMenu.SuspendLayout();
             this.AddonMenuBar.SuspendLayout();
             this.MenuBar.SuspendLayout();
+            this.SettingsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -121,144 +123,6 @@
             this.SettingsTab.Size = new System.Drawing.Size(776, 297);
             this.SettingsTab.TabIndex = 0;
             this.SettingsTab.Text = "Campaign settings";
-            // 
-            // SettingsPanel
-            // 
-            this.SettingsPanel.ColumnCount = 2;
-            this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SettingsPanel.Controls.Add(this.UnlockStyleLbl, 0, 4);
-            this.SettingsPanel.Controls.Add(this.AuthorsBox, 1, 3);
-            this.SettingsPanel.Controls.Add(this.AuthorsLbl, 0, 3);
-            this.SettingsPanel.Controls.Add(this.CampaignLogoLbl, 0, 2);
-            this.SettingsPanel.Controls.Add(this.CampaignDescriptionLbl, 0, 1);
-            this.SettingsPanel.Controls.Add(this.CampaignNameLbl, 0, 0);
-            this.SettingsPanel.Controls.Add(this.CampaignNameBox, 1, 0);
-            this.SettingsPanel.Controls.Add(this.CampaignLogoBox, 1, 2);
-            this.SettingsPanel.Controls.Add(this.CampaignDescriptionBox, 1, 1);
-            this.SettingsPanel.Controls.Add(this.UnlockStyleBox, 1, 4);
-            this.SettingsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SettingsPanel.Location = new System.Drawing.Point(3, 3);
-            this.SettingsPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.SettingsPanel.Name = "SettingsPanel";
-            this.SettingsPanel.RowCount = 5;
-            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.SettingsPanel.Size = new System.Drawing.Size(770, 291);
-            this.SettingsPanel.TabIndex = 0;
-            // 
-            // UnlockStyleLbl
-            // 
-            this.UnlockStyleLbl.AutoSize = true;
-            this.UnlockStyleLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UnlockStyleLbl.Location = new System.Drawing.Point(0, 80);
-            this.UnlockStyleLbl.Margin = new System.Windows.Forms.Padding(0);
-            this.UnlockStyleLbl.Name = "UnlockStyleLbl";
-            this.UnlockStyleLbl.Size = new System.Drawing.Size(198, 211);
-            this.UnlockStyleLbl.TabIndex = 6;
-            this.UnlockStyleLbl.Text = "Level unlocking style:";
-            this.UnlockStyleLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // AuthorsBox
-            // 
-            this.AuthorsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AuthorsBox.Location = new System.Drawing.Point(198, 60);
-            this.AuthorsBox.Margin = new System.Windows.Forms.Padding(0);
-            this.AuthorsBox.Name = "AuthorsBox";
-            this.AuthorsBox.Size = new System.Drawing.Size(572, 20);
-            this.AuthorsBox.TabIndex = 5;
-            // 
-            // AuthorsLbl
-            // 
-            this.AuthorsLbl.AutoSize = true;
-            this.AuthorsLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AuthorsLbl.Location = new System.Drawing.Point(0, 60);
-            this.AuthorsLbl.Margin = new System.Windows.Forms.Padding(0);
-            this.AuthorsLbl.Name = "AuthorsLbl";
-            this.AuthorsLbl.Size = new System.Drawing.Size(198, 20);
-            this.AuthorsLbl.TabIndex = 4;
-            this.AuthorsLbl.Text = "Authors (separate two names with \";\"):";
-            this.AuthorsLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // CampaignLogoLbl
-            // 
-            this.CampaignLogoLbl.AutoSize = true;
-            this.CampaignLogoLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignLogoLbl.Location = new System.Drawing.Point(0, 40);
-            this.CampaignLogoLbl.Margin = new System.Windows.Forms.Padding(0);
-            this.CampaignLogoLbl.Name = "CampaignLogoLbl";
-            this.CampaignLogoLbl.Size = new System.Drawing.Size(198, 20);
-            this.CampaignLogoLbl.TabIndex = 3;
-            this.CampaignLogoLbl.Text = "Campaign logo file:";
-            this.CampaignLogoLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // CampaignDescriptionLbl
-            // 
-            this.CampaignDescriptionLbl.AutoSize = true;
-            this.CampaignDescriptionLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignDescriptionLbl.Location = new System.Drawing.Point(0, 20);
-            this.CampaignDescriptionLbl.Margin = new System.Windows.Forms.Padding(0);
-            this.CampaignDescriptionLbl.Name = "CampaignDescriptionLbl";
-            this.CampaignDescriptionLbl.Size = new System.Drawing.Size(198, 20);
-            this.CampaignDescriptionLbl.TabIndex = 2;
-            this.CampaignDescriptionLbl.Text = "Campaign description:";
-            this.CampaignDescriptionLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // CampaignNameLbl
-            // 
-            this.CampaignNameLbl.AutoSize = true;
-            this.CampaignNameLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignNameLbl.Location = new System.Drawing.Point(0, 0);
-            this.CampaignNameLbl.Margin = new System.Windows.Forms.Padding(0);
-            this.CampaignNameLbl.Name = "CampaignNameLbl";
-            this.CampaignNameLbl.Size = new System.Drawing.Size(198, 20);
-            this.CampaignNameLbl.TabIndex = 0;
-            this.CampaignNameLbl.Text = "Campaign name:";
-            this.CampaignNameLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // CampaignNameBox
-            // 
-            this.CampaignNameBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignNameBox.Location = new System.Drawing.Point(198, 0);
-            this.CampaignNameBox.Margin = new System.Windows.Forms.Padding(0);
-            this.CampaignNameBox.Name = "CampaignNameBox";
-            this.CampaignNameBox.Size = new System.Drawing.Size(572, 20);
-            this.CampaignNameBox.TabIndex = 0;
-            // 
-            // CampaignLogoBox
-            // 
-            this.CampaignLogoBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignLogoBox.Location = new System.Drawing.Point(198, 40);
-            this.CampaignLogoBox.Margin = new System.Windows.Forms.Padding(0);
-            this.CampaignLogoBox.Name = "CampaignLogoBox";
-            this.CampaignLogoBox.Size = new System.Drawing.Size(572, 20);
-            this.CampaignLogoBox.TabIndex = 2;
-            // 
-            // CampaignDescriptionBox
-            // 
-            this.CampaignDescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignDescriptionBox.Location = new System.Drawing.Point(198, 20);
-            this.CampaignDescriptionBox.Margin = new System.Windows.Forms.Padding(0);
-            this.CampaignDescriptionBox.Name = "CampaignDescriptionBox";
-            this.CampaignDescriptionBox.Size = new System.Drawing.Size(572, 20);
-            this.CampaignDescriptionBox.TabIndex = 1;
-            // 
-            // UnlockStyleBox
-            // 
-            this.UnlockStyleBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UnlockStyleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.UnlockStyleBox.FormattingEnabled = true;
-            this.UnlockStyleBox.Items.AddRange(new object[] {
-            "Campaign (unlock levels by completing previous ones)",
-            "Level set (everything unlocked)"});
-            this.UnlockStyleBox.Location = new System.Drawing.Point(198, 80);
-            this.UnlockStyleBox.Margin = new System.Windows.Forms.Padding(0);
-            this.UnlockStyleBox.Name = "UnlockStyleBox";
-            this.UnlockStyleBox.Size = new System.Drawing.Size(572, 22);
-            this.UnlockStyleBox.TabIndex = 7;
             // 
             // LevelsTab
             // 
@@ -537,6 +401,173 @@
             this.PackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.PackBtn.Click += new System.EventHandler(this.PackBtn_Click);
             // 
+            // UnlockStyleBox
+            // 
+            this.UnlockStyleBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UnlockStyleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UnlockStyleBox.FormattingEnabled = true;
+            this.UnlockStyleBox.Items.AddRange(new object[] {
+            "Campaign (unlock levels by completing previous ones)",
+            "Level set (everything unlocked)"});
+            this.UnlockStyleBox.Location = new System.Drawing.Point(198, 80);
+            this.UnlockStyleBox.Margin = new System.Windows.Forms.Padding(0);
+            this.UnlockStyleBox.Name = "UnlockStyleBox";
+            this.UnlockStyleBox.Size = new System.Drawing.Size(572, 22);
+            this.UnlockStyleBox.TabIndex = 7;
+            // 
+            // CampaignDescriptionBox
+            // 
+            this.CampaignDescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignDescriptionBox.Location = new System.Drawing.Point(198, 20);
+            this.CampaignDescriptionBox.Margin = new System.Windows.Forms.Padding(0);
+            this.CampaignDescriptionBox.Name = "CampaignDescriptionBox";
+            this.CampaignDescriptionBox.Size = new System.Drawing.Size(572, 20);
+            this.CampaignDescriptionBox.TabIndex = 1;
+            // 
+            // CampaignLogoBox
+            // 
+            this.CampaignLogoBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignLogoBox.Location = new System.Drawing.Point(198, 40);
+            this.CampaignLogoBox.Margin = new System.Windows.Forms.Padding(0);
+            this.CampaignLogoBox.Name = "CampaignLogoBox";
+            this.CampaignLogoBox.Size = new System.Drawing.Size(572, 20);
+            this.CampaignLogoBox.TabIndex = 2;
+            // 
+            // CampaignNameBox
+            // 
+            this.CampaignNameBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignNameBox.Location = new System.Drawing.Point(198, 0);
+            this.CampaignNameBox.Margin = new System.Windows.Forms.Padding(0);
+            this.CampaignNameBox.Name = "CampaignNameBox";
+            this.CampaignNameBox.Size = new System.Drawing.Size(572, 20);
+            this.CampaignNameBox.TabIndex = 0;
+            // 
+            // CampaignNameLbl
+            // 
+            this.CampaignNameLbl.AutoSize = true;
+            this.CampaignNameLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignNameLbl.Location = new System.Drawing.Point(0, 0);
+            this.CampaignNameLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.CampaignNameLbl.Name = "CampaignNameLbl";
+            this.CampaignNameLbl.Size = new System.Drawing.Size(198, 20);
+            this.CampaignNameLbl.TabIndex = 0;
+            this.CampaignNameLbl.Text = "Campaign name:";
+            this.CampaignNameLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // CampaignDescriptionLbl
+            // 
+            this.CampaignDescriptionLbl.AutoSize = true;
+            this.CampaignDescriptionLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignDescriptionLbl.Location = new System.Drawing.Point(0, 20);
+            this.CampaignDescriptionLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.CampaignDescriptionLbl.Name = "CampaignDescriptionLbl";
+            this.CampaignDescriptionLbl.Size = new System.Drawing.Size(198, 20);
+            this.CampaignDescriptionLbl.TabIndex = 2;
+            this.CampaignDescriptionLbl.Text = "Campaign description:";
+            this.CampaignDescriptionLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // CampaignLogoLbl
+            // 
+            this.CampaignLogoLbl.AutoSize = true;
+            this.CampaignLogoLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignLogoLbl.Location = new System.Drawing.Point(0, 40);
+            this.CampaignLogoLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.CampaignLogoLbl.Name = "CampaignLogoLbl";
+            this.CampaignLogoLbl.Size = new System.Drawing.Size(198, 20);
+            this.CampaignLogoLbl.TabIndex = 3;
+            this.CampaignLogoLbl.Text = "Campaign logo file:";
+            this.CampaignLogoLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // AuthorsLbl
+            // 
+            this.AuthorsLbl.AutoSize = true;
+            this.AuthorsLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AuthorsLbl.Location = new System.Drawing.Point(0, 60);
+            this.AuthorsLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.AuthorsLbl.Name = "AuthorsLbl";
+            this.AuthorsLbl.Size = new System.Drawing.Size(198, 20);
+            this.AuthorsLbl.TabIndex = 4;
+            this.AuthorsLbl.Text = "Authors (separate two names with \";\"):";
+            this.AuthorsLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // AuthorsBox
+            // 
+            this.AuthorsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AuthorsBox.Location = new System.Drawing.Point(198, 60);
+            this.AuthorsBox.Margin = new System.Windows.Forms.Padding(0);
+            this.AuthorsBox.Name = "AuthorsBox";
+            this.AuthorsBox.Size = new System.Drawing.Size(572, 20);
+            this.AuthorsBox.TabIndex = 5;
+            // 
+            // UnlockStyleLbl
+            // 
+            this.UnlockStyleLbl.AutoSize = true;
+            this.UnlockStyleLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UnlockStyleLbl.Location = new System.Drawing.Point(0, 80);
+            this.UnlockStyleLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.UnlockStyleLbl.Name = "UnlockStyleLbl";
+            this.UnlockStyleLbl.Size = new System.Drawing.Size(198, 22);
+            this.UnlockStyleLbl.TabIndex = 6;
+            this.UnlockStyleLbl.Text = "Level unlocking style:";
+            this.UnlockStyleLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // SettingsPanel
+            // 
+            this.SettingsPanel.ColumnCount = 2;
+            this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.SettingsPanel.Controls.Add(this.GameModeLbl, 0, 5);
+            this.SettingsPanel.Controls.Add(this.GameModeBox, 1, 5);
+            this.SettingsPanel.Controls.Add(this.UnlockStyleLbl, 0, 4);
+            this.SettingsPanel.Controls.Add(this.AuthorsBox, 1, 3);
+            this.SettingsPanel.Controls.Add(this.AuthorsLbl, 0, 3);
+            this.SettingsPanel.Controls.Add(this.CampaignLogoLbl, 0, 2);
+            this.SettingsPanel.Controls.Add(this.CampaignDescriptionLbl, 0, 1);
+            this.SettingsPanel.Controls.Add(this.CampaignNameLbl, 0, 0);
+            this.SettingsPanel.Controls.Add(this.CampaignNameBox, 1, 0);
+            this.SettingsPanel.Controls.Add(this.CampaignLogoBox, 1, 2);
+            this.SettingsPanel.Controls.Add(this.CampaignDescriptionBox, 1, 1);
+            this.SettingsPanel.Controls.Add(this.UnlockStyleBox, 1, 4);
+            this.SettingsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SettingsPanel.Location = new System.Drawing.Point(3, 3);
+            this.SettingsPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.SettingsPanel.Name = "SettingsPanel";
+            this.SettingsPanel.RowCount = 6;
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.SettingsPanel.Size = new System.Drawing.Size(770, 291);
+            this.SettingsPanel.TabIndex = 0;
+            // 
+            // GameModeBox
+            // 
+            this.GameModeBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GameModeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GameModeBox.FormattingEnabled = true;
+            this.GameModeBox.Items.AddRange(new object[] {
+            "Nexus",
+            "Lost to Echoes"});
+            this.GameModeBox.Location = new System.Drawing.Point(198, 102);
+            this.GameModeBox.Margin = new System.Windows.Forms.Padding(0);
+            this.GameModeBox.Name = "GameModeBox";
+            this.GameModeBox.Size = new System.Drawing.Size(572, 22);
+            this.GameModeBox.TabIndex = 8;
+            // 
+            // GameModeLbl
+            // 
+            this.GameModeLbl.AutoSize = true;
+            this.GameModeLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GameModeLbl.Location = new System.Drawing.Point(0, 102);
+            this.GameModeLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.GameModeLbl.Name = "GameModeLbl";
+            this.GameModeLbl.Size = new System.Drawing.Size(198, 189);
+            this.GameModeLbl.TabIndex = 9;
+            this.GameModeLbl.Text = "Parent game mode:";
+            this.GameModeLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -555,8 +586,6 @@
             this.MainPanel.PerformLayout();
             this.EditorTabs.ResumeLayout(false);
             this.SettingsTab.ResumeLayout(false);
-            this.SettingsPanel.ResumeLayout(false);
-            this.SettingsPanel.PerformLayout();
             this.LevelsTab.ResumeLayout(false);
             this.LevelsTab.PerformLayout();
             this.LevelsContextMenu.ResumeLayout(false);
@@ -569,6 +598,8 @@
             this.AddonMenuBar.PerformLayout();
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();
+            this.SettingsPanel.ResumeLayout(false);
+            this.SettingsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -577,11 +608,7 @@
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.TabControl EditorTabs;
         private System.Windows.Forms.TabPage SettingsTab;
-        private System.Windows.Forms.TableLayoutPanel SettingsPanel;
-        private System.Windows.Forms.Label CampaignNameLbl;
-        private System.Windows.Forms.TextBox CampaignNameBox;
         private System.Windows.Forms.TabPage LevelsTab;
-        private System.Windows.Forms.Label CampaignDescriptionLbl;
         private ReorderableListView LevelsBox;
         private System.Windows.Forms.ToolStrip LevelsMenuBar;
         private System.Windows.Forms.ContextMenuStrip LevelsContextMenu;
@@ -592,9 +619,6 @@
         private System.Windows.Forms.ColumnHeader LevelName;
         private System.Windows.Forms.ColumnHeader LevelSubName;
         private System.Windows.Forms.ColumnHeader LoadingWallpaper;
-        private System.Windows.Forms.Label CampaignLogoLbl;
-        private System.Windows.Forms.TextBox CampaignLogoBox;
-        private System.Windows.Forms.TextBox CampaignDescriptionBox;
         private System.Windows.Forms.ToolStrip MenuBar;
         private System.Windows.Forms.ToolStripButton NewBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -604,10 +628,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton PackBtn;
         private System.Windows.Forms.ToolStripLabel LevelsStatus;
-        private System.Windows.Forms.Label AuthorsLbl;
-        private System.Windows.Forms.TextBox AuthorsBox;
-        private System.Windows.Forms.Label UnlockStyleLbl;
-        private System.Windows.Forms.ComboBox UnlockStyleBox;
         private System.Windows.Forms.TabPage AddonTab;
         private ReorderableListView AddonsBox;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -617,5 +637,18 @@
         private System.Windows.Forms.ToolStripMenuItem AddAddon;
         private System.Windows.Forms.ToolStripMenuItem RemoveAddon;
         private System.Windows.Forms.ToolStripMenuItem EditAddon;
+        private System.Windows.Forms.TableLayoutPanel SettingsPanel;
+        private System.Windows.Forms.ComboBox GameModeBox;
+        private System.Windows.Forms.Label UnlockStyleLbl;
+        private System.Windows.Forms.TextBox AuthorsBox;
+        private System.Windows.Forms.Label AuthorsLbl;
+        private System.Windows.Forms.Label CampaignLogoLbl;
+        private System.Windows.Forms.Label CampaignDescriptionLbl;
+        private System.Windows.Forms.Label CampaignNameLbl;
+        private System.Windows.Forms.TextBox CampaignNameBox;
+        private System.Windows.Forms.TextBox CampaignLogoBox;
+        private System.Windows.Forms.TextBox CampaignDescriptionBox;
+        private System.Windows.Forms.ComboBox UnlockStyleBox;
+        private System.Windows.Forms.Label GameModeLbl;
     }
 }

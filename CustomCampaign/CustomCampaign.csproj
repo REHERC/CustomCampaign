@@ -33,7 +33,8 @@
     <Reference Include="0Harmony">
       <HintPath>..\..\..\Steam\steamapps\common\Distance\Distance_Data\Spectrum\Plugins\Custom Campaign\Dependencies\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp">
+    <Reference Include="Assembly-CSharp, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Steam\steamapps\common\Distance\Distance_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="JsonFx">
@@ -66,8 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddonInfo.cs" />
     <Compile Include="CampaignInfo.cs" />
     <Compile Include="CampaignUtils.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Harmony.cs" />
     <Compile Include="LockingSystem.cs" />
     <Compile Include="Storage.cs" />
