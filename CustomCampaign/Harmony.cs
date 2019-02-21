@@ -36,7 +36,7 @@ namespace CustomCampaign
             if (CampaignUtils.IsCustomCampaignLevel(path))
             {
                 __instance.titleLabel_.text = CampaignUtils.GetLevelTitle(path).Space(1);
-                __instance.subtitleText_.text = CampaignUtils.GetLevelSubTitle(path);
+                __instance.subtitleText_.text = CampaignUtils.GetLevelSubTitle(path).Space(1);
                 __instance.subtitleText_.gameObject.SetActive(true);
                 __instance.subtitleText_.alpha = __instance.titleLabel_.alpha;
             }
