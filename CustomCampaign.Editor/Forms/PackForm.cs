@@ -27,7 +27,6 @@ namespace CustomCampaign.Forms
                 _PakFile = file;
                 _PakFileDir = Path.GetDirectoryName(file) + Path.DirectorySeparatorChar;
                 ListFiles();
-                Show();
             }
             else Dispose();
         }
@@ -128,11 +127,11 @@ namespace CustomCampaign.Forms
                         _ZipFileDir += Path.DirectorySeparatorChar;
                     using (ZipArchive archive = ZipFile.Open(_ZipFile, ZipArchiveMode.Create))
                     {
-                        archive.CreateEntryFromFile(_PakFile, "Campaign.json");
+                        archive.CreateEntryFromFile(_PakFile, $"{_campaign.name}/Campaign.json");
                         foreach (ListViewItem item in LevelsBox.Items)
                         {
                             string file = Path.GetFullPath(Path.Combine(_PakFileDir, item.Text));
-                            archive.CreateEntryFromFile(file, item.Text);
+                            archive.CreateEntryFromFile(file, $"{_campaign.name}/{item.Text}");
                         }
                     }
                 }

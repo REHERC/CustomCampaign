@@ -51,13 +51,13 @@ public partial class Campaign
         if (File.Exists(path))
         {
             Campaign c = new Campaign();
-            try { c.Load(path); } catch (Exception pizza) { Console.WriteLine(path + " : file format error"); return false; }
-            if (c.logopath != "" && !Campaign.FileExists(root, c.logopath)) return false;
+            try { c.Load(path); } catch (Exception) { Console.WriteLine(path + " : file format error"); return false; }
+            if (c.logopath != "" && !FileExists(root, c.logopath)) return false;
             foreach (Level level in c.levels)
             {
-                if (!Campaign.FileExists(root, level.file)
-                ||  !Campaign.FileExists(root, level.file + ".png")
-                ||  (!Campaign.FileExists(root, level.loading_wallpaper)
+                if (!FileExists(root, level.file)
+                ||  !FileExists(root, level.file + ".png")
+                ||  (!FileExists(root, level.loading_wallpaper)
                   && level.loading_wallpaper != ""))
                 return false;
             }
@@ -70,10 +70,10 @@ public partial class Campaign
                     string filename = $"/{addon}".Substring($"/{addon}".Replace(@"\", "/").LastIndexOf("/") + 1);
                     string fileroot = addon.Substring(0, addon.Length - filename.Length);
                     string addonroot = Path.GetFullPath(Path.Combine(root, fileroot));
-                    if (!Campaign.FileExists(addonroot, manifest.ModuleFile)) return false;
+                    if (!FileExists(addonroot, manifest.ModuleFile)) return false;
                     foreach (string dependency in manifest.Dependencies)
-                        if (!Campaign.FileExists(addonroot, dependency)) return false;
-                } catch (Exception pizza){
+                        if (!FileExists(addonroot, dependency)) return false;
+                } catch (Exception){
                     Console.WriteLine(addonfile + " : file format error");
                     return false;
                 }

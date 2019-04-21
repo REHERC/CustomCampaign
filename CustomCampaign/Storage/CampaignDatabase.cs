@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 #pragma warning disable RCS1110
-public static class Storage
+public static class CampaignDatabase
 {
     public static List<CampaignInfo> Campaigns;
 

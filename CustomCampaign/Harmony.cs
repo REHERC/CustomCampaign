@@ -6,24 +6,21 @@ using UnityEngine;
 #pragma warning disable CS0168, RCS1003, RCS1001
 namespace CustomCampaign
 {
-    public static class Patches
+    [HarmonyPatch(typeof(LevelGridMenu), "CreateEntries")]
+    internal static class LevelGridMenu__CreateEntries__Patch
     {
-        [HarmonyPatch(typeof(LevelGridMenu), "CreateEntries")]
-        internal static class LevelGridMenu__CreateEntries__Patch
+        public static void Postfix(LevelGridMenu __instance)
         {
-            public static void Postfix(LevelGridMenu __instance)
+            bool flag_campaignmode = __instance.GetPrivateField<bool>("isCampaignMode_");
+            if (flag_campaignmode)
             {
-                bool flag_campaignmode = __instance.GetPrivateField<bool>("isCampaignMode_");
-                if (flag_campaignmode)
-                {
-                    const LevelGridMenu.PlaylistEntry.UnlockStyle unlock_mode = LevelGridMenu.PlaylistEntry.UnlockStyle.PreviousLevels;
-                    foreach (CampaignInfo campaign in Storage.Campaigns)
-                        __instance.CallPrivateMethod("CreateAndAddCampaignLevelSet", campaign.GetLevelSet(campaign.GameMode), campaign.Name, true, unlock_mode, campaign.GameMode);
-                    __instance.buttonList_.SortAndUpdateVisibleButtons();
-                }
-
-                LockingSystem.CreateProfile();
+                const LevelGridMenu.PlaylistEntry.UnlockStyle unlock_mode = LevelGridMenu.PlaylistEntry.UnlockStyle.PreviousLevels;
+                foreach (CampaignInfo campaign in CampaignDatabase.Campaigns)
+                    __instance.CallPrivateMethod("CreateAndAddCampaignLevelSet", campaign.GetLevelSet(campaign.GameMode), campaign.Name, true, unlock_mode, campaign.GameMode);
+                __instance.buttonList_.SortAndUpdateVisibleButtons();
             }
+
+            LockingSystem.CreateProfile();
         }
     }
 
@@ -33,10 +30,10 @@ namespace CustomCampaign
         public static void Postfix(LevelIntroTitleLogic __instance)
         {
             string path = G.Sys.GameManager_.LevelPath_;
-            if (CampaignUtils.IsCustomCampaignLevel(path))
+            if (Utils.IsCustomCampaignLevel(path))
             {
-                __instance.titleLabel_.text = CampaignUtils.GetLevelTitle(path).Space(1);
-                __instance.subtitleText_.text = CampaignUtils.GetLevelSubTitle(path).Space(1);
+                __instance.titleLabel_.text = Utils.GetLevelTitle(path).Space(1);
+                __instance.subtitleText_.text = Utils.GetLevelSubTitle(path).Space(1);
                 __instance.subtitleText_.gameObject.SetActive(true);
                 __instance.subtitleText_.alpha = __instance.titleLabel_.alpha;
             }
@@ -57,10 +54,10 @@ namespace CustomCampaign
                     {
                         LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
                         string level = playlist.GetLevelSet()[0].levelPath_;
-                        if (CampaignUtils.IsCustomCampaignLevel(level))
+                        if (Utils.IsCustomCampaignLevel(level))
                         {
-                            __instance.modeDescription_.text = __instance.gridDescription_.text = CampaignUtils.GetCampaignDescription(level);
-                            __instance.campaignLogo_.mainTexture = CampaignUtils.GetCampaignLogo(level);
+                            __instance.modeDescription_.text = __instance.gridDescription_.text = Utils.GetCampaignDescription(level);
+                            __instance.campaignLogo_.mainTexture = Utils.GetCampaignLogo(level);
                         }
                     }
                     catch (Exception pizza) { Plugin.Log.Exception(pizza); }
@@ -78,7 +75,7 @@ namespace CustomCampaign
             {
                 LevelGridGrid.LevelEntry entry = __instance.entry_ as LevelGridGrid.LevelEntry;
                 string path = entry.AbsolutePath_;
-                if (CampaignUtils.IsCustomCampaignLevel(path))
+                if (Utils.IsCustomCampaignLevel(path))
                 {
                     __instance.titleLabel_.enabled = false;
                     __instance.authorLabel_.enabled = false;
@@ -106,9 +103,9 @@ namespace CustomCampaign
         public static void Postfix(BlackFadeLogic __instance)
         {
             string path = G.Sys.GameManager_.NextLevelPath_;
-            if (CampaignUtils.IsCustomCampaignLevel(path) && __instance.GetPrivateField<string>("storedSceneToLoad_") != "MainMenu")
+            if (Utils.IsCustomCampaignLevel(path) && __instance.GetPrivateField<string>("storedSceneToLoad_") != "MainMenu")
             {
-                Texture background = CampaignUtils.GetLevelWallpaper(path);
+                Texture background = Utils.GetLevelWallpaper(path);
                 if (background != null)
                     __instance.GetPrivateField<LevelLoadingOverlay>("menu_").loadingTexture_.mainTexture = background;
             }
@@ -121,10 +118,10 @@ namespace CustomCampaign
         public static void Postfix(PauseMenuLogic __instance)
         {
             string path = G.Sys.GameManager_.LevelPath_;
-            if (G.Sys.GameManager_.PauseMenuOpen_ && CampaignUtils.IsCustomCampaignLevel(path))
+            if (G.Sys.GameManager_.PauseMenuOpen_ && Utils.IsCustomCampaignLevel(path))
             {
-                __instance.gameMode_.text = CampaignUtils.GetCampaignName(path);
-                __instance.gameModeDescription_.text = CampaignUtils.GetCampaignDescription(path);
+                __instance.gameMode_.text = Utils.GetCampaignName(path);
+                __instance.gameModeDescription_.text = Utils.GetCampaignDescription(path);
                 __instance.medal_.Display(MedalStatus.None, false);
                 __instance.medal_.gameObject.SetActive(false);
                 __instance.medal_.Destroy();
@@ -143,7 +140,7 @@ namespace CustomCampaign
         {
             if (type != LevelGridMenu.PlaylistEntry.Type.Campaign && ___displayType_ != LevelSelectMenuAbstract.DisplayType.Adventure)
                 foreach (LevelNameAndPathPair level in set.GetAllLevelNameAndPathPairs())
-                    if (CampaignUtils.IsCustomCampaignLevel(level.levelPath_))
+                    if (Utils.IsCustomCampaignLevel(level.levelPath_))
                         set.RemoveLevel(level.levelPath_.Normalize());
         }
     }
@@ -155,9 +152,9 @@ namespace CustomCampaign
         {
             LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
             string level = playlist.Playlist_[index].levelNameAndPath_.levelPath_;
-            if (CampaignUtils.GetCampaignUnlockMode(level) == Campaign.UnlockStyle.LevelSet)
+            if (Utils.GetCampaignUnlockMode(level) == Campaign.UnlockStyle.LevelSet)
                 return true;
-            bool flag = !LockingSystem.IsLevelLocked(level) || !CampaignUtils.IsCustomCampaignLevel(level);
+            bool flag = !LockingSystem.IsLevelLocked(level) || !Utils.IsCustomCampaignLevel(level);
             if (!flag)
                 G.Sys.MenuPanelManager_.ShowTimedOk(10, Constants.Strings.LevelLocked_Message, Constants.Strings.LevelLocked_Title);
             return flag;

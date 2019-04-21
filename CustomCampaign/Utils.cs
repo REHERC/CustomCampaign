@@ -5,12 +5,13 @@ using UnityEngine;
 #pragma warning disable CS0168, RCS1001, RCS1206
 namespace CustomCampaign
 {
-    public static class CampaignUtils
+    public static class Utils
     {
+        #region "Campaign Utils"
         public static CampaignInfo GetCampaign(string levelfile)
         {
             string file = levelfile.NormPath(true);
-            foreach (CampaignInfo campaign in Storage.Campaigns)
+            foreach (CampaignInfo campaign in CampaignDatabase.Campaigns)
                 foreach (Campaign.Level level in campaign.Levels)
                     if (level.file.NormPath(true) == file)
                         return campaign;
@@ -107,6 +108,15 @@ namespace CustomCampaign
         public static bool IsCustomCampaignLevel(string levelfile)
         {
             return GetLevelIndex(levelfile) >= 0;
+        }
+        #endregion
+
+        public static GameObject FindByName(string name)
+        {
+            foreach (var go in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
+                if (go.name == name)
+                    return go as GameObject;
+            return null;
         }
     }
 }

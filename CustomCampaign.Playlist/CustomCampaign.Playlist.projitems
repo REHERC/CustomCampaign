@@ -12,7 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Campaign.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Campaign.Formats.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameModeIDConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Level.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnlockStyle.cs" />
   </ItemGroup>

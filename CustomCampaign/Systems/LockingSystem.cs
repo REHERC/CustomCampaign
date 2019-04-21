@@ -10,7 +10,7 @@ namespace CustomCampaign
         public static void CreateProfile()
         {
             Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
-            foreach (var campaign in Storage.Campaigns)
+            foreach (var campaign in CampaignDatabase.Campaigns)
                 if (!progress.Data.ContainsKey(campaign.Id))
                     progress.Data.Add(campaign.Id, 0);
             progress.Save();
@@ -21,12 +21,12 @@ namespace CustomCampaign
             string file = levelfile.NormPath(true);
             try
             {
-                if (CampaignUtils.GetCampaignUnlockMode(levelfile) == Campaign.UnlockStyle.LevelSet)
+                if (Utils.GetCampaignUnlockMode(levelfile) == Campaign.UnlockStyle.LevelSet)
                     return false;
-                string campaign = CampaignUtils.GetCampaignId(file);
+                string campaign = Utils.GetCampaignId(file);
                 Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
                 int completion = progress.Data[campaign];
-                return CampaignUtils.GetLevelIndex(levelfile) > completion;
+                return Utils.GetLevelIndex(levelfile) > completion;
             }
             catch (Exception pizza) { Plugin.Log.Exception(pizza); }
             return false;
@@ -42,8 +42,8 @@ namespace CustomCampaign
         {
             string file = levelfile.NormPath(true);
             Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
-            string campaign = CampaignUtils.GetCampaignId(levelfile);
-            int index = CampaignUtils.GetLevelIndex(levelfile);
+            string campaign = Utils.GetCampaignId(levelfile);
+            int index = Utils.GetLevelIndex(levelfile);
             int campaign_progress = GetCampaignProgress(campaign);
             if (index > campaign_progress)
                 progress.Data[campaign] = index;
