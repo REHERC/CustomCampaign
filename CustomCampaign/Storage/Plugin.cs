@@ -60,7 +60,6 @@ namespace CustomCampaign
                     CampaignDatabase.Campaigns.Add(campaign_info);
                 }
             }
-            ModLoader.LoadAddons();
         }
     }
 }

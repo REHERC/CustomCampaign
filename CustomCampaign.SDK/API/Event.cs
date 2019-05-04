@@ -1,12 +1,12 @@
-﻿namespace CustomCampaign.SDK.API
+﻿using System;
+
+namespace CustomCampaign.SDK.API
 {
+    [Flags]
     public enum Event
     {
-        Mod_Setup,
-        Mod_Update,
-        Mod_IPC,
-
-        Game_LevelStarted
-
+        Addon_Load,
+        Addon_Update,
+        Addon_Unload
     }
 }

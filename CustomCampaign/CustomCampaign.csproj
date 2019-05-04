@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Data\AddonInfo.cs" />
     <Compile Include="Data\CampaignInfo.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Storage\Constants.cs" />
     <Compile Include="Storage\Events.cs" />

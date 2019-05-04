@@ -13,6 +13,7 @@ namespace CustomCampaign
         public string Module { get; set; }
         public string Name { get; set; }
         public List<Author> Authors { get; set; }
+        public string RootDirectory { get; set; }
 
         public static AddonInfo Load(CampaignInfo campaign, string manifest)
         {
@@ -21,6 +22,7 @@ namespace CustomCampaign
             {
                 AddonInfo info = new Serializer<AddonInfo>(SerializerType.Json, path, true, true).Data;
                 info.Id = campaign.Id;
+                info.RootDirectory = campaign.DataDirectory;
                 return info;
             }
             else return null;

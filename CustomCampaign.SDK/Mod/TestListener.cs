@@ -2,11 +2,12 @@
 
 namespace CustomCampaign.Mod
 {
-    [Listener(Event.Mod_Setup)]
+    [Listener(Event.Addon_Load)]
     public class Entry : IEvent
     {
         public void EventRaised(EventParams parameters)
         {
+
         }
     }
 }
