@@ -75,6 +75,7 @@
             this.SaveBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.PackBtn = new System.Windows.Forms.ToolStripButton();
+            this.LoadingText = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MainPanel.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.SettingsTab.SuspendLayout();
@@ -310,12 +311,14 @@
             this.LevelFile,
             this.LevelName,
             this.LevelSubName,
-            this.LoadingWallpaper});
+            this.LoadingWallpaper,
+            this.LoadingText});
             this.LevelsBox.ContextMenuStrip = this.LevelsContextMenu;
             this.LevelsBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LevelsBox.FullRowSelect = true;
             this.LevelsBox.GridLines = true;
             this.LevelsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.LevelsBox.HideSelection = false;
             this.LevelsBox.LineAfter = -1;
             this.LevelsBox.LineBefore = -1;
             this.LevelsBox.Location = new System.Drawing.Point(0, 0);
@@ -338,12 +341,12 @@
             // LevelName
             // 
             this.LevelName.Text = "Level name";
-            this.LevelName.Width = 180;
+            this.LevelName.Width = 152;
             // 
             // LevelSubName
             // 
             this.LevelSubName.Text = "Level sector name";
-            this.LevelSubName.Width = 220;
+            this.LevelSubName.Width = 144;
             // 
             // LoadingWallpaper
             // 
@@ -425,6 +428,7 @@
             this.AddonsBox.FullRowSelect = true;
             this.AddonsBox.GridLines = true;
             this.AddonsBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.AddonsBox.HideSelection = false;
             this.AddonsBox.LineAfter = -1;
             this.AddonsBox.LineBefore = -1;
             this.AddonsBox.Location = new System.Drawing.Point(0, 0);
@@ -568,6 +572,11 @@
             this.PackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.PackBtn.Click += new System.EventHandler(this.PackBtn_Click);
             // 
+            // LoadingText
+            // 
+            this.LoadingText.Text = "Loading text";
+            this.LoadingText.Width = 112;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -650,5 +659,6 @@
         private System.Windows.Forms.TextBox CampaignDescriptionBox;
         private System.Windows.Forms.ComboBox UnlockStyleBox;
         private System.Windows.Forms.Label GameModeLbl;
+        private System.Windows.Forms.ColumnHeader LoadingText;
     }
 }

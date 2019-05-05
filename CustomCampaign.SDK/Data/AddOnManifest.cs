@@ -7,6 +7,8 @@ namespace CustomCampaign.SDK.Data
     [DataContract, Serializable]
     public class AddOnManifest
     {
+        public string Id { get; set; }
+
         [DataMember]
         public string AddonName { get; set; }
 
@@ -14,7 +16,7 @@ namespace CustomCampaign.SDK.Data
         public List<Author> Authors { get; set; }
 
         [DataMember]
-        public string ModuleFile { get; set; }
+        public string Module { get; set; }
 
         [DataMember]
         public List<string> Dependencies { get; set; }

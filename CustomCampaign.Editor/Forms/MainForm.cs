@@ -58,7 +58,8 @@ namespace CustomCampaign.Forms
                             item.SubItems[0].Text,
                             item.SubItems[1].Text,
                             item.SubItems[2].Text,
-                            item.SubItems[3].Text
+                            item.SubItems[3].Text,
+                            item.SubItems[4].Text
                         ));
                 }
 
@@ -105,23 +106,20 @@ namespace CustomCampaign.Forms
             UnlockStyleBox.SelectedIndex = (int)c.lockmode;
             LevelsBox.Items.Clear();
             foreach (Campaign.Level level in c.levels)
-            {
                 LevelsBox.Items.Add(new ListViewItem(new string[] {
-                        level.file,
-                        level.levelname,
-                        level.levelname_sub,
-                        level.loading_wallpaper
-                    }));
-            }
+                    level.file,
+                    level.levelname,
+                    level.levelname_sub,
+                    level.loading_wallpaper,
+                    level.loading_text
+                }));
 
             AddonsBox.Items.Clear();
 
             foreach (string addon in c.addons)
-            {
                 AddonsBox.Items.Add(new ListViewItem(new string[] {
                         addon
                     }));
-            }
 
             GameModeBox.SelectedIndex = GameMode.GetIndex(c.gamemode);
         }
@@ -196,6 +194,7 @@ namespace CustomCampaign.Forms
                 item.SubItems[1].Text = form.value.levelname;
                 item.SubItems[2].Text = form.value.levelname_sub;
                 item.SubItems[3].Text = form.value.loading_wallpaper;
+                item.SubItems[4].Text = form.value.loading_text;
             }
         }
 
@@ -212,7 +211,8 @@ namespace CustomCampaign.Forms
                     form.value.file,
                     form.value.levelname,
                     form.value.levelname_sub,
-                    form.value.loading_wallpaper
+                    form.value.loading_wallpaper,
+                    form.value.loading_text
                 });
                 LevelsBox.Items.Insert(selectedItem != null ? selectedItem.Index + 1 : LevelsBox.Items.Count, item);
             }

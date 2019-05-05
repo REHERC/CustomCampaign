@@ -35,6 +35,7 @@
             this.SeparatorDark = new System.Windows.Forms.Panel();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.SettingsPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.LoadingTextLbl = new System.Windows.Forms.Label();
             this.LoadingBackgroundBox = new System.Windows.Forms.TextBox();
             this.LoadingBackgroundLbl = new System.Windows.Forms.Label();
             this.LevelSectorNameLbl = new System.Windows.Forms.Label();
@@ -43,17 +44,22 @@
             this.LevelFileBox = new System.Windows.Forms.TextBox();
             this.LevelSectorNameBox = new System.Windows.Forms.TextBox();
             this.LevelNameBox = new System.Windows.Forms.TextBox();
+            this.LoadingTextBox = new System.Windows.Forms.TextBox();
+            this.Separators = new System.Windows.Forms.Panel();
+            this.MainContainer = new System.Windows.Forms.Panel();
             this.ButtonsPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.SettingsPanel.SuspendLayout();
+            this.Separators.SuspendLayout();
+            this.MainContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonsPanel
             // 
             this.ButtonsPanel.Controls.Add(this.OkBtn);
             this.ButtonsPanel.Controls.Add(this.CancelBtn);
-            this.ButtonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ButtonsPanel.Location = new System.Drawing.Point(0, 94);
+            this.ButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonsPanel.Location = new System.Drawing.Point(0, 118);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Padding = new System.Windows.Forms.Padding(4, 12, 4, 12);
             this.ButtonsPanel.Size = new System.Drawing.Size(434, 48);
@@ -88,8 +94,8 @@
             // SeparatorLight
             // 
             this.SeparatorLight.BackColor = System.Drawing.SystemColors.Window;
-            this.SeparatorLight.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SeparatorLight.Location = new System.Drawing.Point(0, 93);
+            this.SeparatorLight.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SeparatorLight.Location = new System.Drawing.Point(0, 1);
             this.SeparatorLight.MaximumSize = new System.Drawing.Size(0, 1);
             this.SeparatorLight.MinimumSize = new System.Drawing.Size(0, 1);
             this.SeparatorLight.Name = "SeparatorLight";
@@ -99,8 +105,8 @@
             // SeparatorDark
             // 
             this.SeparatorDark.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.SeparatorDark.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SeparatorDark.Location = new System.Drawing.Point(0, 92);
+            this.SeparatorDark.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SeparatorDark.Location = new System.Drawing.Point(0, 0);
             this.SeparatorDark.MaximumSize = new System.Drawing.Size(0, 1);
             this.SeparatorDark.MinimumSize = new System.Drawing.Size(0, 1);
             this.SeparatorDark.Name = "SeparatorDark";
@@ -109,20 +115,26 @@
             // 
             // MainPanel
             // 
+            this.MainPanel.AutoSize = true;
+            this.MainPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MainPanel.BackColor = System.Drawing.SystemColors.Window;
             this.MainPanel.Controls.Add(this.SettingsPanel);
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Padding = new System.Windows.Forms.Padding(8);
-            this.MainPanel.Size = new System.Drawing.Size(434, 92);
+            this.MainPanel.Size = new System.Drawing.Size(434, 116);
             this.MainPanel.TabIndex = 0;
             // 
             // SettingsPanel
             // 
+            this.SettingsPanel.AutoSize = true;
+            this.SettingsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.SettingsPanel.ColumnCount = 2;
             this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.SettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.SettingsPanel.Controls.Add(this.LoadingTextBox, 1, 4);
+            this.SettingsPanel.Controls.Add(this.LoadingTextLbl, 0, 4);
             this.SettingsPanel.Controls.Add(this.LoadingBackgroundBox, 1, 3);
             this.SettingsPanel.Controls.Add(this.LoadingBackgroundLbl, 0, 3);
             this.SettingsPanel.Controls.Add(this.LevelSectorNameLbl, 0, 2);
@@ -135,13 +147,27 @@
             this.SettingsPanel.Location = new System.Drawing.Point(8, 8);
             this.SettingsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.SettingsPanel.Name = "SettingsPanel";
-            this.SettingsPanel.RowCount = 4;
+            this.SettingsPanel.RowCount = 5;
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SettingsPanel.Size = new System.Drawing.Size(418, 76);
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsPanel.Size = new System.Drawing.Size(418, 100);
             this.SettingsPanel.TabIndex = 0;
+            // 
+            // LoadingTextLbl
+            // 
+            this.LoadingTextLbl.AutoSize = true;
+            this.LoadingTextLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadingTextLbl.Location = new System.Drawing.Point(0, 80);
+            this.LoadingTextLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.LoadingTextLbl.Name = "LoadingTextLbl";
+            this.LoadingTextLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LoadingTextLbl.Size = new System.Drawing.Size(108, 20);
+            this.LoadingTextLbl.TabIndex = 7;
+            this.LoadingTextLbl.Text = "Loading text:";
+            this.LoadingTextLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // LoadingBackgroundBox
             // 
@@ -159,7 +185,7 @@
             this.LoadingBackgroundLbl.Location = new System.Drawing.Point(0, 60);
             this.LoadingBackgroundLbl.Margin = new System.Windows.Forms.Padding(0);
             this.LoadingBackgroundLbl.Name = "LoadingBackgroundLbl";
-            this.LoadingBackgroundLbl.Size = new System.Drawing.Size(108, 16);
+            this.LoadingBackgroundLbl.Size = new System.Drawing.Size(108, 20);
             this.LoadingBackgroundLbl.TabIndex = 6;
             this.LoadingBackgroundLbl.Text = "Loading background:";
             this.LoadingBackgroundLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -227,30 +253,70 @@
             this.LevelNameBox.Size = new System.Drawing.Size(310, 20);
             this.LevelNameBox.TabIndex = 1;
             // 
+            // LoadingTextBox
+            // 
+            this.LoadingTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadingTextBox.Location = new System.Drawing.Point(108, 80);
+            this.LoadingTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.LoadingTextBox.Name = "LoadingTextBox";
+            this.LoadingTextBox.Size = new System.Drawing.Size(310, 20);
+            this.LoadingTextBox.TabIndex = 8;
+            // 
+            // Separators
+            // 
+            this.Separators.AutoSize = true;
+            this.Separators.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Separators.Controls.Add(this.SeparatorLight);
+            this.Separators.Controls.Add(this.SeparatorDark);
+            this.Separators.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Separators.Location = new System.Drawing.Point(0, 116);
+            this.Separators.Name = "Separators";
+            this.Separators.Size = new System.Drawing.Size(434, 2);
+            this.Separators.TabIndex = 3;
+            // 
+            // MainContainer
+            // 
+            this.MainContainer.AutoSize = true;
+            this.MainContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MainContainer.Controls.Add(this.ButtonsPanel);
+            this.MainContainer.Controls.Add(this.Separators);
+            this.MainContainer.Controls.Add(this.MainPanel);
+            this.MainContainer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MainContainer.Location = new System.Drawing.Point(0, 0);
+            this.MainContainer.Name = "MainContainer";
+            this.MainContainer.Size = new System.Drawing.Size(434, 166);
+            this.MainContainer.TabIndex = 4;
+            // 
             // LevelForm
             // 
             this.AcceptButton = this.OkBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.CancelBtn;
-            this.ClientSize = new System.Drawing.Size(434, 142);
-            this.Controls.Add(this.MainPanel);
-            this.Controls.Add(this.SeparatorDark);
-            this.Controls.Add(this.SeparatorLight);
-            this.Controls.Add(this.ButtonsPanel);
+            this.ClientSize = new System.Drawing.Size(434, 166);
+            this.Controls.Add(this.MainContainer);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(450, 0);
             this.Name = "LevelForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.LevelForm_Load);
             this.ButtonsPanel.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
+            this.MainPanel.PerformLayout();
             this.SettingsPanel.ResumeLayout(false);
             this.SettingsPanel.PerformLayout();
+            this.Separators.ResumeLayout(false);
+            this.MainContainer.ResumeLayout(false);
+            this.MainContainer.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -271,5 +337,9 @@
         private System.Windows.Forms.TextBox LoadingBackgroundBox;
         private System.Windows.Forms.Label LoadingBackgroundLbl;
         private System.Windows.Forms.TextBox LevelSectorNameBox;
+        private System.Windows.Forms.Label LoadingTextLbl;
+        private System.Windows.Forms.TextBox LoadingTextBox;
+        private System.Windows.Forms.Panel Separators;
+        private System.Windows.Forms.Panel MainContainer;
     }
 }

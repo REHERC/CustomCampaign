@@ -70,7 +70,7 @@ public partial class Campaign
                     string filename = $"/{addon}".Substring($"/{addon}".Replace(@"\", "/").LastIndexOf("/") + 1);
                     string fileroot = addon.Substring(0, addon.Length - filename.Length);
                     string addonroot = Path.GetFullPath(Path.Combine(root, fileroot));
-                    if (!FileExists(addonroot, manifest.ModuleFile)) return false;
+                    if (!FileExists(addonroot, manifest.Module)) return false;
                     foreach (string dependency in manifest.Dependencies)
                         if (!FileExists(addonroot, dependency)) return false;
                 } catch (Exception){

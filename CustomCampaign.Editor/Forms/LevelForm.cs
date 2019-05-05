@@ -15,19 +15,21 @@ namespace CustomCampaign.Forms
         public LevelForm(ListViewItem item)
         {
             InitializeComponent();
-            if (item.SubItems.Count == 4)
+            if (item.SubItems.Count == 5)
             {
                 value = new Campaign.Level(
                     item.SubItems[0].Text,
                     item.SubItems[1].Text,
                     item.SubItems[2].Text,
-                    item.SubItems[3].Text
+                    item.SubItems[3].Text,
+                    item.SubItems[4].Text
                 );
 
                 LevelFileBox.Text = value.file;
                 LevelNameBox.Text = value.levelname;
                 LevelSectorNameBox.Text = value.levelname_sub;
                 LoadingBackgroundBox.Text = value.loading_wallpaper;
+                LoadingTextBox.Text = value.loading_text;
             }
         }
 
@@ -37,7 +39,8 @@ namespace CustomCampaign.Forms
                     LevelFileBox.Text,
                     LevelNameBox.Text,
                     LevelSectorNameBox.Text,
-                    LoadingBackgroundBox.Text
+                    LoadingBackgroundBox.Text,
+                    LoadingTextBox.Text
                 );
             DialogResult = DialogResult.OK;
             Close();
@@ -53,6 +56,11 @@ namespace CustomCampaign.Forms
         {
             bool requirements = LevelFileBox.Text != "" && LevelFileBox.Text.EndsWith(".bytes", StringComparison.OrdinalIgnoreCase);
             OkBtn.Enabled = requirements;
+        }
+
+        private void LevelForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

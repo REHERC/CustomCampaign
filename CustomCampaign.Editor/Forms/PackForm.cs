@@ -67,7 +67,7 @@ namespace CustomCampaign.Forms
                     manifest = new Serializer<AddOnManifest>(SerializerType.Json, addonfile, true).Data;
                     string filename = $"/{addon}".Substring($"/{addon}".Replace(@"\", "/").LastIndexOf("/") + 1);
                     string fileroot = addon.Substring(0, addon.Length - filename.Length);
-                    AddItem(fileroot + manifest.ModuleFile);
+                    AddItem(fileroot + manifest.Module);
                     foreach (string dependency in manifest.Dependencies)
                         AddItem(fileroot + dependency);
                 } catch (Exception pizza) { MessageBox.Show($"{pizza.Message}\n{pizza.Source}\n\n{pizza.StackTrace}", pizza.Message, MessageBoxButtons.OK ,MessageBoxIcon.Error); }
