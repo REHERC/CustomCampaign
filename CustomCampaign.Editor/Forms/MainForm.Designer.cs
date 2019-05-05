@@ -52,6 +52,7 @@
             this.LevelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LevelSubName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LoadingWallpaper = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LoadingText = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LevelsContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addANewLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLevelInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,7 +76,6 @@
             this.SaveBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.PackBtn = new System.Windows.Forms.ToolStripButton();
-            this.LoadingText = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MainPanel.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.SettingsTab.SuspendLayout();
@@ -353,6 +353,11 @@
             this.LoadingWallpaper.Text = "Loading wallpaper";
             this.LoadingWallpaper.Width = 180;
             // 
+            // LoadingText
+            // 
+            this.LoadingText.Text = "Loading text";
+            this.LoadingText.Width = 112;
+            // 
             // LevelsContextMenu
             // 
             this.LevelsContextMenu.BackColor = System.Drawing.Color.White;
@@ -571,11 +576,6 @@
             this.PackBtn.Text = "Pack files";
             this.PackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.PackBtn.Click += new System.EventHandler(this.PackBtn_Click);
-            // 
-            // LoadingText
-            // 
-            this.LoadingText.Text = "Loading text";
-            this.LoadingText.Width = 112;
             // 
             // MainForm
             // 

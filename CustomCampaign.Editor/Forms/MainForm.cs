@@ -13,7 +13,7 @@ namespace CustomCampaign.Forms
         {
             InitializeComponent();
             //IMPORTANT: Remove addon tab dispose call after addon system implementation
-            AddonTab.Dispose();
+            //AddonTab.Dispose();
         }
 
         private void MainForm_Load(object sender, EventArgs e)

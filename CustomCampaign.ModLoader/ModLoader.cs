@@ -32,20 +32,13 @@ namespace CustomCampaign
                 AddonSystem.Assemblies.Add(LoadAssembly(Path.Combine(addon.RootDirectory, addon.Module)));
             }
             foreach (Assembly assembly in AddonSystem.Assemblies)
-            {
                 foreach (Type type in assembly.GetTypes())
-                {
                     if (type.IsAssignableFrom(typeof(IEvent)))
                     {
                         ListenerAttribute attribute = Attribute.GetCustomAttribute(type, typeof(ListenerAttribute)) as ListenerAttribute;
                         if (!(attribute is null))
-                        {
-                            IEvent instance = Activator.CreateInstance(type) as IEvent;
-                            AddonSystem.EventListeners.Add(attribute, instance);
-                        }
+                            AddonSystem.EventListeners.Add(attribute, Activator.CreateInstance(type) as IEvent);
                     }
-                }
-            }
             Initialized = true;
         }
 
