@@ -42,12 +42,12 @@ namespace CustomCampaign
             Initialized = true;
         }
 
-        private static void CreateDomain()
+        public static void CreateDomain()
         {
             AddonSystem.Domain = AppDomain.CreateDomain("customcampaign.addons");
         }
 
-        private static void DestroyDomain()
+        public static void DestroyDomain()
         {
             AddonSystem.Assemblies.Clear();
             AddonSystem.EventListeners.Clear();

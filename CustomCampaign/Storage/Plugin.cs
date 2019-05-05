@@ -15,7 +15,8 @@ namespace CustomCampaign
             Files = new FileSystem();
             Log = new Logger("CustomCampaign.log")
             {
-                WriteToConsole = false
+                WriteToConsole = false,
+                ColorizeLines = true
             };
         }
 

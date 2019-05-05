@@ -18,7 +18,7 @@ namespace CustomCampaign
                 ModLoader.Init();
                 Plugin.LoadCampaigns();
 
-                Events.SubscribeAll();
+                Event.SubscribeAll();
 
                 HarmonyInstance Harmony = HarmonyInstance.Create($"com.CustomCampaign.{ipcIdentifier}");
                 Harmony.PatchAll(Assembly.GetExecutingAssembly());

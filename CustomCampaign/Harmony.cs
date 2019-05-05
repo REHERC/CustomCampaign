@@ -1,7 +1,9 @@
-﻿using Harmony;
+﻿using CustomCampaign.Events;
+using Harmony;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static CustomCampaign.Events.CampaignLevelStarted;
 
 #pragma warning disable CS0168, RCS1003, RCS1001
 namespace CustomCampaign
@@ -150,14 +152,24 @@ namespace CustomCampaign
     {
         public static bool Prefix(LevelGridMenu __instance, ref int index)
         {
+            bool result = false;
             LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
             string level = playlist.Playlist_[index].levelNameAndPath_.levelPath_;
             if (Utils.GetCampaignUnlockMode(level) == Campaign.UnlockStyle.LevelSet)
-                return true;
-            bool flag = !LockingSystem.IsLevelLocked(level) || !Utils.IsCustomCampaignLevel(level);
-            if (!flag)
-                G.Sys.MenuPanelManager_.ShowTimedOk(10, Constants.Strings.LevelLocked_Message, Constants.Strings.LevelLocked_Title);
-            return flag;
+                result = true;
+            else
+            {
+                bool flag = !LockingSystem.IsLevelLocked(level) || !Utils.IsCustomCampaignLevel(level);
+                if (!flag)
+                    G.Sys.MenuPanelManager_.ShowTimedOk(10, Constants.Strings.LevelLocked_Message, Constants.Strings.LevelLocked_Title);
+                result = flag;
+            }
+            if (result && Utils.IsCustomCampaignLevel(level))
+            {
+                CampaignInfo campaign = Utils.GetCampaign(level);
+                CampaignLevelStarted.Broadcast(new Data(campaign));
+            }
+            return result;
         }
     }
 

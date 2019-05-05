@@ -9,7 +9,7 @@ namespace CustomCampaign
     {
         public static void CreateProfile()
         {
-            Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
+            Serializer<Dictionary<string, int>> progress = GetProgress();
             foreach (var campaign in CampaignDatabase.Campaigns)
                 if (!progress.Data.ContainsKey(campaign.Id))
                     progress.Data.Add(campaign.Id, 0);
@@ -24,8 +24,7 @@ namespace CustomCampaign
                 if (Utils.GetCampaignUnlockMode(levelfile) == Campaign.UnlockStyle.LevelSet)
                     return false;
                 string campaign = Utils.GetCampaignId(file);
-                Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
-                int completion = progress.Data[campaign];
+                int completion = GetProgress().Data[campaign];
                 return Utils.GetLevelIndex(levelfile) > completion;
             }
             catch (Exception pizza) { Plugin.Log.Exception(pizza); }
@@ -34,14 +33,17 @@ namespace CustomCampaign
 
         public static int GetCampaignProgress(string campaign)
         {
-            Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
-            return progress.Data[campaign];
+            return GetProgress().Data[campaign];
+        }
+
+        public static Serializer<Dictionary<string, int>> GetProgress()
+        {
+            return new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
         }
 
         public static void UnlockLevel(string levelfile)
         {
-            string file = levelfile.NormPath(true);
-            Serializer<Dictionary<string, int>> progress = new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
+            Serializer<Dictionary<string, int>> progress = GetProgress();
             string campaign = Utils.GetCampaignId(levelfile);
             int index = Utils.GetLevelIndex(levelfile);
             int campaign_progress = GetCampaignProgress(campaign);
