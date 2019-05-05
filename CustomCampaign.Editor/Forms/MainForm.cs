@@ -53,7 +53,6 @@ namespace CustomCampaign.Forms
 
                 c.levels = new List<Campaign.Level>();
                 foreach (ListViewItem item in LevelsBox.Items)
-                {
                     c.levels.Add(new Campaign.Level(
                             item.SubItems[0].Text,
                             item.SubItems[1].Text,
@@ -61,13 +60,10 @@ namespace CustomCampaign.Forms
                             item.SubItems[3].Text,
                             item.SubItems[4].Text
                         ));
-                }
 
                 c.addons = new List<string>();
                 foreach (ListViewItem item in AddonsBox.Items)
-                {
                     c.addons.Add(item.SubItems[0].Text);
-                }
 
                 c.gamemode = GameMode.GetMode(GameModeBox.SelectedIndex);
 
@@ -92,7 +88,6 @@ namespace CustomCampaign.Forms
             if (dlg.ShowDialog() == true)
             {
                 Campaign c = Campaign.FromFile(dlg.FileName);
-
                 LoadCampaign(c);
             }
         }
