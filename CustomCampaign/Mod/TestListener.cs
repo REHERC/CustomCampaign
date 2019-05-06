@@ -1,4 +1,4 @@
-﻿using CustomCampaign.SDK.API;
+﻿using CustomCampaign.API;
 
 namespace CustomCampaign.Mod
 {

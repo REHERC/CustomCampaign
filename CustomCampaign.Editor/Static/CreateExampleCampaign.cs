@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-#pragma warning disable RCS1110
+#pragma warning disable RCS1110, CS0436
 public static class ExampleCampaign
 {
     public static void Create01()

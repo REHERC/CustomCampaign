@@ -1,7 +1,9 @@
-﻿#pragma warning disable RCS1163
+﻿using CustomCampaign.API;
+
+#pragma warning disable RCS1163
 namespace CustomCampaign
 {
-    public static class Event
+    public static class EventSubscriber
     {
         public static void SubscribeAll()
         {
@@ -20,7 +22,7 @@ namespace CustomCampaign
             {
                 ModLoader.CreateDomain();
                 ModLoader.LoadAddons(data.campaign.Id);
-                AddonSystem.RaiseEvent(SDK.API.Event.Addon_Load, null);
+                AddonSystem.RaiseEvent(Event.Addon_Load, null);
             });
         }
     }

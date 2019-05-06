@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-#pragma warning disable RCS1110
+#pragma warning disable RCS1110, CS0436
 public partial class Campaign
 {
     public void PakLoad(string FileName)

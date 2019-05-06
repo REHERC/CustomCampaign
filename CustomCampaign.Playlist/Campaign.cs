@@ -1,4 +1,4 @@
-﻿using static Campaign;
+﻿#pragma warning disable CS0168, RCS1001, RCS1110, CS0436
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -6,7 +6,6 @@ using CustomCampaign.SDK.Data;
 using Photon.Serialization;
 using System.Linq;
 
-#pragma warning disable CS0168, RCS1001, RCS1110
 public partial class Campaign
 {
     public string name;
@@ -83,9 +82,8 @@ public partial class Campaign
         return false;
     }
 
-    public static bool FileExists(string root, string file)
-    {
-        return File.Exists(Path.GetFullPath(Path.Combine(root,file)));
+    public static bool FileExists(string root, string file) {
+        return File.Exists(Path.GetFullPath(Path.Combine(root, file)));
     }
 
 #if EDITOR

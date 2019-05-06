@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
-using CustomCampaign.SDK.API;
+using CustomCampaign.API;
 using System.IO;
 
 namespace CustomCampaign

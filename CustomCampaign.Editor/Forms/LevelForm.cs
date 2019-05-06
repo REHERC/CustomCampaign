@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
+#pragma warning disable CS0436
 namespace CustomCampaign.Forms
 {
     public partial class LevelForm : Form

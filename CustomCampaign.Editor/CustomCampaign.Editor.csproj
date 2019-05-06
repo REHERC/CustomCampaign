@@ -189,13 +189,11 @@
     <None Include="Resources\New16.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomCampaign.SDK\CustomCampaign.SDK.csproj">
-      <Project>{5ae74124-fb0f-46e6-8c97-cd6af24b982f}</Project>
-      <Name>CustomCampaign.SDK</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
+    <ProjectReference Include="..\CustomCampaign\CustomCampaign.csproj">
+      <Project>{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}</Project>
+      <Name>CustomCampaign</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\CustomCampaign.Playlist\CustomCampaign.Playlist.projitems" Label="Shared" />
-  <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
