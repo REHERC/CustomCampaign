@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CustomCampaign.API
+namespace CustomCampaign.API.Events
 {
     [Flags]
     public enum Event

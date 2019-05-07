@@ -1,24 +1,27 @@
 ﻿using System;
 
 #pragma warning disable RCS1110
-internal static class Variables
+namespace CustomCampaign.Storage
 {
-    public const string DocumentsFolder = "WorkshopLevels";
-
-    public static string CampaignsDataFolder()
+    internal static class Variables
     {
-        string path = $"{CustomCampaign.Plugin.Files.RootDirectory}/Data/Campaigns".NormPath(false);
-        Extensions.MakeDirectory(path);
-        return path;
-    }
+        public const string DocumentsFolder = "WorkshopLevels";
 
-    public static string DistanceDocs()
-    {
-        return $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/My Games/Distance".NormPath(false);
-    }
+        public static string CampaignsDataFolder()
+        {
+            string path = $"{Plugin.Files.RootDirectory}/Data/Campaigns".NormPath(false);
+            Extensions.MakeDirectory(path);
+            return path;
+        }
 
-    public static string LevelsDirectory()
-    {
-        return $"{DistanceDocs()}/Levels/{DocumentsFolder}".NormPath(false);
+        public static string DistanceDocs()
+        {
+            return $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/My Games/Distance".NormPath(false);
+        }
+
+        public static string LevelsDirectory()
+        {
+            return $"{DistanceDocs()}/Levels/{DocumentsFolder}".NormPath(false);
+        }
     }
 }

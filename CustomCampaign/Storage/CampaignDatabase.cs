@@ -1,13 +1,17 @@
 ﻿using CustomCampaign;
+using CustomCampaign.Data;
 using System.Collections.Generic;
 
 #pragma warning disable RCS1110
-public static class CampaignDatabase
+namespace CustomCampaign.Storage
 {
-    public static List<CampaignInfo> Campaigns;
-
-    public static void Init()
+    public static class CampaignDatabase
     {
-        Campaigns = new List<CampaignInfo>();
+        public static List<CampaignInfo> Campaigns;
+
+        public static void Init()
+        {
+            Campaigns = new List<CampaignInfo>();
+        }
     }
 }

@@ -29,13 +29,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Editor", "Cu
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Serialization", "CustomCampaign.Serialization\CustomCampaign.Serialization.shproj", "{AF942756-CFE7-4371-819E-867BA60FF14D}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.ModLoader", "CustomCampaign.ModLoader\CustomCampaign.ModLoader.shproj", "{3E683CB1-DD77-4EEF-9184-BCCD76DEF499}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
-		CustomCampaign.ModLoader\CustomCampaign.ModLoader.projitems*{3e683cb1-dd77-4eef-9184-bccd76def499}*SharedItemsImports = 13
-		CustomCampaign.ModLoader\CustomCampaign.ModLoader.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{60d03882-d06f-4ff8-98f6-4f056cd08269}*SharedItemsImports = 13

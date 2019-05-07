@@ -1,11 +1,13 @@
-﻿using System;
+﻿using CustomCampaign.Data;
+using CustomCampaign.Storage;
+using System;
 using System.IO;
 using UnityEngine;
 
 #pragma warning disable CS0168, RCS1001, RCS1206
-namespace CustomCampaign
+namespace CustomCampaign.API
 {
-    public static class Utils
+    public static class Util
     {
         #region "Campaign Utils"
         public static CampaignInfo GetCampaign(string levelfile)

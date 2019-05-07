@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CustomCampaign.API
+namespace CustomCampaign.API.Events
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class ListenerAttribute : Attribute

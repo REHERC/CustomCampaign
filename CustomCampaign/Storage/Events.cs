@@ -1,7 +1,9 @@
 ﻿using CustomCampaign.API;
+using CustomCampaign.API.Events;
+using CustomCampaign.Systems;
 
 #pragma warning disable RCS1163
-namespace CustomCampaign
+namespace CustomCampaign.Storage
 {
     public static class EventSubscriber
     {
@@ -9,20 +11,20 @@ namespace CustomCampaign
         {
             global::Events.Game.LevelLoaded.Subscribe((data) => {
                 string level = G.Sys.GameManager_.LevelPath_;
-                if (Utils.IsCustomCampaignLevel(level))
+                if (Util.IsCustomCampaignLevel(level))
                     LockingSystem.UnlockLevel(level);
             });
             global::Events.Scene.StartLoad.Subscribe((data) =>
             {
                 Plugin.Log.Warning(data.sceneName);
                 if (data.sceneName != "GameMode")
-                    ModLoader.DestroyDomain();
+                    AddonSystem.DestroyDomain();
             });
             Events.CampaignLevelStarted.Subscribe((data) =>
             {
-                ModLoader.CreateDomain();
-                ModLoader.LoadAddons(data.campaign.Id);
-                AddonSystem.RaiseEvent(Event.Addon_Load, null);
+                AddonSystem.CreateDomain();
+                AddonSystem.LoadAddons(data.campaign.Id);
+                AddonSystem.Current.RaiseEvent(Event.Addon_Load, null);
             });
         }
     }

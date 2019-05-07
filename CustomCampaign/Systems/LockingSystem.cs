@@ -1,9 +1,11 @@
-﻿using Photon.Serialization;
+﻿using CustomCampaign.API;
+using CustomCampaign.Storage;
+using Photon.Serialization;
 using System;
 using System.Collections.Generic;
 
 #pragma warning disable RCS1001
-namespace CustomCampaign
+namespace CustomCampaign.Systems
 {
     public static class LockingSystem
     {
@@ -21,11 +23,11 @@ namespace CustomCampaign
             string file = levelfile.NormPath(true);
             try
             {
-                if (Utils.GetCampaignUnlockMode(levelfile) == Campaign.UnlockStyle.LevelSet)
+                if (Util.GetCampaignUnlockMode(levelfile) == Campaign.UnlockStyle.LevelSet)
                     return false;
-                string campaign = Utils.GetCampaignId(file);
+                string campaign = Util.GetCampaignId(file);
                 int completion = GetProgress().Data[campaign];
-                return Utils.GetLevelIndex(levelfile) > completion;
+                return Util.GetLevelIndex(levelfile) > completion;
             }
             catch (Exception pizza) { Plugin.Log.Exception(pizza); }
             return false;
@@ -44,8 +46,8 @@ namespace CustomCampaign
         public static void UnlockLevel(string levelfile)
         {
             Serializer<Dictionary<string, int>> progress = GetProgress();
-            string campaign = Utils.GetCampaignId(levelfile);
-            int index = Utils.GetLevelIndex(levelfile);
+            string campaign = Util.GetCampaignId(levelfile);
+            int index = Util.GetLevelIndex(levelfile);
             int campaign_progress = GetCampaignProgress(campaign);
             if (index > campaign_progress)
                 progress.Data[campaign] = index;

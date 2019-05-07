@@ -1,10 +1,11 @@
-﻿using System;
+﻿using CustomCampaign.Storage;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 #pragma warning disable RCS1001
-namespace CustomCampaign
+namespace CustomCampaign.Data
 {
     public class CampaignInfo
     {

@@ -1,9 +1,12 @@
-﻿using CustomCampaign.Events;
+﻿using CustomCampaign.Data;
+using CustomCampaign.Events;
+using CustomCampaign.Storage;
+using CustomCampaign.Systems;
 using Harmony;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static CustomCampaign.Events.CampaignLevelStarted;
+using CustomCampaign.API;
 
 #pragma warning disable CS0168, RCS1003, RCS1001
 namespace CustomCampaign
@@ -32,10 +35,10 @@ namespace CustomCampaign
         public static void Postfix(LevelIntroTitleLogic __instance)
         {
             string path = G.Sys.GameManager_.LevelPath_;
-            if (Utils.IsCustomCampaignLevel(path))
+            if (Util.IsCustomCampaignLevel(path))
             {
-                __instance.titleLabel_.text = Utils.GetLevelTitle(path).Space(1);
-                __instance.subtitleText_.text = Utils.GetLevelSubTitle(path).Space(1);
+                __instance.titleLabel_.text = Util.GetLevelTitle(path).Space(1);
+                __instance.subtitleText_.text = Util.GetLevelSubTitle(path).Space(1);
                 __instance.subtitleText_.gameObject.SetActive(true);
                 __instance.subtitleText_.alpha = __instance.titleLabel_.alpha;
             }
@@ -56,10 +59,10 @@ namespace CustomCampaign
                     {
                         LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
                         string level = playlist.GetLevelSet()[0].levelPath_;
-                        if (Utils.IsCustomCampaignLevel(level))
+                        if (Util.IsCustomCampaignLevel(level))
                         {
-                            __instance.modeDescription_.text = __instance.gridDescription_.text = Utils.GetCampaignDescription(level);
-                            __instance.campaignLogo_.mainTexture = Utils.GetCampaignLogo(level);
+                            __instance.modeDescription_.text = __instance.gridDescription_.text = Util.GetCampaignDescription(level);
+                            __instance.campaignLogo_.mainTexture = Util.GetCampaignLogo(level);
                         }
                     }
                     catch (Exception pizza) { Plugin.Log.Exception(pizza); }
@@ -77,7 +80,7 @@ namespace CustomCampaign
             {
                 LevelGridGrid.LevelEntry entry = __instance.entry_ as LevelGridGrid.LevelEntry;
                 string path = entry.AbsolutePath_;
-                if (Utils.IsCustomCampaignLevel(path))
+                if (Util.IsCustomCampaignLevel(path))
                 {
                     __instance.titleLabel_.enabled = false;
                     __instance.authorLabel_.enabled = false;
@@ -105,9 +108,9 @@ namespace CustomCampaign
         public static void Postfix(BlackFadeLogic __instance)
         {
             string path = G.Sys.GameManager_.NextLevelPath_;
-            if (Utils.IsCustomCampaignLevel(path) && __instance.GetPrivateField<string>("storedSceneToLoad_") != "MainMenu")
+            if (Util.IsCustomCampaignLevel(path) && __instance.GetPrivateField<string>("storedSceneToLoad_") != "MainMenu")
             {
-                Texture background = Utils.GetLevelWallpaper(path);
+                Texture background = Util.GetLevelWallpaper(path);
                 if (background != null)
                     __instance.GetPrivateField<LevelLoadingOverlay>("menu_").loadingTexture_.mainTexture = background;
             }
@@ -120,10 +123,10 @@ namespace CustomCampaign
         public static void Postfix(PauseMenuLogic __instance)
         {
             string path = G.Sys.GameManager_.LevelPath_;
-            if (G.Sys.GameManager_.PauseMenuOpen_ && Utils.IsCustomCampaignLevel(path))
+            if (G.Sys.GameManager_.PauseMenuOpen_ && Util.IsCustomCampaignLevel(path))
             {
-                __instance.gameMode_.text = Utils.GetCampaignName(path);
-                __instance.gameModeDescription_.text = Utils.GetCampaignDescription(path);
+                __instance.gameMode_.text = Util.GetCampaignName(path);
+                __instance.gameModeDescription_.text = Util.GetCampaignDescription(path);
                 __instance.medal_.Display(MedalStatus.None, false);
                 __instance.medal_.gameObject.SetActive(false);
                 __instance.medal_.Destroy();
@@ -142,7 +145,7 @@ namespace CustomCampaign
         {
             if (type != LevelGridMenu.PlaylistEntry.Type.Campaign && ___displayType_ != LevelSelectMenuAbstract.DisplayType.Adventure)
                 foreach (LevelNameAndPathPair level in set.GetAllLevelNameAndPathPairs())
-                    if (Utils.IsCustomCampaignLevel(level.levelPath_))
+                    if (Util.IsCustomCampaignLevel(level.levelPath_))
                         set.RemoveLevel(level.levelPath_.Normalize());
         }
     }
@@ -155,19 +158,19 @@ namespace CustomCampaign
             bool result = false;
             LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
             string level = playlist.Playlist_[index].levelNameAndPath_.levelPath_;
-            if (Utils.GetCampaignUnlockMode(level) == Campaign.UnlockStyle.LevelSet)
+            if (Util.GetCampaignUnlockMode(level) == Campaign.UnlockStyle.LevelSet)
                 result = true;
             else
             {
-                bool flag = !LockingSystem.IsLevelLocked(level) || !Utils.IsCustomCampaignLevel(level);
+                bool flag = !LockingSystem.IsLevelLocked(level) || !Util.IsCustomCampaignLevel(level);
                 if (!flag)
                     G.Sys.MenuPanelManager_.ShowTimedOk(10, Constants.Strings.LevelLocked_Message, Constants.Strings.LevelLocked_Title);
                 result = flag;
             }
-            if (result && Utils.IsCustomCampaignLevel(level))
+            if (result && Util.IsCustomCampaignLevel(level))
             {
-                CampaignInfo campaign = Utils.GetCampaign(level);
-                CampaignLevelStarted.Broadcast(new Data(campaign));
+                CampaignInfo campaign = Util.GetCampaign(level);
+                CampaignLevelStarted.Broadcast(new CampaignLevelStarted.Data(campaign));
             }
             return result;
         }

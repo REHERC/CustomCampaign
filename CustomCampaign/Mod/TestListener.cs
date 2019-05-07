@@ -1,4 +1,4 @@
-﻿using CustomCampaign.API;
+﻿using CustomCampaign.API.Events;
 
 namespace CustomCampaign.Mod
 {

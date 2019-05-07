@@ -1,4 +1,6 @@
-﻿namespace CustomCampaign.Events
+﻿using CustomCampaign.Data;
+
+namespace CustomCampaign.Events
 {
     public class CampaignLevelStarted : global::Events.StaticEvent<CampaignLevelStarted.Data>
     {

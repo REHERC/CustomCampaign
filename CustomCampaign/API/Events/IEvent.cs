@@ -1,4 +1,4 @@
-﻿namespace CustomCampaign.API
+﻿namespace CustomCampaign.API.Events
 {
     public interface IEvent
     {

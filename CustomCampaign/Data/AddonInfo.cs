@@ -1,12 +1,11 @@
-﻿using CustomCampaign.SDK.Data;
-using Photon.Serialization;
+﻿using Photon.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 
 #pragma warning disable RCS1003
-namespace CustomCampaign
+namespace CustomCampaign.Data
 {
     [DataContract, Serializable]
     public class AddonInfo
@@ -17,7 +16,7 @@ namespace CustomCampaign
         public string AddonName { get; set; }
 
         [DataMember]
-        public List<Author> Authors { get; set; }
+        public List<AddonAuthor> Authors { get; set; }
 
         [DataMember]
         public string Module { get; set; }

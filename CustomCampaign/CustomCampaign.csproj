@@ -67,17 +67,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Event.cs" />
-    <Compile Include="API\EventListenerAttribute.cs" />
-    <Compile Include="API\EventParams.cs" />
-    <Compile Include="API\IEvent.cs" />
+    <Compile Include="API\Events\Event.cs" />
+    <Compile Include="API\Events\EventListenerAttribute.cs" />
+    <Compile Include="API\Events\EventParams.cs" />
+    <Compile Include="API\Events\IEvent.cs" />
+    <Compile Include="Data\AddonAuthor.cs" />
     <Compile Include="Data\AddonInfo.cs" />
-    <Compile Include="Data\AddOnManifest.cs" />
     <Compile Include="Data\CampaignInfo.cs" />
     <Compile Include="Events\CampaignLevelStarted.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Mod\TestListener.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="Systems\AddonSystem.Current.cs" />
+    <Compile Include="Systems\AddonSystem.cs" />
+    <Compile Include="API\Util.cs" />
     <Compile Include="Storage\Constants.cs" />
     <Compile Include="Storage\Events.cs" />
     <Compile Include="Harmony.cs" />
@@ -96,7 +98,6 @@
   <ItemGroup />
   <Import Project="..\CustomCampaign.Playlist\CustomCampaign.Playlist.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
-  <Import Project="..\CustomCampaign.ModLoader\CustomCampaign.ModLoader.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,9 +1,11 @@
-﻿using Spectrum.API.Logging;
+﻿using CustomCampaign.Data;
+using CustomCampaign.Systems;
+using Spectrum.API.Logging;
 using Spectrum.API.Storage;
 using System.Collections.Generic;
 using System.IO;
 
-namespace CustomCampaign
+namespace CustomCampaign.Storage
 {
     public static partial class Plugin
     {
@@ -51,7 +53,7 @@ namespace CustomCampaign
                     foreach (string addon in campaign_data.addons)
                     {
                         AddonInfo addon_info = AddonInfo.Load(campaign_info, addon);
-                        ModLoader.AddAddon(addon_info);
+                        AddonSystem.AddAddon(addon_info);
                     }
                     campaign_info.Print();
                     CampaignDatabase.Campaigns.Add(campaign_info);

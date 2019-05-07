@@ -1,4 +1,4 @@
-﻿using CustomCampaign.SDK.Data;
+﻿using CustomCampaign.Data;
 using Photon.Serialization;
 using System;
 using System.Drawing;
@@ -60,11 +60,11 @@ namespace CustomCampaign.Forms
             {
                 AddItem(addon);
                 string addonfile = Path.GetFullPath(Path.Combine(root, addon));
-                AddOnManifest manifest;
+                AddonInfo manifest;
                 try
                 {
-                    new Serializer<AddOnManifest>(SerializerType.Json, addonfile, true).Save();
-                    manifest = new Serializer<AddOnManifest>(SerializerType.Json, addonfile, true).Data;
+                    new Serializer<AddonInfo>(SerializerType.Json, addonfile, true).Save();
+                    manifest = new Serializer<AddonInfo>(SerializerType.Json, addonfile, true).Data;
                     string filename = $"/{addon}".Substring($"/{addon}".Replace(@"\", "/").LastIndexOf("/") + 1);
                     string fileroot = addon.Substring(0, addon.Length - filename.Length);
                     AddItem(fileroot + manifest.Module);

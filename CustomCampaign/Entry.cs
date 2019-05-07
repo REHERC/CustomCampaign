@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Reflection;
+using CustomCampaign.Storage;
+using CustomCampaign.Systems;
 using Harmony;
 using Spectrum.API.Interfaces.Plugins;
 using Spectrum.API.Interfaces.Systems;
@@ -15,7 +17,7 @@ namespace CustomCampaign
             {
                 Plugin.Init();
                 CampaignDatabase.Init();
-                ModLoader.Init();
+                AddonSystem.Init();
                 Plugin.LoadCampaigns();
 
                 EventSubscriber.SubscribeAll();

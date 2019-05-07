@@ -1,4 +1,4 @@
-﻿namespace CustomCampaign
+﻿namespace CustomCampaign.Storage
 {
     public static class Constants
     {

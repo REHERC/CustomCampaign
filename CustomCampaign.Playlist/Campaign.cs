@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System;
-using CustomCampaign.SDK.Data;
 using Photon.Serialization;
+using CustomCampaign.Data;
 using System.Linq;
 
 public partial class Campaign
@@ -63,9 +63,9 @@ public partial class Campaign
             foreach (string addon in c.addons)
             {
                 string addonfile = Path.GetFullPath(Path.Combine(root, addon));
-                AddOnManifest manifest;
+                AddonInfo manifest;
                 try {
-                    manifest = new Serializer<AddOnManifest>(SerializerType.Json, addonfile, true).Data;
+                    manifest = new Serializer<AddonInfo>(SerializerType.Json, addonfile, true).Data;
                     string filename = $"/{addon}".Substring($"/{addon}".Replace(@"\", "/").LastIndexOf("/") + 1);
                     string fileroot = addon.Substring(0, addon.Length - filename.Length);
                     string addonroot = Path.GetFullPath(Path.Combine(root, fileroot));
