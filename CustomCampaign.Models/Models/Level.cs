@@ -1,0 +1,28 @@
+﻿using Newtonsoft.Json;
+using System.Drawing;
+using System.IO;
+
+namespace CustomCampaign.Models
+{
+    public class Level
+    {
+        public string file = "";
+
+        public float countdown = 0.0f;
+
+        public bool display_intro_title = true;
+        public string levelname = "";
+        public string levelname_sub = "";
+
+        public string loading_wallpaper = "";
+
+        public bool overwrite_loading_text = false;
+        public string loading_text = "";
+
+        public Image GetThumbnail(string current_path)
+        {
+            string file_path = $"{Path.Combine(current_path, file)}.png";
+            return File.Exists(file_path) ? Image.FromFile(file_path) : null;
+        }
+    }
+}

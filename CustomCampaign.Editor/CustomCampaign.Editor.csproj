@@ -6,27 +6,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CustomCampaign</RootNamespace>
+    <RootNamespace>CustomCampaign.Editor</RootNamespace>
     <AssemblyName>CustomCampaign.Editor</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,96 +19,166 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;EDITOR SERIALIZER_JSON</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;SERIALIZER_JSON</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <StartupObject>CampaignEditor.Program</StartupObject>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Application.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FileHelpers, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
-      <HintPath>..\packages\FileHelpers.3.3.0\lib\net45\FileHelpers.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="YamlDotNet, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.5.4.0\lib\net45\YamlDotNet.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ReorderableListView.cs">
+    <Compile Include="Classes\Page.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controls\Cyotek\CancelListBoxItemDragEventArgs.cs" />
+    <Compile Include="Controls\Cyotek\DragListBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\AddonForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Controls\Cyotek\InsertionMode.cs" />
+    <Compile Include="Controls\Cyotek\ListBoxItemDragEventArgs.cs" />
+    <Compile Include="Controls\LevelBox.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\AddonForm.Designer.cs">
-      <DependentUpon>AddonForm.cs</DependentUpon>
+    <Compile Include="Controls\PizzaCard.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\LevelForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Controls\PizzaCard.Designer.cs">
+      <DependentUpon>PizzaCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LevelForm.Designer.cs">
-      <DependentUpon>LevelForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Editor.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PackForm.cs">
+    <Compile Include="Forms\MainForm.PageManagment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PackForm.Designer.cs">
-      <DependentUpon>PackForm.cs</DependentUpon>
+    <Compile Include="Forms\PizzaForm.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameModeID.cs" />
+    <Compile Include="Forms\PizzaForm.Designer.cs">
+      <DependentUpon>PizzaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProgressDialog.Designer.cs">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Globals.cs" />
+    <Compile Include="Pages\EditLevelPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\EditLevelPage.Designer.cs">
+      <DependentUpon>EditLevelPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditorMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\EditorMainPage.Designer.cs">
+      <DependentUpon>EditorMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewCampaignWizard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\NewCampaignWizard.Designer.cs">
+      <DependentUpon>NewCampaignWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StartPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\StartPage.Designer.cs">
+      <DependentUpon>StartPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Static\CreateExampleCampaign.cs" />
-    <EmbeddedResource Include="Forms\AddonForm.resx">
-      <DependentUpon>AddonForm.cs</DependentUpon>
+    <Compile Include="Resx\ProfilePictures.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfilePictures.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resx\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Themes.cs" />
+    <EmbeddedResource Include="Classes\Page.resx">
+      <DependentUpon>Page.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LevelForm.resx">
-      <DependentUpon>LevelForm.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\PizzaCard.resx">
+      <DependentUpon>PizzaCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PackForm.resx">
-      <DependentUpon>PackForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PizzaForm.resx">
+      <DependentUpon>PizzaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProgressDialog.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\EditLevelPage.resx">
+      <DependentUpon>EditLevelPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\EditorMainPage.resx">
+      <DependentUpon>EditorMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\NewCampaignWizard.resx">
+      <DependentUpon>NewCampaignWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\StartPage.resx">
+      <DependentUpon>StartPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resx\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Distance</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resx\ProfilePictures.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>ProfilePictures.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -135,7 +190,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="Controls\Cyotek\README.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -148,52 +204,54 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Application.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\FileError.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\New.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Object.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Open.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Pack.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Save.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Text.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Settings.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Application.ico" />
-    <None Include="Resources\Save16.png" />
-    <None Include="Resources\Pack16.png" />
-    <None Include="Resources\Open16.png" />
-    <None Include="Resources\New16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CustomCampaign\CustomCampaign.csproj">
-      <Project>{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}</Project>
-      <Name>CustomCampaign</Name>
+    <ProjectReference Include="..\CustomCampaign.Models\CustomCampaign.Models.csproj">
+      <Project>{61a91363-f0b0-41be-8e56-72fa800bc279}</Project>
+      <Name>CustomCampaign.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaterialSkin\MaterialSkin.csproj">
+      <Project>{8eb7611b-68cd-4b8b-987a-11717e2b250c}</Project>
+      <Name>MaterialSkin</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\CustomCampaign.Playlist\CustomCampaign.Playlist.projitems" Label="Shared" />
+  <ItemGroup>
+    <None Include="Resources\NoPreview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Brionac.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\California.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ciastex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ghostly.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ibegyourpardon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jay2a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mrmii.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pinapl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pinesofchaos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reherc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sperzieboon.png" />
+  </ItemGroup>
+  <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,12 +1,10 @@
 ﻿using CustomCampaign.Data;
-using CustomCampaign.Events;
 using CustomCampaign.Storage;
 using CustomCampaign.Systems;
 using Harmony;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using CustomCampaign.API;
 
 #pragma warning disable CS0168, RCS1003, RCS1001
 namespace CustomCampaign
@@ -170,7 +168,7 @@ namespace CustomCampaign
             if (result && Util.IsCustomCampaignLevel(level))
             {
                 CampaignInfo campaign = Util.GetCampaign(level);
-                CampaignLevelStarted.Broadcast(new CampaignLevelStarted.Data(campaign));
+                Events.CampaignLevelStarted.Broadcast(new Events.CampaignLevelStarted.Data(campaign));
             }
             return result;
         }

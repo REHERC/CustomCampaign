@@ -66,7 +66,7 @@ public partial class Campaign
 
     public void JsonLoad(string FileName)
     {
-        Campaign data = new Serializer<Campaign>(SerializerType.Json,FileName, true).Data;
+        Campaign data = new Serializer<Campaign>(SerializerType.Json, FileName, true).Data;
         name = data.name;
         description = data.description;
         logopath = data.logopath;

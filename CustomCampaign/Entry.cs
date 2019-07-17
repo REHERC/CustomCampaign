@@ -17,7 +17,6 @@ namespace CustomCampaign
             {
                 Plugin.Init();
                 CampaignDatabase.Init();
-                AddonSystem.Init();
                 Plugin.LoadCampaigns();
 
                 EventSubscriber.SubscribeAll();

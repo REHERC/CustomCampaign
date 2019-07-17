@@ -29,9 +29,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Editor", "Cu
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Serialization", "CustomCampaign.Serialization\CustomCampaign.Serialization.shproj", "{AF942756-CFE7-4371-819E-867BA60FF14D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Models", "CustomCampaign.Models\CustomCampaign.Models.csproj", "{61A91363-F0B0-41BE-8E56-72FA800BC279}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkin", "MaterialSkin\MaterialSkin.csproj", "{8EB7611B-68CD-4B8B-987A-11717E2B250C}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
+		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{60d03882-d06f-4ff8-98f6-4f056cd08269}*SharedItemsImports = 13
@@ -50,6 +54,14 @@ Global
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61A91363-F0B0-41BE-8E56-72FA800BC279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61A91363-F0B0-41BE-8E56-72FA800BC279}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61A91363-F0B0-41BE-8E56-72FA800BC279}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61A91363-F0B0-41BE-8E56-72FA800BC279}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

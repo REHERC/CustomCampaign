@@ -1,8 +1,8 @@
 ﻿using CustomCampaign.Data;
 
-namespace CustomCampaign.Events
+namespace Events
 {
-    public class CampaignLevelStarted : global::Events.StaticEvent<CampaignLevelStarted.Data>
+    public class CampaignLevelStarted : StaticEvent<CampaignLevelStarted.Data>
     {
         public struct Data
         {

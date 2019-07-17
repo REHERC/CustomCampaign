@@ -53,7 +53,6 @@ namespace CustomCampaign.Storage
                     foreach (string addon in campaign_data.addons)
                     {
                         AddonInfo addon_info = AddonInfo.Load(campaign_info, addon);
-                        AddonSystem.AddAddon(addon_info);
                     }
                     campaign_info.Print();
                     CampaignDatabase.Campaigns.Add(campaign_info);

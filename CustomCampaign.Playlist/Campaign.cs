@@ -4,7 +4,6 @@ using System.IO;
 using System;
 using Photon.Serialization;
 using CustomCampaign.Data;
-using System.Linq;
 
 public partial class Campaign
 {
