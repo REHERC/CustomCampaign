@@ -1,5 +1,4 @@
 ﻿using CustomCampaign.Storage;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -10,70 +9,59 @@ namespace CustomCampaign.Data
     public class CampaignInfo
     {
         public string DataDirectory { get; set; }
-        public string DocsDirectory { get; set; }
-        public List<Campaign.Level> Levels { get; set; }
+        public List<Models.Level> Levels { get; set; }
         public Texture2D Logo { get; set; }
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string[] Authors { get; set; }
-        public Campaign.UnlockStyle LockMode { get; set; }
-        public GameModeID GameMode;
+        public /*Campaign.UnlockStyle*/int LockMode { get; set; }
+        public /*GameModeID*/int GameMode { get; set; }
 
-        public CampaignInfo(string data_dir, string docs_dir, Campaign pak)
+        public CampaignInfo(string data_dir, Models.Campaign data)
         {
-            this.Id = new List<string>(data_dir.Split(new char[] { '/', '\\' })).Last().LowerCase();
-            this.DataDirectory = data_dir;
-            this.DocsDirectory = $"{docs_dir}/{this.Id}";
-            this.Name = pak.name;
-            this.Description = pak.description;
-            this.Authors = pak.authors.Split(';');
-            this.LockMode = pak.lockmode;
-            string logo_path = $"{this.DataDirectory}/{pak.logopath}".NormPath();
+            Id = data.guid;
+            DataDirectory = data_dir.NormPath(false);
+            Name = data.name;
+            Description = data.description;
+            Authors = data.authors.Split(';');
+            LockMode = data.lockmode;
+            string logo_path = $"{DataDirectory}/{data.logopath}".NormPath(true);
             if (File.Exists(logo_path))
             {
                 byte[] image = File.ReadAllBytes(logo_path);
-                this.Logo = new Texture2D(2, 2);
-                this.Logo.LoadImage(image);
+                Logo = new Texture2D(2, 2);
+                Logo.LoadImage(image);
             }
-            this.Levels = new List<Campaign.Level>();
-            this.GameMode = pak.gamemode;
+            Levels = new List<Models.Level>();
+            GameMode = data.gamemode;
         }
 
         public void Print()
         {
             Plugin.Log.Info("--------------------");
-            Plugin.Log.Info($"Campaign loaded: {this.Name}");
-            Plugin.Log.Info($"\"{this.Description}\"");
+            Plugin.Log.Info($"Campaign loaded: {Name}");
+            Plugin.Log.Info($"\"{Description}\"");
             Plugin.Log.Info($"Made by:");
-            foreach (string author in this.Authors)
+            foreach (string author in Authors)
                 Plugin.Log.Info($"\t  - {author}");
-        }
-
-        public string GetDocsPath()
-        {
-            return $"{this.DocsDirectory}".NormPath(false);
         }
 
         public LevelSet GetLevelSet(GameModeID gamemode = GameModeID.Nexus)
         {
+            LevelPlaylist playlist = LevelPlaylist.Create(false);
+            foreach (Models.Level level in Levels)
+                playlist.Add(new LevelPlaylist.ModeAndLevelInfo(
+                    gamemode, new LevelNameAndPathPair(
+                    level.file,
+                    level.file)));
             LevelSet set = new LevelSet()
             {
                 gameModeID_ = gamemode
             };
-            string workspace = GetWorkspace();
-            foreach (var level in this.Levels)
-                if (level.file.NormPath(true).StartsWith(workspace.NormPath(false)))
-                {
-                    string level_file = $"{workspace}/{new List<string>(level.file.Split(new char[] { '/', '\\'})).Last()}".Replace("\\","/");
-                    set.AddLevel(level_file, level_file, LevelType.Official);
-                }
+            foreach (var level in playlist.GetLevelSet())
+                set.AddLevel(level.levelName_, level.levelPath_, LevelType.Official);
             return set;
-        }
-
-        private string GetWorkspace()
-        {
-            return $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/My Games/Distance/Levels/{Variables.DocumentsFolder}/{this.Id}".Replace("\\","/");
         }
     }
 }

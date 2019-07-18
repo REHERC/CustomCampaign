@@ -9,7 +9,7 @@ namespace CustomCampaign.Storage
 
         public static string CampaignsDataFolder()
         {
-            string path = $"{Plugin.Files.RootDirectory}/Data/Campaigns".NormPath(false);
+            string path = $"{Plugin.Files.RootDirectory}/Data/Campaigns";
             Extensions.MakeDirectory(path);
             return path;
         }

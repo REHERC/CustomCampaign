@@ -5,7 +5,8 @@ using System;
 using Photon.Serialization;
 using CustomCampaign.Data;
 
-public partial class Campaign
+/*
+public partial class CampaignAZE
 {
     public string name;
     public string description;
@@ -100,3 +101,4 @@ public partial class Campaign
     }
 #endif
 }
+*/

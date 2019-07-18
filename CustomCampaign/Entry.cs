@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using CustomCampaign.Storage;
-using CustomCampaign.Systems;
 using Harmony;
 using Spectrum.API.Interfaces.Plugins;
 using Spectrum.API.Interfaces.Systems;
@@ -16,12 +15,11 @@ namespace CustomCampaign
             try
             {
                 Plugin.Init();
-                CampaignDatabase.Init();
                 Plugin.LoadCampaigns();
 
                 EventSubscriber.SubscribeAll();
 
-                HarmonyInstance Harmony = HarmonyInstance.Create($"com.CustomCampaign.{ipcIdentifier}");
+                HarmonyInstance Harmony = HarmonyInstance.Create($"com.reherc.{ipcIdentifier}");
                 Harmony.PatchAll(Assembly.GetExecutingAssembly());
             }
             catch (Exception e)

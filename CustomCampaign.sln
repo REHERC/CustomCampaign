@@ -39,6 +39,7 @@ Global
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Playlist\CustomCampaign.Playlist.projitems*{60d03882-d06f-4ff8-98f6-4f056cd08269}*SharedItemsImports = 13
+		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{61a91363-f0b0-41be-8e56-72fa800bc279}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{af942756-cfe7-4371-819e-867ba60ff14d}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

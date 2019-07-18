@@ -2,6 +2,7 @@
 using CustomCampaign.Editor.Classes;
 using CustomCampaign.Models;
 using Photon.Serialization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;

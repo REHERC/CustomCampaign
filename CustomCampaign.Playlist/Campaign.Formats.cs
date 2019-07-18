@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+/*
 #pragma warning disable RCS1110, CS0436
-public partial class Campaign
+public partial class CampaignAZE
 {
     public void PakLoad(string FileName)
     {
@@ -86,3 +87,4 @@ public partial class Campaign
     }
 #endif
 }
+*/

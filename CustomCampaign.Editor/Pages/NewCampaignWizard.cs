@@ -77,9 +77,12 @@ namespace CustomCampaign.Editor.Pages
                 directory.CreateSubdirectory("levels");
                 directory.CreateSubdirectory("addons");
 
-                Campaign campaign = new Campaign();
-                campaign.name = CampaignName.Text;
-                campaign.description = CampaignDescription.Text;
+                Campaign campaign = new Campaign
+                {
+                    guid = Guid.NewGuid().ToString(),
+                    name = CampaignName.Text,
+                    description = CampaignDescription.Text
+                };
 
                 new Serializer<Campaign>(SerializerType.Json,
                     Path.Combine(CampaignDirectory.Text, "campaign.json")

@@ -8,7 +8,7 @@ namespace CustomCampaign.Models
     {
         public string file = "";
 
-        public float countdown = 0.0f;
+        public double countdown = 0.0d;
 
         public bool display_intro_title = true;
         public string levelname = "";

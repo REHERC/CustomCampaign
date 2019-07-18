@@ -6,14 +6,13 @@ namespace CustomCampaign.Data
 {
     public class GameModeId
     {
-        // Links each available gamemode to the corresponding ID (GamemodeID from Assembly-CShar^p.dll)
+        // Links each available gamemode to the corresponding ID (GamemodeID from Assembly-CSharp.dll)
         public static Dictionary<string, int> ConversionTable = new Dictionary<string, int>()
         {
             { "Adventure", 9 },
             { "Nexus", 15 },
             { "Lost to Echoes", 14 }
         };
-
 
         public static int GetIndexFromId(int id)
         {

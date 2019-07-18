@@ -1,7 +1,9 @@
 ﻿using CustomCampaign.Data;
 using CustomCampaign.Storage;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 #pragma warning disable CS0168, RCS1001, RCS1206
@@ -13,10 +15,9 @@ namespace CustomCampaign
         public static CampaignInfo GetCampaign(string levelfile)
         {
             string file = levelfile.NormPath(true);
-            foreach (CampaignInfo campaign in CampaignDatabase.Campaigns)
-                foreach (Campaign.Level level in campaign.Levels)
-                    if (level.file.NormPath(true) == file)
-                        return campaign;
+            foreach (var campaign in CampaignDatabase.Campaigns)
+                if ((from level in campaign.Value.Levels select level.file.NormPath(true)).Contains(file))
+                    return campaign.Value;
             return null;
         }
 
@@ -48,17 +49,17 @@ namespace CustomCampaign
         public static Campaign.UnlockStyle GetCampaignUnlockMode(string levelfile)
         {
             CampaignInfo campaign = GetCampaign(levelfile);
-            return campaign != null ? campaign.LockMode : Campaign.UnlockStyle.Campaign;
+            return campaign != null ? (Campaign.UnlockStyle)campaign.LockMode : Campaign.UnlockStyle.Campaign;
         }
 
-        public static Campaign.Level GetLevelInfo(string levelfile)
+        public static Models.Level GetLevelInfo(string levelfile)
         {
             string file = levelfile.NormPath(true);
             CampaignInfo campaign = GetCampaign(levelfile);
-            foreach (Campaign.Level level in campaign.Levels)
+            foreach (Models.Level level in campaign.Levels)
                 if (level.file.NormPath(true) == file)
                     return level;
-            return new Campaign.Level();
+            return new Models.Level();
         }
 
         public static string GetLevelTitle(string levelfile)
@@ -94,14 +95,15 @@ namespace CustomCampaign
             try
             {
                 string file = levelfile.NormPath(true);
-                Campaign.Level[] levels = GetCampaign(levelfile)?.Levels.ToArray();
+                List<Models.Level> levels = GetCampaign(levelfile)?.Levels;
                 int index = 0;
-                foreach (Campaign.Level level in levels)
+                foreach (Models.Level level in levels ?? new List<Models.Level>())
                 {
-                    if (level.file.NormPath(true) == file)
+                    if (level.file == file)
                         return index;
                     index++;
                 }
+                return index;
             }
             catch (Exception pizza) { Plugin.Log.Exception(pizza); }
             return -1;
@@ -119,6 +121,14 @@ namespace CustomCampaign
                 if (go.name == name)
                     return go as GameObject;
             return null;
+        }
+
+        public static LevelInfo LevelInfoFromPath(string path)
+        {
+            LevelSettings settings = LevelSettings.CreateAndLoadFromPath(path, out bool _);
+            LevelInfo info = LevelInfo.Create(path, settings);
+
+            return info;
         }
     }
 }

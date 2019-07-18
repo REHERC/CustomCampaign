@@ -12,8 +12,8 @@ namespace CustomCampaign.Systems
         {
             Serializer<Dictionary<string, int>> progress = GetProgress();
             foreach (var campaign in CampaignDatabase.Campaigns)
-                if (!progress.Data.ContainsKey(campaign.Id))
-                    progress.Data.Add(campaign.Id, 0);
+                if (!progress.Data.ContainsKey(campaign.Value.Id))
+                    progress.Data.Add(campaign.Value.Id, 0);
             progress.Save();
         }
 
@@ -34,6 +34,7 @@ namespace CustomCampaign.Systems
 
         public static int GetCampaignProgress(string campaign)
         {
+            return 100;
             return GetProgress().Data[campaign];
         }
 

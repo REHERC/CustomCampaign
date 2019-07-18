@@ -14,7 +14,7 @@ namespace CustomCampaign.Storage
             });
             Events.Scene.StartLoad.Subscribe((data) =>
             {
-                Plugin.Log.Warning(data.sceneName);
+                //Plugin.Log.Warning(data.sceneName);
                 //if (data.sceneName != "GameMode")
                     
             });
