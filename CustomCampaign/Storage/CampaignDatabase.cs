@@ -8,14 +8,14 @@ namespace CustomCampaign.Storage
     {
         public static Dictionary<string, CampaignInfo> Campaigns { get; private set; } = new Dictionary<string, CampaignInfo>();
 
-        public static Dictionary<string, Models.Level> Levels
+        public static Dictionary<CampaignInfo, Models.Level> Levels
         {
             get
             {
-                Dictionary<string, Models.Level> result = new Dictionary<string, Models.Level>();
+                Dictionary<CampaignInfo, Models.Level> result = new Dictionary<CampaignInfo, Models.Level>();
                 foreach (CampaignInfo campaign in Campaigns.Values)
                     foreach (Models.Level level in campaign.Levels)
-                        result.Add(campaign.DataDirectory.NormPath(false), level);
+                        result.Add(campaign, level);
                 return result;
             }
         }
