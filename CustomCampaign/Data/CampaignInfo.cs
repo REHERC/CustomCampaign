@@ -1,40 +1,34 @@
 ﻿using CustomCampaign.Storage;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 #pragma warning disable RCS1001
+
 namespace CustomCampaign.Data
 {
     public class CampaignInfo
     {
-        public string DataDirectory { get; set; }
-        public List<Models.Level> Levels { get; set; }
+        private Models.Campaign Data { get; set; }
+        public string Location { get; set; }
+        public List<Models.Level> Levels => Data.levels;
+        public List<string> LevelPaths => (from level in Levels select level.file.NormPath(true)).ToList();
         public Texture2D Logo { get; set; }
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string[] Authors { get; set; }
-        public /*Campaign.UnlockStyle*/int LockMode { get; set; }
-        public /*GameModeID*/int GameMode { get; set; }
+        public string Id => Data.guid;
+        public string Name => Data.name;
+        public string Description => Data.description;
+        public string[] Authors => Data.authors.Split(';');
+        public Models.Campaign.UnlockStyle LockMode => (Models.Campaign.UnlockStyle)Data.lockmode;
+        public GameModeID GameMode => (GameModeID)Data.gamemode;
 
         public CampaignInfo(string data_dir, Models.Campaign data)
         {
-            Id = data.guid;
-            DataDirectory = data_dir.NormPath(false);
-            Name = data.name;
-            Description = data.description;
-            Authors = data.authors.Split(';');
-            LockMode = data.lockmode;
-            string logo_path = $"{DataDirectory}/{data.logopath}".NormPath(true);
+            Data = data;
+            Location = data_dir.NormPath(false);
+            string logo_path = Path.Combine(Location, Data.logopath).NormPath(true);
             if (File.Exists(logo_path))
-            {
-                byte[] image = File.ReadAllBytes(logo_path);
-                Logo = new Texture2D(2, 2);
-                Logo.LoadImage(image);
-            }
-            Levels = new List<Models.Level>();
-            GameMode = data.gamemode;
+                Logo = Util.LoadTexture(logo_path) as Texture2D;
         }
 
         public void Print()
@@ -49,18 +43,12 @@ namespace CustomCampaign.Data
 
         public LevelSet GetLevelSet(GameModeID gamemode = GameModeID.Nexus)
         {
-            LevelPlaylist playlist = LevelPlaylist.Create(false);
-            foreach (Models.Level level in Levels)
-                playlist.Add(new LevelPlaylist.ModeAndLevelInfo(
-                    gamemode, new LevelNameAndPathPair(
-                    level.file,
-                    level.file)));
             LevelSet set = new LevelSet()
             {
                 gameModeID_ = gamemode
             };
-            foreach (var level in playlist.GetLevelSet())
-                set.AddLevel(level.levelName_, level.levelPath_, LevelType.Official);
+            foreach (string level in LevelPaths)
+                set.AddLevel(level, level, LevelType.Official);
             return set;
         }
     }

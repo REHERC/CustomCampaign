@@ -3,7 +3,6 @@ using CustomCampaign.Storage;
 using CustomCampaign.Systems;
 using Harmony;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -17,22 +16,16 @@ namespace CustomCampaign
 
         public static void Postfix(LevelGridMenu __instance)
         {
+            LockingSystem.CreateProfile();
             if (__instance.isCampaignMode_)
             {
-                LevelSet set = new LevelSet()
-                {
-                    gameModeID_ = GameModeID.Nexus
-                };
-                foreach (string level in CampaignDatabase.LevelPaths)
-                    set.AddLevel(level, level, LevelType.Official);
 
-                __instance.CreateAndAddCampaignLevelSet(set, "All", true, unlock_mode, GameModeID.Nexus);
+                foreach (var campaign in CampaignDatabase.Campaigns)
+                    __instance.CreateAndAddCampaignLevelSet(campaign.Value.GetLevelSet(campaign.Value.GameMode), campaign.Value.Name, true, unlock_mode, campaign.Value.GameMode);
                 __instance.buttonList_.SortAndUpdateVisibleButtons();
             }
-            LockingSystem.CreateProfile();
         }
     }
-
 
     [HarmonyPatch(typeof(LevelInfos), "LoadPersonalLevelInfos")]
     public class LoadPersonalLevelInfos
@@ -169,7 +162,7 @@ namespace CustomCampaign
         }
     }
 
-    //[HarmonyPatch(typeof(LevelGridMenu), "CreateAndAddLevelSet", new Type[] { typeof(LevelSet), typeof(string), typeof(LevelGridMenu.PlaylistEntry.Type), typeof(LevelGroupFlags) })]
+    [HarmonyPatch(typeof(LevelGridMenu), "CreateAndAddLevelSet", new Type[] { typeof(LevelSet), typeof(string), typeof(LevelGridMenu.PlaylistEntry.Type), typeof(LevelGroupFlags) })]
     public class CreateAndAddLevelSet
     {
         public static void Prefix(
@@ -177,9 +170,154 @@ namespace CustomCampaign
         {
             if (type != LevelGridMenu.PlaylistEntry.Type.Campaign)
                 foreach (LevelNameAndPathPair level in set.GetAllLevelNameAndPathPairs())
-                    if (CampaignDatabase.LevelPaths.Contains(level.levelPath_))
+                    if (CampaignDatabase.LevelPaths.Contains(level.levelPath_.NormPath(true)))
                         set.RemoveLevel(level.levelPath_.Normalize());
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    [HarmonyPatch(typeof(LevelIntroTitleLogic), "Update")]
+    public class LevelIntroTitleLogic__Update__Patch
+    {
+        public static void Postfix(LevelIntroTitleLogic __instance)
+        {
+            string path = G.Sys.GameManager_.LevelPath_;
+            if (Util.IsCustomCampaignLevel(path))
+            {
+                __instance.titleLabel_.text = Util.GetLevelTitle(path).Space(1);
+                __instance.subtitleText_.text = Util.GetLevelSubTitle(path).Space(1);
+                __instance.subtitleText_.gameObject.SetActive(true);
+                __instance.subtitleText_.alpha = __instance.titleLabel_.alpha;
+            }
+        }
+    }
+
+    //[HarmonyPatch(typeof(LevelGridMenu), "SetDisplayedInfoForSelectedPlaylist")]
+    public class LevelGridMenuSetDisplayedInfoForSelectedPlaylist
+    {
+        public static void Postfix(LevelGridMenu __instance)
+        {
+            bool flag_campaignmode = __instance.isCampaignMode_;
+            if (flag_campaignmode)
+            {
+                if (__instance.isActiveAndEnabled)
+                {
+                    try
+                    {
+                        LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
+                        string level = playlist.GetLevelSet()[0].levelPath_;
+                        if (Util.IsCustomCampaignLevel(level))
+                        {
+                            __instance.modeDescription_.text = __instance.gridDescription_.text = Util.GetCampaignDescription(level);
+                            __instance.campaignLogo_.mainTexture = Util.GetCampaignLogo(level);
+                        }
+                    }
+                    catch (Exception pizza) { Plugin.Log.Exception(pizza); }
+                }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(LevelGridCell), "OnDisplayedVirtual")]
+    public class LevelGridCellOnDisplayedVirtual
+    {
+        public static void Postfix(LevelGridCell __instance, ref UIButton ___button_)
+        {
+            try
+            {
+                LevelGridGrid.LevelEntry entry = __instance.entry_ as LevelGridGrid.LevelEntry;
+                string path = entry.AbsolutePath_;
+                if (Util.IsCustomCampaignLevel(path))
+                {
+                    __instance.titleLabel_.enabled = false;
+                    __instance.authorLabel_.enabled = false;
+                    __instance.soloTitleLabel_.enabled = true;
+                    if (LockingSystem.IsLevelLocked(path))
+                    {
+                        __instance.lockedIcon_.SetActive(true);
+                        ___button_.onClick.Clear();
+                        string leveltitle = "";
+                        foreach (char c in entry.LevelInfo_.levelName_)
+                            leveltitle += c.ToString() == " " ? " " : "?";
+                        __instance.soloTitleLabel_.text = leveltitle;
+                    }
+                    else
+                        __instance.soloTitleLabel_.text = entry.LevelInfo_.levelName_;
+                }
+            }
+            catch (Exception pizza) { Plugin.Log.Exception(pizza); }
+        }
+    }
+
+    [HarmonyPatch(typeof(BlackFadeLogic), "FinishFadeOut")]
+    public class BlackFadeLogicFinishFadeOut
+    {
+        public static void Postfix(BlackFadeLogic __instance)
+        {
+            string path = G.Sys.GameManager_.NextLevelPath_;
+            if (Util.IsCustomCampaignLevel(path) && __instance.storedSceneToLoad_ != "MainMenu")
+            {
+                Texture background = Util.GetLevelWallpaper(path);
+                if (background != null)
+                    __instance.menu_.loadingTexture_.mainTexture = background;
+            }
+        }
+    }
+
+    //[HarmonyPatch(typeof(PauseMenuLogic), "Update")]
+    public class PauseMenuLogicUpdate
+    {
+        public static void Postfix(PauseMenuLogic __instance)
+        {
+            string path = G.Sys.GameManager_.LevelPath_;
+            if (G.Sys.GameManager_.PauseMenuOpen_ && Util.IsCustomCampaignLevel(path))
+            {
+                __instance.gameMode_.text = Util.GetCampaignName(path);
+                __instance.gameModeDescription_.text = Util.GetCampaignDescription(path);
+                __instance.medal_.Display(MedalStatus.None, false);
+                __instance.medal_.gameObject.SetActive(false);
+                __instance.medal_.Destroy();
+                __instance.upperRightGroup_.SetActive(false);
+                __instance.levelName_.text = "[AAAAAA]Level:[-] [FFFFFF]" + G.Sys.GameManager_.LevelName_;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(LevelGridMenu), "OnGridCellClicked")]
+    public class LevelGridMenuOnGridCellClicked
+    {
+        public static bool Prefix(LevelGridMenu __instance, ref int index)
+        {
+            bool result = false;
+            LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
+            string level = playlist.Playlist_[index].levelNameAndPath_.levelPath_;
+            if (Util.GetCampaignUnlockMode(level) == Models.Campaign.UnlockStyle.LevelSet)
+                result = true;
+            else
+            {
+                bool flag = Util.IsCustomCampaignLevel(level) && LockingSystem.IsLevelLocked(level);
+                if (flag)
+                    G.Sys.MenuPanelManager_.ShowTimedOk(10, Constants.Strings.LevelLocked_Message, Constants.Strings.LevelLocked_Title);
+                result = !flag;
+            }
+            if (result && Util.IsCustomCampaignLevel(level))
+            {
+                CampaignInfo campaign = Util.GetCampaign(level);
+                Events.CampaignLevelStarted.Broadcast(new Events.CampaignLevelStarted.Data(campaign));
+            }
+            return result;
+        }
+    }
 }

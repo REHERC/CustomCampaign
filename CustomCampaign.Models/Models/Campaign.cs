@@ -31,5 +31,11 @@ namespace CustomCampaign.Models
         }
 
         public static implicit operator bool(Campaign campaign) => !(campaign is null);
+
+        public enum UnlockStyle
+        {
+            Campaign = 0,
+            LevelSet = 1
+        }
     }
 }

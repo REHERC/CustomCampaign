@@ -2,7 +2,8 @@
 using System.IO;
 using Newtonsoft.Json;
 
-#pragma warning disable RCS1001
+#pragma warning disable RCS1001, CS0436
+
 namespace Photon.Serialization
 {
     public sealed class JsonGenericSerializer<SERIALIZER_TYPE> : ISerializer<SERIALIZER_TYPE> where SERIALIZER_TYPE : class, new()

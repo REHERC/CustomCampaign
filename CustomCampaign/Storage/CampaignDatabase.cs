@@ -15,7 +15,8 @@ namespace CustomCampaign.Storage
                 Dictionary<CampaignInfo, Models.Level> result = new Dictionary<CampaignInfo, Models.Level>();
                 foreach (CampaignInfo campaign in Campaigns.Values)
                     foreach (Models.Level level in campaign.Levels)
-                        result.Add(campaign, level);
+                        if (!result.ContainsKey(campaign))
+                            result.Add(campaign, level);
                 return result;
             }
         }
@@ -32,6 +33,6 @@ namespace CustomCampaign.Storage
             }
         }
 
-        public static void Add(CampaignInfo campaign) => Campaigns.Add(campaign.DataDirectory.NormPath(false), campaign);
+        public static void Add(CampaignInfo campaign) => Campaigns.Add(campaign.Location.NormPath(false), campaign);
     }
 }

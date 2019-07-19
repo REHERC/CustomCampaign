@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 
-#pragma warning disable RCS1003
+#pragma warning disable RCS1003, CS0436
 namespace CustomCampaign.Data
 {
     [DataContract, Serializable]
@@ -28,12 +28,12 @@ namespace CustomCampaign.Data
 
         public static AddonInfo Load(CampaignInfo campaign, string manifest)
         {
-            string path = Path.GetFullPath($"{campaign.DataDirectory}/{manifest}");
+            string path = Path.GetFullPath($"{campaign.Location}/{manifest}");
             if (File.Exists(path))
             {
                 AddonInfo info = new Serializer<AddonInfo>(SerializerType.Json, path, true, true).Data;
                 info.Id = campaign.Id;
-                info.RootDirectory = campaign.DataDirectory;
+                info.RootDirectory = campaign.Location;
                 return info;
             }
             else return null;

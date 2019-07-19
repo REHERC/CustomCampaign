@@ -2,8 +2,9 @@
 using Photon.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
-#pragma warning disable RCS1001
+#pragma warning disable RCS1001, CS0436
 namespace CustomCampaign.Systems
 {
     public static class LockingSystem
@@ -22,10 +23,11 @@ namespace CustomCampaign.Systems
             string file = levelfile.NormPath(true);
             try
             {
-                if (Util.GetCampaignUnlockMode(levelfile) == Campaign.UnlockStyle.LevelSet)
+                if (Util.GetCampaignUnlockMode(levelfile) == Models.Campaign.UnlockStyle.LevelSet)
                     return false;
                 string campaign = Util.GetCampaignId(file);
-                int completion = GetProgress().Data[campaign];
+                Plugin.Log.Warning($"IsLevelLocked: {file}@{campaign}");
+                int completion = GetCampaignProgress(campaign);
                 return Util.GetLevelIndex(levelfile) > completion;
             }
             catch (Exception pizza) { Plugin.Log.Exception(pizza); }
@@ -34,8 +36,15 @@ namespace CustomCampaign.Systems
 
         public static int GetCampaignProgress(string campaign)
         {
-            return 100;
-            return GetProgress().Data[campaign];
+            if (string.IsNullOrEmpty(campaign)) return 0;
+            Serializer<Dictionary<string, int>> serializer = GetProgress();
+            if (!serializer.Data.ContainsKey(campaign))
+            {
+                serializer.Data.Add(campaign, 0);
+                serializer.Save();
+            }
+
+            return serializer.Data[campaign];
         }
 
         public static Serializer<Dictionary<string, int>> GetProgress()
@@ -57,7 +66,7 @@ namespace CustomCampaign.Systems
         public static string GetProgressFilePath()
         {
             string profile = G.Sys.ProfileManager_.CurrentProfile_.FileName_;
-            return $"{Resource.PersonalProfilesDirPath_}{profile}.json";
+            return $"{Path.Combine(Resource.PersonalProfilesDirPath_, profile)}.json".NormPath(true);
         }
     }
 }

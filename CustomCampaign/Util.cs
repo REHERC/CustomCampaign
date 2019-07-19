@@ -3,7 +3,6 @@ using CustomCampaign.Storage;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 
 #pragma warning disable CS0168, RCS1001, RCS1206
@@ -16,7 +15,7 @@ namespace CustomCampaign
         {
             string file = levelfile.NormPath(true);
             foreach (var campaign in CampaignDatabase.Campaigns)
-                if ((from level in campaign.Value.Levels select level.file.NormPath(true)).Contains(file))
+                if (campaign.Value.LevelPaths.Contains(file))
                     return campaign.Value;
             return null;
         }
@@ -46,10 +45,10 @@ namespace CustomCampaign
             return GetCampaign(levelfile)?.Authors;
         }
 
-        public static Campaign.UnlockStyle GetCampaignUnlockMode(string levelfile)
+        public static Models.Campaign.UnlockStyle GetCampaignUnlockMode(string levelfile)
         {
             CampaignInfo campaign = GetCampaign(levelfile);
-            return campaign != null ? (Campaign.UnlockStyle)campaign.LockMode : Campaign.UnlockStyle.Campaign;
+            return campaign != null ? campaign.LockMode : Models.Campaign.UnlockStyle.Campaign;
         }
 
         public static Models.Level GetLevelInfo(string levelfile)
@@ -83,9 +82,7 @@ namespace CustomCampaign
             string path = GetLevelWallpaperPath(levelfile);
             if (File.Exists(path))
             {
-                byte[] image = File.ReadAllBytes(path);
-                result = new Texture2D(2, 2);
-                result.LoadImage(image);
+                result = LoadTexture(path) as Texture2D;
             }
             return result;
         }
@@ -97,9 +94,9 @@ namespace CustomCampaign
                 string file = levelfile.NormPath(true);
                 List<Models.Level> levels = GetCampaign(levelfile)?.Levels;
                 int index = 0;
-                foreach (Models.Level level in levels ?? new List<Models.Level>())
+                foreach (Models.Level level in levels)
                 {
-                    if (level.file == file)
+                    if (level.file.NormPath(true) == file)
                         return index;
                     index++;
                 }
@@ -129,6 +126,18 @@ namespace CustomCampaign
             LevelInfo info = LevelInfo.Create(path, settings);
 
             return info;
+        }
+
+        public static Texture LoadTexture(string filepath)
+        {
+            Texture2D result = null;
+            if (File.Exists(filepath))
+            {
+                byte[] imagedata = File.ReadAllBytes(filepath);
+                result = new Texture2D(2, 2);
+                result.LoadImage(imagedata);
+            }
+            return result;
         }
     }
 }

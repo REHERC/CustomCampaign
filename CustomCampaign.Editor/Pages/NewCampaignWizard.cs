@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
+#pragma warning disable CS0436
+
 namespace CustomCampaign.Editor.Pages
 {
     public partial class NewCampaignWizard : Page

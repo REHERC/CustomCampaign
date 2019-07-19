@@ -31,10 +31,7 @@ namespace CustomCampaign.Storage
                 {
                     CampaignInfo campaign_info = new CampaignInfo(campaign_directory.NormPath(false), campaign);
                     foreach (Models.Level level in campaign.levels)
-                    {
                         level.file = new FileInfo(Path.Combine(campaign_directory, level.file)).FullName;
-                        campaign_info.Levels.Add(level);
-                    }
                     CampaignDatabase.Add(campaign_info);
                 }
             }

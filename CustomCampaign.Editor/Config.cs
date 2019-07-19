@@ -1,6 +1,8 @@
 ﻿using CustomCampaign.Models;
 using Photon.Serialization;
 
+#pragma warning disable CS0436
+
 namespace CustomCampaign.Editor
 {
     public static class Config

@@ -1,5 +1,7 @@
 ﻿using System;
 
+#pragma warning disable CS0436
+
 namespace Photon.Serialization
 {
     public class Serializer<DATA_TYPE> : ICloneable where DATA_TYPE : class, new()
