@@ -19,7 +19,6 @@ namespace CustomCampaign
             LockingSystem.CreateProfile();
             if (__instance.isCampaignMode_)
             {
-                for (int i=0;i<5;i++)
                 foreach (var campaign in CampaignDatabase.Campaigns)
                     __instance.CreateAndAddCampaignLevelSet(campaign.Value.GetLevelSet(campaign.Value.GameMode), campaign.Value.Name, true, unlock_mode, campaign.Value.GameMode);
                 __instance.buttonList_.SortAndUpdateVisibleButtons();
