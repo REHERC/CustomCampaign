@@ -206,7 +206,7 @@ namespace CustomCampaign
                         string level = playlist.GetLevelSet()[0].levelPath_.NormPath(true);
                         if (Util.IsCustomCampaignLevel(level))
                         {
-                            __instance.modeDescription_.text = __instance.gridDescription_.text = Util.GetCampaignDescription(level) + "---";
+                            __instance.modeDescription_.text = __instance.gridDescription_.text = Util.GetCampaignDescription(level);
                             __instance.campaignLogo_.mainTexture = Util.GetCampaignLogo(level);
                         }
                     }
