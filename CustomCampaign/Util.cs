@@ -87,6 +87,21 @@ namespace CustomCampaign
             return result;
         }
 
+        public static bool GetLevelDisplayIntroState(string levelfile)
+        {
+            return GetLevelInfo(levelfile).display_intro_title;
+        }
+
+        public static bool GetLevelLoadingTextState(string levelfile)
+        {
+            return GetLevelInfo(levelfile).overwrite_loading_text;
+        }
+
+        public static string GetLevelLoadingText(string levelfile)
+        {
+            return GetLevelInfo(levelfile).loading_text;
+        }
+
         public static int GetLevelIndex(string levelfile)
         {
             try
@@ -94,7 +109,7 @@ namespace CustomCampaign
                 string file = levelfile.NormPath(true);
                 List<Models.Level> levels = GetCampaign(levelfile)?.Levels;
                 int index = 0;
-                foreach (Models.Level level in levels)
+                foreach (Models.Level level in levels ?? new List<Models.Level>())
                 {
                     if (level.file.NormPath(true) == file)
                         return index;
@@ -108,7 +123,8 @@ namespace CustomCampaign
 
         public static bool IsCustomCampaignLevel(string levelfile)
         {
-            return GetLevelIndex(levelfile) >= 0;
+            return !(GetCampaign(levelfile) is null);
+            //return GetLevelIndex(levelfile) >= 0;
         }
         #endregion
 

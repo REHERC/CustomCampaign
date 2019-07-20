@@ -26,7 +26,6 @@ namespace CustomCampaign.Systems
                 if (Util.GetCampaignUnlockMode(levelfile) == Models.Campaign.UnlockStyle.LevelSet)
                     return false;
                 string campaign = Util.GetCampaignId(file);
-                Plugin.Log.Warning($"IsLevelLocked: {file}@{campaign}");
                 int completion = GetCampaignProgress(campaign);
                 return Util.GetLevelIndex(levelfile) > completion;
             }

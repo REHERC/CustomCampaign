@@ -19,7 +19,7 @@ namespace CustomCampaign
             LockingSystem.CreateProfile();
             if (__instance.isCampaignMode_)
             {
-
+                for (int i=0;i<5;i++)
                 foreach (var campaign in CampaignDatabase.Campaigns)
                     __instance.CreateAndAddCampaignLevelSet(campaign.Value.GetLevelSet(campaign.Value.GameMode), campaign.Value.Name, true, unlock_mode, campaign.Value.GameMode);
                 __instance.buttonList_.SortAndUpdateVisibleButtons();
@@ -141,7 +141,7 @@ namespace CustomCampaign
         {
             if (CampaignDatabase.LevelPaths.Contains(absoluteLevelPath))
             {
-                __result.labelText_ = $"CustomCampaign/{__result.labelText_}";
+                __result.labelText_ = $"CustomCampaignLevel/{__result.labelText_}";
                 __result.relativeLevelPath_ = absoluteLevelPath;
                 __result.color_ = Colors.yellow;
             }
@@ -175,19 +175,6 @@ namespace CustomCampaign
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     [HarmonyPatch(typeof(LevelIntroTitleLogic), "Update")]
     public class LevelIntroTitleLogic__Update__Patch
     {
@@ -204,7 +191,7 @@ namespace CustomCampaign
         }
     }
 
-    //[HarmonyPatch(typeof(LevelGridMenu), "SetDisplayedInfoForSelectedPlaylist")]
+    [HarmonyPatch(typeof(LevelGridMenu), "SetDisplayedInfoForSelectedPlaylist")]
     public class LevelGridMenuSetDisplayedInfoForSelectedPlaylist
     {
         public static void Postfix(LevelGridMenu __instance)
@@ -217,10 +204,10 @@ namespace CustomCampaign
                     try
                     {
                         LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
-                        string level = playlist.GetLevelSet()[0].levelPath_;
+                        string level = playlist.GetLevelSet()[0].levelPath_.NormPath(true);
                         if (Util.IsCustomCampaignLevel(level))
                         {
-                            __instance.modeDescription_.text = __instance.gridDescription_.text = Util.GetCampaignDescription(level);
+                            __instance.modeDescription_.text = __instance.gridDescription_.text = Util.GetCampaignDescription(level) + "---";
                             __instance.campaignLogo_.mainTexture = Util.GetCampaignLogo(level);
                         }
                     }
@@ -272,23 +259,22 @@ namespace CustomCampaign
                 Texture background = Util.GetLevelWallpaper(path);
                 if (background != null)
                     __instance.menu_.loadingTexture_.mainTexture = background;
+                if (Util.GetLevelLoadingTextState(path))
+                    __instance.menu_.loadingLabel_.text = Util.GetLevelLoadingText(path);
             }
         }
     }
 
-    //[HarmonyPatch(typeof(PauseMenuLogic), "Update")]
+    [HarmonyPatch(typeof(PauseMenuLogic), "Update")]
     public class PauseMenuLogicUpdate
     {
         public static void Postfix(PauseMenuLogic __instance)
         {
-            string path = G.Sys.GameManager_.LevelPath_;
+            string path = G.Sys.GameManager_.LevelPath_.NormPath(true);
             if (G.Sys.GameManager_.PauseMenuOpen_ && Util.IsCustomCampaignLevel(path))
             {
-                __instance.gameMode_.text = Util.GetCampaignName(path);
-                __instance.gameModeDescription_.text = Util.GetCampaignDescription(path);
-                __instance.medal_.Display(MedalStatus.None, false);
-                __instance.medal_.gameObject.SetActive(false);
-                __instance.medal_.Destroy();
+                __instance.gameMode_.text = Util.GetCampaignName(path) + "...";
+                __instance.gameModeDescription_.text = Util.GetCampaignDescription(path) + "...";
                 __instance.upperRightGroup_.SetActive(false);
                 __instance.levelName_.text = "[AAAAAA]Level:[-] [FFFFFF]" + G.Sys.GameManager_.LevelName_;
             }

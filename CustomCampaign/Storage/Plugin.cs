@@ -8,7 +8,7 @@ namespace CustomCampaign.Storage
     public static partial class Plugin
     {
         public static FileSystem Files;
-        public static Logger Log;
+        public static Logger Log { get; set; }
 
         public static void Init()
         {
