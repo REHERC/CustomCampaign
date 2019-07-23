@@ -80,6 +80,8 @@ namespace CustomCampaign.Editor.Pages
             FileInfo file = new FileInfo(path);
             if (!file.Exists) throw new FileNotFoundException($"The file \"{path}\" does not exist!");
 
+            Config.AppendRecentFile(file.FullName);
+
             Serializer<Campaign> serializer = new Serializer<Campaign>(SerializerType.Json, path, true);
             Editor.current_campaign = serializer.Data;
             Editor.current_path = file.DirectoryName;

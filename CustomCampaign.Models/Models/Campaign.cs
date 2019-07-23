@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CustomCampaign.Models.Validators;
+using Newtonsoft.Json;
 using Photon.Serialization;
 using System.Collections.Generic;
 using System.IO;
@@ -20,14 +21,23 @@ namespace CustomCampaign.Models
         public List<Level> levels = new List<Level>();
         public List<Addon> addons = new List<Addon>();
 
+        [JsonIgnore]
+        private FileValidator FileIncludeValidator = new FileValidator();
+
         public static Campaign FromFile(string file)
         {
             return File.Exists(file) ? new Serializer<Campaign>(SerializerType.Json, file, true, true).Data : null;
         }
 
-        public bool Validate()
+        public List<string> IncludedFiles(string rootdirectory = "") => FileIncludeValidator.DefaultInclude(this, rootdirectory);
+
+        public bool Validate(string rootdirectory)
         {
-            return true;
+            bool result = true;
+
+            result &= FileIncludeValidator.Validate(this, rootdirectory);
+
+            return result;
         }
 
         public static implicit operator bool(Campaign campaign) => !(campaign is null);

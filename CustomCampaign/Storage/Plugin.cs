@@ -27,7 +27,7 @@ namespace CustomCampaign.Storage
             {
                 string campaign_json = $"{campaign_directory}/campaign.json".NormPath(true);
                 Models.Campaign campaign = Models.Campaign.FromFile(campaign_json);
-                if (campaign)
+                if (campaign && campaign.Validate(campaign_directory))
                 {
                     CampaignInfo campaign_info = new CampaignInfo(campaign_directory.NormPath(false), campaign);
                     foreach (Models.Level level in campaign.levels)

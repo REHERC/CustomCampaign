@@ -47,12 +47,16 @@
     <Compile Include="Models\AppSettings.cs" />
     <Compile Include="Models\Campaign.cs" />
     <Compile Include="Data\GameModeId.cs" />
+    <Compile Include="Models\Validators\FileValidator.cs" />
     <Compile Include="Models\Level.cs" />
+    <Compile Include="Models\RecentFileList.cs" />
+    <Compile Include="Models\Validators\IValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
