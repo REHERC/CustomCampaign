@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+#pragma warning disable IDE0059
+
 namespace MaterialSkin.Controls
 {
     public class MaterialUserControl : UserControl, IMaterialControl

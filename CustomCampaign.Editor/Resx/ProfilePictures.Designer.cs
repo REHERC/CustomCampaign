@@ -63,6 +63,16 @@ namespace CustomCampaign.Editor.Resx {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Backgrounds {
+            get {
+                object obj = ResourceManager.GetObject("Backgrounds", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Brionac {
             get {
                 object obj = ResourceManager.GetObject("Brionac", resourceCulture);
@@ -86,6 +96,26 @@ namespace CustomCampaign.Editor.Resx {
         internal static System.Drawing.Bitmap Ciastex {
             get {
                 object obj = ResourceManager.GetObject("Ciastex", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Crab {
+            get {
+                object obj = ResourceManager.GetObject("Crab", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Fzeroman {
+            get {
+                object obj = ResourceManager.GetObject("Fzeroman", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,6 +153,16 @@ namespace CustomCampaign.Editor.Resx {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Krispy {
+            get {
+                object obj = ResourceManager.GetObject("Krispy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Mrmii {
             get {
                 object obj = ResourceManager.GetObject("Mrmii", resourceCulture);
@@ -153,6 +193,16 @@ namespace CustomCampaign.Editor.Resx {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Plasmawario {
+            get {
+                object obj = ResourceManager.GetObject("Plasmawario", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Reherc {
             get {
                 object obj = ResourceManager.GetObject("Reherc", resourceCulture);
@@ -163,9 +213,29 @@ namespace CustomCampaign.Editor.Resx {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Semtex4ya {
+            get {
+                object obj = ResourceManager.GetObject("Semtex4ya", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Sperzieboon {
             get {
                 object obj = ResourceManager.GetObject("Sperzieboon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Spzi {
+            get {
+                object obj = ResourceManager.GetObject("Spzi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

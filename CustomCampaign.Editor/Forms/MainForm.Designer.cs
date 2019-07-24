@@ -39,10 +39,10 @@ namespace CustomCampaign.Editor.Forms
             // 
             this.MainPanel.Depth = 0;
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(8, 64);
+            this.MainPanel.Location = new System.Drawing.Point(8, 40);
             this.MainPanel.MouseState = MaterialSkin.MouseState.HOVER;
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(784, 328);
+            this.MainPanel.Size = new System.Drawing.Size(784, 352);
             this.MainPanel.TabIndex = 3;
             // 
             // BugReportBtn
@@ -53,7 +53,7 @@ namespace CustomCampaign.Editor.Forms
             this.BugReportBtn.Depth = 0;
             this.BugReportBtn.Header = true;
             this.BugReportBtn.Icon = null;
-            this.BugReportBtn.Location = new System.Drawing.Point(590, 26);
+            this.BugReportBtn.Location = new System.Drawing.Point(590, 2);
             this.BugReportBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.BugReportBtn.Name = "BugReportBtn";
             this.BugReportBtn.Primary = true;
@@ -71,7 +71,7 @@ namespace CustomCampaign.Editor.Forms
             this.SettingsBtn.Depth = 0;
             this.SettingsBtn.Header = true;
             this.SettingsBtn.Icon = null;
-            this.SettingsBtn.Location = new System.Drawing.Point(699, 26);
+            this.SettingsBtn.Location = new System.Drawing.Point(699, 2);
             this.SettingsBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.SettingsBtn.Name = "SettingsBtn";
             this.SettingsBtn.Primary = true;
@@ -86,14 +86,16 @@ namespace CustomCampaign.Editor.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Bar = false;
             this.ClientSize = new System.Drawing.Size(800, 400);
             this.Controls.Add(this.SettingsBtn);
             this.Controls.Add(this.BugReportBtn);
             this.Controls.Add(this.MainPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "MainForm";
-            this.Padding = new System.Windows.Forms.Padding(8, 64, 8, 8);
+            this.Padding = new System.Windows.Forms.Padding(8, 40, 8, 8);
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

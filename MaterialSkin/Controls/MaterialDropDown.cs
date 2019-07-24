@@ -7,6 +7,8 @@ using System.Drawing.Text;
 using System.Windows.Forms;
 using MaterialSkin.Animations;
 
+#pragma warning disable IDE0051
+
 public class MaterialDropDown : ComboBox, IMaterialControl
 {
     //Properties for managing the material design properties

@@ -36,12 +36,12 @@
             this.FlowLayout.AutoScroll = true;
             this.FlowLayout.Depth = 0;
             this.FlowLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FlowLayout.Location = new System.Drawing.Point(0, 64);
+            this.FlowLayout.Location = new System.Drawing.Point(0, 40);
             this.FlowLayout.Margin = new System.Windows.Forms.Padding(0);
             this.FlowLayout.MouseState = MaterialSkin.MouseState.HOVER;
             this.FlowLayout.Name = "FlowLayout";
             this.FlowLayout.Padding = new System.Windows.Forms.Padding(8);
-            this.FlowLayout.Size = new System.Drawing.Size(850, 386);
+            this.FlowLayout.Size = new System.Drawing.Size(1084, 522);
             this.FlowLayout.TabIndex = 0;
             // 
             // PizzaForm
@@ -49,15 +49,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(850, 450);
+            this.Bar = false;
+            this.ClientSize = new System.Drawing.Size(1084, 562);
             this.Controls.Add(this.FlowLayout);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PizzaForm";
-            this.Padding = new System.Windows.Forms.Padding(0, 64, 0, 0);
+            this.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "THE SIMPLES (The people behind custom campaign support for distance)";
+            this.Title = "They contributed directly or indirectly to custom campaigns";
             this.ResumeLayout(false);
 
         }

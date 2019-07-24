@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using MaterialSkin.Controls;
 using MaterialSkin.Properties;
 
+#pragma warning disable IDE0052
+
 namespace MaterialSkin
 {
     public class MaterialSkinManager
@@ -109,10 +111,10 @@ namespace MaterialSkin
 
         //Application background
         private static readonly Color BACKGROUND_LIGHT = Color.FromArgb(255, 255, 255, 255);
-        private static Brush BACKGROUND_LIGHT_BRUSH = new SolidBrush(BACKGROUND_LIGHT);
+        private static readonly Brush BACKGROUND_LIGHT_BRUSH = new SolidBrush(BACKGROUND_LIGHT);
 
         private static readonly Color BACKGROUND_DARK = Color.FromArgb(255, 51, 51, 51);
-        private static Brush BACKGROUND_DARK_BRUSH = new SolidBrush(BACKGROUND_DARK);
+        private static readonly Brush BACKGROUND_DARK_BRUSH = new SolidBrush(BACKGROUND_DARK);
 
         //Application action bar
         public readonly Color ACTION_BAR_TEXT = Color.FromArgb(255, 255, 255, 255);
@@ -321,8 +323,7 @@ namespace MaterialSkin
             {
                 UpdateToolStrip(controlToUpdate.ContextMenuStrip, newBackColor);
             }
-            var tabControl = controlToUpdate as MaterialTabControl;
-            if (tabControl != null)
+            if (controlToUpdate is MaterialTabControl tabControl)
             {
                 foreach (TabPage tabPage in tabControl.TabPages)
                 {

@@ -252,6 +252,27 @@
   <ItemGroup>
     <None Include="Resources\Sperzieboon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Backgrounds%27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fzeroman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Krispy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plasmawario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Semtex4ya.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Spzi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crab.png" />
+  </ItemGroup>
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

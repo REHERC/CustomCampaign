@@ -47,7 +47,7 @@ namespace CustomCampaign.Editor.Forms
             Show();
         }
 
-        Queue<Keys> KeyStrokes = new Queue<Keys>();
+        readonly Queue<Keys> KeyStrokes = new Queue<Keys>();
         DateTime LastInput = DateTime.UtcNow;
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -71,7 +71,7 @@ namespace CustomCampaign.Editor.Forms
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private Dictionary<string, Action> Secrets = new Dictionary<string, Action>() {
+        private readonly Dictionary<string, Action> Secrets = new Dictionary<string, Action>() {
             { "UpUpDownDownLeftRightLeftRightBA", () => {
                 Globals.MainWindow.Hide();
                 new PizzaForm().ShowDialog();

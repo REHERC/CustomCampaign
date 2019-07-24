@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Backgrounds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Backgrounds'.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Brionac" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Brionac.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -126,6 +129,12 @@
   </data>
   <data name="Ciastex" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ciastex.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Crab" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fzeroman" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FZeroman.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Ghostly" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ghostly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,6 +145,9 @@
   <data name="Jay2a" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Jay2a.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Krispy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Krispy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Mrmii" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mrmii.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -145,10 +157,19 @@
   <data name="Pinesofchaos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pinesofchaos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Plasmawario" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Plasmawario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Reherc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Reherc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Semtex4ya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Semtex4ya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Sperzieboon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sperzieboon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Spzi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Spzi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -5,6 +5,8 @@ using System.Drawing.Text;
 using System.Windows.Forms;
 using MaterialSkin.Animations;
 
+#pragma warning disable IDE0059
+
 namespace MaterialSkin.Controls
 {
     public class MaterialContextMenuStrip : ContextMenuStrip, IMaterialControl
@@ -132,8 +134,7 @@ namespace MaterialSkin.Controls
             g.FillRectangle(e.Item.Selected && e.Item.Enabled ? SkinManager.GetCmsSelectedItemBrush() : new SolidBrush(SkinManager.GetApplicationBackgroundColor()), itemRect);
 
             //Ripple animation
-            var toolStrip = e.ToolStrip as MaterialContextMenuStrip;
-            if (toolStrip != null)
+            if (e.ToolStrip is MaterialContextMenuStrip toolStrip)
             {
                 var animationManager = toolStrip.AnimationManager;
                 var animationSource = toolStrip.AnimationSource;

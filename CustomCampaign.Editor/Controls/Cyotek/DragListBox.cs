@@ -403,10 +403,7 @@ namespace CustomCampaign.Editor.Controls.Cyotek
 
             handler = this.ItemDrag;
 
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            handler?.Invoke(this, e);
         }
 
         /// <summary>
@@ -419,10 +416,7 @@ namespace CustomCampaign.Editor.Controls.Cyotek
 
             handler = this.ItemDragging;
 
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            handler?.Invoke(this, e);
         }
 
         protected virtual void OnWmPaint(ref Message m)

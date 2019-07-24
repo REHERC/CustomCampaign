@@ -51,7 +51,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabSelector.BaseTabControl = this.Tabs;
             this.TabSelector.Depth = 0;
-            this.TabSelector.Location = new System.Drawing.Point(108, 24);
+            this.TabSelector.Location = new System.Drawing.Point(108, 0);
             this.TabSelector.Margin = new System.Windows.Forms.Padding(0);
             this.TabSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabSelector.Name = "TabSelector";
@@ -65,12 +65,12 @@
             this.Tabs.Controls.Add(this.AppearanceTab);
             this.Tabs.Depth = 0;
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabs.Location = new System.Drawing.Point(8, 64);
+            this.Tabs.Location = new System.Drawing.Point(8, 40);
             this.Tabs.Margin = new System.Windows.Forms.Padding(0);
             this.Tabs.MouseState = MaterialSkin.MouseState.HOVER;
             this.Tabs.Name = "Tabs";
             this.Tabs.SelectedIndex = 0;
-            this.Tabs.Size = new System.Drawing.Size(624, 243);
+            this.Tabs.Size = new System.Drawing.Size(624, 267);
             this.Tabs.TabIndex = 1;
             // 
             // AppearanceTab
@@ -80,7 +80,7 @@
             this.AppearanceTab.Margin = new System.Windows.Forms.Padding(0);
             this.AppearanceTab.Name = "AppearanceTab";
             this.AppearanceTab.Padding = new System.Windows.Forms.Padding(8);
-            this.AppearanceTab.Size = new System.Drawing.Size(616, 217);
+            this.AppearanceTab.Size = new System.Drawing.Size(616, 241);
             this.AppearanceTab.TabIndex = 0;
             this.AppearanceTab.Text = "Appearance";
             this.AppearanceTab.UseVisualStyleBackColor = true;
@@ -103,7 +103,7 @@
             this.AppearanceSettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.AppearanceSettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.AppearanceSettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.AppearanceSettingsLayout.Size = new System.Drawing.Size(600, 201);
+            this.AppearanceSettingsLayout.Size = new System.Drawing.Size(600, 225);
             this.AppearanceSettingsLayout.TabIndex = 0;
             // 
             // DarkMode
@@ -216,20 +216,22 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Bar = false;
             this.ClientSize = new System.Drawing.Size(640, 360);
             this.Controls.Add(this.Tabs);
             this.Controls.Add(this.Divider);
             this.Controls.Add(this.BottomActions);
             this.Controls.Add(this.TabSelector);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
-            this.Padding = new System.Windows.Forms.Padding(8, 64, 8, 8);
+            this.Padding = new System.Windows.Forms.Padding(8, 40, 8, 8);
             this.ShowIcon = false;
             this.Sizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Settings";
+            this.Title = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.Tabs.ResumeLayout(false);
             this.AppearanceTab.ResumeLayout(false);

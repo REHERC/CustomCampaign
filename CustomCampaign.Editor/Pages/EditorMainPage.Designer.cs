@@ -198,6 +198,7 @@ namespace CustomCampaign.Editor.Pages
             this.PackBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PackBtn.Depth = 0;
             this.PackBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PackBtn.Enabled = false;
             this.PackBtn.Icon = null;
             this.PackBtn.Location = new System.Drawing.Point(0, 108);
             this.PackBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);

@@ -18,6 +18,8 @@ namespace CustomCampaign.Editor.Pages
 
             foreach (var mode in GameModeId.ConversionTable)
                 CampaignGamemode.Items.Add(mode.Key);
+
+            AddonsTab.Dispose();
         }
 
         public override void OnDisplay()

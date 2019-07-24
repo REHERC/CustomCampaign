@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using MaterialSkin.Animations;
 
+#pragma warning disable IDE0059
+
 namespace MaterialSkin.Controls
 {
     public class MaterialSingleLineTextField : Control, IMaterialControl
@@ -1144,8 +1146,7 @@ namespace MaterialSkin.Controls
 
             private void ContextMenuStripOnOpening(object sender, CancelEventArgs cancelEventArgs)
             {
-                var strip = sender as TextBoxContextMenuStrip;
-                if (strip != null)
+                if (sender is TextBoxContextMenuStrip strip)
                 {
                     strip.Undo.Enabled = CanUndo;
                     strip.Cut.Enabled = !string.IsNullOrEmpty(SelectedText);

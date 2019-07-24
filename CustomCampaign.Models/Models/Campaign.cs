@@ -22,7 +22,7 @@ namespace CustomCampaign.Models
         public List<Addon> addons = new List<Addon>();
 
         [JsonIgnore]
-        private FileValidator FileIncludeValidator = new FileValidator();
+        private readonly FileValidator FileIncludeValidator = new FileValidator();
 
         public static Campaign FromFile(string file)
         {

@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
+#pragma warning disable IDE0059
+
 namespace MaterialSkin.Controls
 {
     public class MaterialLabel : Label, IMaterialControl

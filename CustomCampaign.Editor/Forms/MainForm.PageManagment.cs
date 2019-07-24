@@ -41,7 +41,7 @@ namespace CustomCampaign.Editor.Forms
                 page.TitleChanged += (sender) =>
                 {
                     if (sender.Visible)
-                        Text = sender.PageTitle;
+                        Title = sender.PageTitle;
                 };
             }
         }
@@ -70,7 +70,7 @@ namespace CustomCampaign.Editor.Forms
             }
             currentpage.Visible = true;
             //PageNameBackground.Visible = (bool)(currentpage.PageTitle != "");
-            Text = currentpage.PageTitle;
+            Title = currentpage.PageTitle;
             currentpage.OnDisplay();
             currentpage.Select();
             currentpage.Focus();
