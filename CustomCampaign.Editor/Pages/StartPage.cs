@@ -68,5 +68,10 @@ namespace CustomCampaign.Editor.Pages
                 button.BringToFront();
             }
         }
+
+        private void ImportBtn_Click(object sender, EventArgs e)
+        {
+            Globals.ImportCampaign();
+        }
     }
 }

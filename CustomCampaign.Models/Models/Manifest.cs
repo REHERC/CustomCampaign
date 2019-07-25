@@ -5,7 +5,8 @@
         public string name = "";
         public string description = "";
         public string authors;
+        public string logo = "";
         public bool useaddons = false;
-        public int levels;
+        public int levels = 0;
     }
 }

@@ -20,6 +20,7 @@ namespace CustomCampaign.Editor.Forms
             AddPage(new NewCampaignWizard());
             AddPage(new EditorMainPage());
             AddPage(new EditLevelPage());
+            AddPage(new ImportCampaignPage());
 
             systemmenu = new SystemMenu(this);
 
@@ -93,9 +94,7 @@ namespace CustomCampaign.Editor.Forms
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Globals.IsFileOpened && MessageBox.Show("Are you sure you want to close this window?\nAny unsaved changes will be discarded!", "Quit application?", MessageBoxButtons.YesNo) == DialogResult.No)
-            {
                 e.Cancel = true;
-            }
         }
     }
 }

@@ -31,5 +31,23 @@ namespace CustomCampaign.Editor
                 }
             }
         }
+
+        public static void ImportCampaign()
+        {
+            using (OpenFileDialog dlg = new OpenFileDialog())
+            {
+                dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
+                dlg.Filter = Constants.ExportDialogFilter;
+                dlg.FilterIndex = 0;
+                dlg.RestoreDirectory = true;
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    MainWindow.GetPage<ImportCampaignPage>("pages:importcampaign").ImportFile(dlg.FileName);
+                    //MainWindow.GetPage<EditorMainPage>("pages:importcampaign").LoadCampaign(dlg.FileName);
+                    MainWindow.SetPage("pages:importcampaign");
+                }
+            }
+        }
     }
 }

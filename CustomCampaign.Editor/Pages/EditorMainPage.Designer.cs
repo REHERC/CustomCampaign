@@ -153,8 +153,8 @@ namespace CustomCampaign.Editor.Pages
             // 
             // ActionsPanel
             // 
-            this.ActionsPanel.Controls.Add(this.FolderBtn);
             this.ActionsPanel.Controls.Add(this.CloseBtn);
+            this.ActionsPanel.Controls.Add(this.FolderBtn);
             this.ActionsPanel.Controls.Add(this.PackBtn);
             this.ActionsPanel.Controls.Add(this.SaveBtn);
             this.ActionsPanel.Controls.Add(this.OpenBtn);
@@ -192,9 +192,9 @@ namespace CustomCampaign.Editor.Pages
             this.CloseBtn.AutoSize = true;
             this.CloseBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CloseBtn.Depth = 0;
-            this.CloseBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CloseBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.CloseBtn.Icon = null;
-            this.CloseBtn.Location = new System.Drawing.Point(0, 229);
+            this.CloseBtn.Location = new System.Drawing.Point(0, 180);
             this.CloseBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CloseBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.CloseBtn.Name = "CloseBtn";

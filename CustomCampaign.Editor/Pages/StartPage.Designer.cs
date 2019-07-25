@@ -36,6 +36,7 @@ namespace CustomCampaign.Editor.Pages
             this.RecentLbl = new MaterialSkin.Controls.MaterialLabel();
             this.RecentList = new MaterialSkin.Controls.MaterialPanel();
             this.BtnLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
+            this.ImportBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TutorialsBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.NewBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.OpenBtn = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -122,9 +123,13 @@ namespace CustomCampaign.Editor.Pages
             // 
             // BtnLayout
             // 
+            this.BtnLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnLayout.AutoSize = true;
             this.BtnLayout.ColumnCount = 1;
             this.BtnLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.BtnLayout.Controls.Add(this.TutorialsBtn, 0, 4);
+            this.BtnLayout.Controls.Add(this.ImportBtn, 0, 3);
+            this.BtnLayout.Controls.Add(this.TutorialsBtn, 0, 5);
             this.BtnLayout.Controls.Add(this.NewBtn, 0, 1);
             this.BtnLayout.Controls.Add(this.OpenBtn, 0, 2);
             this.BtnLayout.Controls.Add(this.GetStartedLbl, 0, 0);
@@ -133,14 +138,35 @@ namespace CustomCampaign.Editor.Pages
             this.BtnLayout.Margin = new System.Windows.Forms.Padding(8);
             this.BtnLayout.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnLayout.Name = "BtnLayout";
-            this.BtnLayout.RowCount = 5;
+            this.BtnLayout.RowCount = 6;
             this.BtnLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.BtnLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.BtnLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.BtnLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.BtnLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.BtnLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.BtnLayout.Size = new System.Drawing.Size(200, 152);
+            this.BtnLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.BtnLayout.Size = new System.Drawing.Size(200, 180);
             this.BtnLayout.TabIndex = 6;
+            // 
+            // ImportBtn
+            // 
+            this.ImportBtn.AutoSize = true;
+            this.ImportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ImportBtn.Depth = 0;
+            this.ImportBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ImportBtn.Header = true;
+            this.ImportBtn.Icon = null;
+            this.ImportBtn.Location = new System.Drawing.Point(4, 88);
+            this.ImportBtn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ImportBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ImportBtn.Name = "ImportBtn";
+            this.ImportBtn.Primary = true;
+            this.ImportBtn.Size = new System.Drawing.Size(192, 28);
+            this.ImportBtn.TabIndex = 4;
+            this.ImportBtn.Text = "Import";
+            this.ImportBtn.UseVisualStyleBackColor = true;
+            this.ImportBtn.Click += new System.EventHandler(this.ImportBtn_Click);
             // 
             // TutorialsBtn
             // 
@@ -149,7 +175,7 @@ namespace CustomCampaign.Editor.Pages
             this.TutorialsBtn.Depth = 0;
             this.TutorialsBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.TutorialsBtn.Icon = null;
-            this.TutorialsBtn.Location = new System.Drawing.Point(4, 116);
+            this.TutorialsBtn.Location = new System.Drawing.Point(4, 144);
             this.TutorialsBtn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 8);
             this.TutorialsBtn.MaximumSize = new System.Drawing.Size(0, 28);
             this.TutorialsBtn.MinimumSize = new System.Drawing.Size(0, 28);
@@ -232,6 +258,7 @@ namespace CustomCampaign.Editor.Pages
             this.BtnLayout.ResumeLayout(false);
             this.BtnLayout.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -247,5 +274,6 @@ namespace CustomCampaign.Editor.Pages
         private MaterialSkin.Controls.MaterialRaisedButton NewBtn;
         private MaterialSkin.Controls.MaterialRaisedButton OpenBtn;
         private MaterialSkin.Controls.MaterialLabel GetStartedLbl;
+        private MaterialRaisedButton ImportBtn;
     }
 }

@@ -227,9 +227,12 @@ namespace CustomCampaign.Editor.Pages
                                 description = campaign.description,
                                 authors = campaign.authors,
                                 useaddons = campaign.addons.Count > 0,
-                                levels = campaign.levels.Count
+                                levels = campaign.levels.Count,
+                                logo = $"data/{campaign.logopath}"
                             }, Formatting.Indented)
                         );
+
+                        archive.CreateEntry("readme.txt").WriteContent("Don't modify the content of this archive manually or it might not work anymore!");
                     }
                 }
             }
