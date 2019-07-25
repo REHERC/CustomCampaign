@@ -3,11 +3,16 @@ using System.IO;
 
 namespace CustomCampaign.Models.Validators
 {
-    class FileValidator : IValidator
+    public class FileValidator : IValidator
     {
         public List<string> DefaultInclude(Campaign campaign, string rootdirectory)
         {
             List<string> result = new List<string>();
+
+            result.Add("campaign.json");
+
+            if (!string.IsNullOrEmpty(campaign.logopath))
+                result.Add(campaign.logopath);
 
             foreach (Level level in campaign.levels)
             {

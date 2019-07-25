@@ -18,16 +18,16 @@ namespace CustomCampaign.Editor
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
                 dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
-                dlg.Filter = Constants.DialogFilter;
+                dlg.Filter = Constants.CampaignDialogFilter;
                 dlg.FilterIndex = 0;
                 dlg.RestoreDirectory = true;
 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    Globals.IsFileOpened = true;
-                    Globals.MainWindow.GetPage<EditorMainPage>("pages:editormain").GoToFileTab();
-                    Globals.MainWindow.GetPage<EditorMainPage>("pages:editormain").LoadCampaign(dlg.FileName);
-                    Globals.MainWindow.SetPage("pages:editormain");
+                    IsFileOpened = true;
+                    MainWindow.GetPage<EditorMainPage>("pages:editormain").GoToFileTab();
+                    MainWindow.GetPage<EditorMainPage>("pages:editormain").LoadCampaign(dlg.FileName);
+                    MainWindow.SetPage("pages:editormain");
                 }
             }
         }

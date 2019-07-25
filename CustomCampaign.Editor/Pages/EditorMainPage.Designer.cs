@@ -37,6 +37,7 @@ namespace CustomCampaign.Editor.Pages
             this.FileTab = new System.Windows.Forms.TabPage();
             this.FileLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.ActionsPanel = new MaterialSkin.Controls.MaterialPanel();
+            this.FolderBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.CloseBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.PackBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.SaveBtn = new MaterialSkin.Controls.MaterialFlatButton();
@@ -136,13 +137,8 @@ namespace CustomCampaign.Editor.Pages
             // FileLayout
             // 
             this.FileLayout.ColumnCount = 2;
-            this.FileLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.FileLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.FileLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.FileLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.FileLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.FileLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.FileLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.FileLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.FileLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.FileLayout.Controls.Add(this.ActionsPanel, 0, 0);
             this.FileLayout.Controls.Add(this.FileRightSide, 1, 0);
             this.FileLayout.Depth = 0;
@@ -152,13 +148,12 @@ namespace CustomCampaign.Editor.Pages
             this.FileLayout.Name = "FileLayout";
             this.FileLayout.RowCount = 1;
             this.FileLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.FileLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 265F));
-            this.FileLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 265F));
             this.FileLayout.Size = new System.Drawing.Size(776, 265);
             this.FileLayout.TabIndex = 0;
             // 
             // ActionsPanel
             // 
+            this.ActionsPanel.Controls.Add(this.FolderBtn);
             this.ActionsPanel.Controls.Add(this.CloseBtn);
             this.ActionsPanel.Controls.Add(this.PackBtn);
             this.ActionsPanel.Controls.Add(this.SaveBtn);
@@ -171,22 +166,40 @@ namespace CustomCampaign.Editor.Pages
             this.ActionsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.ActionsPanel.MouseState = MaterialSkin.MouseState.HOVER;
             this.ActionsPanel.Name = "ActionsPanel";
-            this.ActionsPanel.Size = new System.Drawing.Size(155, 265);
+            this.ActionsPanel.Size = new System.Drawing.Size(160, 265);
             this.ActionsPanel.TabIndex = 0;
+            // 
+            // FolderBtn
+            // 
+            this.FolderBtn.AutoSize = true;
+            this.FolderBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.FolderBtn.Depth = 0;
+            this.FolderBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FolderBtn.Icon = null;
+            this.FolderBtn.Location = new System.Drawing.Point(0, 144);
+            this.FolderBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.FolderBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.FolderBtn.Name = "FolderBtn";
+            this.FolderBtn.Primary = false;
+            this.FolderBtn.Size = new System.Drawing.Size(159, 36);
+            this.FolderBtn.TabIndex = 6;
+            this.FolderBtn.Text = "Project Folder";
+            this.FolderBtn.UseVisualStyleBackColor = true;
+            this.FolderBtn.Click += new System.EventHandler(this.FolderBtn_Click);
             // 
             // CloseBtn
             // 
             this.CloseBtn.AutoSize = true;
             this.CloseBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CloseBtn.Depth = 0;
-            this.CloseBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CloseBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CloseBtn.Icon = null;
-            this.CloseBtn.Location = new System.Drawing.Point(0, 144);
+            this.CloseBtn.Location = new System.Drawing.Point(0, 229);
             this.CloseBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CloseBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Primary = false;
-            this.CloseBtn.Size = new System.Drawing.Size(154, 36);
+            this.CloseBtn.Size = new System.Drawing.Size(159, 36);
             this.CloseBtn.TabIndex = 4;
             this.CloseBtn.Text = "Close Project";
             this.CloseBtn.UseVisualStyleBackColor = true;
@@ -198,17 +211,17 @@ namespace CustomCampaign.Editor.Pages
             this.PackBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PackBtn.Depth = 0;
             this.PackBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PackBtn.Enabled = false;
             this.PackBtn.Icon = null;
             this.PackBtn.Location = new System.Drawing.Point(0, 108);
             this.PackBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.PackBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.PackBtn.Name = "PackBtn";
             this.PackBtn.Primary = false;
-            this.PackBtn.Size = new System.Drawing.Size(154, 36);
+            this.PackBtn.Size = new System.Drawing.Size(159, 36);
             this.PackBtn.TabIndex = 3;
-            this.PackBtn.Text = "Pack Files (Export)";
+            this.PackBtn.Text = "Export";
             this.PackBtn.UseVisualStyleBackColor = true;
+            this.PackBtn.Click += new System.EventHandler(this.PackBtn_Click);
             // 
             // SaveBtn
             // 
@@ -222,7 +235,7 @@ namespace CustomCampaign.Editor.Pages
             this.SaveBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Primary = false;
-            this.SaveBtn.Size = new System.Drawing.Size(154, 36);
+            this.SaveBtn.Size = new System.Drawing.Size(159, 36);
             this.SaveBtn.TabIndex = 2;
             this.SaveBtn.Text = "Save";
             this.SaveBtn.UseVisualStyleBackColor = true;
@@ -240,7 +253,7 @@ namespace CustomCampaign.Editor.Pages
             this.OpenBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.OpenBtn.Name = "OpenBtn";
             this.OpenBtn.Primary = false;
-            this.OpenBtn.Size = new System.Drawing.Size(154, 36);
+            this.OpenBtn.Size = new System.Drawing.Size(159, 36);
             this.OpenBtn.TabIndex = 1;
             this.OpenBtn.Text = "Open";
             this.OpenBtn.UseVisualStyleBackColor = true;
@@ -258,7 +271,7 @@ namespace CustomCampaign.Editor.Pages
             this.NewBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.NewBtn.Name = "NewBtn";
             this.NewBtn.Primary = false;
-            this.NewBtn.Size = new System.Drawing.Size(154, 36);
+            this.NewBtn.Size = new System.Drawing.Size(159, 36);
             this.NewBtn.TabIndex = 0;
             this.NewBtn.Text = "New";
             this.NewBtn.UseVisualStyleBackColor = true;
@@ -269,7 +282,7 @@ namespace CustomCampaign.Editor.Pages
             this.MenuDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.MenuDivider.Depth = 0;
             this.MenuDivider.Dock = System.Windows.Forms.DockStyle.Right;
-            this.MenuDivider.Location = new System.Drawing.Point(154, 0);
+            this.MenuDivider.Location = new System.Drawing.Point(159, 0);
             this.MenuDivider.MouseState = MaterialSkin.MouseState.HOVER;
             this.MenuDivider.Name = "MenuDivider";
             this.MenuDivider.Size = new System.Drawing.Size(1, 265);
@@ -284,7 +297,7 @@ namespace CustomCampaign.Editor.Pages
             this.FileRightSide.Controls.Add(this.Overview, 0, 0);
             this.FileRightSide.Depth = 0;
             this.FileRightSide.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FileRightSide.Location = new System.Drawing.Point(155, 0);
+            this.FileRightSide.Location = new System.Drawing.Point(160, 0);
             this.FileRightSide.Margin = new System.Windows.Forms.Padding(0);
             this.FileRightSide.MouseState = MaterialSkin.MouseState.HOVER;
             this.FileRightSide.Name = "FileRightSide";
@@ -600,5 +613,6 @@ namespace CustomCampaign.Editor.Pages
         private System.Windows.Forms.ToolStripMenuItem EditLevel;
         private System.Windows.Forms.ToolStripMenuItem RemoveLevel;
         private LevelBox Levels;
+        private MaterialFlatButton FolderBtn;
     }
 }

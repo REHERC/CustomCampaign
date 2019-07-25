@@ -9,7 +9,7 @@ namespace CustomCampaign.Editor.Forms
 {
     public partial class MainForm : MaterialForm
     {
-        private SystemMenu systemmenu;
+        private readonly SystemMenu systemmenu;
 
         public MainForm()
         {
@@ -49,11 +49,6 @@ namespace CustomCampaign.Editor.Forms
         private void FormTitle_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void SettingsBtn_Click(object sender, EventArgs e)

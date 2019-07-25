@@ -1,9 +1,13 @@
 ﻿using CustomCampaign.Data;
 using CustomCampaign.Editor.Classes;
 using CustomCampaign.Models;
+using Newtonsoft.Json;
 using Photon.Serialization;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Windows.Forms;
 
 #pragma warning disable CS0436
@@ -107,7 +111,7 @@ namespace CustomCampaign.Editor.Pages
             #endregion
         }
 
-        public void SaveCampaign()
+        public Campaign UpdateWorkingstate()
         {
             Campaign _ = Editor.current_campaign;
 
@@ -122,10 +126,15 @@ namespace CustomCampaign.Editor.Pages
             foreach (Level level in Levels.Items)
                 _.levels.Add(level);
 
+            return (Editor.current_campaign = _);
+        }
+
+        public void SaveCampaign()
+        {
             Serializer<Campaign> serializer = new Serializer<Campaign>(SerializerType.Json,
             Path.Combine(Editor.current_path, "campaign.json"), false)
             {
-                Data = Editor.current_campaign
+                Data = UpdateWorkingstate()
             };
             serializer.Save();
         }
@@ -143,9 +152,7 @@ namespace CustomCampaign.Editor.Pages
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup(new Level(), "Add a level");
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
                 if (result == DialogResult.OK)
-                {
                     Levels.Items.Insert(index + 1, data);
-                }
                 Globals.MainWindow.SetPage("pages:editormain");
             };
             Globals.MainWindow.SetPage("pages:editlevel");
@@ -167,9 +174,7 @@ namespace CustomCampaign.Editor.Pages
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup((Level)Levels.Items[index], "Edit a level");
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
                 if (result == DialogResult.OK)
-                {
                     Levels.Items[index] = data;
-                }
                 Globals.MainWindow.SetPage("pages:editormain");
             };
             Globals.MainWindow.SetPage("pages:editlevel");
@@ -181,6 +186,58 @@ namespace CustomCampaign.Editor.Pages
                 Levels.Items.RemoveAt(Levels.SelectedIndex);
         }
 
-        
+        private void PackBtn_Click(object sender, System.EventArgs e)
+        {
+            ExportToZip();
+        }
+
+        public void ExportToZip()
+        {
+            Campaign campaign = UpdateWorkingstate();
+
+            if (!campaign.Validate(Editor.current_path)) return;
+
+            using (SaveFileDialog dlg = new SaveFileDialog())
+            {
+                dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
+                dlg.Filter = Constants.ExportDialogFilter;
+                dlg.FilterIndex = 0;
+                dlg.RestoreDirectory = true;
+                dlg.OverwritePrompt = true;
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(dlg.FileName))
+                            File.Delete(dlg.FileName);
+
+                    using (ZipArchive archive = ZipFile.Open(dlg.FileName, ZipArchiveMode.Create))
+                    {
+                        foreach (string file in campaign.IncludedFiles(Editor.current_path))
+                        {
+                            FileInfo include = new FileInfo(Path.Combine(Editor.current_path, file));
+                            archive.CreateEntryFromFile(include.FullName, $"data/{file}");
+
+                            archive.CreateEntry($".check/{file}.md5").WriteContent(include.GetMD5());
+                        }
+                        archive.CreateEntry("manifest").WriteContent
+                        (
+                            JsonConvert.SerializeObject(new Models.Manifest()
+                            {
+                                name = campaign.name,
+                                description = campaign.description,
+                                authors = campaign.authors,
+                                useaddons = campaign.addons.Count > 0,
+                                levels = campaign.levels.Count
+                            }, Formatting.Indented)
+                        );
+                    }
+                }
+            }
+        }
+
+        private void FolderBtn_Click(object sender, EventArgs e)
+        {
+            Process.Start(Editor.current_path);
+        }
     }
 }

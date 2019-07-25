@@ -1,4 +1,6 @@
-﻿namespace CustomCampaign.Editor.Forms
+﻿#pragma warning disable CS0108  
+
+namespace CustomCampaign.Editor.Forms
 {
     public partial class ProgressDialog : MaterialSkin.Controls.MaterialForm
     {

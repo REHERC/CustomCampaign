@@ -42,11 +42,11 @@ namespace CustomCampaign.Editor.Forms
             this.MainPanel.Controls.Add(this.Progress);
             this.MainPanel.Depth = 0;
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(0, 24);
+            this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.MouseState = MaterialSkin.MouseState.HOVER;
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Padding = new System.Windows.Forms.Padding(16);
-            this.MainPanel.Size = new System.Drawing.Size(360, 76);
+            this.MainPanel.Size = new System.Drawing.Size(360, 96);
             this.MainPanel.TabIndex = 0;
             // 
             // HeaderLabel
@@ -56,7 +56,7 @@ namespace CustomCampaign.Editor.Forms
             this.HeaderLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.HeaderLabel.FontSize = 11;
             this.HeaderLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.HeaderLabel.Location = new System.Drawing.Point(19, 16);
+            this.HeaderLabel.Location = new System.Drawing.Point(19, 24);
             this.HeaderLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.HeaderLabel.Name = "HeaderLabel";
             this.HeaderLabel.Size = new System.Drawing.Size(53, 19);
@@ -67,7 +67,7 @@ namespace CustomCampaign.Editor.Forms
             // 
             this.Progress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Progress.Location = new System.Drawing.Point(19, 52);
+            this.Progress.Location = new System.Drawing.Point(19, 64);
             this.Progress.MarqueeAnimationSpeed = 10;
             this.Progress.Name = "Progress";
             this.Progress.Size = new System.Drawing.Size(322, 5);
@@ -77,12 +77,12 @@ namespace CustomCampaign.Editor.Forms
             // 
             // ProgressDialog
             // 
-            this.ClientSize = new System.Drawing.Size(360, 100);
+            this.Bar = false;
+            this.ClientSize = new System.Drawing.Size(360, 96);
             this.ControlBox = false;
             this.Controls.Add(this.MainPanel);
             this.Header = false;
             this.Name = "ProgressDialog";
-            this.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();

@@ -47,6 +47,7 @@
     <Compile Include="Models\AppSettings.cs" />
     <Compile Include="Models\Campaign.cs" />
     <Compile Include="Data\GameModeId.cs" />
+    <Compile Include="Models\Manifest.cs" />
     <Compile Include="Models\Validators\FileValidator.cs" />
     <Compile Include="Models\Level.cs" />
     <Compile Include="Models\RecentFileList.cs" />
