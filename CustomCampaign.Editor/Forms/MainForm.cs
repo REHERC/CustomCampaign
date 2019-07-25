@@ -9,6 +9,8 @@ namespace CustomCampaign.Editor.Forms
 {
     public partial class MainForm : MaterialForm
     {
+        private SystemMenu systemmenu;
+
         public MainForm()
         {
             Globals.SkinManager.AddFormToManage(this);
@@ -18,6 +20,20 @@ namespace CustomCampaign.Editor.Forms
             AddPage(new NewCampaignWizard());
             AddPage(new EditorMainPage());
             AddPage(new EditLevelPage());
+
+            systemmenu = new SystemMenu(this);
+
+            systemmenu.AddCommand("h", () => {
+                MessageBox.Show(Constants.BIG_SPIN_MESSAGE);
+                Process.Start(Constants.BIG_SPIN);
+            }, true, false);
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            systemmenu.HandleMessage(ref m);
         }
 
         private void MainForm_Shown(object sender, EventArgs e)

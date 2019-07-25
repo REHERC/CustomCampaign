@@ -73,7 +73,7 @@ namespace Photon.Serialization
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
     }
 }
