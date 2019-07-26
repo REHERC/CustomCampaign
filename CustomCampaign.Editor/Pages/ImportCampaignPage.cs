@@ -17,26 +17,29 @@ namespace CustomCampaign.Editor.Pages
 
         public void ImportFile(string path)
         {
-            ZipArchive archive = ZipFile.OpenRead(path);
-
-            bool md5_validity = true;
-
-            foreach (var entry in archive.Entries)
+            using (ZipArchive archive = ZipFile.OpenRead(path))
             {
-                if (entry.FullName.StartsWith(".check") && entry.FullName.EndsWith(".md5"))
+
+
+                bool md5_validity = true;
+
+                foreach (var entry in archive.Entries)
                 {
-                    string data_path = $"data/{entry.FullName.Substring(".ckeck/".Length)}";
-                    data_path = data_path.Remove(data_path.Length - ".md5".Length);
+                    if (entry.FullName.StartsWith(".check") && entry.FullName.EndsWith(".md5"))
+                    {
+                        string data_path = $"data/{entry.FullName.Substring(".ckeck/".Length)}";
+                        data_path = data_path.Remove(data_path.Length - ".md5".Length);
 
-                    ZipArchiveEntry data_entry = archive.GetEntry(data_path);
+                        ZipArchiveEntry data_entry = archive.GetEntry(data_path);
 
-                    string data_md5 = data_entry.GetMD5().ToString().Substring(0, 32);
-                    string check_md5 = entry.ReadContent().ToString().Substring(0, 32);
+                        string data_md5 = data_entry.GetMD5().ToString().Substring(0, 32);
+                        string check_md5 = entry.ReadContent().ToString().Substring(0, 32);
 
-                    md5_validity &= data_md5.Equals(check_md5, StringComparison.InvariantCultureIgnoreCase);
+                        md5_validity &= data_md5.Equals(check_md5, StringComparison.InvariantCultureIgnoreCase);
+                    }
                 }
+                MessageBox.Show($"{md5_validity}");
             }
-            MessageBox.Show($"{md5_validity}");
         }
     }
 }
