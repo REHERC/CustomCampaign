@@ -12,6 +12,11 @@ public static class Extensions
             return stream.GetMD5();
     }
 
+    public static string GetMD5(this ZipArchiveEntry entry)
+    {
+        return entry.Open().GetMD5();
+    }
+
     public static string GetMD5(this Stream stream)
     {
         using (var md5 = MD5.Create())
@@ -24,7 +29,7 @@ public static class Extensions
     public static void WriteContent(this ZipArchiveEntry entry, string value)
     {
         using (StreamWriter writer = new StreamWriter(entry.Open()))
-            writer.WriteLine(value);
+            writer.Write(value);
     }
 
     public static string ReadContent(this ZipArchiveEntry entry)

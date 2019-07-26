@@ -1,4 +1,5 @@
 ﻿using CustomCampaign.Editor.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO.Compression;
@@ -18,8 +19,24 @@ namespace CustomCampaign.Editor.Pages
         {
             ZipArchive archive = ZipFile.OpenRead(path);
 
-            //foreach (var entry in archive.Entries)
-            //    MessageBox.Show(entry.FullName);
+            bool md5_validity = true;
+
+            foreach (var entry in archive.Entries)
+            {
+                if (entry.FullName.StartsWith(".check") && entry.FullName.EndsWith(".md5"))
+                {
+                    string data_path = $"data/{entry.FullName.Substring(".ckeck/".Length)}";
+                    data_path = data_path.Remove(data_path.Length - ".md5".Length);
+
+                    ZipArchiveEntry data_entry = archive.GetEntry(data_path);
+
+                    string data_md5 = data_entry.GetMD5().ToString().Substring(0, 32);
+                    string check_md5 = entry.ReadContent().ToString().Substring(0, 32);
+
+                    md5_validity &= data_md5.Equals(check_md5, StringComparison.InvariantCultureIgnoreCase);
+                }
+            }
+            MessageBox.Show($"{md5_validity}");
         }
     }
 }
