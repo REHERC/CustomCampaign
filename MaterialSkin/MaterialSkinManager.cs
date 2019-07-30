@@ -192,6 +192,11 @@ namespace MaterialSkin
             return primary ? RAISED_BUTTON_TEXT_LIGHT_BRUSH : RAISED_BUTTON_TEXT_DARK_BRUSH;
         }
 
+        public Color GetRaisedButtonTextColor(bool primary)
+        {
+            return primary ? RAISED_BUTTON_TEXT_LIGHT : RAISED_BUTTON_TEXT_DARK;
+        }
+
         public Color GetFlatButtonHoverBackgroundColor()
         {
             return Theme == Themes.LIGHT ? FLAT_BUTTON_BACKGROUND_HOVER_LIGHT : FLAT_BUTTON_BACKGROUND_HOVER_DARK;

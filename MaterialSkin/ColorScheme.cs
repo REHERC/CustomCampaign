@@ -55,6 +55,21 @@ namespace MaterialSkin
                  argb & 0xff);
         }
 
+        public static Color ToColor(this Primary argb)
+        {
+            return ((int)argb).ToColor();
+        }
+
+        public static Color ToColor(this Accent argb)
+        {
+            return ((int)argb).ToColor();
+        }
+
+        public static Color ToColor(this TextShade argb)
+        {
+            return ((int)argb).ToColor();
+        }
+
         /// <summary>
         /// Removes the alpha component of a color.
         /// </summary>

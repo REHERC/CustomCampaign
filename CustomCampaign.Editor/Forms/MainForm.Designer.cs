@@ -42,7 +42,7 @@ namespace CustomCampaign.Editor.Forms
             this.MainPanel.Location = new System.Drawing.Point(0, 40);
             this.MainPanel.MouseState = MaterialSkin.MouseState.HOVER;
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(834, 360);
+            this.MainPanel.Size = new System.Drawing.Size(834, 362);
             this.MainPanel.TabIndex = 3;
             // 
             // BugReportBtn
@@ -87,13 +87,13 @@ namespace CustomCampaign.Editor.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Bar = false;
-            this.ClientSize = new System.Drawing.Size(834, 400);
+            this.ClientSize = new System.Drawing.Size(834, 402);
             this.Controls.Add(this.SettingsBtn);
             this.Controls.Add(this.BugReportBtn);
             this.Controls.Add(this.MainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(850, 400);
+            this.MinimumSize = new System.Drawing.Size(850, 440);
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
             this.ShowIcon = false;
