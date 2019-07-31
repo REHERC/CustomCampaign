@@ -1,5 +1,6 @@
 ﻿using CustomCampaign.Models;
 using Photon.Serialization;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -34,6 +35,16 @@ namespace CustomCampaign.Editor
             RecentFileList.Save();
 
             return RecentFileList.Data.elements.Take(8).ToArray();
+        }
+
+        public static void RemoveRecentFile(string file)
+        {
+            RecentFileList data = RecentFileList.Data;
+
+            data.elements.RemoveAll((path) => path.Equals(file, System.StringComparison.InvariantCultureIgnoreCase));
+
+            RecentFileList.Data = data;
+            RecentFileList.Save();
         }
     }
 }

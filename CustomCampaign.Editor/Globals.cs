@@ -2,6 +2,7 @@
 using CustomCampaign.Editor.Pages;
 using MaterialSkin;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Editor
@@ -23,13 +24,17 @@ namespace CustomCampaign.Editor
                 dlg.RestoreDirectory = true;
 
                 if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    IsFileOpened = true;
-                    MainWindow.GetPage<EditorMainPage>("pages:editormain").GoToFileTab();
-                    MainWindow.GetPage<EditorMainPage>("pages:editormain").LoadCampaign(dlg.FileName);
-                    MainWindow.SetPage("pages:editormain");
-                }
+                    OpenCampaign(dlg.FileName);
             }
+        }
+
+        public static void OpenCampaign(string file)
+        {
+            if (!File.Exists(file)) return;
+            IsFileOpened = true;
+            MainWindow.GetPage<EditorMainPage>("pages:editormain").GoToFileTab();
+            MainWindow.GetPage<EditorMainPage>("pages:editormain").LoadCampaign(file);
+            MainWindow.SetPage("pages:editormain");
         }
 
         public static void ImportCampaign()

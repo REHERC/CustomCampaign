@@ -21,7 +21,7 @@ namespace CustomCampaign.Editor.Pages
 
         private void NewBtn_Click(object sender, EventArgs e)
         {
-            Globals.MainWindow.GetPage<NewCampaignWizard>("pages:newcampaignwizard").PreviousPage = "pages:home";
+            Globals.MainWindow.GetPage<NewCampaignWizard>("pages:newcampaignwizard").PreviousPage = PageName;
             Globals.MainWindow.SetPage("pages:newcampaignwizard");
         }
 
@@ -42,6 +42,7 @@ namespace CustomCampaign.Editor.Pages
             RecentList.Controls.Clear();
 
             MaterialFlatButton button;
+            MaterialContextMenuStrip menu;
 
             foreach (string file in Config.GetRecentFiles())
             {
@@ -57,6 +58,12 @@ namespace CustomCampaign.Editor.Pages
                     Tag = file,
                 });
 
+                menu = new MaterialContextMenuStrip();
+                menu.Items.Add("Remove", null, (sender, e) => {
+                    Config.RemoveRecentFile(file);
+                    SetupRecentList();
+                });
+
                 button.Click += (sender, e) =>
                 {
                     Globals.IsFileOpened = true;
@@ -65,12 +72,15 @@ namespace CustomCampaign.Editor.Pages
                     Globals.MainWindow.SetPage("pages:editormain");
                 };
 
+                button.ContextMenuStrip = menu;
+
                 button.BringToFront();
             }
         }
 
         private void ImportBtn_Click(object sender, EventArgs e)
         {
+            Globals.MainWindow.GetPage<ImportCampaignPage>("pages:importcampaign").PreviousPage = PageName;
             Globals.ImportCampaign();
         }
     }

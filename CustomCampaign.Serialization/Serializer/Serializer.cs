@@ -7,6 +7,7 @@ namespace Photon.Serialization
     public class Serializer<DATA_TYPE> : ICloneable where DATA_TYPE : class, new()
     {
         private readonly string FilePath;
+        public string FileName => FilePath;
         public DATA_TYPE Data;
         private readonly ISerializer<DATA_TYPE> DataSerializer;
 

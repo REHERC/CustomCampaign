@@ -103,9 +103,11 @@ public class MaterialDropDown : ComboBox, IMaterialControl
     protected override void OnPaint(PaintEventArgs e)
     {
         var g = e.Graphics;
-        g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+        g.TextRenderingHint = TextRenderingHint.AntiAlias;
         g.SmoothingMode = SmoothingMode.HighQuality;
         g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+        g.InterpolationMode = InterpolationMode.HighQualityBilinear;
+
         g.Clear(Parent.BackColor);
 
         var lineY = Height - 2;
@@ -127,10 +129,11 @@ public class MaterialDropDown : ComboBox, IMaterialControl
         catch
         { }
 
-        var text = (!dropdown || string.IsNullOrEmpty(Hint)) && SelectedIndex >= 0 && !DesignMode ? Items[SelectedIndex].ToString() : Hint;
+        //var text = (!dropdown || string.IsNullOrEmpty(Hint)) && SelectedIndex >= 0 && !DesignMode ? Items[SelectedIndex].ToString() : Hint;
+        var text = SelectedIndex >= 0 && !DesignMode ? Items[SelectedIndex].ToString() : Hint;
 
         Rectangle textRect = new Rectangle(
-            ClientRectangle.Left,
+            ClientRectangle.Left - 2,
             ClientRectangle.Top,
             ClientRectangle.Width - 24,
             ClientRectangle.Height
@@ -138,8 +141,8 @@ public class MaterialDropDown : ComboBox, IMaterialControl
 
         g.DrawString(
                 text,
-                SkinManager.ROBOTO_REGULAR_11,
-                dropdown ? GetTextBrush() : SkinManager.GetSecondaryTextBrush(),
+                SkinManager.GetFont(11),
+                GetTextBrush(),
                 textRect,
                 new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center });
 
@@ -153,8 +156,8 @@ public class MaterialDropDown : ComboBox, IMaterialControl
 
     private Brush GetTextBrush()
     {
-        bool darkmode = SkinManager.Theme == MaterialSkinManager.Themes.DARK;
-        return new SolidBrush(darkmode ? Color.White : SkinManager.ColorScheme.PrimaryColor);
+        Color color = SkinManager.Theme == MaterialSkinManager.Themes.LIGHT ? Color.Black : Color.White;
+        return new SolidBrush(color);
     }
 
     protected override void OnMeasureItem(MeasureItemEventArgs e)

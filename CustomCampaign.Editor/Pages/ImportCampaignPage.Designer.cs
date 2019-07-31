@@ -31,13 +31,13 @@
             this.BannerBackground = new System.Windows.Forms.Panel();
             this.BannerText = new System.Windows.Forms.Label();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.TemplateCheck = new MaterialSkin.Controls.MaterialCheckBox();
             this.MainLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.Divider = new MaterialSkin.Controls.MaterialDivider();
             this.FormPanel = new MaterialSkin.Controls.MaterialPanel();
             this.DisplayText = new System.Windows.Forms.TextBox();
             this.CancelBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.ImportBtn = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.TemplateCheck = new MaterialSkin.Controls.MaterialCheckBox();
             this.BannerBackground.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.MainLayout.SuspendLayout();
@@ -77,6 +77,23 @@
             this.MainPanel.Padding = new System.Windows.Forms.Padding(8);
             this.MainPanel.Size = new System.Drawing.Size(784, 296);
             this.MainPanel.TabIndex = 8;
+            // 
+            // TemplateCheck
+            // 
+            this.TemplateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TemplateCheck.Depth = 0;
+            this.TemplateCheck.Font = new System.Drawing.Font("Roboto", 11F);
+            this.TemplateCheck.Location = new System.Drawing.Point(11, 249);
+            this.TemplateCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.TemplateCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.TemplateCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TemplateCheck.Name = "TemplateCheck";
+            this.TemplateCheck.Ripple = true;
+            this.TemplateCheck.Size = new System.Drawing.Size(607, 30);
+            this.TemplateCheck.TabIndex = 12;
+            this.TemplateCheck.Text = "Import as template (generate new unique identifier)";
+            this.TemplateCheck.UseVisualStyleBackColor = true;
             // 
             // MainLayout
             // 
@@ -181,23 +198,7 @@
             this.ImportBtn.TabIndex = 9;
             this.ImportBtn.Text = "Import";
             this.ImportBtn.UseVisualStyleBackColor = true;
-            // 
-            // TemplateCheck
-            // 
-            this.TemplateCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TemplateCheck.Depth = 0;
-            this.TemplateCheck.Font = new System.Drawing.Font("Roboto", 11F);
-            this.TemplateCheck.Location = new System.Drawing.Point(11, 249);
-            this.TemplateCheck.Margin = new System.Windows.Forms.Padding(0);
-            this.TemplateCheck.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.TemplateCheck.MouseState = MaterialSkin.MouseState.HOVER;
-            this.TemplateCheck.Name = "TemplateCheck";
-            this.TemplateCheck.Ripple = true;
-            this.TemplateCheck.Size = new System.Drawing.Size(607, 30);
-            this.TemplateCheck.TabIndex = 12;
-            this.TemplateCheck.Text = "Import as template";
-            this.TemplateCheck.UseVisualStyleBackColor = true;
+            this.ImportBtn.Click += new System.EventHandler(this.ImportBtn_Click);
             // 
             // ImportCampaignPage
             // 

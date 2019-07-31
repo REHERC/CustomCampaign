@@ -37,8 +37,8 @@ namespace CustomCampaign.Editor.Pages
             this.FileTab = new System.Windows.Forms.TabPage();
             this.FileLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.ActionsPanel = new MaterialSkin.Controls.MaterialPanel();
-            this.FolderBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.CloseBtn = new MaterialSkin.Controls.MaterialFlatButton();
+            this.FolderBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.PackBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.SaveBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.OpenBtn = new MaterialSkin.Controls.MaterialFlatButton();
@@ -62,6 +62,7 @@ namespace CustomCampaign.Editor.Pages
             this.RemoveLevel = new System.Windows.Forms.ToolStripMenuItem();
             this.AddonsTab = new System.Windows.Forms.TabPage();
             this.TabDivider = new MaterialSkin.Controls.MaterialDivider();
+            this.ImportBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.EditorLayout.SuspendLayout();
             this.TabPages.SuspendLayout();
             this.FileTab.SuspendLayout();
@@ -155,6 +156,7 @@ namespace CustomCampaign.Editor.Pages
             // 
             this.ActionsPanel.Controls.Add(this.CloseBtn);
             this.ActionsPanel.Controls.Add(this.FolderBtn);
+            this.ActionsPanel.Controls.Add(this.ImportBtn);
             this.ActionsPanel.Controls.Add(this.PackBtn);
             this.ActionsPanel.Controls.Add(this.SaveBtn);
             this.ActionsPanel.Controls.Add(this.OpenBtn);
@@ -169,24 +171,6 @@ namespace CustomCampaign.Editor.Pages
             this.ActionsPanel.Size = new System.Drawing.Size(160, 265);
             this.ActionsPanel.TabIndex = 0;
             // 
-            // FolderBtn
-            // 
-            this.FolderBtn.AutoSize = true;
-            this.FolderBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.FolderBtn.Depth = 0;
-            this.FolderBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.FolderBtn.Icon = null;
-            this.FolderBtn.Location = new System.Drawing.Point(0, 144);
-            this.FolderBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.FolderBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.FolderBtn.Name = "FolderBtn";
-            this.FolderBtn.Primary = false;
-            this.FolderBtn.Size = new System.Drawing.Size(159, 36);
-            this.FolderBtn.TabIndex = 6;
-            this.FolderBtn.Text = "Project Folder";
-            this.FolderBtn.UseVisualStyleBackColor = true;
-            this.FolderBtn.Click += new System.EventHandler(this.FolderBtn_Click);
-            // 
             // CloseBtn
             // 
             this.CloseBtn.AutoSize = true;
@@ -194,7 +178,7 @@ namespace CustomCampaign.Editor.Pages
             this.CloseBtn.Depth = 0;
             this.CloseBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.CloseBtn.Icon = null;
-            this.CloseBtn.Location = new System.Drawing.Point(0, 180);
+            this.CloseBtn.Location = new System.Drawing.Point(0, 216);
             this.CloseBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CloseBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.CloseBtn.Name = "CloseBtn";
@@ -204,6 +188,24 @@ namespace CustomCampaign.Editor.Pages
             this.CloseBtn.Text = "Close Project";
             this.CloseBtn.UseVisualStyleBackColor = true;
             this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
+            // 
+            // FolderBtn
+            // 
+            this.FolderBtn.AutoSize = true;
+            this.FolderBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.FolderBtn.Depth = 0;
+            this.FolderBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FolderBtn.Icon = null;
+            this.FolderBtn.Location = new System.Drawing.Point(0, 180);
+            this.FolderBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.FolderBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.FolderBtn.Name = "FolderBtn";
+            this.FolderBtn.Primary = false;
+            this.FolderBtn.Size = new System.Drawing.Size(159, 36);
+            this.FolderBtn.TabIndex = 6;
+            this.FolderBtn.Text = "Project Folder";
+            this.FolderBtn.UseVisualStyleBackColor = true;
+            this.FolderBtn.Click += new System.EventHandler(this.FolderBtn_Click);
             // 
             // PackBtn
             // 
@@ -556,6 +558,24 @@ namespace CustomCampaign.Editor.Pages
             this.TabDivider.TabIndex = 2;
             this.TabDivider.Text = "materialDivider1";
             // 
+            // ImportBtn
+            // 
+            this.ImportBtn.AutoSize = true;
+            this.ImportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ImportBtn.Depth = 0;
+            this.ImportBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ImportBtn.Icon = null;
+            this.ImportBtn.Location = new System.Drawing.Point(0, 144);
+            this.ImportBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.ImportBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ImportBtn.Name = "ImportBtn";
+            this.ImportBtn.Primary = false;
+            this.ImportBtn.Size = new System.Drawing.Size(159, 36);
+            this.ImportBtn.TabIndex = 7;
+            this.ImportBtn.Text = "Import";
+            this.ImportBtn.UseVisualStyleBackColor = true;
+            this.ImportBtn.Click += new System.EventHandler(this.ImportBtn_Click);
+            // 
             // EditorMainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -614,5 +634,6 @@ namespace CustomCampaign.Editor.Pages
         private System.Windows.Forms.ToolStripMenuItem RemoveLevel;
         private LevelBox Levels;
         private MaterialFlatButton FolderBtn;
+        private MaterialFlatButton ImportBtn;
     }
 }

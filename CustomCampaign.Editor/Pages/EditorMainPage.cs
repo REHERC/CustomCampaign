@@ -43,7 +43,7 @@ namespace CustomCampaign.Editor.Pages
 
         private void NewBtn_Click(object sender, System.EventArgs e)
         {
-            Globals.MainWindow.GetPage<NewCampaignWizard>("pages:newcampaignwizard").PreviousPage = "pages:editormain";
+            Globals.MainWindow.GetPage<NewCampaignWizard>("pages:newcampaignwizard").PreviousPage = PageName;
             Globals.MainWindow.SetPage("pages:newcampaignwizard");
         }
 
@@ -241,6 +241,15 @@ namespace CustomCampaign.Editor.Pages
         private void FolderBtn_Click(object sender, EventArgs e)
         {
             Process.Start(Editor.current_path);
+        }
+
+        private void ImportBtn_Click(object sender, EventArgs e)
+        {
+            if (ClosseDialog() == DialogResult.Yes)
+            {
+                Globals.MainWindow.GetPage<ImportCampaignPage>("pages:importcampaign").PreviousPage = PageName;
+                Globals.ImportCampaign();
+            }
         }
     }
 }

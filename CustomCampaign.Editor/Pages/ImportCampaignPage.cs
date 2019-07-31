@@ -3,14 +3,19 @@ using CustomCampaign.Models;
 using MaterialSkin;
 using Newtonsoft.Json;
 using System;
+using System.IO;
+using System.Linq;
 using System.IO.Compression;
 using System.Text;
 using System.Windows.Forms;
+using Photon.Serialization;
 
 namespace CustomCampaign.Editor.Pages
 {
     public partial class ImportCampaignPage : Page
     {
+        public string PreviousPage = "pages:home";
+
         public ImportCampaignPage()
         {
             InitializeComponent();
@@ -26,45 +31,46 @@ namespace CustomCampaign.Editor.Pages
 
         protected ZipArchive open_archive;
         protected Manifest manifest;
-
+        protected string file_path;
         public void ImportFile(string path)
         {
-            using (ZipArchive archive = (open_archive = ZipFile.OpenRead(path)))
+            open_archive = ZipFile.OpenRead(path);
+
+            file_path = path;
+
+            manifest = new Manifest();
+
+            bool md5_validity = true;
+
+            foreach (var entry in open_archive.Entries)
             {
-                manifest = new Manifest();
-
-                bool md5_validity = true;
-
-                foreach (var entry in archive.Entries)
+                if (entry.FullName.StartsWith("data/"))
                 {
-                    if (entry.FullName.StartsWith("data/"))
+                    string data_path = $".check/{entry.FullName.Substring("data/".Length)}.md5";
+
+                    try
                     {
-                        string data_path = $".check/{entry.FullName.Substring("data/".Length)}.md5";
+                        ZipArchiveEntry check_entry = open_archive.GetEntry(data_path);
 
-                        try
-                        {
-                            ZipArchiveEntry check_entry = archive.GetEntry(data_path);
+                        string check_md5 = entry.GetMD5().ToString().Substring(0, 32);
+                        string data_md5 = check_entry.ReadContent().ToString().Substring(0, 32);
 
-                            string check_md5 = entry.GetMD5().ToString().Substring(0, 32);
-                            string data_md5 = check_entry.ReadContent().ToString().Substring(0, 32);
-
-                            md5_validity &= check_entry != null && data_md5.Equals(check_md5, StringComparison.InvariantCultureIgnoreCase);
-                        }
-                        catch (Exception)
-                        {
-                            md5_validity = false;
-                        }
+                        md5_validity &= check_entry != null && data_md5.Equals(check_md5, StringComparison.InvariantCultureIgnoreCase);
                     }
-                    else if (entry.FullName == "manifest")
+                    catch (Exception)
                     {
-                        manifest = JsonConvert.DeserializeObject<Manifest>(entry.ReadContent());
+                        md5_validity = false;
                     }
                 }
-                BannerBackground.Visible = !md5_validity;
-
-                TemplateCheck.Checked = false;
-                SetDisplayedInfo();
+                else if (entry.FullName == "manifest")
+                {
+                    manifest = JsonConvert.DeserializeObject<Manifest>(entry.ReadContent());
+                }
             }
+            BannerBackground.Visible = !md5_validity;
+
+            TemplateCheck.Checked = false;
+            SetDisplayedInfo();
         }
 
         private void SetDisplayedInfo()
@@ -81,7 +87,8 @@ namespace CustomCampaign.Editor.Pages
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            Globals.MainWindow.SetPage("pages:home");
+            open_archive.Dispose();
+            Globals.MainWindow.SetPage(PreviousPage);
         }
 
         private void FormPanel_BackColorChanged(object sender, EventArgs e)
@@ -95,5 +102,35 @@ namespace CustomCampaign.Editor.Pages
             DisplayText.ForeColor = SkinManager.GetPrimaryTextColor();
         }
 
+        private void ImportBtn_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog dlg = new FolderBrowserDialog())
+            {
+                dlg.SelectedPath = file_path;
+                dlg.ShowNewFolderButton = true;
+                dlg.RootFolder = Environment.SpecialFolder.MyComputer;
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (ZipArchiveEntry entry in from item in open_archive.Entries where item.FullName.StartsWith("data/") select item)
+                    {
+                        FileInfo out_file = new FileInfo($@"{dlg.SelectedPath}\{entry.FullName.Substring("data/".Length)}");
+                        DirectoryInfo out_dir = new DirectoryInfo(out_file.DirectoryName);
+                        if (!out_dir.Exists) out_dir.Create();
+                        entry.ExtractToFile(out_file.FullName, out_file.Exists);
+                    }
+
+                    Serializer<Campaign> campaign_file = new Serializer<Campaign>(SerializerType.Json, $@"{dlg.SelectedPath}\campaign.json", true);
+
+                    if (TemplateCheck.Checked)
+                    {
+                        campaign_file.Data.guid = Guid.NewGuid().ToString();
+                        campaign_file.Save();
+                    }
+
+                    Globals.OpenCampaign(campaign_file.FileName);
+                }
+            }
+            open_archive.Dispose();
+        }
     }
 }
