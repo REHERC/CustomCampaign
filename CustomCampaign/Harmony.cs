@@ -3,6 +3,8 @@ using CustomCampaign.Storage;
 using CustomCampaign.Systems;
 using Harmony;
 using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using UnityEngine;
 
@@ -303,6 +305,26 @@ namespace CustomCampaign
                 Events.CampaignLevelStarted.Broadcast(new Events.CampaignLevelStarted.Data(campaign));
             }
             return result;
+        }
+    }
+
+    [HarmonyPatch(typeof(GameManager), "GetModeShowInLevelEditor")]
+    internal static class GetModeShowInLevelEditor
+    {
+        public static List<GameModeID> Modes = new List<GameModeID>() {
+            GameModeID.Challenge,
+            GameModeID.ReverseTag,
+            GameModeID.Adventure,
+            GameModeID.Sprint,
+            GameModeID.Stunt,
+            GameModeID.LostToEchoes,
+            GameModeID.MainMenu,
+            GameModeID.Nexus
+        };
+
+        public static void Postfix(ref bool __result, GameModeID ID)
+        {
+            __result |= Modes.Contains(ID);
         }
     }
 }
