@@ -108,7 +108,12 @@ namespace CustomCampaign.Editor.Pages
             {
                 Levels.Items.Add(level);
             }
+
             #endregion
+
+
+            Levels.SelectedIndex = -1;
+            Levels_SelectedIndexChanged(Levels, new EventArgs());
         }
 
         public Campaign UpdateWorkingstate()
@@ -148,6 +153,11 @@ namespace CustomCampaign.Editor.Pages
 
         private void AddLevel_Click(object sender, System.EventArgs e)
         {
+            AddLevel_Run();
+        }
+
+        private void AddLevel_Run()
+        {
             int index = Levels.SelectedIndex;
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup(new Level(), "Add a level");
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
@@ -181,6 +191,11 @@ namespace CustomCampaign.Editor.Pages
         }
 
         private void RemoveLevel_Click(object sender, System.EventArgs e)
+        {
+            RemoveLevel_Run();
+        }
+
+        private void RemoveLevel_Run()
         {
             if (Levels.SelectedIndex >= 0 && MessageBox.Show("Are you sure you want to remove this level from the list?", "Remove level", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 Levels.Items.RemoveAt(Levels.SelectedIndex);
@@ -250,6 +265,26 @@ namespace CustomCampaign.Editor.Pages
                 Globals.MainWindow.GetPage<ImportCampaignPage>("pages:importcampaign").PreviousPage = PageName;
                 Globals.ImportCampaign();
             }
+        }
+
+        private void Levels_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RemoveLevelBtn.Enabled = EditLevelBtn.Enabled = Levels.SelectedIndex > -1;
+        }
+
+        private void AddLevelBtn_Click(object sender, EventArgs e)
+        {
+            AddLevel_Run();
+        }
+
+        private void EditLevelBtn_Click(object sender, EventArgs e)
+        {
+            EditLevel_Run();
+        }
+
+        private void RemoveLevelBtn_Click(object sender, EventArgs e)
+        {
+            RemoveLevel_Run();
         }
     }
 }

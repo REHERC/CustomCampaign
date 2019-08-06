@@ -174,6 +174,7 @@ namespace CustomCampaign.Editor.Pages
             this.TutorialsBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TutorialsBtn.Depth = 0;
             this.TutorialsBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TutorialsBtn.Enabled = false;
             this.TutorialsBtn.Icon = null;
             this.TutorialsBtn.Location = new System.Drawing.Point(4, 144);
             this.TutorialsBtn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 8);
