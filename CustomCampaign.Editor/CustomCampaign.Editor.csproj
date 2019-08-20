@@ -92,6 +92,12 @@
     <Compile Include="Forms\MainForm.PageManagment.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\MissingFilesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MissingFilesDialog.Designer.cs">
+      <DependentUpon>MissingFilesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PizzaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MissingFilesDialog.resx">
+      <DependentUpon>MissingFilesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PizzaForm.resx">
       <DependentUpon>PizzaForm.cs</DependentUpon>

@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Addon.cs" />
     <Compile Include="Data\CampaignInfo.cs" />
     <Compile Include="Events\CampaignLevelStarted.cs" />
     <Compile Include="GlobalSuppressions.cs" />

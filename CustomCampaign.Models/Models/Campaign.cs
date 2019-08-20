@@ -31,11 +31,15 @@ namespace CustomCampaign.Models
 
         public List<string> IncludedFiles(string rootdirectory = "") => FileIncludeValidator.DefaultInclude(this, rootdirectory);
 
-        public bool Validate(string rootdirectory)
+        public bool Validate(string rootdirectory) => Validate(rootdirectory, out List<string> _);
+
+        public bool Validate(string rootdirectory, out List<string> missingfiles)
         {
+            missingfiles = new List<string>();
+
             bool result = true;
 
-            result &= FileIncludeValidator.Validate(this, rootdirectory);
+            result &= FileIncludeValidator.Validate(this, rootdirectory, ref missingfiles);
 
             return result;
         }

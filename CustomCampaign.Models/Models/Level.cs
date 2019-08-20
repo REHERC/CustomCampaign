@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 
 namespace CustomCampaign.Models

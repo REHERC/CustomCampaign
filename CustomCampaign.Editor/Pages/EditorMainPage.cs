@@ -1,5 +1,6 @@
 ﻿using CustomCampaign.Data;
 using CustomCampaign.Editor.Classes;
+using CustomCampaign.Editor.Forms;
 using CustomCampaign.Models;
 using Newtonsoft.Json;
 using Photon.Serialization;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 #pragma warning disable CS0436
@@ -210,7 +212,11 @@ namespace CustomCampaign.Editor.Pages
         {
             Campaign campaign = UpdateWorkingstate();
 
-            if (!campaign.Validate(Editor.current_path)) return;
+            if (!campaign.Validate(Editor.current_path, out List<string> missingfiles))
+            {
+                ShowMissingFiles(missingfiles);
+                return;
+            }
 
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
@@ -251,6 +257,25 @@ namespace CustomCampaign.Editor.Pages
                     }
                 }
             }
+        }
+
+        void ShowMissingFiles(List<string> files, string title = "Campaign export failed")
+        {
+            using (MissingFilesDialog dlg = new MissingFilesDialog(files))
+            {
+                dlg.Title = title;
+                dlg.ShowDialog();
+            }
+        }
+
+        private void ValidateBtn_Click(object sender, EventArgs e)
+        {
+            Campaign campaign = UpdateWorkingstate();
+
+            if (campaign.Validate(Editor.current_path, out List<string> files))
+                MessageBox.Show("File check complete, no files were missing.");
+            else
+                ShowMissingFiles(files, "File check failed");
         }
 
         private void FolderBtn_Click(object sender, EventArgs e)

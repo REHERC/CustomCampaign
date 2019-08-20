@@ -10,6 +10,8 @@ using System.Text;
 using System.Windows.Forms;
 using Photon.Serialization;
 
+#pragma warning disable CS0436
+
 namespace CustomCampaign.Editor.Pages
 {
     public partial class ImportCampaignPage : Page

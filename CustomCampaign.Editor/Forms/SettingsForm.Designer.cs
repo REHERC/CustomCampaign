@@ -228,6 +228,7 @@
             this.Name = "SettingsForm";
             this.Padding = new System.Windows.Forms.Padding(8, 40, 8, 8);
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Sizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

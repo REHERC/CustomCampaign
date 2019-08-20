@@ -19,7 +19,7 @@ namespace CustomCampaign.Models.Validators
                 result.Add(level.file);
                 result.Add($"{level.file}.png");
 
-                foreach (string extension in new string[] { "mp3", "wav", "aiff"})
+                foreach (string extension in new string[] { "mp3", "wav", "aiff" })
                 {
                     string musicfile = $"{level.file}.{extension}";
                     FileInfo file = new FileInfo(Path.Combine(rootdirectory, musicfile));
@@ -31,10 +31,16 @@ namespace CustomCampaign.Models.Validators
                     result.Add(level.loading_wallpaper);
             }
 
+            foreach (Addon addon in campaign.addons)
+            {
+                result.Add(addon.module);
+                result.AddRange(addon.dependencies);
+            }
+
             return result;
         }
 
-        public bool Validate(Campaign campaign, string rootdirectory)
+        public bool Validate(Campaign campaign, string rootdirectory, ref List<string> missingfiles)
         {
             List<string> Files = new List<string>();
             Files.AddRange(DefaultInclude(campaign, rootdirectory));
@@ -45,7 +51,7 @@ namespace CustomCampaign.Models.Validators
             {
                 FileInfo info = new FileInfo(Path.Combine(rootdirectory, file));
                 result &= info.Exists;
-                if (!result) return result;
+                if (!info.Exists) missingfiles.Add(info.FullName);
             }
 
             return result;
