@@ -24,8 +24,6 @@ namespace CustomCampaign.Editor.Pages
 
             foreach (var mode in GameModeId.ConversionTable)
                 CampaignGamemode.Items.Add(mode.Key);
-
-            AddonsTab.Dispose();
         }
 
         public override void OnDisplay()
@@ -183,6 +181,9 @@ namespace CustomCampaign.Editor.Pages
         void EditLevel_Run()
         {
             int index = Levels.SelectedIndex;
+
+            if (!(index > -1 & index < Levels.Items.Count)) return;
+
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup((Level)Levels.Items[index], "Edit a level");
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
                 if (result == DialogResult.OK)
@@ -294,7 +295,13 @@ namespace CustomCampaign.Editor.Pages
 
         private void Levels_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RemoveLevelBtn.Enabled = EditLevelBtn.Enabled = Levels.SelectedIndex > -1;
+            RemoveLevelBtn.Enabled      = 
+            EditLevelBtn.Enabled        = 
+            MoveLevelUpBtn.Enabled      =
+            MoveLevelDownBtn.Enabled    = Levels.SelectedIndex > -1;
+
+            MoveLevelUpBtn.Enabled     &= Levels.SelectedIndex > 0;
+            MoveLevelDownBtn.Enabled   &= Levels.SelectedIndex < Levels.Items.Count - 1;
         }
 
         private void AddLevelBtn_Click(object sender, EventArgs e)
@@ -310,6 +317,34 @@ namespace CustomCampaign.Editor.Pages
         private void RemoveLevelBtn_Click(object sender, EventArgs e)
         {
             RemoveLevel_Run();
+        }
+
+        private void Levels_MouseDown(object sender, MouseEventArgs e)
+        {
+            int index = Levels.IndexFromPoint(e.Location);
+            index = Math.Max(index, Math.Min(Levels.Items.Count - 1, index));
+
+            Levels.SelectedIndex = index;
+        }
+
+        private void MoveLevelUpBtn_Click(object sender, EventArgs e)
+        {
+            int current = Levels.SelectedIndex;
+            int move = Math.Max(0, current - 1);
+            Level level = Levels.Items[current] as Level;
+            Levels.Items.Remove(level);
+            Levels.Items.Insert(move, level);
+            Levels.SelectedIndex = move;
+        }
+
+        private void MoveLevelDownBtn_Click(object sender, EventArgs e)
+        {
+            int current = Levels.SelectedIndex;
+            int move = Math.Min(Levels.Items.Count - 1, current + 1);
+            Level level = Levels.Items[current] as Level;
+            Levels.Items.Remove(level);
+            Levels.Items.Insert(move, level);
+            Levels.SelectedIndex = move;
         }
     }
 }

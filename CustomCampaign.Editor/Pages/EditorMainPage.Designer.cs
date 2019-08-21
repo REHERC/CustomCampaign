@@ -39,6 +39,7 @@ namespace CustomCampaign.Editor.Pages
             this.ActionsPanel = new MaterialSkin.Controls.MaterialPanel();
             this.CloseBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.FolderBtn = new MaterialSkin.Controls.MaterialFlatButton();
+            this.ValidateBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.ImportBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.PackBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.SaveBtn = new MaterialSkin.Controls.MaterialFlatButton();
@@ -63,13 +64,14 @@ namespace CustomCampaign.Editor.Pages
             this.EditLevel = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveLevel = new System.Windows.Forms.ToolStripMenuItem();
             this.materialPanel1 = new MaterialSkin.Controls.MaterialPanel();
+            this.MoveLevelDownBtn = new MaterialSkin.Controls.MaterialFlatButton();
+            this.MoveLevelUpBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.RemoveLevelBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.EditLevelBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.AddLevelBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
             this.AddonsTab = new System.Windows.Forms.TabPage();
             this.TabDivider = new MaterialSkin.Controls.MaterialDivider();
-            this.ValidateBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.EditorLayout.SuspendLayout();
             this.TabPages.SuspendLayout();
             this.FileTab.SuspendLayout();
@@ -217,6 +219,24 @@ namespace CustomCampaign.Editor.Pages
             this.FolderBtn.UseVisualStyleBackColor = true;
             this.FolderBtn.Click += new System.EventHandler(this.FolderBtn_Click);
             // 
+            // ValidateBtn
+            // 
+            this.ValidateBtn.AutoSize = true;
+            this.ValidateBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ValidateBtn.Depth = 0;
+            this.ValidateBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ValidateBtn.Icon = null;
+            this.ValidateBtn.Location = new System.Drawing.Point(0, 180);
+            this.ValidateBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.ValidateBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ValidateBtn.Name = "ValidateBtn";
+            this.ValidateBtn.Primary = false;
+            this.ValidateBtn.Size = new System.Drawing.Size(159, 36);
+            this.ValidateBtn.TabIndex = 8;
+            this.ValidateBtn.Text = "Check Files";
+            this.ValidateBtn.UseVisualStyleBackColor = true;
+            this.ValidateBtn.Click += new System.EventHandler(this.ValidateBtn_Click);
+            // 
             // ImportBtn
             // 
             this.ImportBtn.AutoSize = true;
@@ -359,7 +379,7 @@ namespace CustomCampaign.Editor.Pages
             this.SettingsTab.Location = new System.Drawing.Point(4, 22);
             this.SettingsTab.Margin = new System.Windows.Forms.Padding(0);
             this.SettingsTab.Name = "SettingsTab";
-            this.SettingsTab.Size = new System.Drawing.Size(776, 265);
+            this.SettingsTab.Size = new System.Drawing.Size(776, 308);
             this.SettingsTab.TabIndex = 0;
             this.SettingsTab.Text = "Settings";
             // 
@@ -379,7 +399,7 @@ namespace CustomCampaign.Editor.Pages
             this.SettingsLayout.MouseState = MaterialSkin.MouseState.HOVER;
             this.SettingsLayout.Name = "SettingsLayout";
             this.SettingsLayout.Padding = new System.Windows.Forms.Padding(16);
-            this.SettingsLayout.Size = new System.Drawing.Size(776, 265);
+            this.SettingsLayout.Size = new System.Drawing.Size(776, 308);
             this.SettingsLayout.TabIndex = 1;
             // 
             // CampaignGamemode
@@ -510,7 +530,7 @@ namespace CustomCampaign.Editor.Pages
             this.LevelsTab.Location = new System.Drawing.Point(4, 22);
             this.LevelsTab.Margin = new System.Windows.Forms.Padding(0);
             this.LevelsTab.Name = "LevelsTab";
-            this.LevelsTab.Size = new System.Drawing.Size(776, 265);
+            this.LevelsTab.Size = new System.Drawing.Size(776, 308);
             this.LevelsTab.TabIndex = 1;
             this.LevelsTab.Text = "Levels";
             // 
@@ -528,7 +548,7 @@ namespace CustomCampaign.Editor.Pages
             this.LevelsLayout.Name = "LevelsLayout";
             this.LevelsLayout.RowCount = 1;
             this.LevelsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LevelsLayout.Size = new System.Drawing.Size(776, 265);
+            this.LevelsLayout.Size = new System.Drawing.Size(776, 308);
             this.LevelsLayout.TabIndex = 1;
             // 
             // Levels
@@ -543,10 +563,11 @@ namespace CustomCampaign.Editor.Pages
             this.Levels.Location = new System.Drawing.Point(160, 0);
             this.Levels.Margin = new System.Windows.Forms.Padding(0);
             this.Levels.Name = "Levels";
-            this.Levels.Size = new System.Drawing.Size(616, 265);
+            this.Levels.Size = new System.Drawing.Size(616, 308);
             this.Levels.TabIndex = 0;
             this.Levels.SelectedIndexChanged += new System.EventHandler(this.Levels_SelectedIndexChanged);
             this.Levels.DoubleClick += new System.EventHandler(this.Levels_DoubleClick);
+            this.Levels.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Levels_MouseDown);
             // 
             // LevelsMenu
             // 
@@ -584,6 +605,8 @@ namespace CustomCampaign.Editor.Pages
             // 
             // materialPanel1
             // 
+            this.materialPanel1.Controls.Add(this.MoveLevelDownBtn);
+            this.materialPanel1.Controls.Add(this.MoveLevelUpBtn);
             this.materialPanel1.Controls.Add(this.RemoveLevelBtn);
             this.materialPanel1.Controls.Add(this.EditLevelBtn);
             this.materialPanel1.Controls.Add(this.AddLevelBtn);
@@ -594,8 +617,44 @@ namespace CustomCampaign.Editor.Pages
             this.materialPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.materialPanel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialPanel1.Name = "materialPanel1";
-            this.materialPanel1.Size = new System.Drawing.Size(160, 265);
+            this.materialPanel1.Size = new System.Drawing.Size(160, 308);
             this.materialPanel1.TabIndex = 0;
+            // 
+            // MoveLevelDownBtn
+            // 
+            this.MoveLevelDownBtn.AutoSize = true;
+            this.MoveLevelDownBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MoveLevelDownBtn.Depth = 0;
+            this.MoveLevelDownBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MoveLevelDownBtn.Icon = null;
+            this.MoveLevelDownBtn.Location = new System.Drawing.Point(0, 144);
+            this.MoveLevelDownBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.MoveLevelDownBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MoveLevelDownBtn.Name = "MoveLevelDownBtn";
+            this.MoveLevelDownBtn.Primary = false;
+            this.MoveLevelDownBtn.Size = new System.Drawing.Size(159, 36);
+            this.MoveLevelDownBtn.TabIndex = 7;
+            this.MoveLevelDownBtn.Text = "Move Down";
+            this.MoveLevelDownBtn.UseVisualStyleBackColor = true;
+            this.MoveLevelDownBtn.Click += new System.EventHandler(this.MoveLevelDownBtn_Click);
+            // 
+            // MoveLevelUpBtn
+            // 
+            this.MoveLevelUpBtn.AutoSize = true;
+            this.MoveLevelUpBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MoveLevelUpBtn.Depth = 0;
+            this.MoveLevelUpBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MoveLevelUpBtn.Icon = null;
+            this.MoveLevelUpBtn.Location = new System.Drawing.Point(0, 108);
+            this.MoveLevelUpBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.MoveLevelUpBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MoveLevelUpBtn.Name = "MoveLevelUpBtn";
+            this.MoveLevelUpBtn.Primary = false;
+            this.MoveLevelUpBtn.Size = new System.Drawing.Size(159, 36);
+            this.MoveLevelUpBtn.TabIndex = 6;
+            this.MoveLevelUpBtn.Text = "Move Up";
+            this.MoveLevelUpBtn.UseVisualStyleBackColor = true;
+            this.MoveLevelUpBtn.Click += new System.EventHandler(this.MoveLevelUpBtn_Click);
             // 
             // RemoveLevelBtn
             // 
@@ -659,7 +718,7 @@ namespace CustomCampaign.Editor.Pages
             this.materialDivider1.Location = new System.Drawing.Point(159, 0);
             this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDivider1.Name = "materialDivider1";
-            this.materialDivider1.Size = new System.Drawing.Size(1, 265);
+            this.materialDivider1.Size = new System.Drawing.Size(1, 308);
             this.materialDivider1.TabIndex = 5;
             // 
             // AddonsTab
@@ -667,7 +726,7 @@ namespace CustomCampaign.Editor.Pages
             this.AddonsTab.Location = new System.Drawing.Point(4, 22);
             this.AddonsTab.Margin = new System.Windows.Forms.Padding(0);
             this.AddonsTab.Name = "AddonsTab";
-            this.AddonsTab.Size = new System.Drawing.Size(776, 265);
+            this.AddonsTab.Size = new System.Drawing.Size(776, 308);
             this.AddonsTab.TabIndex = 2;
             this.AddonsTab.Text = "Addons";
             this.AddonsTab.UseVisualStyleBackColor = true;
@@ -684,24 +743,6 @@ namespace CustomCampaign.Editor.Pages
             this.TabDivider.Size = new System.Drawing.Size(784, 1);
             this.TabDivider.TabIndex = 2;
             this.TabDivider.Text = "materialDivider1";
-            // 
-            // ValidateBtn
-            // 
-            this.ValidateBtn.AutoSize = true;
-            this.ValidateBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ValidateBtn.Depth = 0;
-            this.ValidateBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ValidateBtn.Icon = null;
-            this.ValidateBtn.Location = new System.Drawing.Point(0, 180);
-            this.ValidateBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ValidateBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ValidateBtn.Name = "ValidateBtn";
-            this.ValidateBtn.Primary = false;
-            this.ValidateBtn.Size = new System.Drawing.Size(159, 36);
-            this.ValidateBtn.TabIndex = 8;
-            this.ValidateBtn.Text = "Check Files";
-            this.ValidateBtn.UseVisualStyleBackColor = true;
-            this.ValidateBtn.Click += new System.EventHandler(this.ValidateBtn_Click);
             // 
             // EditorMainPage
             // 
@@ -772,5 +813,7 @@ namespace CustomCampaign.Editor.Pages
         private MaterialDivider materialDivider1;
         public LevelBox Levels;
         private MaterialFlatButton ValidateBtn;
+        private MaterialFlatButton MoveLevelDownBtn;
+        private MaterialFlatButton MoveLevelUpBtn;
     }
 }
