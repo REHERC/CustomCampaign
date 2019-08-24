@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
+#pragma warning disable IDE0067
+
 namespace CustomCampaign.Editor.Forms
 {
     public partial class MainForm

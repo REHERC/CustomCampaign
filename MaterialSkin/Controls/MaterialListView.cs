@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-#pragma warning disable IDE0059
+#pragma warning disable IDE0059, IDE0067
 
 namespace MaterialSkin.Controls
 {
@@ -77,7 +77,7 @@ namespace MaterialSkin.Controls
                 SkinManager.ROBOTO_MEDIUM_10,
                 SkinManager.GetSecondaryTextBrush(),
                 new Rectangle(e.Bounds.X + ITEM_PADDING, e.Bounds.Y + ITEM_PADDING, e.Bounds.Width - ITEM_PADDING * 2, e.Bounds.Height - ITEM_PADDING * 2),
-                getStringFormat());
+                GetStringFormat());
         }
 
         private const int ITEM_PADDING = 12;
@@ -110,7 +110,7 @@ namespace MaterialSkin.Controls
                 //Draw text
                 g.DrawString(subItem.Text, SkinManager.ROBOTO_MEDIUM_10, SkinManager.GetPrimaryTextBrush(),
                                  new Rectangle(subItem.Bounds.X + ITEM_PADDING, ITEM_PADDING, subItem.Bounds.Width - 2 * ITEM_PADDING, subItem.Bounds.Height - 2 * ITEM_PADDING),
-                                 getStringFormat());
+                                 GetStringFormat());
             }
 
             e.Graphics.DrawImage((Image)b.Clone(), new Point(0, e.Item.Bounds.Location.Y));
@@ -118,7 +118,7 @@ namespace MaterialSkin.Controls
             b.Dispose();
         }
 
-        private StringFormat getStringFormat()
+        private StringFormat GetStringFormat()
         {
             return new StringFormat
             {

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
+#pragma warning disable IDE0044
+
 namespace CustomCampaign.Systems
 {
     public static partial class AddonSystem
@@ -93,12 +95,8 @@ namespace CustomCampaign.Systems
             foreach(Type type in assembly.GetExportedTypes())
             {
                 if (type.IsSubclassOf(typeof(Addon)))
-                {
-                    Addon addon = Activator.CreateInstance(type) as Addon;
-
-                    if (addon != null)
+                    if (Activator.CreateInstance(type) is Addon addon)
                         Addons.Add(addon, id);
-                }
             }
         }
     }

@@ -55,7 +55,10 @@ namespace CustomCampaign.Editor.Forms
 
         private void SettingsBtn_Click(object sender, EventArgs e)
         {
-            new SettingsForm().ShowDialog();
+            using (SettingsForm dlg = new SettingsForm())
+            {
+                dlg.ShowDialog();
+            }
         }
 
         readonly Queue<Keys> KeyStrokes = new Queue<Keys>();

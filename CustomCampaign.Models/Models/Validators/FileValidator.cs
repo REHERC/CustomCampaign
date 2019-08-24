@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
+#pragma warning disable IDE0028
+
 namespace CustomCampaign.Models.Validators
 {
     public class FileValidator : IValidator

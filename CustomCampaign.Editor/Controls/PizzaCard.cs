@@ -6,6 +6,8 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
+#pragma warning disable IDE0069
+
 namespace CustomCampaign.Editor.Controls
 {
     public partial class PizzaCard : MaterialUserControl

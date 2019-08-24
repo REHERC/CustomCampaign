@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using Photon.Serialization;
 
-#pragma warning disable CS0436
+#pragma warning disable CS0436, IDE0069
 
 namespace CustomCampaign.Editor.Pages
 {

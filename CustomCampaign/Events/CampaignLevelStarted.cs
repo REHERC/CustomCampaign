@@ -1,5 +1,7 @@
 ﻿using CustomCampaign.Data;
 
+#pragma warning disable CA1405
+
 namespace Events.Mod
 {
     public class CampaignLevelStarted : StaticEvent<CampaignLevelStarted.Data>
