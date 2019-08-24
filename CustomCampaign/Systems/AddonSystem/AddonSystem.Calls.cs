@@ -1,26 +1,25 @@
-﻿using CustomCampaign.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CustomCampaign.Systems
+﻿namespace CustomCampaign.Systems
 {
     public static partial class AddonSystem
     {
         public static void InitializeAddons()
         {
-            GetAddons().ForEach((addon) => addon.Key.OnInit());
+            GetAddons().ForEach((item) => item.Key.OnInit(Util.GetCampaign(item.Key)));
         }
 
         public static void EnableAddons(string guid)
         {
-            GetAddons(guid).ForEach((addon) => addon.Key.Enable());
+            GetAddons(guid).ForEach((item) => item.Key.Enable());
         }
 
         public static void DisableAddons(string guid)
         {
-            GetAddons(guid).ForEach((addon) => addon.Key.Disable());
+            GetAddons(guid).ForEach((item) => item.Key.Disable());
+        }
+
+        public static void LevelLoaded(string guid)
+        {
+            GetAddons(guid).ForEach((item) => item.Key.OnLevelStart(Util.GetLevelInfo(Util.LevelFile)));
         }
     }
 }

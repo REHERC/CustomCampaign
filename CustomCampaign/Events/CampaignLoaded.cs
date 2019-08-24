@@ -2,7 +2,7 @@
 
 namespace Events.Mod
 {
-    public class CampaignLevelStarted : StaticEvent<CampaignLevelStarted.Data>
+    public class CampaignLoaded : StaticEvent<CampaignLoaded.Data>
     {
         public struct Data
         {

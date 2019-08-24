@@ -1,15 +1,22 @@
 ﻿using CustomCampaign.Data;
+using CustomCampaign.Api;
 using CustomCampaign.Storage;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using CustomCampaign.Systems;
 
 #pragma warning disable CS0168, RCS1001, RCS1206
 namespace CustomCampaign
 {
     public static class Util
     {
+        #region Game Manager Fields
+        public static string LevelFile => G.Sys.GameManager_.Level_.filePath_;
+        public static string LastLevelFile => G.Sys.GameManager_.LastLevelPath_;
+        public static string NextLevelFile => G.Sys.GameManager_.LastLevelPath_;
+        #endregion
         #region "Campaign Utils"
         public static CampaignInfo GetCampaign(string levelfile)
         {
@@ -26,6 +33,20 @@ namespace CustomCampaign
                 if (campaign.Value.Id == guid)
                     return campaign.Value;
             return null;
+        }
+
+        public static CampaignInfo GetCampaign(Addon addon)
+        {
+            return GetCampaignByGuid(GetAddonId(addon));
+        }
+
+        public static string GetAddonId(Addon addon)
+        {
+            List<KeyValuePair<Addon, string>> addons = AddonSystem.GetAddons();
+            foreach (var item in addons)
+                if (item.Key == addon)
+                    return item.Value;
+            return string.Empty;
         }
 
         public static string GetCampaignName(string levelfile)
@@ -132,7 +153,6 @@ namespace CustomCampaign
         public static bool IsCustomCampaignLevel(string levelfile)
         {
             return !(GetCampaign(levelfile) is null);
-            //return GetLevelIndex(levelfile) >= 0;
         }
         #endregion
 

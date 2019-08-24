@@ -61,15 +61,17 @@
     <Compile Include="Api\Addon.cs" />
     <Compile Include="Data\CampaignInfo.cs" />
     <Compile Include="Events\CampaignLevelStarted.cs" />
+    <Compile Include="Events\CampaignLoaded.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Systems\AddonSystem\AddonSystem.Calls.cs" />
     <Compile Include="Systems\AddonSystem\AddonSystem.cs" />
     <Compile Include="Systems\AddonSystem\AddonSystem.Util.cs" />
+    <Compile Include="Systems\CampaignEventsSystem\CampaignEventsSystem.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Storage\Constants.cs" />
     <Compile Include="Storage\Events.cs" />
     <Compile Include="Harmony.cs" />
-    <Compile Include="Systems\LockingSystem.cs" />
+    <Compile Include="Systems\LockingSystem\LockingSystem.cs" />
     <Compile Include="Storage\Plugin.cs" />
     <Compile Include="Storage\CampaignDatabase.cs" />
     <Compile Include="Storage\Variables.cs" />
@@ -87,9 +89,7 @@
       <Name>CustomCampaign.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Systems\LockingSystem\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

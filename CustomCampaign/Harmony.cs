@@ -299,11 +299,6 @@ namespace CustomCampaign
                     G.Sys.MenuPanelManager_.ShowTimedOk(10, Constants.Strings.LevelLocked_Message, Constants.Strings.LevelLocked_Title);
                 result = !flag;
             }
-            if (result && Util.IsCustomCampaignLevel(level))
-            {
-                CampaignInfo campaign = Util.GetCampaign(level);
-                Events.CampaignLevelStarted.Broadcast(new Events.CampaignLevelStarted.Data(campaign));
-            }
             return result;
         }
     }

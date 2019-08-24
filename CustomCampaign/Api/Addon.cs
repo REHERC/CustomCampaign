@@ -1,10 +1,12 @@
-﻿namespace CustomCampaign.Api
+﻿using CustomCampaign.Data;
+
+namespace CustomCampaign.Api
 {
     public abstract class Addon
     {
         public bool Enabled { get; private set; } = false;
 
-        public virtual void OnInit()
+        public virtual void OnInit(CampaignInfo info)
         {
             return;
         }
@@ -27,6 +29,11 @@
         }
 
         public virtual void OnDisable()
+        {
+            return;
+        }
+
+        public virtual void OnLevelStart(Models.Level level)
         {
             return;
         }
