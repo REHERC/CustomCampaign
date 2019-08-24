@@ -64,12 +64,8 @@ namespace CustomCampaign.Editor.Forms
         public void SetPage(string name)
         {
             Page currentpage = GetPage(name);
-            foreach (Page page in Pages)
-            {
-                page.Visible = false;
-            }
+            Pages.ForEach((page) => page.Visible = false);
             currentpage.Visible = true;
-            //PageNameBackground.Visible = (bool)(currentpage.PageTitle != "");
             Title = currentpage.PageTitle;
             currentpage.OnDisplay();
             currentpage.Select();
@@ -79,9 +75,7 @@ namespace CustomCampaign.Editor.Forms
         public bool HasPage(string name)
         {
             foreach (Page page in Pages)
-            {
                 if (page.PageName == name) return true;
-            }
             return false;
         }
 

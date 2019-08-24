@@ -10,10 +10,12 @@ namespace CustomCampaign.Data
 {
     public class CampaignInfo
     {
+        public bool Enabled { get; private set; } = true;
         private Models.Campaign Data { get; set; }
         public string Location { get; set; }
         public List<Models.Level> Levels => Data.levels;
-        public List<string> LevelPaths => (from level in Levels select level.file.NormPath(true)).ToList();
+        public List<Models.Addon> Addons => Data.addons;
+        public List<string> LevelPaths => Levels.Select((Level) => Level.file.NormPath(true)).ToList();
         public Texture2D Logo { get; set; }
         public string Id => Data.guid;
         public string Name => Data.name;
@@ -51,5 +53,7 @@ namespace CustomCampaign.Data
                 set.AddLevel(level, level, LevelType.Official);
             return set;
         }
+
+        public void SetEnabled(bool value) => Enabled = value;
     }
 }

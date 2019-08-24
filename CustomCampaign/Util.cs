@@ -20,6 +20,14 @@ namespace CustomCampaign
             return null;
         }
 
+        public static CampaignInfo GetCampaignByGuid(string guid)
+        {
+            foreach (var campaign in CampaignDatabase.Campaigns)
+                if (campaign.Value.Id == guid)
+                    return campaign.Value;
+            return null;
+        }
+
         public static string GetCampaignName(string levelfile)
         {
             return GetCampaign(levelfile)?.Name;

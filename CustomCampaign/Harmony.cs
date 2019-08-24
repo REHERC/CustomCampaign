@@ -21,7 +21,8 @@ namespace CustomCampaign
             if (__instance.isCampaignMode_)
             {
                 foreach (var campaign in CampaignDatabase.Campaigns)
-                    __instance.CreateAndAddCampaignLevelSet(campaign.Value.GetLevelSet(campaign.Value.GameMode), campaign.Value.Name, true, unlock_mode, campaign.Value.GameMode);
+                    if (campaign.Value.Enabled)
+                        __instance.CreateAndAddCampaignLevelSet(campaign.Value.GetLevelSet(campaign.Value.GameMode), campaign.Value.Name, true, unlock_mode, campaign.Value.GameMode);
                 __instance.buttonList_.SortAndUpdateVisibleButtons();
             }
         }

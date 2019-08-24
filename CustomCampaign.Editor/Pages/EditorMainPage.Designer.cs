@@ -379,7 +379,7 @@ namespace CustomCampaign.Editor.Pages
             this.FileRightSide.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.FileRightSide.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.FileRightSide.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.FileRightSide.Size = new System.Drawing.Size(616, 308);
+            this.FileRightSide.Size = new System.Drawing.Size(624, 308);
             this.FileRightSide.TabIndex = 1;
             // 
             // OverviewLevelsLbl
@@ -391,11 +391,11 @@ namespace CustomCampaign.Editor.Pages
             this.OverviewLevelsLbl.FontSize = 11;
             this.OverviewLevelsLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.OverviewLevelsLbl.FormLabel = false;
-            this.OverviewLevelsLbl.Location = new System.Drawing.Point(4, 117);
-            this.OverviewLevelsLbl.Margin = new System.Windows.Forms.Padding(4, 6, 2, 2);
+            this.OverviewLevelsLbl.Location = new System.Drawing.Point(4, 121);
+            this.OverviewLevelsLbl.Margin = new System.Windows.Forms.Padding(4, 8, 2, 2);
             this.OverviewLevelsLbl.MouseState = MaterialSkin.MouseState.HOVER;
             this.OverviewLevelsLbl.Name = "OverviewLevelsLbl";
-            this.OverviewLevelsLbl.Size = new System.Drawing.Size(610, 19);
+            this.OverviewLevelsLbl.Size = new System.Drawing.Size(618, 19);
             this.OverviewLevelsLbl.TabIndex = 4;
             this.OverviewLevelsLbl.Text = "LEVELS";
             // 
@@ -408,11 +408,11 @@ namespace CustomCampaign.Editor.Pages
             this.OverviewLbl.FontSize = 11;
             this.OverviewLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.OverviewLbl.FormLabel = false;
-            this.OverviewLbl.Location = new System.Drawing.Point(4, 6);
-            this.OverviewLbl.Margin = new System.Windows.Forms.Padding(4, 6, 2, 2);
+            this.OverviewLbl.Location = new System.Drawing.Point(4, 8);
+            this.OverviewLbl.Margin = new System.Windows.Forms.Padding(4, 8, 2, 2);
             this.OverviewLbl.MouseState = MaterialSkin.MouseState.HOVER;
             this.OverviewLbl.Name = "OverviewLbl";
-            this.OverviewLbl.Size = new System.Drawing.Size(610, 19);
+            this.OverviewLbl.Size = new System.Drawing.Size(618, 19);
             this.OverviewLbl.TabIndex = 3;
             this.OverviewLbl.Text = "OVERVIEW";
             // 
@@ -421,8 +421,8 @@ namespace CustomCampaign.Editor.Pages
             this.Overview.Depth = 0;
             this.Overview.Description = "Campaign description";
             this.Overview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Overview.Location = new System.Drawing.Point(0, 33);
-            this.Overview.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.Overview.Location = new System.Drawing.Point(8, 35);
+            this.Overview.Margin = new System.Windows.Forms.Padding(8, 6, 0, 6);
             this.Overview.MouseState = MaterialSkin.MouseState.HOVER;
             this.Overview.Name = "Overview";
             this.Overview.Picture = null;
@@ -441,11 +441,11 @@ namespace CustomCampaign.Editor.Pages
             this.OverviewLevels.FormattingEnabled = true;
             this.OverviewLevels.ItemHeight = 36;
             this.OverviewLevels.Location = new System.Drawing.Point(0, 144);
-            this.OverviewLevels.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.OverviewLevels.Margin = new System.Windows.Forms.Padding(0, 2, 0, 6);
             this.OverviewLevels.MouseState = MaterialSkin.MouseState.HOVER;
             this.OverviewLevels.Name = "OverviewLevels";
             this.OverviewLevels.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.OverviewLevels.Size = new System.Drawing.Size(616, 158);
+            this.OverviewLevels.Size = new System.Drawing.Size(624, 158);
             this.OverviewLevels.TabIndex = 5;
             // 
             // SettingsTab
@@ -556,6 +556,7 @@ namespace CustomCampaign.Editor.Pages
             this.CampaignLogo.TabIndex = 2;
             this.CampaignLogo.TabStop = false;
             this.CampaignLogo.UseSystemPasswordChar = false;
+            this.CampaignLogo.TextChanged += new System.EventHandler(this.CampaignLogo_TextChanged);
             // 
             // CampaignDescription
             // 

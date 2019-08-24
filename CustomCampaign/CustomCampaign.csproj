@@ -62,6 +62,9 @@
     <Compile Include="Data\CampaignInfo.cs" />
     <Compile Include="Events\CampaignLevelStarted.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Systems\AddonSystem\AddonSystem.Calls.cs" />
+    <Compile Include="Systems\AddonSystem\AddonSystem.cs" />
+    <Compile Include="Systems\AddonSystem\AddonSystem.Util.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Storage\Constants.cs" />
     <Compile Include="Storage\Events.cs" />
@@ -83,6 +86,9 @@
       <Project>{61a91363-f0b0-41be-8e56-72fa800bc279}</Project>
       <Name>CustomCampaign.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Systems\LockingSystem\" />
   </ItemGroup>
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

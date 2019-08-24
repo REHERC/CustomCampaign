@@ -70,7 +70,7 @@
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainLayout.Size = new System.Drawing.Size(784, 455);
-            this.MainLayout.TabIndex = 7;
+            this.MainLayout.TabIndex = 2;
             // 
             // FormPanel
             // 
@@ -89,6 +89,7 @@
             this.FormPanel.Padding = new System.Windows.Forms.Padding(16);
             this.FormPanel.Size = new System.Drawing.Size(784, 455);
             this.FormPanel.TabIndex = 0;
+            this.FormPanel.TabStop = true;
             // 
             // DependenciesLayout
             // 
@@ -109,7 +110,7 @@
             this.DependenciesLayout.RowCount = 1;
             this.DependenciesLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 256F));
             this.DependenciesLayout.Size = new System.Drawing.Size(744, 345);
-            this.DependenciesLayout.TabIndex = 7;
+            this.DependenciesLayout.TabIndex = 0;
             // 
             // ActionsPanel
             // 
@@ -123,7 +124,8 @@
             this.ActionsPanel.MouseState = MaterialSkin.MouseState.HOVER;
             this.ActionsPanel.Name = "ActionsPanel";
             this.ActionsPanel.Size = new System.Drawing.Size(160, 345);
-            this.ActionsPanel.TabIndex = 4;
+            this.ActionsPanel.TabIndex = 0;
+            this.ActionsPanel.TabStop = true;
             // 
             // RemoveBtn
             // 
@@ -193,7 +195,7 @@
             this.Dependencies.MouseState = MaterialSkin.MouseState.HOVER;
             this.Dependencies.Name = "Dependencies";
             this.Dependencies.Size = new System.Drawing.Size(584, 345);
-            this.Dependencies.TabIndex = 3;
+            this.Dependencies.TabIndex = 1;
             this.Dependencies.SelectedIndexChanged += new System.EventHandler(this.Dependencies_SelectedIndexChanged);
             // 
             // AddonFile
@@ -213,7 +215,7 @@
             this.AddonFile.SelectionLength = 0;
             this.AddonFile.SelectionStart = 0;
             this.AddonFile.Size = new System.Drawing.Size(744, 23);
-            this.AddonFile.TabIndex = 2;
+            this.AddonFile.TabIndex = 1;
             this.AddonFile.TabStop = false;
             this.AddonFile.UseSystemPasswordChar = false;
             this.AddonFile.TextChanged += new System.EventHandler(this.AddonFile_TextChanged);
@@ -252,7 +254,7 @@
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Primary = false;
             this.CancelBtn.Size = new System.Drawing.Size(73, 36);
-            this.CancelBtn.TabIndex = 6;
+            this.CancelBtn.TabIndex = 4;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
@@ -270,7 +272,7 @@
             this.ConfirmBtn.Name = "ConfirmBtn";
             this.ConfirmBtn.Primary = true;
             this.ConfirmBtn.Size = new System.Drawing.Size(81, 36);
-            this.ConfirmBtn.TabIndex = 5;
+            this.ConfirmBtn.TabIndex = 3;
             this.ConfirmBtn.Text = "Confirm";
             this.ConfirmBtn.UseVisualStyleBackColor = true;
             this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);

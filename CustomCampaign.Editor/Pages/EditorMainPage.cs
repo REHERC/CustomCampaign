@@ -5,6 +5,8 @@ using System;
 using System.Linq;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.IO;
+using System.Drawing;
 
 #pragma warning disable CS0436
 
@@ -161,5 +163,15 @@ namespace CustomCampaign.Editor.Pages
             RemoveAddon.Enabled = flag;
         }
         #endregion
+
+        private void CampaignLogo_TextChanged(object sender, EventArgs e)
+        {
+            string file = Path.Combine(Editor.current_path, CampaignLogo.Text);
+            if (File.Exists(file))
+                Overview.Picture = Image.FromFile(file);
+            else
+                Overview.Picture = null;
+            Overview.ShowPicture = Overview.Picture != null;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Spectrum.API.Storage;
 using System.IO;
 using CustomCampaign.Data;
+using CustomCampaign.Systems;
 
 namespace CustomCampaign.Storage
 {
@@ -32,9 +33,18 @@ namespace CustomCampaign.Storage
                     CampaignInfo campaign_info = new CampaignInfo(campaign_directory.NormPath(false), campaign);
                     foreach (Models.Level level in campaign.levels)
                         level.file = new FileInfo(Path.Combine(campaign_directory, level.file)).FullName;
+
+                    foreach (Models.Addon addon in campaign.addons)
+                    {
+                        addon.module = new FileInfo(Path.Combine(campaign_directory, addon.module)).FullName;
+                        for (int i = 0; i < addon.dependencies.Count; i++)
+                            addon.dependencies[i] = new FileInfo(Path.Combine(campaign_directory, addon.dependencies[i])).FullName;
+                    }
+                    AddonSystem.RegisterCampaign(campaign_info);
                     CampaignDatabase.Add(campaign_info);
                 }
             }
+            AddonSystem.LoadAddons();
         }
     }
 }
