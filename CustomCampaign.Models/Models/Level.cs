@@ -23,5 +23,7 @@ namespace CustomCampaign.Models
             string file_path = $"{Path.Combine(current_path, file)}.png";
             return File.Exists(file_path) ? Image.FromFile(file_path) : null;
         }
+
+        public override string ToString() => levelname;
     }
 }

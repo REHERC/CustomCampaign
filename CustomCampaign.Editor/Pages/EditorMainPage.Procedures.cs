@@ -48,13 +48,14 @@ namespace CustomCampaign.Editor.Pages
 
             Editor.current_campaign.levels.ForEach((level) => Levels.Items.Add(level));
             Editor.current_campaign.addons.ForEach((addon) => Addons.Items.Add(addon));
-
             #endregion
 
             Levels.SelectedIndex = -1;
             Addons.SelectedIndex = -1;
             Levels_SelectedIndexChanged(Levels, new EventArgs());
             Addons_SelectedIndexChanged(Levels, new EventArgs());
+
+            UpdateOverviewList();
         }
 
         public Campaign UpdateWorkingstate()
@@ -85,6 +86,19 @@ namespace CustomCampaign.Editor.Pages
                 Data = UpdateWorkingstate()
             };
             serializer.Save();
+        }
+        
+        public void UpdateOverviewList()
+        {
+            void SetDataSource(object value)
+            {
+                OverviewLevels.DataSource = value;
+                OverviewLevels.Refresh();
+                OverviewLevels.Update();
+            }
+
+            SetDataSource(null);
+            SetDataSource(Levels.Items);
         }
         #endregion
 
@@ -170,6 +184,7 @@ namespace CustomCampaign.Editor.Pages
                     Levels.Items.Insert(index + 1, data);
                 Globals.MainWindow.SetPage("pages:editormain");
                 Levels_SelectedIndexChanged(Levels, new EventArgs());
+                UpdateOverviewList();
             };
             Globals.MainWindow.SetPage("pages:editlevel");
         }
@@ -186,6 +201,7 @@ namespace CustomCampaign.Editor.Pages
                     Levels.Items[index] = data;
                 Globals.MainWindow.SetPage("pages:editormain");
                 Levels_SelectedIndexChanged(Levels, new EventArgs());
+                UpdateOverviewList();
             };
             Globals.MainWindow.SetPage("pages:editlevel");
         }
@@ -194,6 +210,7 @@ namespace CustomCampaign.Editor.Pages
         {
             if (Levels.SelectedIndex >= 0 && MessageBox.Show("Are you sure you want to remove this level from the list?", "Remove level", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 Levels.Items.RemoveAt(Levels.SelectedIndex);
+            UpdateOverviewList();
         }
         #endregion
 

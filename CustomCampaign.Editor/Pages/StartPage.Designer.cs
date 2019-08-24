@@ -70,6 +70,7 @@ namespace CustomCampaign.Editor.Pages
             this.VersionLbl.Font = new System.Drawing.Font("Roboto", 11F);
             this.VersionLbl.FontSize = 11;
             this.VersionLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.VersionLbl.FormLabel = false;
             this.VersionLbl.Location = new System.Drawing.Point(0, 0);
             this.VersionLbl.MouseState = MaterialSkin.MouseState.HOVER;
             this.VersionLbl.Name = "VersionLbl";
@@ -123,6 +124,7 @@ namespace CustomCampaign.Editor.Pages
             this.RecentLbl.Font = new System.Drawing.Font("Roboto", 11F);
             this.RecentLbl.FontSize = 11;
             this.RecentLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.RecentLbl.FormLabel = false;
             this.RecentLbl.Location = new System.Drawing.Point(3, 0);
             this.RecentLbl.MouseState = MaterialSkin.MouseState.HOVER;
             this.RecentLbl.Name = "RecentLbl";
@@ -256,6 +258,7 @@ namespace CustomCampaign.Editor.Pages
             this.GetStartedLbl.Font = new System.Drawing.Font("Roboto", 11F);
             this.GetStartedLbl.FontSize = 11;
             this.GetStartedLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GetStartedLbl.FormLabel = false;
             this.GetStartedLbl.Location = new System.Drawing.Point(3, 0);
             this.GetStartedLbl.MouseState = MaterialSkin.MouseState.HOVER;
             this.GetStartedLbl.Name = "GetStartedLbl";

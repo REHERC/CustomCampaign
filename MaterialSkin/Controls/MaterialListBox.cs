@@ -56,7 +56,7 @@ namespace MaterialSkin.Controls
 
             e.Graphics.FillRectangle(new SolidBrush(SkinManager.GetApplicationBackgroundColor()), bounds);
 
-            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected && SelectionMode != SelectionMode.None)
                 e.Graphics.FillRectangle(new SolidBrush(SkinManager.GetCmsSelectedItemColor()), bounds);
 
             e.Graphics.DrawString(text, Font, SkinManager.GetSecondaryTextBrush(), text_rect, StringFormat.GenericDefault);
