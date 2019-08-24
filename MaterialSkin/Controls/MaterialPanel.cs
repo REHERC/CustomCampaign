@@ -18,10 +18,7 @@ namespace MaterialSkin.Controls
         public override Color BackColor
         {
             get => SkinManager.GetApplicationBackgroundColor();
-            set
-            {
-                value = SkinManager.GetApplicationBackgroundColor();
-            }
+            set => value = SkinManager.GetApplicationBackgroundColor();
         }
 
         protected override void OnPaint(PaintEventArgs e)

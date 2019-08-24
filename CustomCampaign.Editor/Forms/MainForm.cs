@@ -20,6 +20,7 @@ namespace CustomCampaign.Editor.Forms
             AddPage(new NewCampaignWizard());
             AddPage(new EditorMainPage());
             AddPage(new EditLevelPage());
+            AddPage(new EditAddonPage());
             AddPage(new ImportCampaignPage());
 
             systemmenu = new SystemMenu(this);

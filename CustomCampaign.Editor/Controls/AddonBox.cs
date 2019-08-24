@@ -1,6 +1,5 @@
 ﻿using CustomCampaign.Models;
 using MaterialSkin;
-using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -9,12 +8,12 @@ using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Controls
 {
-    public class LevelBox : Cyotek.DragListBox
+    public class AddonBox : Cyotek.DragListBox
     {
         public override Color BackColor => SkinManager.GetApplicationBackgroundColor();
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
-        public override int ItemHeight => 96;
+        public override int ItemHeight => 48;
         public override DrawMode DrawMode => DrawMode.OwnerDrawVariable;
 
         protected override Color LineColor => SkinManager.ColorScheme.AccentColor;
@@ -38,8 +37,6 @@ namespace CustomCampaign.Editor.Controls
 
         private Image RenderItem(bool selected, DrawItemEventArgs e)
         {
-            const float thumb_ratio = 640.0f / 360.0f;
-
             Bitmap flag = new Bitmap(Width, ItemHeight);
             Graphics g = Graphics.FromImage(flag);
 
@@ -51,25 +48,27 @@ namespace CustomCampaign.Editor.Controls
 
             if (selected)
                 g.Clear(SkinManager.GetCmsSelectedItemColor());
-            else
+            else 
                 g.Clear(SkinManager.GetApplicationBackgroundColor());
 
-            if (!(Items[e.Index] is Level))
+            if (!(Items[e.Index] is Addon))
             {
                 g.DrawString("Error: The type of the item data is invalid", e.Font, Brushes.Black, new PointF(0, 0));
                 return flag;
             }
 
-            Level data = (Level)Items[e.Index];
+            Addon data = (Addon)Items[e.Index];
 
-            int margin = 8,
-            thumb_height = ItemHeight - (2 * margin),
-            thumb_width = (int)Math.Round(thumb_ratio * thumb_height);
+            int margin = 4;
 
-            g.DrawString(data.levelname.ToUpper(), SkinManager.GetFont(20), SkinManager.GetSecondaryTextBrush(), new PointF(thumb_width + (2 * margin), 1.5f * margin));
-            g.DrawString(data.levelname_sub.ToUpper(), SkinManager.GetFont(14), SkinManager.GetSecondaryTextBrush(), new PointF(4 + thumb_width + (2 * margin), 5.0f * margin));
+            string title = $"{data.name.ToUpper()}";
 
-            g.DrawImage(data.GetThumbnail(Editor.current_path) ?? Resx.Resources.NoPreview, new Rectangle(margin, margin, thumb_width, thumb_height));
+            Font title_font = SkinManager.GetFont(14);
+            Size title_size = TextRenderer.MeasureText(title, title_font);
+
+            g.DrawString(title, title_font, SkinManager.GetSecondaryTextBrush(), new PointF(margin, 0.5f * margin));
+            g.DrawString($"({data.module})", SkinManager.GetFont(12), SkinManager.GetSecondaryTextBrush(), new PointF(margin * 2.25f + title_size.Width, 1.1f * margin));
+            g.DrawString($"{data.dependencies.Count} dependencies", SkinManager.GetFont(12), SkinManager.GetSecondaryTextBrush(), new PointF(0.75f * margin + 4, 6.0f * margin));
 
             return flag;
         }

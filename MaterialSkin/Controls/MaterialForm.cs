@@ -291,7 +291,7 @@ namespace MaterialSkin.Controls
                 var par = base.CreateParams;
                 // WS_SYSMENU: Trigger the creation of the system menu
                 // WS_MINIMIZEBOX: Allow minimizing from taskbar
-                par.Style = par.Style | WS_MINIMIZEBOX | WS_SYSMENU; // Turn on the WS_MINIMIZEBOX style flag
+                par.Style = par.Style | (MinimizeBox ? WS_MINIMIZEBOX : 0) | WS_SYSMENU; // Turn on the WS_MINIMIZEBOX style flag
                 return par;
             }
         }

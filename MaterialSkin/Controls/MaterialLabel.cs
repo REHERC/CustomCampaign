@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
@@ -9,6 +10,18 @@ namespace MaterialSkin.Controls
 {
     public class MaterialLabel : Label, IMaterialControl
     {
+        private bool _formLabel = false;
+        public bool FormLabel
+        {
+            get => _formLabel;
+            set
+            {
+                _formLabel = value;
+                ForeColor = TextColor;
+                Invalidate();
+            }
+        }
+
         [Browsable(false)]
         public int Depth { get; set; }
         [Browsable(false)]
@@ -26,7 +39,7 @@ namespace MaterialSkin.Controls
             set
             {
                 _fontSize = value;
-                this.Font = SkinManager.GetFont(_fontSize);
+                Font = SkinManager.GetFont(_fontSize);
             }
         }
 
@@ -44,11 +57,13 @@ namespace MaterialSkin.Controls
             base.OnCreateControl();
 
             BackColor = SkinManager.GetApplicationBackgroundColor();
-            ForeColor = SkinManager.GetPrimaryTextColor();
+            ForeColor = TextColor;
             Font = Font = SkinManager.GetFont(FontSize);
 
-            BackColorChanged += (sender, args) => ForeColor = SkinManager.GetPrimaryTextColor();
+            BackColorChanged += (sender, args) => ForeColor = TextColor;
         }
+
+        Color TextColor => FormLabel ? SkinManager.GetSecondaryTextColor() : SkinManager.GetPrimaryTextColor();
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -56,6 +71,8 @@ namespace MaterialSkin.Controls
             var g = e.Graphics;
             g.Clear(BackColor);
             g.TextRenderingHint = TextRenderingHint.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            g.CompositingQuality = CompositingQuality.HighQuality;
             g.DrawString(Text, Font, new SolidBrush(ForeColor), new Rectangle(Point.Empty, Size));
         }
     }

@@ -103,7 +103,7 @@
             this.OverwriteLoadingText.Name = "OverwriteLoadingText";
             this.OverwriteLoadingText.Ripple = true;
             this.OverwriteLoadingText.Size = new System.Drawing.Size(751, 30);
-            this.OverwriteLoadingText.TabIndex = 4;
+            this.OverwriteLoadingText.TabIndex = 5;
             this.OverwriteLoadingText.Text = "Overwrite loading text";
             this.OverwriteLoadingText.UseVisualStyleBackColor = true;
             this.OverwriteLoadingText.CheckedChanged += new System.EventHandler(this.OverwriteLoadingText_CheckedChanged);
@@ -121,7 +121,7 @@
             this.DisplayIntro.Name = "DisplayIntro";
             this.DisplayIntro.Ripple = true;
             this.DisplayIntro.Size = new System.Drawing.Size(751, 30);
-            this.DisplayIntro.TabIndex = 3;
+            this.DisplayIntro.TabIndex = 1;
             this.DisplayIntro.Text = "Display level intro title";
             this.DisplayIntro.UseVisualStyleBackColor = true;
             this.DisplayIntro.CheckedChanged += new System.EventHandler(this.DisplayIntro_CheckedChanged);
@@ -143,7 +143,7 @@
             this.LoadingText.SelectionLength = 0;
             this.LoadingText.SelectionStart = 0;
             this.LoadingText.Size = new System.Drawing.Size(744, 23);
-            this.LoadingText.TabIndex = 2;
+            this.LoadingText.TabIndex = 6;
             this.LoadingText.TabStop = false;
             this.LoadingText.UseSystemPasswordChar = false;
             this.LoadingText.TextChanged += new System.EventHandler(this.LoadingText_TextChanged);
@@ -165,7 +165,7 @@
             this.LoadingBackground.SelectionLength = 0;
             this.LoadingBackground.SelectionStart = 0;
             this.LoadingBackground.Size = new System.Drawing.Size(744, 23);
-            this.LoadingBackground.TabIndex = 2;
+            this.LoadingBackground.TabIndex = 4;
             this.LoadingBackground.TabStop = false;
             this.LoadingBackground.UseSystemPasswordChar = false;
             this.LoadingBackground.TextChanged += new System.EventHandler(this.LoadingBackground_TextChanged);
@@ -187,7 +187,7 @@
             this.LevelSector.SelectionLength = 0;
             this.LevelSector.SelectionStart = 0;
             this.LevelSector.Size = new System.Drawing.Size(744, 23);
-            this.LevelSector.TabIndex = 2;
+            this.LevelSector.TabIndex = 3;
             this.LevelSector.TabStop = false;
             this.LevelSector.UseSystemPasswordChar = false;
             this.LevelSector.TextChanged += new System.EventHandler(this.LevelSector_TextChanged);
@@ -209,7 +209,7 @@
             this.LevelName.SelectionLength = 0;
             this.LevelName.SelectionStart = 0;
             this.LevelName.Size = new System.Drawing.Size(744, 23);
-            this.LevelName.TabIndex = 1;
+            this.LevelName.TabIndex = 2;
             this.LevelName.TabStop = false;
             this.LevelName.UseSystemPasswordChar = false;
             this.LevelName.TextChanged += new System.EventHandler(this.LevelName_TextChanged);
@@ -248,7 +248,7 @@
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Primary = false;
             this.CancelBtn.Size = new System.Drawing.Size(73, 36);
-            this.CancelBtn.TabIndex = 5;
+            this.CancelBtn.TabIndex = 3;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
@@ -266,7 +266,7 @@
             this.ConfirmBtn.Name = "ConfirmBtn";
             this.ConfirmBtn.Primary = true;
             this.ConfirmBtn.Size = new System.Drawing.Size(81, 36);
-            this.ConfirmBtn.TabIndex = 3;
+            this.ConfirmBtn.TabIndex = 2;
             this.ConfirmBtn.Text = "Confirm";
             this.ConfirmBtn.UseVisualStyleBackColor = true;
             this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);

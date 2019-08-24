@@ -40,6 +40,7 @@
     <ApplicationIcon>Modified.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -72,6 +73,9 @@
     </Compile>
     <Compile Include="Controls\Cyotek\InsertionMode.cs" />
     <Compile Include="Controls\Cyotek\ListBoxItemDragEventArgs.cs" />
+    <Compile Include="Controls\AddonBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\LevelBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -83,6 +87,18 @@
     </Compile>
     <Compile Include="Editor.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Forms\Aaaaaaa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Aaaaaaa.Designer.cs">
+      <DependentUpon>Aaaaaaa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\InputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\InputDialog.Designer.cs">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +133,12 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
+    <Compile Include="Pages\EditAddonPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\EditAddonPage.Designer.cs">
+      <DependentUpon>EditAddonPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditLevelPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,6 +150,9 @@
     </Compile>
     <Compile Include="Pages\EditorMainPage.Designer.cs">
       <DependentUpon>EditorMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditorMainPage.Procedures.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\ImportCampaignPage.cs">
       <SubType>UserControl</SubType>
@@ -149,6 +174,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resx\Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resx\ProfilePictures.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,6 +196,12 @@
     <EmbeddedResource Include="Controls\PizzaCard.resx">
       <DependentUpon>PizzaCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Aaaaaaa.resx">
+      <DependentUpon>Aaaaaaa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\InputDialog.resx">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\EditAddonPage.resx">
+      <DependentUpon>EditAddonPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\EditLevelPage.resx">
       <DependentUpon>EditLevelPage.cs</DependentUpon>
@@ -196,10 +235,13 @@
     <EmbeddedResource Include="Pages\StartPage.resx">
       <DependentUpon>StartPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resx\Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resx\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Distance</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Resx\ProfilePictures.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -301,6 +343,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Modified.ico" />
+    <None Include="Resources\SpookSlow.gif" />
   </ItemGroup>
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

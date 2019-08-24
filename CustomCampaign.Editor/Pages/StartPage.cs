@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Models;
+﻿using CustomCampaign.Editor.Forms;
+using CustomCampaign.Models;
 using MaterialSkin.Controls;
 using System;
 using System.Diagnostics;
@@ -82,6 +83,14 @@ namespace CustomCampaign.Editor.Pages
         {
             Globals.MainWindow.GetPage<ImportCampaignPage>("pages:importcampaign").PreviousPage = PageName;
             Globals.ImportCampaign();
+        }
+
+        private void SecretSpookButtonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (Aaaaaaa dlg = new Aaaaaaa())
+            {
+                dlg.ShowDialog();
+            }
         }
     }
 }

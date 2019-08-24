@@ -6,6 +6,7 @@ namespace CustomCampaign.Models
 {
     public class Addon
     {
+        public string name = "";
         public string module = "";
         public List<string> dependencies = new List<string>();
 

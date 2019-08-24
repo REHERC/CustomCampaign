@@ -47,7 +47,7 @@
             this.MainPanel.MouseState = MaterialSkin.MouseState.HOVER;
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.MainPanel.Size = new System.Drawing.Size(622, 267);
+            this.MainPanel.Size = new System.Drawing.Size(818, 310);
             this.MainPanel.TabIndex = 0;
             this.MainPanel.BackColorChanged += new System.EventHandler(this.MainPanel_BackColorChanged);
             // 
@@ -56,10 +56,10 @@
             this.Divider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Divider.Depth = 0;
             this.Divider.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Divider.Location = new System.Drawing.Point(0, 266);
+            this.Divider.Location = new System.Drawing.Point(0, 309);
             this.Divider.MouseState = MaterialSkin.MouseState.HOVER;
             this.Divider.Name = "Divider";
-            this.Divider.Size = new System.Drawing.Size(622, 1);
+            this.Divider.Size = new System.Drawing.Size(818, 1);
             this.Divider.TabIndex = 3;
             // 
             // DisplayText
@@ -71,7 +71,7 @@
             this.DisplayText.Multiline = true;
             this.DisplayText.Name = "DisplayText";
             this.DisplayText.ReadOnly = true;
-            this.DisplayText.Size = new System.Drawing.Size(622, 259);
+            this.DisplayText.Size = new System.Drawing.Size(818, 302);
             this.DisplayText.TabIndex = 4;
             this.DisplayText.Text = "DISPLAYED INFO";
             // 
@@ -80,11 +80,11 @@
             this.BottomActions.Controls.Add(this.CloseBtn);
             this.BottomActions.Depth = 0;
             this.BottomActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomActions.Location = new System.Drawing.Point(8, 307);
+            this.BottomActions.Location = new System.Drawing.Point(8, 350);
             this.BottomActions.MouseState = MaterialSkin.MouseState.HOVER;
             this.BottomActions.Name = "BottomActions";
             this.BottomActions.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.BottomActions.Size = new System.Drawing.Size(622, 44);
+            this.BottomActions.Size = new System.Drawing.Size(818, 44);
             this.BottomActions.TabIndex = 5;
             // 
             // CloseBtn
@@ -94,7 +94,7 @@
             this.CloseBtn.Depth = 0;
             this.CloseBtn.Dock = System.Windows.Forms.DockStyle.Right;
             this.CloseBtn.Icon = null;
-            this.CloseBtn.Location = new System.Drawing.Point(559, 8);
+            this.CloseBtn.Location = new System.Drawing.Point(755, 8);
             this.CloseBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CloseBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.CloseBtn.Name = "CloseBtn";
@@ -108,7 +108,7 @@
             // MissingFilesDialog
             // 
             this.Bar = false;
-            this.ClientSize = new System.Drawing.Size(638, 359);
+            this.ClientSize = new System.Drawing.Size(834, 402);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.BottomActions);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

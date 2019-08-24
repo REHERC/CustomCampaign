@@ -32,6 +32,8 @@ namespace CustomCampaign.Editor.Pages
         {
             this.VersionBox = new MaterialSkin.Controls.MaterialPanel();
             this.VersionLbl = new MaterialSkin.Controls.MaterialLabel();
+            this.SecretMenu = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.secretSpookButtonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.RecentLbl = new MaterialSkin.Controls.MaterialLabel();
             this.RecentList = new MaterialSkin.Controls.MaterialPanel();
@@ -42,6 +44,7 @@ namespace CustomCampaign.Editor.Pages
             this.OpenBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.GetStartedLbl = new MaterialSkin.Controls.MaterialLabel();
             this.VersionBox.SuspendLayout();
+            this.SecretMenu.SuspendLayout();
             this.MainLayout.SuspendLayout();
             this.BtnLayout.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +64,7 @@ namespace CustomCampaign.Editor.Pages
             // VersionLbl
             // 
             this.VersionLbl.AutoSize = true;
+            this.VersionLbl.ContextMenuStrip = this.SecretMenu;
             this.VersionLbl.Depth = 0;
             this.VersionLbl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VersionLbl.Font = new System.Drawing.Font("Roboto", 11F);
@@ -72,6 +76,23 @@ namespace CustomCampaign.Editor.Pages
             this.VersionLbl.Size = new System.Drawing.Size(269, 19);
             this.VersionLbl.TabIndex = 4;
             this.VersionLbl.Text = "Campaign creation toolkit for Distance";
+            // 
+            // SecretMenu
+            // 
+            this.SecretMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.SecretMenu.Depth = 0;
+            this.SecretMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.secretSpookButtonToolStripMenuItem});
+            this.SecretMenu.MouseState = MaterialSkin.MouseState.HOVER;
+            this.SecretMenu.Name = "SecretMenu";
+            this.SecretMenu.Size = new System.Drawing.Size(182, 26);
+            // 
+            // secretSpookButtonToolStripMenuItem
+            // 
+            this.secretSpookButtonToolStripMenuItem.Name = "secretSpookButtonToolStripMenuItem";
+            this.secretSpookButtonToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.secretSpookButtonToolStripMenuItem.Text = "Secret Spook Button";
+            this.secretSpookButtonToolStripMenuItem.Click += new System.EventHandler(this.SecretSpookButtonToolStripMenuItem_Click);
             // 
             // MainLayout
             // 
@@ -254,6 +275,7 @@ namespace CustomCampaign.Editor.Pages
             this.Size = new System.Drawing.Size(784, 328);
             this.VersionBox.ResumeLayout(false);
             this.VersionBox.PerformLayout();
+            this.SecretMenu.ResumeLayout(false);
             this.MainLayout.ResumeLayout(false);
             this.MainLayout.PerformLayout();
             this.BtnLayout.ResumeLayout(false);
@@ -276,5 +298,7 @@ namespace CustomCampaign.Editor.Pages
         private MaterialSkin.Controls.MaterialRaisedButton OpenBtn;
         private MaterialSkin.Controls.MaterialLabel GetStartedLbl;
         private MaterialRaisedButton ImportBtn;
+        private MaterialContextMenuStrip SecretMenu;
+        private System.Windows.Forms.ToolStripMenuItem secretSpookButtonToolStripMenuItem;
     }
 }

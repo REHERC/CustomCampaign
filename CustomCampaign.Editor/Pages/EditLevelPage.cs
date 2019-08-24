@@ -1,11 +1,10 @@
 ﻿using CustomCampaign.Models;
 using System;
-using CustomCampaign.Editor;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Pages
 {
-    public partial class EditLevelPage : CustomCampaign.Editor.Classes.Page
+    public partial class EditLevelPage : Classes.Page
     {
         public EditLevelPage()
         {
@@ -26,54 +25,30 @@ namespace CustomCampaign.Editor.Pages
             LoadingText.Text = data.loading_text;
         }
 
-        private Level data;
+        private Level data = new Level();
 
         public Action<DialogResult, Level> PageClosed = (result, level) => { };
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
-            if (LevelFile.Text.Length > 0)
+            if (ValidateFields())
                 PageClosed(DialogResult.OK, data);
         }
-
-        private void CancelBtn_Click(object sender, EventArgs e)
+        private void CancelBtn_Click(object sender, EventArgs e) => PageClosed(DialogResult.Cancel, data);
+        private void LevelFile_TextChanged(object sender, EventArgs e) => data.file = LevelFile.Text;
+        private void DisplayIntro_CheckedChanged(object sender, EventArgs e) => data.display_intro_title = DisplayIntro.Checked;
+        private void LevelName_TextChanged(object sender, EventArgs e) => data.levelname = LevelName.Text;
+        private void LevelSector_TextChanged(object sender, EventArgs e) => data.levelname_sub = LevelSector.Text;
+        private void LoadingBackground_TextChanged(object sender, EventArgs e) => data.loading_wallpaper = LoadingBackground.Text;
+        private void OverwriteLoadingText_CheckedChanged(object sender, EventArgs e) => data.overwrite_loading_text = OverwriteLoadingText.Checked;
+        private void LoadingText_TextChanged(object sender, EventArgs e) => data.loading_text = LoadingText.Text;
+        private bool ValidateFields()
         {
-            PageClosed(DialogResult.Cancel, data);
-        }
+            bool result = true;
 
-        private void LevelFile_TextChanged(object sender, EventArgs e)
-        {
-            data.file = LevelFile.Text;
-        }
+            result &= LevelFile.Text.Length > 0;
 
-        private void DisplayIntro_CheckedChanged(object sender, EventArgs e)
-        {
-            data.display_intro_title = DisplayIntro.Checked;
-        }
-
-        private void LevelName_TextChanged(object sender, EventArgs e)
-        {
-            data.levelname = LevelName.Text;
-        }
-
-        private void LevelSector_TextChanged(object sender, EventArgs e)
-        {
-            data.levelname_sub = LevelSector.Text;
-        }
-
-        private void LoadingBackground_TextChanged(object sender, EventArgs e)
-        {
-            data.loading_wallpaper = LoadingBackground.Text;
-        }
-
-        private void OverwriteLoadingText_CheckedChanged(object sender, EventArgs e)
-        {
-            data.overwrite_loading_text = OverwriteLoadingText.Checked;
-        }
-
-        private void LoadingText_TextChanged(object sender, EventArgs e)
-        {
-            data.loading_text = LoadingText.Text;
+            return result;
         }
     }
 }
