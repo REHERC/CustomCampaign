@@ -1,5 +1,6 @@
 ﻿using CustomCampaign.Api;
 using CustomCampaign.Data;
+using CustomCampaign.Models;
 using CustomCampaign.Storage;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace CustomCampaign.Systems
     public static partial class AddonSystem
     {
         #region Important Data
-        private static Dictionary<Assembly, string> Assemblies = new Dictionary<Assembly, string>();
-        private static Dictionary<Addon, string> Addons = new Dictionary<Addon, string>();
+        private static Dictionary<ObjectWithGUID<Assembly>, string> Assemblies = new Dictionary<ObjectWithGUID<Assembly>, string>();
+        private static Dictionary<ObjectWithGUID<Api.Addon>, string> Addons = new Dictionary<ObjectWithGUID<Api.Addon>, string>();
         #endregion
         #region Temporary Lists
         private static Dictionary<string, string> Modules = new Dictionary<string, string>();
@@ -52,7 +53,7 @@ namespace CustomCampaign.Systems
                 if (!dest.ContainsKey(item))
                     dest.Add(item, campaign.Id);
         }
-        private static void AddAssembly(Assembly assembly, string id) => Assemblies.Add(assembly, id);
+        private static void AddAssembly(Assembly assembly, string id) => Assemblies.Add(ObjectWithGUID<Assembly>.Create(assembly), id);
         public static void LoadAddons()
         {
             LoadAddons(ref Dependencies);
@@ -94,9 +95,9 @@ namespace CustomCampaign.Systems
         {
             foreach(Type type in assembly.GetExportedTypes())
             {
-                if (type.IsSubclassOf(typeof(Addon)))
-                    if (Activator.CreateInstance(type) is Addon addon)
-                        Addons.Add(addon, id);
+                if (type.IsSubclassOf(typeof(Api.Addon)))
+                    if (Activator.CreateInstance(type) is Api.Addon addon)
+                        Addons.Add(ObjectWithGUID<Api.Addon>.Create(addon), id);
             }
         }
     }

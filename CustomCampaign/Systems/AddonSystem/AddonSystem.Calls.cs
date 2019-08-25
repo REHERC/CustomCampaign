@@ -4,22 +4,22 @@
     {
         public static void InitializeAddons()
         {
-            GetAddons().ForEach((item) => item.Key.OnInit(Util.GetCampaign(item.Key)));
+            GetAddons().ForEach((item) => item.Key.Object.OnInit(Util.GetCampaign(item.Key)));
         }
 
         public static void EnableAddons(string guid)
         {
-            GetAddons(guid).ForEach((item) => item.Key.Enable());
+            GetAddons(guid).ForEach((item) => item.Key.Object.Enable());
         }
 
         public static void DisableAddons(string guid)
         {
-            GetAddons(guid).ForEach((item) => item.Key.Disable());
+            GetAddons(guid).ForEach((item) => item.Key.Object.Disable());
         }
 
         public static void LevelLoaded(string guid)
         {
-            GetAddons(guid).ForEach((item) => item.Key.OnLevelStart(Util.GetLevelInfo(Util.LevelFile)));
+            GetAddons(guid).ForEach((item) => item.Key.Object.OnLevelStart(Util.GetLevelInfo(Util.LevelFile)));
         }
     }
 }

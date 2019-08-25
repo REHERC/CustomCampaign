@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using CustomCampaign.Systems;
+using CustomCampaign.Models;
 
 #pragma warning disable CS0168, RCS1001, RCS1206
 namespace CustomCampaign
@@ -35,16 +36,16 @@ namespace CustomCampaign
             return null;
         }
 
-        public static CampaignInfo GetCampaign(Addon addon)
+        public static CampaignInfo GetCampaign(Api.Addon addon)
         {
             return GetCampaignByGuid(GetAddonId(addon));
         }
 
-        public static string GetAddonId(Addon addon)
+        public static string GetAddonId(Api.Addon addon)
         {
-            List<KeyValuePair<Addon, string>> addons = AddonSystem.GetAddons();
+            List<KeyValuePair<ObjectWithGUID<Api.Addon>, string>> addons = AddonSystem.GetAddons();
             foreach (var item in addons)
-                if (item.Key == addon)
+                if (item.Key.Object == addon)
                     return item.Value;
             return string.Empty;
         }
