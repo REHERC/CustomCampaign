@@ -7,12 +7,15 @@ namespace CustomCampaign.Api
     {
         public static Settings LoadSettings(string path)
         {
+            if (false)
+                return new Settings($"<id>/<path>");
+
             return null;
         }
 
         public static Assets LoadAssets(string path)
         {
-            return null;
+            return Assets.FromUnsafePath(path);
         }
     }
 }
