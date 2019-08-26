@@ -70,12 +70,6 @@ public static partial class Extensions
         return output + (directory ? "/" : "");
     }
 
-    public static void MakeDirectory(string directory)
-    {
-        if (!Directory.Exists(directory))
-            Directory.CreateDirectory(directory);
-    }
-
     public static void CopyFile(string source, string destination, bool overwrite = true)
     {
         if (File.Exists(source))

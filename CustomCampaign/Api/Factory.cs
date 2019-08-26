@@ -1,5 +1,7 @@
-﻿using Spectrum.API.Configuration;
+﻿using CustomCampaign.Storage;
+using Spectrum.API.Configuration;
 using Spectrum.API.Storage;
+using System.IO;
 
 namespace CustomCampaign.Api
 {
@@ -7,15 +9,12 @@ namespace CustomCampaign.Api
     {
         public static Settings LoadSettings(string path)
         {
-            if (false)
-                return new Settings($"<id>/<path>");
-
-            return null;
+            string id = Util.GetCampaignId();
+            string directory = $"common/{id}";
+            Util.MakeDirectory(Path.Combine(Plugin.Files.RootDirectory, directory));
+            return new Settings($"{directory}/{path}");
         }
 
-        public static Assets LoadAssets(string path)
-        {
-            return Assets.FromUnsafePath(path);
-        }
+        public static Assets LoadAssets(string path) => Assets.FromUnsafePath(Util.GetFilePath(path));
     }
 }
