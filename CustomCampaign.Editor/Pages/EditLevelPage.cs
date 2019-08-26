@@ -1,5 +1,9 @@
 ﻿using CustomCampaign.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Pages
@@ -31,8 +35,19 @@ namespace CustomCampaign.Editor.Pages
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
+            Campaign campaign = Globals.MainWindow.GetPage<EditorMainPage>("pages:editormain").UpdateWorkingstate();
+            List<string> levels = campaign.levels.Select((level) => level.file.ToLower()).ToList();
             if (ValidateFields())
-                PageClosed(DialogResult.OK, data);
+            {
+                if (!levels.Contains(data.file.ToLower()))
+                {
+                    PageClosed(DialogResult.OK, data);
+                }
+                else
+                {
+                    MessageBox.Show($"The level \"{data.file}\" is already in this campaign level set.\nA campaign can't have duplicate levels.");
+                }
+            }
         }
         private void CancelBtn_Click(object sender, EventArgs e) => PageClosed(DialogResult.Cancel, data);
         private void LevelFile_TextChanged(object sender, EventArgs e) => data.file = LevelFile.Text;

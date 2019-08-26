@@ -76,7 +76,6 @@ public static partial class Extensions
             File.Copy(source, destination, overwrite);
     }
 
-    
     public static string Cipher(this string input, int key)
     {
         string output = string.Empty;
