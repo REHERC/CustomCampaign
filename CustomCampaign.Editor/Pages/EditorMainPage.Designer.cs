@@ -154,6 +154,7 @@ namespace CustomCampaign.Editor.Pages
             this.EditorTabs.SelectedIndex = 0;
             this.EditorTabs.Size = new System.Drawing.Size(784, 334);
             this.EditorTabs.TabIndex = 0;
+            this.EditorTabs.SelectedIndexChanged += new System.EventHandler(this.EditorTabs_SelectedIndexChanged);
             // 
             // FileTab
             // 

@@ -173,5 +173,10 @@ namespace CustomCampaign.Editor.Pages
                 Overview.Picture = null;
             Overview.ShowPicture = Overview.Picture != null;
         }
+
+        private void EditorTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateOverviewList();
+        }
     }
 }

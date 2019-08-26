@@ -48,6 +48,8 @@ namespace CustomCampaign.Editor.Pages
 
             Editor.current_campaign.levels.ForEach((level) => Levels.Items.Add(level));
             Editor.current_campaign.addons.ForEach((addon) => Addons.Items.Add(addon));
+
+            UpdateOverviewList();
             #endregion
 
             Levels.SelectedIndex = -1;
@@ -55,7 +57,7 @@ namespace CustomCampaign.Editor.Pages
             Levels_SelectedIndexChanged(Levels, new EventArgs());
             Addons_SelectedIndexChanged(Levels, new EventArgs());
 
-            UpdateOverviewList();
+            
         }
 
         public Campaign UpdateWorkingstate()
@@ -97,8 +99,7 @@ namespace CustomCampaign.Editor.Pages
                 OverviewLevels.Update();
             }
 
-            SetDataSource(null);
-            SetDataSource(Levels.Items);
+            SetDataSource(Levels.Items.Cast<Level>().ToArray());
         }
         #endregion
 

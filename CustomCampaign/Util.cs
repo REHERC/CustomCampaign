@@ -126,6 +126,9 @@ namespace CustomCampaign
                     result = new FileInfo(Path.Combine(info.Location, path.Substring(1))).FullName;
                     break;
                 case '#':
+                    result = new FileInfo(Path.Combine(Plugin.Files.RootDirectory, path.Substring(1))).FullName;
+                    break;
+                case ':':
                     result = new FileInfo(Path.Combine(Assembly.GetCallingAssembly().Location, path.Substring(1))).FullName;
                     break;
                 default:
