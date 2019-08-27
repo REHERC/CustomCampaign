@@ -63,7 +63,6 @@
     <Compile Include="Data\CampaignInfo.cs" />
     <Compile Include="Events\CampaignLevelStarted.cs" />
     <Compile Include="Events\CampaignLoaded.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Systems\AddonSystem\AddonSystem.Calls.cs" />
     <Compile Include="Systems\AddonSystem\AddonSystem.cs" />
     <Compile Include="Systems\AddonSystem\AddonSystem.Util.cs" />
