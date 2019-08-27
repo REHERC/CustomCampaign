@@ -1,23 +1,33 @@
-﻿namespace CustomCampaign.Systems
+﻿using CustomCampaign.Data;
+
+namespace CustomCampaign.Systems
 {
-    public static partial class AddonSystem
+    internal static partial class AddonSystem
     {
-        public static void InitializeAddons()
+        internal static void InitializeAddons()
         {
-            GetAddons().ForEach((item) => item.Key.Object.OnInit(Util.GetCampaign(item.Key)));
+            GetAddons().ForEach((item) => {
+                // Avoid multiple initialization calls
+                if (item.Key.Object.Initialized) return;
+
+                CampaignInfo info = Util.GetCampaign(item.Key);
+                item.Key.Object.Info = info;
+                item.Key.Object.OnInit(info);
+                item.Key.Object.Initialized = true;
+            });
         }
 
-        public static void EnableAddons(string guid)
+        internal static void EnableAddons(string guid)
         {
             GetAddons(guid).ForEach((item) => item.Key.Object.Enable());
         }
 
-        public static void DisableAddons(string guid)
+        internal static void DisableAddons(string guid)
         {
             GetAddons(guid).ForEach((item) => item.Key.Object.Disable());
         }
 
-        public static void LevelLoaded(string guid)
+        internal static void LevelLoaded(string guid)
         {
             GetAddons(guid).ForEach((item) => item.Key.Object.OnLevelStart(Util.GetLevelInfo(Util.LevelFile)));
         }

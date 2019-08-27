@@ -6,12 +6,12 @@ using CustomCampaign.Systems;
 
 namespace CustomCampaign.Storage
 {
-    public static partial class Plugin
+    internal static partial class Plugin
     {
-        public static FileSystem Files;
-        public static Logger Log { get; set; }
+        internal static FileSystem Files;
+        internal static Logger Log { get; set; }
 
-        public static void Init()
+        internal static void Init()
         {
             Files = new FileSystem();
             Log = new Logger("CustomCampaign")
@@ -21,7 +21,7 @@ namespace CustomCampaign.Storage
             };
         }
 
-        public static void LoadCampaigns()
+        internal static void LoadCampaigns()
         {
             string campaign_root = Variables.CampaignsDataFolder();
             foreach (string campaign_directory in Directory.GetDirectories(campaign_root))

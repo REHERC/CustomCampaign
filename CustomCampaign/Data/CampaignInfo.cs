@@ -10,7 +10,7 @@ namespace CustomCampaign.Data
 {
     public class CampaignInfo
     {
-        public bool Enabled { get; private set; } = true;
+        internal bool Enabled { get; private set; } = true;
         private Models.Campaign Data { get; set; }
         public string Location { get; set; }
         public List<Models.Level> Levels => Data.levels;

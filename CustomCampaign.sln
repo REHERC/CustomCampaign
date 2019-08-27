@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Models", "Cu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkin", "MaterialSkin\MaterialSkin.csproj", "{8EB7611B-68CD-4B8B-987A-11717E2B250C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.SampleAddon", "CustomCampaign.SampleAddon\CustomCampaign.SampleAddon.csproj", "{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
@@ -59,6 +61,10 @@ Global
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

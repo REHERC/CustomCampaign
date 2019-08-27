@@ -1,5 +1,4 @@
-﻿using CustomCampaign.Api;
-using CustomCampaign.Data;
+﻿using CustomCampaign.Data;
 using CustomCampaign.Models;
 using CustomCampaign.Storage;
 using System;
@@ -10,7 +9,7 @@ using System.Reflection;
 
 namespace CustomCampaign.Systems
 {
-    public static partial class AddonSystem
+    internal static partial class AddonSystem
     {
         #region Important Data
         private static Dictionary<ObjectWithGUID<Assembly>, string> Assemblies = new Dictionary<ObjectWithGUID<Assembly>, string>();
@@ -22,7 +21,7 @@ namespace CustomCampaign.Systems
         private static Dictionary<string, string> Dependencies = new Dictionary<string, string>();
         #endregion
 
-        public static void RegisterCampaign(CampaignInfo campaign)
+        internal static void RegisterCampaign(CampaignInfo campaign)
         {
             List<string> modules = new List<string>(), 
                          requisites = new List<string>(), 
@@ -54,7 +53,7 @@ namespace CustomCampaign.Systems
                     dest.Add(item, campaign.Id);
         }
         private static void AddAssembly(Assembly assembly, string id) => Assemblies.Add(ObjectWithGUID<Assembly>.Create(assembly), id);
-        public static void LoadAddons()
+        internal static void LoadAddons()
         {
             LoadAddons(ref Dependencies);
             LoadAddons(ref Requisites);

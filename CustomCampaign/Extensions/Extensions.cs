@@ -76,13 +76,15 @@ public static partial class Extensions
             File.Copy(source, destination, overwrite);
     }
 
-    public static string Cipher(this string input, int key)
+    public static string Cipher(this string input, int key, int mod = 32)
     {
         string output = string.Empty;
         foreach (char ch in input)
-            output += (char)(ch - (key % 32));
+            output += (char)(ch - (key % mod));
         return output;
     }
+
+    public static string Decipher(this string input, int key, int mod = 32) => input.Cipher(-key, mod);
 
     public static void WriteStringSecure(this BinaryWriter writer, string value)
     {
@@ -103,12 +105,12 @@ public static partial class Extensions
 
     public static string Space(this string input, int value, int maxlength = -1)
     {
-        string output = "";
+        string output = string.Empty;
         for (int i = 0; i < input.Length; i++)
         {
             if (i > 0)
                 for (int j = 0; j < value; j++)
-                    output += " ";
+                    output += ' ';
             output += input[i];
         }
         if (maxlength > 0 && output.Length > maxlength)

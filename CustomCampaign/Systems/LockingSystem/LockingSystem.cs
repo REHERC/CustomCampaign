@@ -7,9 +7,9 @@ using System.IO;
 #pragma warning disable RCS1001, CS0436
 namespace CustomCampaign.Systems
 {
-    public static class LockingSystem
+    internal static class LockingSystem
     {
-        public static void CreateProfile()
+        internal static void CreateProfile()
         {
             Serializer<Dictionary<string, int>> progress = GetProgress();
             foreach (var campaign in CampaignDatabase.Campaigns)
@@ -18,7 +18,7 @@ namespace CustomCampaign.Systems
             progress.Save();
         }
 
-        public static bool IsLevelLocked(string levelfile)
+        internal static bool IsLevelLocked(string levelfile)
         {
             string file = levelfile.NormPath(true);
             try
@@ -33,7 +33,7 @@ namespace CustomCampaign.Systems
             return false;
         }
 
-        public static int GetCampaignProgress(string campaign)
+        internal static int GetCampaignProgress(string campaign)
         {
             if (string.IsNullOrEmpty(campaign)) return 0;
             Serializer<Dictionary<string, int>> serializer = GetProgress();
@@ -46,12 +46,12 @@ namespace CustomCampaign.Systems
             return serializer.Data[campaign];
         }
 
-        public static Serializer<Dictionary<string, int>> GetProgress()
+        internal static Serializer<Dictionary<string, int>> GetProgress()
         {
             return new Serializer<Dictionary<string, int>>(SerializerType.Json, GetProgressFilePath(), true);
         }
 
-        public static void UnlockLevel(string levelfile)
+        internal static void UnlockLevel(string levelfile)
         {
             Serializer<Dictionary<string, int>> progress = GetProgress();
             string campaign = Util.GetCampaignId(levelfile);
@@ -62,7 +62,7 @@ namespace CustomCampaign.Systems
             progress.Save();
         }
 
-        public static string GetProgressFilePath()
+        internal static string GetProgressFilePath()
         {
             string profile = G.Sys.ProfileManager_.CurrentProfile_.FileName_;
             return $"{Path.Combine(Resource.PersonalProfilesDirPath_, profile)}.json".NormPath(true);

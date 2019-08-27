@@ -5,6 +5,8 @@ namespace CustomCampaign.Api
     public abstract class Addon
     {
         public bool Enabled { get; private set; } = false;
+        public CampaignInfo Info { get; internal set; } = null;
+        public bool Initialized { get; internal set; } = false;
 
         public virtual void OnInit(CampaignInfo info)
         {

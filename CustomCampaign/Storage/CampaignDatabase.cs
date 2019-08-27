@@ -4,11 +4,11 @@ using System.Collections.Generic;
 #pragma warning disable RCS1110
 namespace CustomCampaign.Storage
 {
-    public static class CampaignDatabase
+    internal static class CampaignDatabase
     {
-        public static Dictionary<string, CampaignInfo> Campaigns { get; private set; } = new Dictionary<string, CampaignInfo>();
+        internal static Dictionary<string, CampaignInfo> Campaigns { get; private set; } = new Dictionary<string, CampaignInfo>();
 
-        public static Dictionary<CampaignInfo, Models.Level> Levels
+        internal static Dictionary<CampaignInfo, Models.Level> Levels
         {
             get
             {
@@ -21,7 +21,7 @@ namespace CustomCampaign.Storage
             }
         }
 
-        public static List<string> LevelPaths
+        internal static List<string> LevelPaths
         {
             get
             {
@@ -33,6 +33,6 @@ namespace CustomCampaign.Storage
             }
         }
 
-        public static void Add(CampaignInfo campaign) => Campaigns.Add(campaign.Location.NormPath(false), campaign);
+        internal static void Add(CampaignInfo campaign) => Campaigns.Add(campaign.Location.NormPath(false), campaign);
     }
 }

@@ -5,10 +5,10 @@ using System.Reflection;
 
 namespace CustomCampaign.Systems
 {
-    public static partial class AddonSystem
+    internal static partial class AddonSystem
     {
-        public static List<KeyValuePair<ObjectWithGUID<Api.Addon>, string>> GetAddons() => Addons.ToList();
-        public static List<KeyValuePair<ObjectWithGUID<Api.Addon>, string>> GetAddons(string guid) => Addons.Where((item) => item.Value == guid).ToList();
-        public static List<KeyValuePair<ObjectWithGUID<Assembly>, string>> GetAssemblies() => Assemblies.ToList();
+        internal static List<KeyValuePair<ObjectWithGUID<Api.Addon>, string>> GetAddons() => Addons.ToList();
+        internal static List<KeyValuePair<ObjectWithGUID<Api.Addon>, string>> GetAddons(string guid) => Addons.Where((item) => item.Value == guid).ToList();
+        internal static List<KeyValuePair<ObjectWithGUID<Assembly>, string>> GetAssemblies() => Assemblies.ToList();
     }
 }
