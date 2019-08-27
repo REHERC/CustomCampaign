@@ -33,6 +33,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkin", "MaterialSki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.SampleAddon", "CustomCampaign.SampleAddon\CustomCampaign.SampleAddon.csproj", "{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Referenced Assemblies", "Referenced Assemblies", "{05BF1A4C-AFE2-4B56-9A36-9EC3C61AA773}"
+	ProjectSection(SolutionItems) = preProject
+		Referenced Assemblies\Assembly-CSharp-firstpass.dll = Referenced Assemblies\Assembly-CSharp-firstpass.dll
+		Referenced Assemblies\Assembly-CSharp.dev.dll = Referenced Assemblies\Assembly-CSharp.dev.dll
+		Referenced Assemblies\NAudio.dll = Referenced Assemblies\NAudio.dll
+		Referenced Assemblies\Spectrum.API.dll = Referenced Assemblies\Spectrum.API.dll
+		Referenced Assemblies\UnityEngine.dll = Referenced Assemblies\UnityEngine.dll
+		Referenced Assemblies\UnityEngine.UI.dll = Referenced Assemblies\UnityEngine.UI.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
