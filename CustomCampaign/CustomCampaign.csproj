@@ -66,7 +66,7 @@
     <Compile Include="Systems\AddonSystem\AddonSystem.Calls.cs" />
     <Compile Include="Systems\AddonSystem\AddonSystem.cs" />
     <Compile Include="Systems\AddonSystem\AddonSystem.Util.cs" />
-    <Compile Include="Systems\CampaignEventsSystem\CampaignEventsSystem.cs" />
+    <Compile Include="Systems\CampaignSystem\CampaignSystem.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Storage\Constants.cs" />
     <Compile Include="Storage\Events.cs" />

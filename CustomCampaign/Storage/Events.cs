@@ -10,40 +10,30 @@ namespace CustomCampaign.Storage
         {
             Events.Level.PostLoad.Subscribe((data) =>
             {
-                Plugin.Log.Warning("Events.Level.PostLoad");
+                CampaignInfo campaign = Util.GetCampaign(Util.LevelFile);
+                CampaignSystem.Current = campaign;
             });
 
             Events.Game.LevelLoaded.Subscribe((data) => {
-                string level = G.Sys.GameManager_.LevelPath_;
+                string level = Util.LevelFile;
                 if (Util.IsCustomCampaignLevel(level))
                 {
                     LockingSystem.UnlockLevel(level);
                     CampaignInfo campaign = Util.GetCampaign(level);
-                    Plugin.Log.Warning("IsCustomCampaignLevel");
 
-                    try
-                    {
-                        Events.Mod.CampaignLevelStarted.Broadcast(new Events.Mod.CampaignLevelStarted.Data(campaign));
-                    }
-                    catch (System.Exception error)
-                    {
-                        Plugin.Log.Exception(error);
-                    }
+                    Events.Mod.CampaignLevelStarted.Broadcast(new Events.Mod.CampaignLevelStarted.Data(campaign));
                 }
             });
             Events.Mod.CampaignLevelStarted.Subscribe((data) =>
             {
-                Plugin.Log.Warning("Events.Mod.CampaignLevelStarted");
                 AddonSystem.LevelLoaded(data.campaign);
             });
             Events.Mod.CampaignLoaded.Subscribe((data) =>
             {
-                Plugin.Log.Warning("Events.Mod.CampaignLoaded");
-
-                if (CampaignEventsSystem.Current != null)
-                    AddonSystem.EnableAddons(CampaignEventsSystem.Current.Id);
-                else if (CampaignEventsSystem.Last != null)
-                    AddonSystem.DisableAddons(CampaignEventsSystem.Last.Id);
+                if (CampaignSystem.Current != null)
+                    AddonSystem.EnableAddons(CampaignSystem.Current.Id);
+                else if (CampaignSystem.Last != null)
+                    AddonSystem.DisableAddons(CampaignSystem.Last.Id);
             });
         }
     }

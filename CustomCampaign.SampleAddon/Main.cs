@@ -4,7 +4,7 @@ using Spectrum.API.Logging;
 
 namespace CustomCampaign.SampleAddon
 {
-    public class Main : Api.Addon
+    public class Main : Addon
     {
         public Logger Log = null;
 
@@ -29,8 +29,7 @@ namespace CustomCampaign.SampleAddon
 
         public override void OnLevelStart(Models.Level level)
         {
-            Log.Warning($"{level is null}");
-            //Log.Success($"{Info.Name} - OnLevelStart : {level.levelname}");
+            Log.Success($"{Info.Name} - OnLevelStart : {level.levelname}");
         }
     }
 }

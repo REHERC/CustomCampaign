@@ -2,7 +2,7 @@
 
 namespace CustomCampaign.Systems
 {
-    internal static class CampaignEventsSystem
+    internal static class CampaignSystem
     {
         internal static CampaignInfo Last { get; set; } = null;
         private static CampaignInfo _current = null;

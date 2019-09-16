@@ -24,9 +24,12 @@ namespace CustomCampaign.Systems
         internal static void RegisterCampaign(CampaignInfo campaign)
         {
             Plugin.Log.Warning($"Registering campaign {campaign.Name}");
-            Plugin.Log.Warning($"This campaign has {campaign.Addons.Count} addon{(campaign.Addons.Count > 1 ? "s" : "")}");
+
+            if (campaign.Addons.Count < 1) return;
+
+            Plugin.Log.Info($"This campaign has {campaign.Addons.Count} addon{(campaign.Addons.Count > 1 ? "s" : "")}");
             foreach (Models.Addon addon in campaign.Addons)
-                Plugin.Log.Info($"{addon.name} - {addon.module}");
+                Plugin.Log.Info($"{addon.name}");
 
 
             List<string> modules = new List<string>(), 
