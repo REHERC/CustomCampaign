@@ -1,4 +1,5 @@
 ﻿using CustomCampaign.Data;
+using CustomCampaign.Models;
 using CustomCampaign.Storage;
 
 namespace CustomCampaign.Systems
@@ -32,14 +33,13 @@ namespace CustomCampaign.Systems
             //GetAddons(guid).ForEach((item) => item.Key.Object.Disable());
         }
 
-        internal static void LevelLoaded(string guid)
+        internal static void LevelLoaded(CampaignInfo campaign)
         {
-            Plugin.Log.Success($"Sending level loaded notification for campaign {guid}");
-            /*GetAddons(guid).ForEach((item) => {
+            Plugin.Log.Success($"Sending level loaded notification for campaign {campaign.Name}");
+            GetAddons(campaign.Id).ForEach((item) => {
                 Plugin.Log.Warning($"The level path is {Util.LevelFile}");
-                item.Key.Object.OnLevelStart(Util.GetLevelInfo(Util.NextLevelFile));
-                
-            });*/
+                item.Key.Object.OnLevelStart(Util.GetLevelInfo(Util.LevelFile));
+            });
         }
     }
 }

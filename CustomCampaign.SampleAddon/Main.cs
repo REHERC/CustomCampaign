@@ -1,8 +1,6 @@
 ﻿using CustomCampaign.Api;
 using CustomCampaign.Data;
-using CustomCampaign.Models;
 using Spectrum.API.Logging;
-using System;
 
 namespace CustomCampaign.SampleAddon
 {
@@ -12,7 +10,7 @@ namespace CustomCampaign.SampleAddon
 
         public override void OnInit(CampaignInfo info)
         {
-            Log = Factory.Logger("Output.log");
+            Log = Factory.Logger("Output");
 
             Log.Success($"Hello World from {info.Name}");
 
@@ -32,7 +30,7 @@ namespace CustomCampaign.SampleAddon
         public override void OnLevelStart(Models.Level level)
         {
             Log.Warning($"{level is null}");
-            Log.Success($"{Info.Name} - OnLevelStart : {level.levelname}");
+            //Log.Success($"{Info.Name} - OnLevelStart : {level.levelname}");
         }
     }
 }

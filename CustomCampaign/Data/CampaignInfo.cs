@@ -11,7 +11,7 @@ namespace CustomCampaign.Data
     public class CampaignInfo
     {
         internal bool Enabled { get; private set; } = true;
-        private Models.Campaign Data { get; set; }
+        public Models.Campaign Data { get; internal set; }
         public string Location { get; set; }
         public List<Models.Level> Levels => Data.levels;
         public List<Models.Addon> Addons => Data.addons;
