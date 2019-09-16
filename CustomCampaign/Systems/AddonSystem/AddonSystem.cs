@@ -23,6 +23,12 @@ namespace CustomCampaign.Systems
 
         internal static void RegisterCampaign(CampaignInfo campaign)
         {
+            Plugin.Log.Warning($"Registering campaign {campaign.Name}");
+            Plugin.Log.Warning($"This campaign has {campaign.Addons.Count} addon{(campaign.Addons.Count > 1 ? "s" : "")}");
+            foreach (Models.Addon addon in campaign.Addons)
+                Plugin.Log.Info($"{addon.name} - {addon.module}");
+
+
             List<string> modules = new List<string>(), 
                          requisites = new List<string>(), 
                          dependencies = new List<string>();
@@ -58,6 +64,8 @@ namespace CustomCampaign.Systems
             LoadAddons(ref Dependencies);
             LoadAddons(ref Requisites);
             LoadAddons(ref Modules);
+
+            InitializeAddons();
         }
         private static void LoadAddons(ref Dictionary<string, string> files)
         {
@@ -74,7 +82,7 @@ namespace CustomCampaign.Systems
                 {
                     if (info != null && info.Enabled)
                     {
-                        Plugin.Log.Error($"Couldn't load target module assembly \"{item.Key}\" for campaign \"{info.Name}\". The exception has been silently logged and the campaign is disabled.");
+                        Plugin.Log.Error($"Couldn't load target module assembly \"{item.Key}\" for campaign \"{info.Name}\". The exception has been silently logged and the campaign has been disabled.");
                         Plugin.Log.ExceptionSilent(e);
 
                         info.SetEnabled(false);
@@ -85,7 +93,6 @@ namespace CustomCampaign.Systems
             foreach (var item in Assemblies)
             {
                 CampaignInfo info = Util.GetCampaignByGuid(item.Value);
-
                 if (info.Enabled)
                     LoadAddons(item.Key, item.Value);
             }
@@ -93,11 +100,9 @@ namespace CustomCampaign.Systems
         private static void LoadAddons(Assembly assembly, string id)
         {
             foreach(Type type in assembly.GetExportedTypes())
-            {
                 if (type.IsSubclassOf(typeof(Api.Addon)))
                     if (Activator.CreateInstance(type) is Api.Addon addon)
                         Addons.Add(ObjectWithGUID<Api.Addon>.Create(addon), id);
-            }
         }
     }
 }

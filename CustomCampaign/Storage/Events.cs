@@ -14,7 +14,15 @@ namespace CustomCampaign.Storage
                 {
                     LockingSystem.UnlockLevel(level);
                     CampaignInfo campaign = Util.GetCampaign(level);
-                    Events.Mod.CampaignLevelStarted.Broadcast(new Events.Mod.CampaignLevelStarted.Data(campaign));
+
+                    try
+                    {
+                        Events.Mod.CampaignLevelStarted.Broadcast(new Events.Mod.CampaignLevelStarted.Data(campaign));
+                    }
+                    catch (System.Exception error)
+                    {
+                        Plugin.Log.Exception(error);
+                    }
                 }
             });
             Events.Mod.CampaignLevelStarted.Subscribe((data) =>

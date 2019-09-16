@@ -196,7 +196,7 @@ namespace CustomCampaign.Editor.Pages
 
             if (!(index > -1 & index < Levels.Items.Count)) return;
 
-            Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup((Level)Levels.Items[index], "Edit a level");
+            Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup((Level)Levels.Items[index], "Edit a level", true);
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
                 if (result == DialogResult.OK)
                     Levels.Items[index] = data;

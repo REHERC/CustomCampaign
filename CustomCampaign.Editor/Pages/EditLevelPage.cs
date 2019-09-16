@@ -2,21 +2,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Pages
 {
     public partial class EditLevelPage : Classes.Page
     {
+        private bool editing = false;
+
         public EditLevelPage()
         {
             InitializeComponent();
         }
 
-        public void Setup(Level level, string title)
+        public void Setup(Level level, string title, bool editflag = false)
         {
+            editing = editflag;
+
             data = level;
             PageTitle = title;
 
@@ -39,13 +41,13 @@ namespace CustomCampaign.Editor.Pages
             List<string> levels = campaign.levels.Select((level) => level.file.ToLower()).ToList();
             if (ValidateFields())
             {
-                if (!levels.Contains(data.file.ToLower()))
+                if (levels.Contains(data.file.ToLower()) && !editing)
                 {
-                    PageClosed(DialogResult.OK, data);
+                    MessageBox.Show($"The level \"{data.file}\" is already in this campaign level set.\nA campaign can't have duplicate levels.");
                 }
                 else
                 {
-                    MessageBox.Show($"The level \"{data.file}\" is already in this campaign level set.\nA campaign can't have duplicate levels.");
+                    PageClosed(DialogResult.OK, data);
                 }
             }
         }

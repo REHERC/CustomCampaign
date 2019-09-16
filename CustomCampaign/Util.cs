@@ -114,25 +114,28 @@ namespace CustomCampaign
         public static bool IsCustomCampaignLevel(string levelfile) =>!(GetCampaign(levelfile) is null);
         #endregion
         #region Api Utils
-        public static string GetFilePath(string path)
+        public static string GetFilePath(string path, bool campaign_by_default = false)
         {
             if (string.IsNullOrEmpty(path) || path.Length < 2) return path;
 
             string result = "";
             switch (path[0])
             {
+                // From campaign dir
                 case '@':
                     CampaignInfo info = GetCampaign(Assembly.GetCallingAssembly());
                     result = new FileInfo(Path.Combine(info.Location, path.Substring(1))).FullName;
                     break;
+                // From plugin dir
                 case '#':
                     result = new FileInfo(Path.Combine(Plugin.Files.RootDirectory, path.Substring(1))).FullName;
                     break;
+                // From assembly dir
                 case ':':
                     result = new FileInfo(Path.Combine(Assembly.GetCallingAssembly().Location, path.Substring(1))).FullName;
                     break;
                 default:
-                    return path;
+                    return campaign_by_default ? GetFilePath($"@{path}", false) : path;
             }
             return result;
         }

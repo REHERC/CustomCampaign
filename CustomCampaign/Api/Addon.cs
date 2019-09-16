@@ -13,7 +13,7 @@ namespace CustomCampaign.Api
             return;
         }
 
-        public void Enable()
+        internal void Enable()
         {
             Enabled = true;
             OnEnable();
@@ -24,7 +24,7 @@ namespace CustomCampaign.Api
             return;
         }
 
-        public void Disable()
+        internal void Disable()
         {
             Enabled = false;
             OnDisable();
