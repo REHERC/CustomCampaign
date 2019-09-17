@@ -1,5 +1,4 @@
 ﻿using CustomCampaign.Data;
-using CustomCampaign.Models;
 using CustomCampaign.Storage;
 
 namespace CustomCampaign.Systems
@@ -9,31 +8,60 @@ namespace CustomCampaign.Systems
         internal static void InitializeAddons()
         {
             Plugin.Log.Info($"Initializing addons...");
-            GetAddons().ForEach((item) => {
+            foreach (var item in GetAddons())
+            {
                 // Avoid multiple initialization calls
                 if (item.Key.Object.Initialized) return;
 
                 CampaignInfo info = Util.GetCampaign(item.Key);
                 item.Key.Object.Info = info;
-                item.Key.Object.OnInit(info);
-                item.Key.Object.Initialized = true;
-            });
+                try
+                { 
+                    item.Key.Object.OnInit(info);
+                    item.Key.Object.Initialized = true;
+                }
+                catch (System.Exception error)
+                {
+                    Plugin.Log.Exception(error);
+                }
+            }
             Plugin.Log.Info($"Addons initialized!");
         }
 
         internal static void EnableAddons(string guid)
         {
-            GetAddons(guid).ForEach((item) => item.Key.Object.Enable());
+            foreach (var item in GetAddons(guid))
+            {
+                try
+                { 
+                    item.Key.Object.Enable();
+                }
+                catch (System.Exception error)
+                {
+                    Plugin.Log.Exception(error);
+                }
+            }
         }
 
         internal static void DisableAddons(string guid)
         {
-            GetAddons(guid).ForEach((item) => item.Key.Object.Disable());
+            foreach (var item in GetAddons(guid))
+            {
+                try
+                { 
+                    item.Key.Object.Disable();
+                }
+                catch (System.Exception error)
+                {
+                    Plugin.Log.Exception(error);
+                }
+            }
         }
 
         internal static void LevelLoaded(CampaignInfo campaign)
         {
-            GetAddons(campaign.Id).ForEach((item) => {
+            foreach (var item in GetAddons(campaign.Id))
+            {
                 try
                 {
                     item.Key.Object.OnLevelStart(Util.GetLevelInfo(Util.LevelFile));
@@ -42,7 +70,7 @@ namespace CustomCampaign.Systems
                 {
                     Plugin.Log.Exception(error);
                 }
-            });
+            }
         }
     }
 }

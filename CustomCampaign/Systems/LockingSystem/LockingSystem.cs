@@ -12,7 +12,7 @@ namespace CustomCampaign.Systems
         internal static void CreateProfile()
         {
             Serializer<Dictionary<string, int>> progress = GetProgress();
-            foreach (var campaign in CampaignDatabase.Campaigns)
+            foreach (var campaign in Campaigns.Items)
                 if (!progress.Data.ContainsKey(campaign.Value.Id))
                     progress.Data.Add(campaign.Value.Id, 0);
             progress.Save();

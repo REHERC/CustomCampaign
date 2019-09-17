@@ -28,20 +28,20 @@ namespace CustomCampaign.Systems
             if (campaign.Addons.Count < 1) return;
 
             Plugin.Log.Info($"This campaign has {campaign.Addons.Count} addon{(campaign.Addons.Count > 1 ? "s" : "")}");
-            foreach (Models.Addon addon in campaign.Addons)
+            foreach (var addon in campaign.Addons)
                 Plugin.Log.Info($"{addon.name}");
 
+            var modules = new List<string>();
+            var requisites = new List<string>(); 
+            var dependencies = new List<string>();
 
-            List<string> modules = new List<string>(), 
-                         requisites = new List<string>(), 
-                         dependencies = new List<string>();
-
-            campaign.Addons.ForEach((addon) => {
+            foreach (var addon in campaign.Addons)
+            {
                 modules.Add(addon.module);
                 dependencies.AddRange(addon.dependencies);
-            });
+            }
 
-            foreach (string dependency in dependencies.ToArray())
+            foreach (var dependency in dependencies)
             {
                 if (modules.Contains(dependency))
                 {
@@ -51,26 +51,26 @@ namespace CustomCampaign.Systems
                 }
             }
 
-            FillList(campaign, ref modules, ref Modules);
-            FillList(campaign, ref requisites, ref Requisites);
-            FillList(campaign, ref dependencies, ref Dependencies);
+            FillList(campaign, modules, Modules);
+            FillList(campaign, requisites, Requisites);
+            FillList(campaign, dependencies, Dependencies);
         }
-        private static void FillList(CampaignInfo campaign, ref List<string> source, ref Dictionary<string, string> dest)
+        private static void FillList(CampaignInfo campaign, List<string> source, Dictionary<string, string> dest)
         {
-            foreach (string item in source)
+            foreach (var item in source)
                 if (!dest.ContainsKey(item))
                     dest.Add(item, campaign.Id);
         }
         private static void AddAssembly(Assembly assembly, string id) => Assemblies.Add(ObjectWithGUID<Assembly>.Create(assembly), id);
         internal static void LoadAddons()
         {
-            LoadAddons(ref Dependencies);
-            LoadAddons(ref Requisites);
-            LoadAddons(ref Modules);
+            LoadAddons(Dependencies);
+            LoadAddons(Requisites);
+            LoadAddons(Modules);
 
             InitializeAddons();
         }
-        private static void LoadAddons(ref Dictionary<string, string> files)
+        private static void LoadAddons(Dictionary<string, string> files)
         {
             foreach (var item in files)
             {
@@ -87,7 +87,6 @@ namespace CustomCampaign.Systems
                     {
                         Plugin.Log.Error($"Couldn't load target module assembly \"{item.Key}\" for campaign \"{info.Name}\". The exception has been silently logged and the campaign has been disabled.");
                         Plugin.Log.ExceptionSilent(e);
-
                         info.SetEnabled(false);
                     }
                 }
@@ -102,7 +101,7 @@ namespace CustomCampaign.Systems
         }
         private static void LoadAddons(Assembly assembly, string id)
         {
-            foreach(Type type in assembly.GetExportedTypes())
+            foreach(var type in assembly.GetExportedTypes())
                 if (type.IsSubclassOf(typeof(Api.Addon)))
                     if (Activator.CreateInstance(type) is Api.Addon addon)
                         Addons.Add(ObjectWithGUID<Api.Addon>.Create(addon), id);

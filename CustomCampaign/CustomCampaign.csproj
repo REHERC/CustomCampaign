@@ -73,7 +73,7 @@
     <Compile Include="Harmony.cs" />
     <Compile Include="Systems\LockingSystem\LockingSystem.cs" />
     <Compile Include="Storage\Plugin.cs" />
-    <Compile Include="Storage\CampaignDatabase.cs" />
+    <Compile Include="Storage\Campaigns.cs" />
     <Compile Include="Storage\Variables.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

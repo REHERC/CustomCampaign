@@ -39,7 +39,7 @@ namespace CustomCampaign.Data
             Plugin.Log.Info($"Campaign loaded: {Name}");
             Plugin.Log.Info($"\"{Description}\"");
             Plugin.Log.Info($"Made by:");
-            foreach (string author in Authors)
+            foreach (var author in Authors)
                 Plugin.Log.Info($"\t  - {author}");
         }
 
@@ -49,7 +49,7 @@ namespace CustomCampaign.Data
             {
                 gameModeID_ = gamemode
             };
-            foreach (string level in LevelPaths)
+            foreach (var level in LevelPaths)
                 set.AddLevel(level, level, LevelType.Official);
             return set;
         }

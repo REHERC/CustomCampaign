@@ -19,7 +19,7 @@ namespace CustomCampaign
             LockingSystem.CreateProfile();
             if (__instance.isCampaignMode_)
             {
-                foreach (var campaign in CampaignDatabase.Campaigns)
+                foreach (var campaign in Campaigns.Items)
                     if (campaign.Value.Enabled)
                         __instance.CreateAndAddCampaignLevelSet(campaign.Value.GetLevelSet(campaign.Value.GameMode), campaign.Value.Name, true, unlock_mode, campaign.Value.GameMode);
                 __instance.buttonList_.SortAndUpdateVisibleButtons();
@@ -32,7 +32,7 @@ namespace CustomCampaign
     {
         static void Postfix(ref LevelInfos __result)
         {
-            foreach (string path in CampaignDatabase.LevelPaths)
+            foreach (var path in Campaigns.LevelPaths)
             {
                 if (__result.LevelPathsToLevelInfos_.ContainsKey(path))
                     __result.LevelPathsToLevelInfos_.Remove(path);
@@ -50,7 +50,7 @@ namespace CustomCampaign
                 return true;
             LevelInfos temp = LevelInfos.Create();
             foreach (var level in __instance.communityLevelInfos_.LevelPathsToLevelInfos_)
-                if (!CampaignDatabase.LevelPaths.Contains(level.Key))
+                if (!Campaigns.LevelPaths.Contains(level.Key))
                     temp.levelPathsToLevelInfos_.Add(level.Key, level.Value);
             temp.SavePersonalLevelInfos();
             temp.Destroy();
@@ -63,7 +63,7 @@ namespace CustomCampaign
     {
         static bool Prefix(string levelPath, ref bool __result)
         {
-            if (CampaignDatabase.LevelPaths.Contains(levelPath))
+            if (Campaigns.LevelPaths.Contains(levelPath))
             {
                 __result = false;
                 return false;
@@ -77,7 +77,7 @@ namespace CustomCampaign
     {
         static bool Prefix(string normalizedLevelPath, ref LevelType __result)
         {
-            if (CampaignDatabase.LevelPaths.Contains(normalizedLevelPath))
+            if (Campaigns.LevelPaths.Contains(normalizedLevelPath))
             {
                 __result = LevelType.My;
                 return false;
@@ -91,7 +91,7 @@ namespace CustomCampaign
     {
         static bool Prefix(ref string absoluteLevelPath, ref string __result)
         {
-            if (CampaignDatabase.LevelPaths != null && CampaignDatabase.LevelPaths.Contains(absoluteLevelPath))
+            if (Campaigns.LevelPaths != null && Campaigns.LevelPaths.Contains(absoluteLevelPath))
             {
                 __result = absoluteLevelPath;
                 return false;
@@ -105,7 +105,7 @@ namespace CustomCampaign
     {
         static void Postfix(LevelSetsManager __instance)
         {
-            foreach (string path in CampaignDatabase.LevelPaths)
+            foreach (var path in Campaigns.LevelPaths)
             {
                 __instance.allLevelPaths_.Add(path);
                 __instance.myLevelsLevelFilePaths_.Add(path);
@@ -139,7 +139,7 @@ namespace CustomCampaign
     {
         static void Postfix(string absoluteLevelPath, ref LevelEditorLevelNameSelectMenuLogic.LevelPathEntry __result)
         {
-            if (CampaignDatabase.LevelPaths.Contains(absoluteLevelPath))
+            if (Campaigns.LevelPaths.Contains(absoluteLevelPath))
             {
                 __result.labelText_ = $"CustomCampaignLevel/{__result.labelText_}";
                 __result.relativeLevelPath_ = absoluteLevelPath;
@@ -153,7 +153,7 @@ namespace CustomCampaign
     {
         static void Postfix(string levelPath, ref LevelInfo __result)
         {
-            if (CampaignDatabase.LevelPaths.Contains(levelPath))
+            if (Campaigns.LevelPaths.Contains(levelPath))
             {
                 __result.relativePath_ = levelPath;
                 __result.fileNameWithoutExtension_ = Path.GetFileNameWithoutExtension(levelPath);
@@ -169,8 +169,8 @@ namespace CustomCampaign
             ref LevelSet set, ref LevelGridMenu.PlaylistEntry.Type type)
         {
             if (type != LevelGridMenu.PlaylistEntry.Type.Campaign)
-                foreach (LevelNameAndPathPair level in set.GetAllLevelNameAndPathPairs())
-                    if (CampaignDatabase.LevelPaths.Contains(level.levelPath_.NormPath(true)))
+                foreach (var level in set.GetAllLevelNameAndPathPairs())
+                    if (Campaigns.LevelPaths.Contains(level.levelPath_.NormPath(true)))
                         set.RemoveLevel(level.levelPath_.Normalize());
         }
     }
@@ -236,7 +236,7 @@ namespace CustomCampaign
                         __instance.lockedIcon_.SetActive(true);
                         ___button_.onClick.Clear();
                         string leveltitle = "";
-                        foreach (char c in entry.LevelInfo_.levelName_)
+                        foreach (var c in entry.LevelInfo_.levelName_)
                             leveltitle += c.ToString() == " " ? " " : "?";
                         __instance.soloTitleLabel_.text = leveltitle;
                     }

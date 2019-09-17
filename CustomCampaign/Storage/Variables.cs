@@ -11,10 +11,5 @@ namespace CustomCampaign.Storage
             Util.MakeDirectory(path);
             return path;
         }
-
-        internal static string DistanceDocs()
-        {
-            return $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/My Games/Distance".NormPath(false);
-        }
     }
 }

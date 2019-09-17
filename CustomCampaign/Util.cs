@@ -23,14 +23,14 @@ namespace CustomCampaign
         public static CampaignInfo GetCampaign(string levelfile)
         {
             string file = levelfile.NormPath(true);
-            foreach (var campaign in CampaignDatabase.Campaigns)
+            foreach (var campaign in Campaigns.Items)
                 if (campaign.Value.LevelPaths.Contains(file))
                     return campaign.Value;
             return null;
         }
         public static CampaignInfo GetCampaignByGuid(string guid)
         {
-            foreach (var campaign in CampaignDatabase.Campaigns)
+            foreach (var campaign in Campaigns.Items)
                 if (campaign.Value.Id == guid)
                     return campaign.Value;
             return null;
@@ -118,7 +118,7 @@ namespace CustomCampaign
         {
             if (string.IsNullOrEmpty(path) || path.Length < 2) return path;
 
-            string result = "";
+            string result;
             switch (path[0])
             {
                 // From campaign dir

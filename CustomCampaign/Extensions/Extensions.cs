@@ -79,7 +79,7 @@ public static partial class Extensions
     public static string Cipher(this string input, int key, int mod = 32)
     {
         string output = string.Empty;
-        foreach (char ch in input)
+        foreach (var ch in input)
             output += (char)(ch - (key % mod));
         return output;
     }
