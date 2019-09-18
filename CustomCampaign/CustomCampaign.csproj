@@ -93,15 +93,22 @@
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>SET INCLUDE=$(ProjectDir)Include
+    <PostBuildEvent>SET INCLUDE=$(SolutionDir)Include\
 SET BUILD=$(ProjectDir)$(OutDir)
-SET PACKAGE=$(SolutionDir)BuildPackages\Plugin
-ECHO %25BUILD%25
-ECHO %25PACKAGES%25
+SET PACKAGES=$(SolutionDir)BuildPackages\Plugin\
 
 CALL :MAKEDIR "%25PACKAGES%25"
+CALL :MAKEDIR "%25PACKAGES%25\Dependencies"
+CALL :MAKEDIR "%25PACKAGES%25\Data\Campaigns"
+CALL :MAKEDIR "%25PACKAGES%25\Data\Common"
+CALL :MAKEDIR "%25PACKAGES%25\Logs"
+CALL :MAKEDIR "%25PACKAGES%25\Settings"
 
-CALL :COPY "%25INCLUDE%25\plugin.json" "%25PACKAGES%25"
+CALL :COPY "%25INCLUDE%25plugin.json" "%25PACKAGES%25"
+CALL :COPY "%25BUILD%25CustomCampaign.dll" "%25PACKAGES%25"
+CALL :COPY "%25BUILD%25CustomCampaign.Models.dll" "%25PACKAGES%25\Dependencies"
+CALL :COPY "%25BUILD%250Harmony.dll" "%25PACKAGES%25\Dependencies"
+CALL :COPY "%25BUILD%25Newtonsoft.Json.dll" "%25PACKAGES%25\Dependencies"
 
 EXIT 0
 
@@ -110,7 +117,7 @@ IF NOT EXIST %251 MKDIR %251
 GOTO :EOF
 
 :COPY
-XCOPY /V /Y /V %251 %252
+XCOPY /s /Y /v %251 %252
 GOTO :EOF</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
