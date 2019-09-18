@@ -20,6 +20,7 @@
     <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -91,6 +92,27 @@
   <ItemGroup />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>SET INCLUDE=$(ProjectDir)Include
+SET BUILD=$(ProjectDir)$(OutDir)
+SET PACKAGE=$(SolutionDir)BuildPackages\Plugin
+ECHO %25BUILD%25
+ECHO %25PACKAGES%25
+
+CALL :MAKEDIR "%25PACKAGES%25"
+
+CALL :COPY "%25INCLUDE%25\plugin.json" "%25PACKAGES%25"
+
+EXIT 0
+
+:MAKEDIR
+IF NOT EXIST %251 MKDIR %251
+GOTO :EOF
+
+:COPY
+XCOPY /V /Y /V %251 %252
+GOTO :EOF</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

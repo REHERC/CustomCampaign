@@ -1,0 +1,15 @@
+{
+  "FriendlyName": "Custom Campaign",
+  "Author": "Reherc",
+  "AuthorContact": "Github: @REHERC",
+  "CompatibleAPILevel": 6,
+  "IPCIdentifier": "CustomCampaign",
+  "ModuleFileName": "CustomCampaign.dll",
+  "EntryClassName": "Entry",
+  "Priority": 10,
+  "Dependencies": [
+    "CustomCampaign.Models.dll",
+    "Newtonsoft.Json.dll"
+  ],
+  "SkipLoad": false
+}
