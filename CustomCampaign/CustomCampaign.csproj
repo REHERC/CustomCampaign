@@ -95,7 +95,7 @@
   <PropertyGroup>
     <PostBuildEvent>SET INCLUDE=$(SolutionDir)Include\
 SET BUILD=$(ProjectDir)$(OutDir)
-SET PACKAGES=$(SolutionDir)BuildPackages\Plugin\
+SET PACKAGES=$(SolutionDir)Build\Plugin\
 
 CALL :MAKEDIR "%25PACKAGES%25"
 CALL :MAKEDIR "%25PACKAGES%25\Dependencies"
