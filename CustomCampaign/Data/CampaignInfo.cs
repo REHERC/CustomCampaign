@@ -43,14 +43,20 @@ namespace CustomCampaign.Data
                 Plugin.Log.Info($"\t  - {author}");
         }
 
-        public LevelSet GetLevelSet(GameModeID gamemode = GameModeID.Nexus)
+        public LevelSet GetLevelSet(GameModeID gamemode = GameModeID.Nexus, bool sprint = false)
         {
             LevelSet set = new LevelSet()
             {
                 gameModeID_ = gamemode
             };
-            foreach (var level in LevelPaths)
-                set.AddLevel(level, level, LevelType.Official);
+            foreach (var level in Levels)
+            {
+                if (sprint && level.hide_in_sprint) continue;
+
+                string file = level.file.NormPath(true);
+                set.AddLevel(file, file, LevelType.Official);
+            }
+                
             return set;
         }
 

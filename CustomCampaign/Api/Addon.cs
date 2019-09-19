@@ -35,7 +35,7 @@ namespace CustomCampaign.Api
             return;
         }
 
-        public virtual void OnLevelStart(Models.Level level)
+        public virtual void OnLevelStart(Models.Level level, bool arcade)
         {
             return;
         }

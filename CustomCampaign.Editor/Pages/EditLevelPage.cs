@@ -29,6 +29,7 @@ namespace CustomCampaign.Editor.Pages
             LoadingBackground.SelectedText = data.loading_wallpaper;
             OverwriteLoadingText.Checked = data.overwrite_loading_text;
             LoadingText.Text = data.loading_text;
+            HideInSprint.Checked = data.hide_in_sprint;
         }
 
         private Level data = new Level();
@@ -59,6 +60,7 @@ namespace CustomCampaign.Editor.Pages
         private void LoadingBackground_TextChanged(object sender, EventArgs e) => data.loading_wallpaper = LoadingBackground.Text;
         private void OverwriteLoadingText_CheckedChanged(object sender, EventArgs e) => data.overwrite_loading_text = OverwriteLoadingText.Checked;
         private void LoadingText_TextChanged(object sender, EventArgs e) => data.loading_text = LoadingText.Text;
+        private void HideInSprint_CheckedChanged(object sender, EventArgs e) => data.hide_in_sprint = HideInSprint.Checked;
         private bool ValidateFields()
         {
             bool result = true;

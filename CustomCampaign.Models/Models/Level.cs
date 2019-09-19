@@ -18,6 +18,8 @@ namespace CustomCampaign.Models
         public bool overwrite_loading_text = false;
         public string loading_text = "";
 
+        public bool hide_in_sprint = false;
+
         public Image GetThumbnail(string current_path)
         {
             string file_path = $"{Path.Combine(current_path, file)}.png";

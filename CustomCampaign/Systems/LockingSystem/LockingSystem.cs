@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Storage;
+﻿using CustomCampaign.Data;
+using CustomCampaign.Storage;
 using Photon.Serialization;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,16 @@ namespace CustomCampaign.Systems
                 if (!progress.Data.ContainsKey(campaign.Value.Id))
                     progress.Data.Add(campaign.Value.Id, 0);
             progress.Save();
+        }
+
+        internal static bool IsCampaignComplete(string guid)
+        {
+            CampaignInfo info = Util.GetCampaignByGuid(guid);
+            if (info is null) return false;
+            bool flag = true;
+            foreach (var level in info.Levels)
+                flag &= IsLevelLocked(level.file);
+            return flag;
         }
 
         internal static bool IsLevelLocked(string levelfile)

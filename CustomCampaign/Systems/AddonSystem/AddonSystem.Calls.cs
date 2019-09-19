@@ -64,7 +64,7 @@ namespace CustomCampaign.Systems
             {
                 try
                 {
-                    item.Key.Object.OnLevelStart(Util.GetLevelInfo(Util.LevelFile));
+                    item.Key.Object.OnLevelStart(Util.GetLevelInfo(Util.LevelFile), G.Sys.GameManager_.ModeID_ == GameModeID.Sprint);
                 }
                 catch (System.Exception error)
                 {

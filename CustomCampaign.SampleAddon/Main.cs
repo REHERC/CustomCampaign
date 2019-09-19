@@ -27,9 +27,9 @@ namespace CustomCampaign.SampleAddon
             Log.Success($"{Info.Name} - OnDisable");
         }
 
-        public override void OnLevelStart(Models.Level level)
+        public override void OnLevelStart(Models.Level level, bool arcade)
         {
-            Log.Success($"{Info.Name} - OnLevelStart : {level.levelname}");
+            Log.Success($"{arcade}\t{Info.Name} - OnLevelStart : {level.levelname}");
         }
     }
 }
