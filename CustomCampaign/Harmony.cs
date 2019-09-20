@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Storage;
+﻿using CustomCampaign.Data;
+using CustomCampaign.Storage;
 using CustomCampaign.Systems;
 using Harmony;
 using System;
@@ -33,7 +34,7 @@ namespace CustomCampaign
 
                         LevelPlaylist playlist = LevelPlaylist.Create(set, $"{Constants.Strings.CampaignEntry_Color}{campaign.Value.Name}[-]");
 
-                        bool unlocked = LockingSystem.IsCampaignComplete(campaign.Value.Id);
+                        bool unlocked = true | LockingSystem.IsCampaignComplete(campaign.Value.Id);
                         __instance.CreateAndAddEntry(playlist, LevelGridMenu.PlaylistEntry.Type.Campaign, unlocked, sprint_unlock_mode);
                     }
             }
@@ -284,7 +285,7 @@ namespace CustomCampaign
     {
         public static void Postfix(PauseMenuLogic __instance)
         {
-            string path = G.Sys.GameManager_.LevelPath_.NormPath(true);
+            string path = Util.LevelFile.NormPath(true);
             if (G.Sys.GameManager_.PauseMenuOpen_ && Util.IsCustomCampaignLevel(path))
             {
                 __instance.gameMode_.text = Util.GetCampaignName(path) + "...";
@@ -333,6 +334,42 @@ namespace CustomCampaign
         public static void Postfix(ref bool __result, GameModeID ID)
         {
             __result |= Modes.Contains(ID);
+        }
+    }
+
+    [HarmonyPatch(typeof(DiscordController), "OnEventPostLoad")]
+    internal static class OnEventPostLoad
+    {
+        public static bool Prefix(DiscordController __instance, Events.Level.PostLoad.Data data)
+        {
+            bool rpc_overwrite = Util.IsCustomCampaignLevel(Util.LevelFile);
+            if (!rpc_overwrite) return true;
+
+            CampaignInfo info = Util.GetCampaign(Util.LevelFile);
+            Models.Level level = Util.GetLevelInfo(Util.LevelFile);
+
+            string rpc_imagekey = G.Sys.GameManager_.ModeID_ == GameModeID.Sprint ? "community_level" : "official_level";
+            string rpc_mode = rpc_imagekey == "community_level" ? "Sprint" : info.Name;
+            
+            __instance.presence.state = "Custom Campaign";
+            __instance.presence.largeImageKey = rpc_imagekey;
+
+            __instance.presence.startTimestamp = 0L;
+            __instance.presence.endTimestamp = 0L;
+            __instance.presence.partySize = 0;
+            __instance.presence.partyMax = 0;
+            __instance.presence.smallImageKey = string.Empty;
+            __instance.presence.smallImageText = string.Empty;
+            __instance.presence.largeImageText = string.Empty;
+
+            if (true || rpc_imagekey == "official_level")
+            {
+                __instance.presence.details = $"{rpc_mode} | {__instance.GetGameTypeString()}";
+            }
+            
+            DiscordRpc.UpdatePresence(ref __instance.presence);
+
+            return false;
         }
     }
 }

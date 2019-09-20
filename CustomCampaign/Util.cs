@@ -15,7 +15,7 @@ namespace CustomCampaign
     public static class Util
     {
         #region Game Manager Fields
-        public static string LevelFile => G.Sys.GameManager_.Level_.filePath_;
+        public static string LevelFile => G.Sys.GameManager_.LevelPath_;
         public static string LastLevelFile => G.Sys.GameManager_.LastLevelPath_;
         public static string NextLevelFile => G.Sys.GameManager_.LastLevelPath_;
         #endregion
