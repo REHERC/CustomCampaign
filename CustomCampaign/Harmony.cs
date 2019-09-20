@@ -34,7 +34,7 @@ namespace CustomCampaign
 
                         LevelPlaylist playlist = LevelPlaylist.Create(set, $"{Constants.Strings.CampaignEntry_Color}{campaign.Value.Name}[-]");
 
-                        bool unlocked = true | LockingSystem.IsCampaignComplete(campaign.Value.Id);
+                        bool unlocked = LockingSystem.IsCampaignComplete(campaign.Value.Id);
                         __instance.CreateAndAddEntry(playlist, LevelGridMenu.PlaylistEntry.Type.Campaign, unlocked, sprint_unlock_mode);
                     }
             }
