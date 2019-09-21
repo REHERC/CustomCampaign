@@ -18,6 +18,8 @@ namespace CustomCampaign
 
         public static void Postfix(LevelGridMenu __instance)
         {
+            if (__instance.DisplayType_ == LevelSelectMenuAbstract.DisplayType.GameLobby) return;
+
             LockingSystem.CreateProfile();
             if (__instance.isCampaignMode_)
             {
