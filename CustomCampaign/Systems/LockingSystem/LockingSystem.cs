@@ -25,7 +25,7 @@ namespace CustomCampaign.Systems
             if (info is null) return false;
             bool flag = true;
             foreach (var level in info.Levels)
-                flag &= IsLevelLocked(level.file);
+                flag &= !IsLevelLocked(level.file);
             return flag;
         }
 
