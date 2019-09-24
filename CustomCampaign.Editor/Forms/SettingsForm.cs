@@ -1,6 +1,8 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
-using System.Collections.Generic;
+using System;
+using System.Linq;
+using System.Windows;
 
 namespace CustomCampaign.Editor.Forms
 {
@@ -9,19 +11,19 @@ namespace CustomCampaign.Editor.Forms
         public SettingsForm()
         {
             InitializeComponent();
+            Globals.SkinManager.AddFormToManage(this);
         }
 
         ~SettingsForm()
         {
             Globals.SkinManager.RemoveFormToManage(this);
-            
         }
 
         private void DarkMode_CheckedChanged(object sender, System.EventArgs e)
         {
             Config.AppSettings.Data.darkmode = DarkMode.Checked;
             Config.AppSettings.Save();
-            SkinManager.Theme = DarkMode.Checked ? MaterialSkin.MaterialSkinManager.Themes.DARK : MaterialSkin.MaterialSkinManager.Themes.LIGHT;
+            SkinManager.Theme = DarkMode.Checked ? MaterialSkinManager.Themes.DARK : MaterialSkinManager.Themes.LIGHT;
         }
 
         private void ThemeList_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -40,21 +42,24 @@ namespace CustomCampaign.Editor.Forms
             Close();
         }
 
-        private void SettingsForm_Load(object sender, System.EventArgs e)
+        private void SettingsForm_Shown(object sender, EventArgs e)
         {
-            Globals.SkinManager.AddFormToManage(this);
-
             DarkMode.Checked = Config.AppSettings.Data.darkmode;
-
+            
             int themeindex = 0, i = 0;
             foreach (var theme in Themes.Values)
             {
-                ThemeList.Items.Add(theme.Key);
-                if (theme.Key == Config.AppSettings.Data.theme)
+                ThemeList.Items.AddRange(new object[] {theme.Key});
+                if (theme.Key.ToLower() == Config.AppSettings.Data.theme.ToLower())
                     themeindex = i;
                 i++;
             }
-            ThemeList.SelectedIndex = themeindex;
+            try
+            {
+                ThemeList.SelectedIndex = themeindex;
+            }
+            catch (Exception)
+            { }
         }
     }
 }

@@ -75,6 +75,9 @@
     <Compile Include="Controls\MaterialListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MaterialNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\MaterialPanel.cs">
       <SubType>Component</SubType>
     </Compile>

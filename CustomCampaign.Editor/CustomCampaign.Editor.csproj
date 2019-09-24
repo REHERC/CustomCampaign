@@ -378,6 +378,7 @@ CALL :MAKEDIR "%25PACKAGES%25"
 CALL :MAKEDIR "%25PACKAGES%25\Campaigns"
 
 CALL :COPY "%25BUILD%25CustomCampaign.Editor.exe" "%25PACKAGES%25"
+CALL :COPY "%25BUILD%25CustomCampaign.Editor.exe.config" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25CustomCampaign.Models.dll" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25MaterialSkin.dll" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25Newtonsoft.Json.dll" "%25PACKAGES%25"

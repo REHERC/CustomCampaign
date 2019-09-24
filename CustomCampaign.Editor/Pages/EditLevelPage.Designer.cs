@@ -30,6 +30,7 @@
         {
             this.MainLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.FormPanel = new MaterialSkin.Controls.MaterialPanel();
+            this.HideInSprint = new MaterialSkin.Controls.MaterialCheckBox();
             this.OverwriteLoadingText = new MaterialSkin.Controls.MaterialCheckBox();
             this.DisplayIntro = new MaterialSkin.Controls.MaterialCheckBox();
             this.LoadingText = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -39,7 +40,6 @@
             this.LevelFile = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.CancelBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.ConfirmBtn = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.HideInSprint = new MaterialSkin.Controls.MaterialCheckBox();
             this.MainLayout.SuspendLayout();
             this.FormPanel.SuspendLayout();
             this.SuspendLayout();
@@ -91,6 +91,24 @@
             this.FormPanel.Padding = new System.Windows.Forms.Padding(16);
             this.FormPanel.Size = new System.Drawing.Size(784, 455);
             this.FormPanel.TabIndex = 0;
+            // 
+            // HideInSprint
+            // 
+            this.HideInSprint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.HideInSprint.Depth = 0;
+            this.HideInSprint.Font = new System.Drawing.Font("Roboto", 11F);
+            this.HideInSprint.Location = new System.Drawing.Point(13, 261);
+            this.HideInSprint.Margin = new System.Windows.Forms.Padding(0);
+            this.HideInSprint.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.HideInSprint.MouseState = MaterialSkin.MouseState.HOVER;
+            this.HideInSprint.Name = "HideInSprint";
+            this.HideInSprint.Ripple = true;
+            this.HideInSprint.Size = new System.Drawing.Size(751, 30);
+            this.HideInSprint.TabIndex = 7;
+            this.HideInSprint.Text = "Hide level in sprint mode";
+            this.HideInSprint.UseVisualStyleBackColor = true;
+            this.HideInSprint.CheckedChanged += new System.EventHandler(this.HideInSprint_CheckedChanged);
             // 
             // OverwriteLoadingText
             // 
@@ -272,24 +290,6 @@
             this.ConfirmBtn.Text = "Confirm";
             this.ConfirmBtn.UseVisualStyleBackColor = true;
             this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
-            // 
-            // HideInSprint
-            // 
-            this.HideInSprint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.HideInSprint.Depth = 0;
-            this.HideInSprint.Font = new System.Drawing.Font("Roboto", 11F);
-            this.HideInSprint.Location = new System.Drawing.Point(13, 261);
-            this.HideInSprint.Margin = new System.Windows.Forms.Padding(0);
-            this.HideInSprint.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.HideInSprint.MouseState = MaterialSkin.MouseState.HOVER;
-            this.HideInSprint.Name = "HideInSprint";
-            this.HideInSprint.Ripple = true;
-            this.HideInSprint.Size = new System.Drawing.Size(751, 30);
-            this.HideInSprint.TabIndex = 7;
-            this.HideInSprint.Text = "Hide level in sprint mode";
-            this.HideInSprint.UseVisualStyleBackColor = true;
-            this.HideInSprint.CheckedChanged += new System.EventHandler(this.HideInSprint_CheckedChanged);
             // 
             // EditLevelPage
             // 

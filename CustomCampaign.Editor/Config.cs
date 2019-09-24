@@ -1,6 +1,5 @@
 ﻿using CustomCampaign.Models;
 using Photon.Serialization;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -10,8 +9,8 @@ namespace CustomCampaign.Editor
 {
     public static class Config
     {
-        public static Serializer<AppSettings> AppSettings = new Serializer<AppSettings>(SerializerType.Json, "config.json", true);
-        public static Serializer<RecentFileList> RecentFileList = new Serializer<RecentFileList>(SerializerType.Json, "recent.json", true);
+        public static Serializer<AppSettings> AppSettings = new Serializer<AppSettings>(SerializerType.Json, "config", true, false);
+        public static Serializer<RecentFileList> RecentFileList = new Serializer<RecentFileList>(SerializerType.Json, "recent", true, false);
 
         public static void AppendRecentFile(string path)
         {

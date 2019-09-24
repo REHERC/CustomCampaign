@@ -131,6 +131,7 @@
             this.ThemeLbl.Font = new System.Drawing.Font("Roboto", 11F);
             this.ThemeLbl.FontSize = 11;
             this.ThemeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ThemeLbl.FormLabel = false;
             this.ThemeLbl.Location = new System.Drawing.Point(0, 30);
             this.ThemeLbl.Margin = new System.Windows.Forms.Padding(0);
             this.ThemeLbl.MouseState = MaterialSkin.MouseState.HOVER;
@@ -144,9 +145,11 @@
             this.ThemeList.Depth = 0;
             this.ThemeList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ThemeList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.ThemeList.DropDownHeight = 170;
             this.ThemeList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ThemeList.FormattingEnabled = true;
             this.ThemeList.Hint = null;
+            this.ThemeList.IntegralHeight = false;
             this.ThemeList.Location = new System.Drawing.Point(90, 30);
             this.ThemeList.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.ThemeList.MouseState = MaterialSkin.MouseState.OUT;
@@ -163,6 +166,7 @@
             this.DarkModeLbl.Font = new System.Drawing.Font("Roboto", 11F);
             this.DarkModeLbl.FontSize = 11;
             this.DarkModeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DarkModeLbl.FormLabel = false;
             this.DarkModeLbl.Location = new System.Drawing.Point(0, 5);
             this.DarkModeLbl.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.DarkModeLbl.MouseState = MaterialSkin.MouseState.HOVER;
@@ -233,7 +237,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Title = "Settings";
-            this.Load += new System.EventHandler(this.SettingsForm_Load);
+            this.Shown += new System.EventHandler(this.SettingsForm_Shown);
             this.Tabs.ResumeLayout(false);
             this.AppearanceTab.ResumeLayout(false);
             this.AppearanceSettingsLayout.ResumeLayout(false);
