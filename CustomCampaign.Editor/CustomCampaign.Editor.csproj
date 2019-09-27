@@ -94,19 +94,25 @@
     <Compile Include="Controls\LevelBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\PizzaCard.cs">
+    <Compile Include="Controls\InfoCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\PizzaCard.Designer.cs">
-      <DependentUpon>PizzaCard.cs</DependentUpon>
+    <Compile Include="Controls\InfoCard.Designer.cs">
+      <DependentUpon>InfoCard.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Forms\Aaaaaaa.cs">
+    <Compile Include="Forms\Dialogs\MessageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Aaaaaaa.Designer.cs">
-      <DependentUpon>Aaaaaaa.cs</DependentUpon>
+    <Compile Include="Forms\Dialogs\MessageDialog.Designer.cs">
+      <DependentUpon>MessageDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SpookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpookForm.Designer.cs">
+      <DependentUpon>SpookForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\InputDialog.cs">
       <SubType>Form</SubType>
@@ -129,11 +135,11 @@
     <Compile Include="Forms\MissingFilesDialog.Designer.cs">
       <DependentUpon>MissingFilesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PizzaForm.cs">
+    <Compile Include="Forms\ContributorsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PizzaForm.Designer.cs">
-      <DependentUpon>PizzaForm.cs</DependentUpon>
+    <Compile Include="Forms\ContributorsForm.Designer.cs">
+      <DependentUpon>ContributorsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ProgressDialog.cs">
       <SubType>Form</SubType>
@@ -208,11 +214,14 @@
     <EmbeddedResource Include="Classes\Page.resx">
       <DependentUpon>Page.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\PizzaCard.resx">
-      <DependentUpon>PizzaCard.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\InfoCard.resx">
+      <DependentUpon>InfoCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Aaaaaaa.resx">
-      <DependentUpon>Aaaaaaa.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Dialogs\MessageDialog.resx">
+      <DependentUpon>MessageDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpookForm.resx">
+      <DependentUpon>SpookForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
@@ -223,8 +232,8 @@
     <EmbeddedResource Include="Forms\MissingFilesDialog.resx">
       <DependentUpon>MissingFilesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PizzaForm.resx">
-      <DependentUpon>PizzaForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ContributorsForm.resx">
+      <DependentUpon>ContributorsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>

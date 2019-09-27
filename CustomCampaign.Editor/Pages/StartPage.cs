@@ -87,7 +87,7 @@ namespace CustomCampaign.Editor.Pages
 
         private void SecretSpookButtonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (Aaaaaaa dlg = new Aaaaaaa())
+            using (SpookForm dlg = new SpookForm())
             {
                 dlg.ShowDialog();
             }

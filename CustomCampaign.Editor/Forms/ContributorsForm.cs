@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Forms
 {
-    public partial class PizzaForm : MaterialForm
+    public partial class ContributorsForm : MaterialForm
     {
-        public PizzaForm()
+        public ContributorsForm()
         {
             InitializeComponent();
 
@@ -36,7 +36,7 @@ namespace CustomCampaign.Editor.Forms
         {
             const int padding = 4;
 
-            FlowLayout.Controls.Add(new PizzaCard() {
+            FlowLayout.Controls.Add(new InfoCard() {
                 Margin = new Padding(padding),
                 Width = 256 * tile + 2 * padding * (tile - 1),
                 Height = 96,

@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Models;
+﻿using CustomCampaign.Editor.Forms;
+using CustomCampaign.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace CustomCampaign.Editor.Pages
             {
                 if (levels.Contains(data.file.ToLower()) && !editing)
                 {
-                    MessageBox.Show($"The level \"{data.file}\" is already in this campaign level set.\nA campaign can't have duplicate levels.");
+                    MessageDialog.Show($"The level \"{data.file}\" is already in this campaign level set.\nA campaign can't have duplicate levels.");
                 }
                 else
                 {

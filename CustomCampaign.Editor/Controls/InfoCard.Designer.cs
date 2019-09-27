@@ -1,6 +1,6 @@
 ﻿namespace CustomCampaign.Editor.Controls
 {
-    partial class PizzaCard
+    partial class InfoCard
     {
         /// <summary> 
         /// Required designer variable.

@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Forms
 {
-    public partial class Aaaaaaa : MaterialSkin.Controls.MaterialForm
+    public partial class SpookForm : MaterialSkin.Controls.MaterialForm
     {
-        public Aaaaaaa()
+        public SpookForm()
         {
             InitializeComponent();
         }

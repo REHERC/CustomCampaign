@@ -1,18 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Forms.Dialogs
 {
     public partial class InputDialog : MaterialSkin.Controls.MaterialForm
     {
+        [DllImport("user32")]
+        static new extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+        [DllImport("user32")]
+        static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
+
+        const int MF_BYCOMMAND = 0;
+        const int MF_DISABLED = 2;
+        const int SC_CLOSE = 0xF060;
+
         public InputDialog()
         {
             InitializeComponent();
+            EnableMenuItem(GetSystemMenu(Handle, false), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED);
+
         }
 
         private void SubmitBtn_Click(object sender, EventArgs e)

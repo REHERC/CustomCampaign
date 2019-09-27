@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Editor.Forms.Dialogs;
+﻿using CustomCampaign.Editor.Forms;
+using CustomCampaign.Editor.Forms.Dialogs;
 using CustomCampaign.Models;
 using System;
 using System.Collections.Generic;
@@ -78,7 +79,7 @@ namespace CustomCampaign.Editor.Pages
         private void RemoveBtn_Click(object sender, EventArgs e)
         {
             int index = Dependencies.SelectedIndex;
-            if (MessageBox.Show($"Are you sure you want to remove this dependency?", "Remove a dependency", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageDialog.Show($"Are you sure you want to remove this dependency?", "Remove a dependency", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 Dependencies.Items.RemoveAt(index);
             UpdateDataDependencies();
         }

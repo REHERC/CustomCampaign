@@ -49,7 +49,7 @@ namespace CustomCampaign.Editor.Pages
             this.FileRightSide = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.OverviewLevelsLbl = new MaterialSkin.Controls.MaterialLabel();
             this.OverviewLbl = new MaterialSkin.Controls.MaterialLabel();
-            this.Overview = new CustomCampaign.Editor.Controls.PizzaCard();
+            this.Overview = new CustomCampaign.Editor.Controls.InfoCard();
             this.OverviewLevels = new MaterialSkin.Controls.MaterialListBox();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.SettingsLayout = new MaterialSkin.Controls.MaterialPanel();
@@ -1070,7 +1070,7 @@ namespace CustomCampaign.Editor.Pages
         private MaterialSkin.Controls.MaterialDivider MenuDivider;
         private MaterialSkin.Controls.MaterialDivider TabDivider;
         private MaterialTableLayoutPanel FileRightSide;
-        private Controls.PizzaCard Overview;
+        private Controls.InfoCard Overview;
         private MaterialContextMenuStrip LevelsMenu;
         private System.Windows.Forms.ToolStripMenuItem AddLevel;
         private System.Windows.Forms.ToolStripMenuItem EditLevel;

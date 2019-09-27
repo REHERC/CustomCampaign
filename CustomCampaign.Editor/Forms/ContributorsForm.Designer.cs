@@ -1,6 +1,6 @@
 ﻿namespace CustomCampaign.Editor.Forms
 {
-    partial class PizzaForm
+    partial class ContributorsForm
     {
         /// <summary>
         /// Required designer variable.

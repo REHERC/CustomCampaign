@@ -18,7 +18,7 @@ namespace CustomCampaign.Editor.Pages
     {
         public void GoToSettingsTab() => EditorTabs.SelectedTab = SettingsTab;
         public void GoToFileTab() => EditorTabs.SelectedTab = FileTab;
-        DialogResult ClosseDialog() => MessageBox.Show("Are you sure you want to close this project?\nAny unsaved changes will be discarded!", "Close project", MessageBoxButtons.YesNo);
+        DialogResult ClosseDialog() => MessageDialog.Show("Are you sure you want to close this project?\nAny unsaved changes will be discarded!", "Close project", MessageBoxButtons.YesNo);
 
         #region Save and Load
         public void LoadCampaign(string path)
@@ -160,7 +160,7 @@ namespace CustomCampaign.Editor.Pages
             Campaign campaign = UpdateWorkingstate();
 
             if (campaign.Validate(Editor.current_path, out List<string> files))
-                MessageBox.Show("File check complete, no files were missing.");
+                MessageDialog.Show("File check complete, no files were missing.");
             else
                 ShowMissingFiles(files, "File check failed");
         }
@@ -209,7 +209,7 @@ namespace CustomCampaign.Editor.Pages
 
         private void RemoveLevel_Run()
         {
-            if (Levels.SelectedIndex >= 0 && MessageBox.Show("Are you sure you want to remove this level from the list?", "Remove level", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (Levels.SelectedIndex >= 0 && MessageDialog.Show("Are you sure you want to remove this level from the list?", "Remove level", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 Levels.Items.RemoveAt(Levels.SelectedIndex);
             UpdateOverviewList();
         }
@@ -247,7 +247,7 @@ namespace CustomCampaign.Editor.Pages
 
         private void RemoveAddon_Run()
         {
-            if (Addons.SelectedIndex >= 0 && MessageBox.Show("Are you sure you want to remove this addon from the list?", "Remove addon", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (Addons.SelectedIndex >= 0 && MessageDialog.Show("Are you sure you want to remove this addon from the list?", "Remove addon", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 Addons.Items.RemoveAt(Addons.SelectedIndex);
         }
         #endregion

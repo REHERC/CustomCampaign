@@ -3,7 +3,7 @@ using CustomCampaign.Editor.Resx;
 
 namespace CustomCampaign.Editor.Forms
 {
-    partial class Aaaaaaa
+    partial class SpookForm
     {
         /// <summary>
         /// Required designer variable.

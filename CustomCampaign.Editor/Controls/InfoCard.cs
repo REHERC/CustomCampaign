@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Controls
 {
-    public partial class PizzaCard : MaterialUserControl
+    public partial class InfoCard : MaterialUserControl
     {
-        public PizzaCard()
+        public InfoCard()
         {
             InitializeComponent();
         }

@@ -1,4 +1,5 @@
 ﻿using CustomCampaign.Editor.Classes;
+using CustomCampaign.Editor.Forms;
 using CustomCampaign.Models;
 using Photon.Serialization;
 using System;
@@ -71,7 +72,7 @@ namespace CustomCampaign.Editor.Pages
 
                 if (new List<string>(from file in directory.GetFiles() select file.Name.ToLower()).Contains("campaign.json"))
                 {
-                    MessageBox.Show("A campaign project already exists in this folder.");
+                    MessageDialog.Show("A campaign project already exists in this folder.");
                     return false;
                 }
 
@@ -94,7 +95,7 @@ namespace CustomCampaign.Editor.Pages
                 }.Save();
             }
             catch (Exception e) {
-                MessageBox.Show($"{e.Message}\n----------\n{e.Source}\n{e.StackTrace}", e.Source);
+                MessageDialog.Show($"{e.Message}\n----------\n{e.Source}\n{e.StackTrace}", e.Source);
                 return false;
             }
             return true;

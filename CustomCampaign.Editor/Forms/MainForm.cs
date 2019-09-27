@@ -26,7 +26,7 @@ namespace CustomCampaign.Editor.Forms
             systemmenu = new SystemMenu(this);
 
             systemmenu.AddCommand("h", () => {
-                MessageBox.Show(Constants.BIG_SPIN_MESSAGE);
+                MessageDialog.Show(Constants.BIG_SPIN_MESSAGE, "BIG SPIN");
                 Process.Start(Constants.BIG_SPIN);
             }, true, false);
         }
@@ -88,14 +88,14 @@ namespace CustomCampaign.Editor.Forms
         private readonly Dictionary<string, Action> Secrets = new Dictionary<string, Action>() {
             { "UpUpDownDownLeftRightLeftRightBA", () => {
                 Globals.MainWindow.Hide();
-                new PizzaForm().ShowDialog();
+                new ContributorsForm().ShowDialog();
                 Globals.MainWindow.Show();
             }}
         };
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Globals.IsFileOpened && MessageBox.Show("Are you sure you want to close this window?\nAny unsaved changes will be discarded!", "Quit application?", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (Globals.IsFileOpened && MessageDialog.Show("Are you sure you want to close this window?\nAny unsaved changes will be discarded!", "Quit application?", MessageBoxButtons.YesNo) == DialogResult.No)
                 e.Cancel = true;
         }
     }
