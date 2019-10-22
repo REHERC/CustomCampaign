@@ -21,7 +21,6 @@ namespace CustomCampaign.Models
         public List<Level> levels = new List<Level>();
         public List<Addon> addons = new List<Addon>();
 
-        [JsonIgnore]
         public readonly FileValidator FileIncludeValidator = new FileValidator();
 
         public static Campaign FromFile(string file)

@@ -1,6 +1,11 @@
 ﻿#if SERIALIZER_JSON
 using System.IO;
+#if JSON_NEWTONSOFT
 using Newtonsoft.Json;
+#endif
+#if JSON_LITJSON
+using LitJson;
+#endif
 
 #pragma warning disable IDE0063, RCS1001, CS0436, CA2202
 
@@ -12,6 +17,7 @@ namespace Photon.Serialization
         {
             if (File.Exists(FilePath))
                 File.Delete(FilePath);
+#if JSON_NEWTONSOFT
             JsonSerializer SERIALIZER = new JsonSerializer
             {
                 NullValueHandling = NullValueHandling.Include,
@@ -22,10 +28,17 @@ namespace Photon.Serialization
                     JSON_WRITER.Formatting = Formatting.Indented;
                     SERIALIZER.Serialize(JSON_WRITER, DATA);
                 }
+#endif
+#if JSON_LITJSON
+            using (StreamWriter FILE_STREAM = new StreamWriter(FilePath))
+                FILE_STREAM.WriteLine(JsonMapper.ToJson(DATA));
+#endif
         }
 
         public SERIALIZER_TYPE Deserialize(string FilePath, bool ShowError = true)
         {
+            SERIALIZER_TYPE RESULT = null;
+
             if (!File.Exists(FilePath))
                 if (ShowError)
                     throw new FileNotFoundException();
@@ -34,7 +47,13 @@ namespace Photon.Serialization
             string SERIALIZED_TEXT = "";
             using (StreamReader READER = new StreamReader(FilePath))
                 SERIALIZED_TEXT = READER.ReadToEnd();
-            return JsonConvert.DeserializeObject<SERIALIZER_TYPE>(SERIALIZED_TEXT);
+#if JSON_NEWTONSOFT
+            RESULT = JsonConvert.DeserializeObject<SERIALIZER_TYPE>(SERIALIZED_TEXT);
+#endif
+#if JSON_LITJSON
+            RESULT = JsonMapper.ToObject<SERIALIZER_TYPE>(SERIALIZED_TEXT);
+#endif
+            return RESULT;
         }
     }
 }

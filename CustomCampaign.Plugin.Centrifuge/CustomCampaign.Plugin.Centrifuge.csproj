@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON API_CENTRIFUGE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -27,7 +27,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE</DefineConstants>
+    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -41,9 +41,6 @@
     </Reference>
     <Reference Include="LitJSON, Version=0.14.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LitJson.0.14.1\lib\net35\LitJSON.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Centrifuge.Mod.SDK.1.0.1-alpha\lib\net35\Reactor.API.dll</HintPath>
