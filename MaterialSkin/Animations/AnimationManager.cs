@@ -262,7 +262,6 @@ namespace MaterialSkin.Animations
                 default:
                     throw new NotImplementedException("The given AnimationType is not implemented");
             }
-
         }
 
         public Point GetSource(int index)

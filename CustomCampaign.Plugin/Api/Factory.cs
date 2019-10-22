@@ -1,7 +1,14 @@
 ﻿using CustomCampaign.Storage;
+#if API_SPECTRUM
 using Spectrum.API.Configuration;
 using Spectrum.API.Logging;
-using Spectrum.API.Storage;
+using API_Storage = Spectrum.API.Storage;
+#endif
+#if API_CENTRIFUGE
+using Reactor.API.Configuration;
+using Reactor.API.Logging;
+using API_Storage = Reactor.API.Storage;
+#endif
 using System.IO;
 using System.Reflection;
 
@@ -16,7 +23,7 @@ namespace CustomCampaign.Api
             return new Settings($"../Data/{directory}/{file}");
         }
 
-        public static Assets Assets(string path) => Spectrum.API.Storage.Assets.FromUnsafePath(Util.GetFilePath(path));
+        public static API_Storage.Assets Assets(string path) => API_Storage.Assets.FromUnsafePath(Util.GetFilePath(path));
 
         public static Logger Logger(string file, bool output = true)
         {

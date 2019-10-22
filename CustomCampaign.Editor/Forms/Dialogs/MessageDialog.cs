@@ -8,7 +8,7 @@ namespace CustomCampaign.Editor.Forms
     public partial class MessageDialog : MaterialSkin.Controls.MaterialForm
     {
         [DllImport("user32")]
-        static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+        static new extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
         [DllImport("user32")]
         static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
 
@@ -24,7 +24,7 @@ namespace CustomCampaign.Editor.Forms
             {
                 message_content = value;
                 render_bounds = new Rectangle(0, 0, MainPanel.MaximumSize.Width, MainPanel.MaximumSize.Height);
-                Size size = TextRenderer.MeasureText(message_content, font, render_bounds.Size, flags);
+                Size size = TextRenderer.MeasureText(message_content, Font, render_bounds.Size, flags);
                 MainPanel.MinimumSize = size;
                 text_bounds = new Rectangle(0, 0, size.Width, size.Height);
                 MainPanel.Invalidate();
@@ -83,11 +83,11 @@ namespace CustomCampaign.Editor.Forms
             }
         }
 
-        Font font => SkinManager.GetFont(11);
+        public override Font Font => SkinManager.GetFont(11);
         Rectangle render_bounds;
         Rectangle text_bounds;
 
-        TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.Top | TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl;
+        readonly TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.Top | TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl;
 
         private void MainPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -96,7 +96,7 @@ namespace CustomCampaign.Editor.Forms
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
 
-            TextRenderer.DrawText(g, Message, font, text_bounds, SkinManager.GetPrimaryTextColor(), flags);
+            TextRenderer.DrawText(g, Message, Font, text_bounds, SkinManager.GetPrimaryTextColor(), flags);
         }
 
         private void MessageDialog_Shown(object sender, System.EventArgs e)

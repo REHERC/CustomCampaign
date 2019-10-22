@@ -1,23 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}</ProjectGuid>
+    <ProjectGuid>{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CustomCampaign</RootNamespace>
     <AssemblyName>CustomCampaign</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON API_CENTRIFUGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -26,7 +27,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;SERIALIZER_JSON</DefineConstants>
+    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -38,11 +39,14 @@
     <Reference Include="Assembly-CSharp.dev">
       <HintPath>..\Referenced Assemblies\Assembly-CSharp.dev.dll</HintPath>
     </Reference>
+    <Reference Include="LitJSON, Version=0.14.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.14.1\lib\net35\LitJSON.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Spectrum.API">
-      <HintPath>..\Referenced Assemblies\Spectrum.API.dll</HintPath>
+    <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Centrifuge.Mod.SDK.1.0.1-alpha\lib\net35\Reactor.API.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,29 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\Addon.cs" />
-    <Compile Include="Api\Factory.cs" />
-    <Compile Include="Data\CampaignInfo.cs" />
-    <Compile Include="Events\CampaignLevelStarted.cs" />
-    <Compile Include="Events\CampaignLoaded.cs" />
-    <Compile Include="Systems\AddonSystem\AddonSystem.Calls.cs" />
-    <Compile Include="Systems\AddonSystem\AddonSystem.cs" />
-    <Compile Include="Systems\AddonSystem\AddonSystem.Util.cs" />
-    <Compile Include="Systems\CampaignSystem\CampaignSystem.cs" />
-    <Compile Include="Util.cs" />
-    <Compile Include="Storage\Constants.cs" />
-    <Compile Include="Storage\Events.cs" />
-    <Compile Include="Harmony.cs" />
-    <Compile Include="Systems\LockingSystem\LockingSystem.cs" />
-    <Compile Include="Storage\Plugin.cs" />
-    <Compile Include="Storage\Campaigns.cs" />
-    <Compile Include="Storage\Variables.cs" />
-    <Compile Include="Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Extensions\Extensions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomCampaign.Models\CustomCampaign.Models.csproj">
@@ -89,13 +71,16 @@
       <Name>CustomCampaign.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="..\CustomCampaign.Plugin\CustomCampaign.Plugin.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SET INCLUDE=$(SolutionDir)Include\
 SET BUILD=$(ProjectDir)$(OutDir)
-SET PACKAGES=$(SolutionDir)Build\Plugin\
+SET PACKAGES=$(SolutionDir)Build\Centrifuge Plugin\
 
 CALL :MAKEDIR "%25PACKAGES%25"
 CALL :MAKEDIR "%25PACKAGES%25\Dependencies"
@@ -120,11 +105,4 @@ GOTO :EOF
 XCOPY /s /Y /v %251 %252
 GOTO :EOF</PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

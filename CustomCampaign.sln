@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign", "CustomCampaign\CustomCampaign.csproj", "{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wiki", "Wiki", "{B9D9FDC6-B54A-4672-9374-8D79A4659079}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{819D1152-F8AB-425B-ADE9-822C78112C67}"
@@ -55,22 +53,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git", "Git", "{717D64D8-17F
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Plugin", "CustomCampaign.Plugin\CustomCampaign.Plugin.shproj", "{B5E14841-B7AB-4387-8563-4F928E1CF651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Plugin.Spectrum", "CustomCampaign.Plugin.Spectrum\CustomCampaign.Plugin.Spectrum.csproj", "{C72AAAEA-A1D3-4809-B214-62113F24B252}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Plugin.Centrifuge", "CustomCampaign.Plugin.Centrifuge\CustomCampaign.Plugin.Centrifuge.csproj", "{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
-		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{3e8bf9c3-1514-45b0-a5dc-78bf358d013c}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{61a91363-f0b0-41be-8e56-72fa800bc279}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{af942756-cfe7-4371-819e-867ba60ff14d}*SharedItemsImports = 13
+		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{b5e14841-b7ab-4387-8563-4f928e1cf651}*SharedItemsImports = 13
+		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
+		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
+		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
+		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E8BF9C3-1514-45B0-A5DC-78BF358D013C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +91,14 @@ Global
 		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C72AAAEA-A1D3-4809-B214-62113F24B252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C72AAAEA-A1D3-4809-B214-62113F24B252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C72AAAEA-A1D3-4809-B214-62113F24B252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C72AAAEA-A1D3-4809-B214-62113F24B252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

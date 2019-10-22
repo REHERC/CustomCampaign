@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>b5e14841-b7ab-4387-8563-4f928e1cf651</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CustomCampaign.Plugin</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Api\Addon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\Factory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\CampaignInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\CampaignLevelStarted.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\CampaignLoaded.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Campaigns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Events.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Plugin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Variables.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Systems\AddonSystem\AddonSystem.Calls.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Systems\AddonSystem\AddonSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Systems\AddonSystem\AddonSystem.Util.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Systems\CampaignSystem\CampaignSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Systems\LockingSystem\LockingSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util.cs" />
+  </ItemGroup>
+</Project>

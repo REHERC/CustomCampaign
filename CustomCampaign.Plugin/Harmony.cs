@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-#pragma warning disable CS0168, RCS1003, RCS1001, IDE0051
+#pragma warning disable CS0168, RCS1003, RCS1001, IDE0051, IDE0060, IDE0059
 namespace CustomCampaign
 {
     [HarmonyPatch(typeof(LevelGridMenu), "CreateEntries")]

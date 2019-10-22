@@ -1,5 +1,11 @@
-﻿using Spectrum.API.Logging;
+﻿#if API_SPECTRUM
+using Spectrum.API.Logging;
 using Spectrum.API.Storage;
+#endif
+#if API_CENTRIFUGE
+using Reactor.API.Logging;
+using Reactor.API.Storage;
+#endif
 using System.IO;
 using CustomCampaign.Data;
 using CustomCampaign.Systems;
@@ -17,7 +23,9 @@ namespace CustomCampaign.Storage
             Log = new Logger("CustomCampaign")
             {
                 WriteToConsole = true,
+#if API_SPECTRUM
                 ColorizeLines = true
+#endif
             };
         }
 
