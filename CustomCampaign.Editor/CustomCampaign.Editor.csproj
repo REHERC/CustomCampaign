@@ -381,7 +381,7 @@
   <PropertyGroup>
     <PostBuildEvent>SET INCLUDE=$(SolutionDir)Include\
 SET BUILD=$(ProjectDir)$(OutDir)
-SET PACKAGES=$(SolutionDir)Build\Editor\
+SET PACKAGES=$(SolutionDir)Build\Custom Campaign - Editor\
 
 CALL :MAKEDIR "%25PACKAGES%25"
 CALL :MAKEDIR "%25PACKAGES%25\Campaigns"

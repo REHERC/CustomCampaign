@@ -1,0 +1,13 @@
+{
+  "FriendlyName": "Custom Campaign",
+  "Author": "Reherc",
+  "AuthorContact": "Github: @REHERC",
+  "ModuleFileName": "CustomCampaign.dll",
+  "Priority": 10,
+  "Dependencies": [
+    "CustomCampaign.Models.dll",
+    "Newtonsoft.Json.dll",
+    "0Harmony.dll"
+  ],
+  "SkipLoad": false
+}

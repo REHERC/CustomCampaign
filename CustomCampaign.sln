@@ -40,9 +40,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Referenced Assemblies", "Re
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{45D29C2F-416A-4D73-A7B1-01F21CBB1C43}"
-	ProjectSection(SolutionItems) = preProject
-		Include\plugin.json = Include\plugin.json
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git", "Git", "{717D64D8-17F8-43C4-B3B0-C63A7F5A1FB3}"
 	ProjectSection(SolutionItems) = preProject
@@ -62,6 +59,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Addon.Centrifuge", "CustomCampaign.Addon.Centrifuge\CustomCampaign.Addon.Centrifuge.csproj", "{318AA704-CA8B-47DB-B86D-43E839C3D27B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Addon.Spectrum", "CustomCampaign.Addon.Spectrum\CustomCampaign.Addon.Spectrum.csproj", "{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Spectrum", "Spectrum", "{B855A02E-2A2C-431D-9C0F-BD59BB895D55}"
+	ProjectSection(SolutionItems) = preProject
+		Include\Spectrum\plugin.json = Include\Spectrum\plugin.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Centrifuge", "Centrifuge", "{518BDF81-80FA-4447-8A7B-0B80B580F5E3}"
+	ProjectSection(SolutionItems) = preProject
+		Include\Centrifuge\mod.json = Include\Centrifuge\mod.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -116,6 +123,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{819D1152-F8AB-425B-ADE9-822C78112C67} = {B9D9FDC6-B54A-4672-9374-8D79A4659079}
+		{B855A02E-2A2C-431D-9C0F-BD59BB895D55} = {45D29C2F-416A-4D73-A7B1-01F21CBB1C43}
+		{518BDF81-80FA-4447-8A7B-0B80B580F5E3} = {45D29C2F-416A-4D73-A7B1-01F21CBB1C43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57889824-D145-4309-8774-BD511135D278}
