@@ -6,6 +6,8 @@ using System.Drawing.Text;
 using System.Windows.Forms;
 using MaterialSkin.Animations;
 
+#pragma warning disable IDE0063
+
 namespace MaterialSkin.Controls
 {
     public class MaterialFlatButton : Button, IMaterialControl

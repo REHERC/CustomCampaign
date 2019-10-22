@@ -5,7 +5,7 @@ using System.Drawing.Text;
 using System.Windows.Forms;
 using MaterialSkin.Animations;
 
-#pragma warning disable IDE0059
+#pragma warning disable IDE0063, IDE0059
 
 namespace MaterialSkin.Controls
 {

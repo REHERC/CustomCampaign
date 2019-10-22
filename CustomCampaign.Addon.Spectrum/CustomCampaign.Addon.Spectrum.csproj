@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}</ProjectGuid>
+    <ProjectGuid>{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CustomCampaign.SampleAddon</RootNamespace>
-    <AssemblyName>CustomCampaign.SampleAddon</AssemblyName>
+    <RootNamespace>CustomCampaign.Addon</RootNamespace>
+    <AssemblyName>CustomCampaign.Addon</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -18,17 +18,19 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;API_SPECTRUM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;API_SPECTRUM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -37,16 +39,25 @@
     <Reference Include="Assembly-CSharp.dev">
       <HintPath>..\Referenced Assemblies\Assembly-CSharp.dev.dll</HintPath>
     </Reference>
-    <Reference Include="Spectrum.API, Version=0.2.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Spectrum.API">
       <HintPath>..\Referenced Assemblies\Spectrum.API.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\Referenced Assemblies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\Referenced Assemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,13 +67,11 @@
       <Project>{61a91363-f0b0-41be-8e56-72fa800bc279}</Project>
       <Name>CustomCampaign.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CustomCampaign.Plugin.Centrifuge\CustomCampaign.Plugin.Centrifuge.csproj">
-      <Project>{db9398d1-4f7a-4a75-92d4-0b92879d82c1}</Project>
-      <Name>CustomCampaign.Plugin.Centrifuge</Name>
+    <ProjectReference Include="..\CustomCampaign.Plugin.Spectrum\CustomCampaign.Plugin.Spectrum.csproj">
+      <Project>{c72aaaea-a1d3-4809-b214-62113f24b252}</Project>
+      <Name>CustomCampaign.Plugin.Spectrum</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+  <Import Project="..\CustomCampaign.Addon\CustomCampaign.Addon.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

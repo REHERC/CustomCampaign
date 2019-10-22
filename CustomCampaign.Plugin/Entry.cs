@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable IDE0060
+using System;
 using System.Reflection;
 using CustomCampaign.Storage;
 using Harmony;
@@ -13,19 +14,15 @@ using Reactor.API.Interfaces.Systems;
 #pragma warning disable RCS1163
 namespace CustomCampaign
 {
-#if API_CENTRIFUGE
-    [ModEntryPoint(MOD_ID)]
-#endif
-    public class Entry
 #if API_SPECTRUM
-        : IPlugin
-#endif
+    public class Entry : IPlugin 
     {
-        const string MOD_ID = "com.reherc.customcampaign";
-#if API_SPECTRUM
         public void Initialize(IManager manager, string ipcIdentifier)
 #endif
 #if API_CENTRIFUGE
+    [ModEntryPoint(MOD_ID)]
+    public class Entry
+    {
         public void Initialize(IManager manager)
 #endif
         {
@@ -44,5 +41,7 @@ namespace CustomCampaign
                 Console.WriteLine(e.Message);
             }
         }
+
+        const string MOD_ID = "com.reherc.customcampaign";
     }
 }

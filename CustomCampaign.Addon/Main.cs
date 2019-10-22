@@ -1,6 +1,11 @@
 ﻿using CustomCampaign.Api;
 using CustomCampaign.Data;
+#if API_SPECTRUM
 using Spectrum.API.Logging;
+#endif
+#if API_CENTRIFUGE
+using Reactor.API.Logging;
+#endif
 
 namespace CustomCampaign.SampleAddon
 {

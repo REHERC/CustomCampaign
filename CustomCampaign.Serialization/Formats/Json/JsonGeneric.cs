@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-#pragma warning disable RCS1001, CS0436, CA2202
+#pragma warning disable IDE0063, RCS1001, CS0436, CA2202
 
 namespace Photon.Serialization
 {

@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Models", "Cu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkin", "MaterialSkin\MaterialSkin.csproj", "{8EB7611B-68CD-4B8B-987A-11717E2B250C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.SampleAddon", "CustomCampaign.SampleAddon\CustomCampaign.SampleAddon.csproj", "{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Referenced Assemblies", "Referenced Assemblies", "{05BF1A4C-AFE2-4B56-9A36-9EC3C61AA773}"
 	ProjectSection(SolutionItems) = preProject
 		Referenced Assemblies\Assembly-CSharp-firstpass.dll = Referenced Assemblies\Assembly-CSharp-firstpass.dll
@@ -59,10 +57,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Plugin.Spect
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Plugin.Centrifuge", "CustomCampaign.Plugin.Centrifuge\CustomCampaign.Plugin.Centrifuge.csproj", "{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Addon", "CustomCampaign.Addon\CustomCampaign.Addon.shproj", "{63F30EEA-6BAA-4454-8E6C-58450C3D27D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Addon.Centrifuge", "CustomCampaign.Addon.Centrifuge\CustomCampaign.Addon.Centrifuge.csproj", "{318AA704-CA8B-47DB-B86D-43E839C3D27B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Addon.Spectrum", "CustomCampaign.Addon.Spectrum\CustomCampaign.Addon.Spectrum.csproj", "{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
+		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{318aa704-ca8b-47db-b86d-43e839c3d27b}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{61a91363-f0b0-41be-8e56-72fa800bc279}*SharedItemsImports = 4
+		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{63f30eea-6baa-4454-8e6c-58450c3d27d5}*SharedItemsImports = 13
+		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{73e5f207-5812-4d7d-9d51-21dafbc66fd0}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{af942756-cfe7-4371-819e-867ba60ff14d}*SharedItemsImports = 13
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{b5e14841-b7ab-4387-8563-4f928e1cf651}*SharedItemsImports = 13
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
@@ -87,10 +94,6 @@ Global
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21B41136-8DAF-4DF7-9F51-B6D0EBF48D18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C72AAAEA-A1D3-4809-B214-62113F24B252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C72AAAEA-A1D3-4809-B214-62113F24B252}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C72AAAEA-A1D3-4809-B214-62113F24B252}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,6 +102,14 @@ Global
 		{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB9398D1-4F7A-4A75-92D4-0B92879D82C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{318AA704-CA8B-47DB-B86D-43E839C3D27B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{318AA704-CA8B-47DB-B86D-43E839C3D27B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{318AA704-CA8B-47DB-B86D-43E839C3D27B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{318AA704-CA8B-47DB-B86D-43E839C3D27B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
