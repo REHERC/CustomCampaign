@@ -64,9 +64,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomCampaign.Models\CustomCampaign.Models.csproj">
-      <Project>{61a91363-f0b0-41be-8e56-72fa800bc279}</Project>
-      <Name>CustomCampaign.Models</Name>
+    <ProjectReference Include="..\CustomCampaign.Models.Spectrum\CustomCampaign.Models.Spectrum.csproj">
+      <Project>{e1a4119c-c7b2-4507-8ecf-401673444a21}</Project>
+      <Name>CustomCampaign.Models.Spectrum</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\CustomCampaign.Plugin\CustomCampaign.Plugin.projitems" Label="Shared" />

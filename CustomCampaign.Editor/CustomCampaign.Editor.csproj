@@ -43,7 +43,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;SERIALIZER_JSON</DefineConstants>
+    <DefineConstants>TRACE;SERIALIZER_JSON JSON_NEWTONSOFT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -299,9 +299,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomCampaign.Models\CustomCampaign.Models.csproj">
-      <Project>{61a91363-f0b0-41be-8e56-72fa800bc279}</Project>
-      <Name>CustomCampaign.Models</Name>
+    <ProjectReference Include="..\CustomCampaign.Models.Spectrum\CustomCampaign.Models.Spectrum.csproj">
+      <Project>{e1a4119c-c7b2-4507-8ecf-401673444a21}</Project>
+      <Name>CustomCampaign.Models.Spectrum</Name>
     </ProjectReference>
     <ProjectReference Include="..\MaterialSkin\MaterialSkin.csproj">
       <Project>{8eb7611b-68cd-4b8b-987a-11717e2b250c}</Project>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>83bdc586-d69d-4f07-8e5c-63c7bf9d2def</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CustomCampaign.Models</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Data\GameModeId.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Addon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AppSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Campaign.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Level.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Manifest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ObjectWithGUID.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RecentFileList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Validators\FileValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Validators\IValidator.cs" />
+  </ItemGroup>
+</Project>

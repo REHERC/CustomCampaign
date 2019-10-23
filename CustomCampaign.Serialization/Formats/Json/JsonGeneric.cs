@@ -1,4 +1,4 @@
-﻿#if SERIALIZER_JSON
+﻿#if SERIALIZER_JSON && (JSON_NEWTONSOFT || JSON_LITJSON)
 using System.IO;
 #if JSON_NEWTONSOFT
 using Newtonsoft.Json;

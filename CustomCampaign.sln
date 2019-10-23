@@ -25,8 +25,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Editor", "Cu
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Serialization", "CustomCampaign.Serialization\CustomCampaign.Serialization.shproj", "{AF942756-CFE7-4371-819E-867BA60FF14D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Models", "CustomCampaign.Models\CustomCampaign.Models.csproj", "{61A91363-F0B0-41BE-8E56-72FA800BC279}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkin", "MaterialSkin\MaterialSkin.csproj", "{8EB7611B-68CD-4B8B-987A-11717E2B250C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Referenced Assemblies", "Referenced Assemblies", "{05BF1A4C-AFE2-4B56-9A36-9EC3C61AA773}"
@@ -70,19 +68,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Centrifuge", "Centrifuge", 
 		Include\Centrifuge\mod.json = Include\Centrifuge\mod.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Models.Spectrum", "CustomCampaign.Models.Spectrum\CustomCampaign.Models.Spectrum.csproj", "{E1A4119C-C7B2-4507-8ECF-401673444A21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Models.Centrifuge", "CustomCampaign.Models.Centrifuge\CustomCampaign.Models.Centrifuge.csproj", "{B9843DF8-26C9-4650-A39F-F9DDFB44A644}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Models", "CustomCampaign.Models\CustomCampaign.Models.shproj", "{83BDC586-D69D-4F07-8E5C-63C7BF9D2DEF}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
 		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{318aa704-ca8b-47db-b86d-43e839c3d27b}*SharedItemsImports = 4
-		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{61a91363-f0b0-41be-8e56-72fa800bc279}*SharedItemsImports = 4
 		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{63f30eea-6baa-4454-8e6c-58450c3d27d5}*SharedItemsImports = 13
 		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{73e5f207-5812-4d7d-9d51-21dafbc66fd0}*SharedItemsImports = 4
+		CustomCampaign.Models\CustomCampaign.Models.projitems*{83bdc586-d69d-4f07-8e5c-63c7bf9d2def}*SharedItemsImports = 13
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{af942756-cfe7-4371-819e-867ba60ff14d}*SharedItemsImports = 13
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{b5e14841-b7ab-4387-8563-4f928e1cf651}*SharedItemsImports = 13
+		CustomCampaign.Models\CustomCampaign.Models.projitems*{b9843df8-26c9-4650-a39f-f9ddfb44a644}*SharedItemsImports = 4
+		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{b9843df8-26c9-4650-a39f-f9ddfb44a644}*SharedItemsImports = 4
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
+		CustomCampaign.Models\CustomCampaign.Models.projitems*{e1a4119c-c7b2-4507-8ecf-401673444a21}*SharedItemsImports = 4
+		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{e1a4119c-c7b2-4507-8ecf-401673444a21}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,10 +101,6 @@ Global
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D739CF7-B0FE-4341-B89A-FB3D85A36D56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61A91363-F0B0-41BE-8E56-72FA800BC279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61A91363-F0B0-41BE-8E56-72FA800BC279}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61A91363-F0B0-41BE-8E56-72FA800BC279}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61A91363-F0B0-41BE-8E56-72FA800BC279}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -117,6 +121,14 @@ Global
 		{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73E5F207-5812-4D7D-9D51-21DAFBC66FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1A4119C-C7B2-4507-8ECF-401673444A21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A4119C-C7B2-4507-8ECF-401673444A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1A4119C-C7B2-4507-8ECF-401673444A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A4119C-C7B2-4507-8ECF-401673444A21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9843DF8-26C9-4650-A39F-F9DDFB44A644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9843DF8-26C9-4650-A39F-F9DDFB44A644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9843DF8-26C9-4650-A39F-F9DDFB44A644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9843DF8-26C9-4650-A39F-F9DDFB44A644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

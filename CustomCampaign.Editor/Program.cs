@@ -1,5 +1,4 @@
 ﻿using CustomCampaign.Editor.Forms;
-using CustomCampaign.Editor.Forms.Dialogs;
 using MaterialSkin;
 using System;
 using System.Windows.Forms;

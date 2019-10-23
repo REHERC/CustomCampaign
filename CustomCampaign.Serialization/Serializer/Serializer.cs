@@ -20,7 +20,7 @@ namespace Photon.Serialization
                     DataSerializer = new XmlGenericSerializer<DATA_TYPE>();
                     break;
 #endif
-#if SERIALIZER_JSON
+#if SERIALIZER_JSON && (JSON_NEWTONSOFT || JSON_LITJSON)
                 case SerializerType.Json:
                     DataSerializer = new JsonGenericSerializer<DATA_TYPE>();
                     break;

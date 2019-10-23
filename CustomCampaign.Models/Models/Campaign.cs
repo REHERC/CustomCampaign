@@ -1,5 +1,4 @@
 ﻿using CustomCampaign.Models.Validators;
-using Newtonsoft.Json;
 using Photon.Serialization;
 using System.Collections.Generic;
 using System.IO;
@@ -8,8 +7,7 @@ namespace CustomCampaign.Models
 {
     public class Campaign
     {
-        [JsonProperty(Required = Required.Default)]
-        public const ulong version = 1;
+        public ulong version = 1;
 
         public string guid = "";
         public string name = "";

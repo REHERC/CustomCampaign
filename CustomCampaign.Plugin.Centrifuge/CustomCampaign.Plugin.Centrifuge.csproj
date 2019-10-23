@@ -64,13 +64,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomCampaign.Models\CustomCampaign.Models.csproj">
-      <Project>{61a91363-f0b0-41be-8e56-72fa800bc279}</Project>
-      <Name>CustomCampaign.Models</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\CustomCampaign.Models.Centrifuge\CustomCampaign.Models.Centrifuge.csproj">
+      <Project>{b9843df8-26c9-4650-a39f-f9ddfb44a644}</Project>
+      <Name>CustomCampaign.Models.Centrifuge</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\CustomCampaign.Plugin\CustomCampaign.Plugin.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
