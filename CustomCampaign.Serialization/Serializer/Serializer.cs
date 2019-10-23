@@ -1,6 +1,6 @@
 ﻿using System;
 
-#pragma warning disable CS0436
+#pragma warning disable CS0436, CS0162
 
 namespace Photon.Serialization
 {
