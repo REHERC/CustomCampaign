@@ -5,9 +5,7 @@
   "ModuleFileName": "CustomCampaign.dll",
   "Priority": 10,
   "Dependencies": [
-    "CustomCampaign.Models.dll",
-    "Newtonsoft.Json.dll",
-    "0Harmony.dll"
+    "CustomCampaign.Models.dll"
   ],
   "SkipLoad": false
 }
