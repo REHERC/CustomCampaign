@@ -5,7 +5,8 @@
   "ModuleFileName": "CustomCampaign.dll",
   "Priority": 10,
   "Dependencies": [
-    "CustomCampaign.Models.dll"
+    "CustomCampaign.Models.dll",
+    "UnityEngine.dll"
   ],
   "SkipLoad": false
 }

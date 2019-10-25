@@ -1,7 +1,7 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 #pragma warning disable IDE0044
 
@@ -9,13 +9,14 @@ namespace Bridge
 {
     public class Texture2D
     {
-        public static bool ThrowExceptions = false;
+        public static bool ThrowExceptions = true;
         const string TypeFullName = "UnityEngine.Texture2D";
         private static Type ObjectType = null;
 
         static Texture2D()
         {
-            ObjectType = Type.GetType(TypeFullName);
+            Assembly unity = Assembly.GetAssembly(typeof(GameObject));
+            ObjectType = unity.GetType(TypeFullName);
         }
 
         public static object CreateTexture2D(params object[] parameters)
