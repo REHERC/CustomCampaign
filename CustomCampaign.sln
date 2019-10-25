@@ -74,20 +74,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCampaign.Models.Centr
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Models", "CustomCampaign.Models\CustomCampaign.Models.shproj", "{83BDC586-D69D-4F07-8E5C-63C7BF9D2DEF}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Reflection", "CustomCampaign.Reflection\CustomCampaign.Reflection.shproj", "{74A6F071-26CF-43AB-9021-7DDFDD366BCD}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
 		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{318aa704-ca8b-47db-b86d-43e839c3d27b}*SharedItemsImports = 4
 		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{63f30eea-6baa-4454-8e6c-58450c3d27d5}*SharedItemsImports = 13
 		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{73e5f207-5812-4d7d-9d51-21dafbc66fd0}*SharedItemsImports = 4
+		CustomCampaign.Reflection\CustomCampaign.Reflection.projitems*{74a6f071-26cf-43ab-9021-7ddfdd366bcd}*SharedItemsImports = 13
 		CustomCampaign.Models\CustomCampaign.Models.projitems*{83bdc586-d69d-4f07-8e5c-63c7bf9d2def}*SharedItemsImports = 13
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{af942756-cfe7-4371-819e-867ba60ff14d}*SharedItemsImports = 13
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{b5e14841-b7ab-4387-8563-4f928e1cf651}*SharedItemsImports = 13
 		CustomCampaign.Models\CustomCampaign.Models.projitems*{b9843df8-26c9-4650-a39f-f9ddfb44a644}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{b9843df8-26c9-4650-a39f-f9ddfb44a644}*SharedItemsImports = 4
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
+		CustomCampaign.Reflection\CustomCampaign.Reflection.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
+		CustomCampaign.Reflection\CustomCampaign.Reflection.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
 		CustomCampaign.Models\CustomCampaign.Models.projitems*{e1a4119c-c7b2-4507-8ecf-401673444a21}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{e1a4119c-c7b2-4507-8ecf-401673444a21}*SharedItemsImports = 4

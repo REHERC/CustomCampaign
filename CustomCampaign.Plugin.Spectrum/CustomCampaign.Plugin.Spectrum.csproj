@@ -71,6 +71,7 @@
   </ItemGroup>
   <Import Project="..\CustomCampaign.Plugin\CustomCampaign.Plugin.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
+  <Import Project="..\CustomCampaign.Reflection\CustomCampaign.Reflection.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SET INCLUDE=$(SolutionDir)Include\

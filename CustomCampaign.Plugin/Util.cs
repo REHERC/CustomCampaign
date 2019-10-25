@@ -1,4 +1,6 @@
-﻿using CustomCampaign.Data;
+﻿#pragma warning disable CS0168, RCS1001, RCS1206
+
+using CustomCampaign.Data;
 using CustomCampaign.Storage;
 using CustomCampaign.Systems;
 using CustomCampaign.Models;
@@ -8,8 +10,8 @@ using System.IO;
 using UnityEngine;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using static Accessors;
 
-#pragma warning disable CS0168, RCS1001, RCS1206
 namespace CustomCampaign
 {
     public static class Util
@@ -153,6 +155,8 @@ namespace CustomCampaign
             LevelSettings settings = LevelSettings.CreateAndLoadFromPath(path, out bool _);
             return LevelInfo.Create(path, settings);
         }
+
+#if API_SPECTRUM
         public static Texture LoadTexture(string filepath)
         {
             Texture2D result = null;
@@ -164,6 +168,21 @@ namespace CustomCampaign
             }
             return result;
         }
+#endif
+#if API_CENTRIFUGE
+        public static Texture LoadTexture(string filepath)
+        {
+            object result = null;
+            if (File.Exists(filepath))
+            {
+                byte[] imagedata = File.ReadAllBytes(filepath);
+                result = Bridge.Texture2D.CreateTexture2D(2, 2);
+                result.CallMethod("LoadImage", imagedata);
+            }
+            return result as Texture;
+        }
+#endif
+
         #endregion
         #region Other Utils
         public static void MakeDirectory(string directory)
