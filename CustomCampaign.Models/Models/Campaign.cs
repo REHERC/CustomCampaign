@@ -12,7 +12,9 @@ namespace CustomCampaign.Models
         public string guid = "";
         public string name = "";
         public string description = "";
+#if !LIMITED_COMPATIBILITY
         public string logopath = "";
+#endif
         public string authors = "";
         public int lockmode = 0;
         public int gamemode = 15;

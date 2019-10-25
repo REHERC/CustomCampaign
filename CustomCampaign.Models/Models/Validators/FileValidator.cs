@@ -12,10 +12,10 @@ namespace CustomCampaign.Models.Validators
             List<string> result = new List<string>();
 
             result.Add("campaign.json");
-
+#if !LIMITED_COMPATIBILITY
             if (!string.IsNullOrEmpty(campaign.logopath))
                 result.Add(campaign.logopath);
-
+#endif
             foreach (Level level in campaign.levels)
             {
                 result.Add(level.file);
@@ -28,9 +28,10 @@ namespace CustomCampaign.Models.Validators
                     if (file.Exists)
                         result.Add(musicfile);
                 }
-
+#if !LIMITED_COMPATIBILITY
                 if (!string.IsNullOrEmpty(level.loading_wallpaper))
                     result.Add(level.loading_wallpaper);
+#endif
             }
 
             foreach (Addon addon in campaign.addons)

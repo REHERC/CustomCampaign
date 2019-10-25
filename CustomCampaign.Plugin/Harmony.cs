@@ -208,6 +208,7 @@ namespace CustomCampaign
         }
     }
 
+#if !LIMITED_COMPATIBILITY
     [HarmonyPatch(typeof(LevelGridMenu), "SetDisplayedInfoForSelectedPlaylist")]
     public class LevelGridMenuSetDisplayedInfoForSelectedPlaylist
     {
@@ -233,6 +234,7 @@ namespace CustomCampaign
             }
         }
     }
+#endif
 
     [HarmonyPatch(typeof(LevelGridCell), "OnDisplayedVirtual")]
     public class LevelGridCellOnDisplayedVirtual
@@ -265,6 +267,7 @@ namespace CustomCampaign
         }
     }
 
+#if !LIMITED_COMPATIBILITY
     [HarmonyPatch(typeof(BlackFadeLogic), "FinishFadeOut")]
     public class BlackFadeLogicFinishFadeOut
     {
@@ -281,6 +284,7 @@ namespace CustomCampaign
             }
         }
     }
+#endif
 
     [HarmonyPatch(typeof(PauseMenuLogic), "Update")]
     public class PauseMenuLogicUpdate

@@ -11,7 +11,13 @@ namespace CustomCampaign
     [ModEntryPoint(MOD_ID)]
     public class Entry
     {
+        public static IManager Manager = null;
         public void Initialize(IManager manager)
+        {
+            Manager = manager;
+        }
+
+        public void Start()
         {
             try
             {

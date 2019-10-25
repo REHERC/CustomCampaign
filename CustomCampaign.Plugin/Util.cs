@@ -63,8 +63,10 @@ namespace CustomCampaign
         public static string GetCampaignName() => GetCampaign(Assembly.GetCallingAssembly())?.Name;
         public static string GetCampaignDescription(string levelfile) => GetCampaign(levelfile)?.Description;
         public static string GetCampaignDescription() => GetCampaign(Assembly.GetCallingAssembly())?.Description;
+#if !LIMITED_COMPATIBILITY
         public static Texture GetCampaignLogo(string levelfile) => GetCampaign(levelfile)?.Logo;
         public static Texture GetCampaignLogo() =>GetCampaign(Assembly.GetCallingAssembly())?.Logo;
+#endif
         public static string GetCampaignId(string levelfile) => GetCampaign(levelfile)?.Id;
         public static string GetCampaignId() => GetCampaign(Assembly.GetCallingAssembly())?.Id;
         public static string[] GetCampaignAuthors(string levelfile) => GetCampaign(levelfile)?.Authors;
@@ -90,8 +92,10 @@ namespace CustomCampaign
         }
         public static string GetLevelTitle(string levelfile) => GetLevelInfo(levelfile).levelname;
         public static string GetLevelSubTitle(string levelfile) => GetLevelInfo(levelfile).levelname_sub;
+#if !LIMITED_COMPATIBILITY
         public static string GetLevelWallpaperPath(string levelfile) => GetLevelInfo(levelfile).loading_wallpaper;
         public static Texture GetLevelWallpaper(string levelfile) =>LoadTexture(GetLevelWallpaperPath(levelfile));
+#endif
         public static bool GetLevelDisplayIntroState(string levelfile) => GetLevelInfo(levelfile).display_intro_title;
         public static bool GetLevelLoadingTextState(string levelfile) => GetLevelInfo(levelfile).overwrite_loading_text;
         public static string GetLevelLoadingText(string levelfile) => GetLevelInfo(levelfile).loading_text;
@@ -114,8 +118,8 @@ namespace CustomCampaign
             return -1;
         }
         public static bool IsCustomCampaignLevel(string levelfile) =>!(GetCampaign(levelfile) is null);
-        #endregion
-        #region Api Utils
+#endregion
+#region Api Utils
         public static string GetFilePath(string path, bool campaign_by_default = false)
         {
             if (string.IsNullOrEmpty(path) || path.Length < 2) return path;
@@ -141,8 +145,8 @@ namespace CustomCampaign
             }
             return result;
         }
-        #endregion
-        #region Unity And Game Utils
+#endregion
+#region Unity And Game Utils
         public static GameObject FindByName(string name)
         {
             foreach (var go in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
@@ -156,7 +160,7 @@ namespace CustomCampaign
             return LevelInfo.Create(path, settings);
         }
 
-#if API_SPECTRUM
+#if API_SPECTRUM && !LIMITED_COMPATIBILITY
         public static Texture LoadTexture(string filepath)
         {
             Texture2D result = null;
@@ -169,7 +173,7 @@ namespace CustomCampaign
             return result;
         }
 #endif
-#if API_CENTRIFUGE
+#if API_CENTRIFUGE && !LIMITED_COMPATIBILITY
         public static Texture LoadTexture(string filepath)
         {
             object result = null;
@@ -182,14 +186,13 @@ namespace CustomCampaign
             return result as Texture;
         }
 #endif
-
-        #endregion
-        #region Other Utils
+#endregion
+#region Other Utils
         public static void MakeDirectory(string directory)
         {
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
         }
-        #endregion
+#endregion
     }
 }

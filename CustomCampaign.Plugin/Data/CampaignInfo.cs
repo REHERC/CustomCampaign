@@ -16,7 +16,9 @@ namespace CustomCampaign.Data
         public List<Models.Level> Levels => Data.levels;
         public List<Models.Addon> Addons => Data.addons;
         public List<string> LevelPaths => Levels.Select((Level) => Level.file.NormPath(true)).ToList();
+#if !LIMITED_COMPATIBILITY
         public Texture2D Logo { get; set; }
+#endif
         public string Id => Data.guid;
         public string Name => Data.name;
         public string Description => Data.description;
@@ -28,9 +30,11 @@ namespace CustomCampaign.Data
         {
             Data = data;
             Location = data_dir.NormPath(false);
+#if !LIMITED_COMPATIBILITY
             string logo_path = Path.Combine(Location, Data.logopath).NormPath(true);
             if (File.Exists(logo_path))
                 Logo = Util.LoadTexture(logo_path) as Texture2D;
+#endif
         }
 
         public void Print()

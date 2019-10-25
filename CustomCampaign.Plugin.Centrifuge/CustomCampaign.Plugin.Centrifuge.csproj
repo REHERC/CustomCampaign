@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON LIMITED_COMPATIBILITY</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -27,7 +27,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON</DefineConstants>
+    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON LIMITED_COMPATIBILITY</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -38,6 +38,9 @@
     </Reference>
     <Reference Include="Assembly-CSharp.dev">
       <HintPath>..\Referenced Assemblies\Assembly-CSharp.dev.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJSON, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.15.0\lib\net35\LitJSON.dll</HintPath>
     </Reference>
     <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Centrifuge.Mod.SDK.1.0.2-alpha\lib\net35\Reactor.API.dll</HintPath>
@@ -54,9 +57,6 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\Referenced Assemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="LitJSON, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LitJson.0.15.0\lib\net35\LitJSON.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

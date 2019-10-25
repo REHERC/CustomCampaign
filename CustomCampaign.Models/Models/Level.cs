@@ -13,8 +13,9 @@ namespace CustomCampaign.Models
         public string levelname = "";
         public string levelname_sub = "";
 
+#if !LIMITED_COMPATIBILITY
         public string loading_wallpaper = "";
-
+#endif
         public bool overwrite_loading_text = false;
         public string loading_text = "";
 
