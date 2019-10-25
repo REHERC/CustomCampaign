@@ -39,11 +39,11 @@
     <Reference Include="Assembly-CSharp.dev">
       <HintPath>..\Referenced Assemblies\Assembly-CSharp.dev.dll</HintPath>
     </Reference>
-    <Reference Include="LitJSON, Version=0.14.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LitJson.0.14.1\lib\net35\LitJSON.dll</HintPath>
+    <Reference Include="LitJSON, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.15.0\lib\net35\LitJSON.dll</HintPath>
     </Reference>
     <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Centrifuge.Mod.SDK.1.0.1-alpha\lib\net35\Reactor.API.dll</HintPath>
+      <HintPath>..\packages\Centrifuge.Mod.SDK.1.0.2-alpha\lib\net35\Reactor.API.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -71,6 +71,9 @@
       <Project>{db9398d1-4f7a-4a75-92d4-0b92879d82c1}</Project>
       <Name>CustomCampaign.Plugin.Centrifuge</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\CustomCampaign.Addon\CustomCampaign.Addon.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
