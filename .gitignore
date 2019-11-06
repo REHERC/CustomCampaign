@@ -15,6 +15,7 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+[Aa]pp[Vv]eyor/
 [Xx]64/
 [Xx]86/
 [Bb]uild/
@@ -240,3 +241,9 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+#Windows Installer Packages
+*.msi
+**/*-SetupFiles/
+**/*-cache/
+
