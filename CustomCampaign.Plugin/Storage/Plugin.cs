@@ -15,18 +15,25 @@ namespace CustomCampaign.Storage
     internal static partial class Plugin
     {
         internal static FileSystem Files;
+#if API_SPECTRUM
         internal static Logger Log { get; set; }
-
+#endif
+#if API_CENTRIFUGE
+        internal static Log Log { get; set; }
+#endif
         internal static void Init()
         {
             Files = new FileSystem();
+#if API_SPECTRUM
             Log = new Logger("CustomCampaign")
             {
                 WriteToConsole = true,
-#if API_SPECTRUM
                 ColorizeLines = true
-#endif
             };
+#endif
+#if API_CENTRIFUGE
+            Log = LogManager.GetForCurrentAssembly();
+#endif
         }
 
         internal static void LoadCampaigns()

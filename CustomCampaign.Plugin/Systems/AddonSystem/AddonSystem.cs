@@ -85,8 +85,8 @@ namespace CustomCampaign.Systems
                 {
                     if (info != null && info.Enabled)
                     {
-                        Plugin.Log.Error($"Couldn't load target module assembly \"{item.Key}\" for campaign \"{info.Name}\". The exception has been silently logged and the campaign has been disabled.");
-                        Plugin.Log.ExceptionSilent(e);
+                        Plugin.Log.Error($"Couldn't load target module assembly \"{item.Key}\" for campaign \"{info.Name}\". The exception has been logged and the campaign has been disabled.");
+                        Plugin.Log.Exception(e);
                         info.SetEnabled(false);
                     }
                 }

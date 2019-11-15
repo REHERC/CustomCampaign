@@ -1,5 +1,6 @@
 ﻿using CustomCampaign.Api;
 using CustomCampaign.Data;
+using System;
 #if API_SPECTRUM
 using Spectrum.API.Logging;
 #endif
@@ -11,30 +12,26 @@ namespace CustomCampaign.SampleAddon
 {
     public class Main : Addon
     {
-        public Logger Log = null;
-
         public override void OnInit(CampaignInfo info)
         {
-            Log = Factory.Logger("Output");
+            Console.WriteLine($"Hello World from {info.Name}");
 
-            Log.Success($"Hello World from {info.Name}");
-
-            Log.Success($"{Info.Name} - OnInit");
+            Console.WriteLine($"{Info.Name} - OnInit");
         }
 
         public override void OnEnable()
         {
-            Log.Success($"{Info.Name} - OnEnable");
+            Console.WriteLine($"{Info.Name} - OnEnable");
         }
 
         public override void OnDisable()
         {
-            Log.Success($"{Info.Name} - OnDisable");
+            Console.WriteLine($"{Info.Name} - OnDisable");
         }
 
         public override void OnLevelStart(Models.Level level, bool arcade)
         {
-            Log.Success($"{arcade}\t{Info.Name} - OnLevelStart : {level.levelname}");
+            Console.WriteLine($"{arcade}\t{Info.Name} - OnLevelStart : {level.levelname}");
         }
     }
 }

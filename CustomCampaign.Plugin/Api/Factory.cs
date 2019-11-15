@@ -25,6 +25,7 @@ namespace CustomCampaign.Api
 
         public static API_Storage.Assets Assets(string path) => API_Storage.Assets.FromUnsafePath(Util.GetFilePath(path));
 
+#if API_SPECTRUM
         public static Logger Logger(string file, bool output = true)
         {
             string directory = $"{GetCommonPath(Assembly.GetCallingAssembly())}/Logs";
@@ -34,7 +35,7 @@ namespace CustomCampaign.Api
                 WriteToConsole = output
             };
         }
-
+#endif
         private static string GetCommonPath(Assembly assembly) => $"Common/{Util.GetCampaign(assembly).Id}";
     }
 }
