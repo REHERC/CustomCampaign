@@ -1,4 +1,5 @@
 ﻿using CustomCampaign.Editor.Forms;
+using CustomCampaign.Editor.Forms.Dialogs;
 using CustomCampaign.Models;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,14 @@ namespace CustomCampaign.Editor.Pages
             result &= LevelFile.Text.Length > 0;
 
             return result;
+        }
+
+        private void LocateLevel_Click(object sender, EventArgs e)
+        {
+            using (LevelBrowserDialog dlg = new LevelBrowserDialog())
+            {
+                DialogResult result = dlg.ShowDialog();
+            }
         }
     }
 }

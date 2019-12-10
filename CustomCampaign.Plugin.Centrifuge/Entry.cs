@@ -5,6 +5,7 @@ using CustomCampaign.Storage;
 using Harmony;
 using Reactor.API.Attributes;
 using Reactor.API.Interfaces.Systems;
+using Reactor.API.Runtime.Patching;
 
 namespace CustomCampaign
 {
@@ -26,12 +27,11 @@ namespace CustomCampaign
 
                 EventSubscriber.SubscribeAll();
 
-                HarmonyInstance Harmony = HarmonyInstance.Create(MOD_ID);
-                Harmony.PatchAll(Assembly.GetExecutingAssembly());
+                RuntimePatcher.AutoPatch();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Plugin.Log.Exception(e);
             }
         }
 

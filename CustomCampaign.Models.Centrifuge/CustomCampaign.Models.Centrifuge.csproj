@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON LIMITED_COMPATIBILITY</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -27,14 +27,14 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON LIMITED_COMPATIBILITY</DefineConstants>
+    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|AnyCPU'">
     <OutputPath>bin\AppVeyor\</OutputPath>
-    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON LIMITED_COMPATIBILITY</DefineConstants>
+    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>

@@ -26,7 +26,7 @@ namespace CustomCampaign
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Plugin.Log.Exception(e);
             }
         }
 

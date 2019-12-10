@@ -40,8 +40,11 @@
             this.LevelFile = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.CancelBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.ConfirmBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.LevelPanel = new MaterialSkin.Controls.MaterialPanel();
+            this.LocateLevel = new MaterialSkin.Controls.MaterialFlatButton();
             this.MainLayout.SuspendLayout();
             this.FormPanel.SuspendLayout();
+            this.LevelPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainLayout
@@ -80,7 +83,7 @@
             this.FormPanel.Controls.Add(this.LoadingBackground);
             this.FormPanel.Controls.Add(this.LevelSector);
             this.FormPanel.Controls.Add(this.LevelName);
-            this.FormPanel.Controls.Add(this.LevelFile);
+            this.FormPanel.Controls.Add(this.LevelPanel);
             this.FormPanel.Depth = 0;
             this.FormPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FormPanel.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -236,11 +239,10 @@
             // 
             // LevelFile
             // 
-            this.LevelFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.LevelFile.Depth = 0;
+            this.LevelFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LevelFile.Hint = "Level file (required)";
-            this.LevelFile.Location = new System.Drawing.Point(20, 20);
+            this.LevelFile.Location = new System.Drawing.Point(0, 0);
             this.LevelFile.Margin = new System.Windows.Forms.Padding(4);
             this.LevelFile.MaxLength = 32767;
             this.LevelFile.MouseState = MaterialSkin.MouseState.HOVER;
@@ -249,7 +251,7 @@
             this.LevelFile.SelectedText = "";
             this.LevelFile.SelectionLength = 0;
             this.LevelFile.SelectionStart = 0;
-            this.LevelFile.Size = new System.Drawing.Size(744, 23);
+            this.LevelFile.Size = new System.Drawing.Size(705, 23);
             this.LevelFile.TabIndex = 0;
             this.LevelFile.TabStop = false;
             this.LevelFile.UseSystemPasswordChar = false;
@@ -291,6 +293,38 @@
             this.ConfirmBtn.UseVisualStyleBackColor = true;
             this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
             // 
+            // LevelPanel
+            // 
+            this.LevelPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LevelPanel.Controls.Add(this.LevelFile);
+            this.LevelPanel.Controls.Add(this.LocateLevel);
+            this.LevelPanel.Depth = 0;
+            this.LevelPanel.Location = new System.Drawing.Point(20, 20);
+            this.LevelPanel.MinimumSize = new System.Drawing.Size(0, 23);
+            this.LevelPanel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LevelPanel.Name = "LevelPanel";
+            this.LevelPanel.Size = new System.Drawing.Size(744, 23);
+            this.LevelPanel.TabIndex = 8;
+            // 
+            // LocateLevel
+            // 
+            this.LocateLevel.AutoSize = true;
+            this.LocateLevel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LocateLevel.Depth = 0;
+            this.LocateLevel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.LocateLevel.Icon = null;
+            this.LocateLevel.Location = new System.Drawing.Point(705, 0);
+            this.LocateLevel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.LocateLevel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LocateLevel.Name = "LocateLevel";
+            this.LocateLevel.Primary = false;
+            this.LocateLevel.Size = new System.Drawing.Size(39, 23);
+            this.LocateLevel.TabIndex = 4;
+            this.LocateLevel.Text = ". . .";
+            this.LocateLevel.UseVisualStyleBackColor = true;
+            this.LocateLevel.Click += new System.EventHandler(this.LocateLevel_Click);
+            // 
             // EditLevelPage
             // 
             this.Controls.Add(this.MainLayout);
@@ -303,6 +337,8 @@
             this.Size = new System.Drawing.Size(784, 512);
             this.MainLayout.ResumeLayout(false);
             this.FormPanel.ResumeLayout(false);
+            this.LevelPanel.ResumeLayout(false);
+            this.LevelPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,5 +358,7 @@
         private MaterialSkin.Controls.MaterialCheckBox DisplayIntro;
         private MaterialSkin.Controls.MaterialCheckBox OverwriteLoadingText;
         private MaterialSkin.Controls.MaterialCheckBox HideInSprint;
+        private MaterialSkin.Controls.MaterialPanel LevelPanel;
+        private MaterialSkin.Controls.MaterialFlatButton LocateLevel;
     }
 }

@@ -111,8 +111,21 @@
     <Compile Include="Controls\InfoCard.Designer.cs">
       <DependentUpon>InfoCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LevelBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LevelBrowser.Designer.cs">
+      <DependentUpon>LevelBrowser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editor.cs" />
+    <Compile Include="Enums\LevelBrowserLocation.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Forms\Dialogs\LevelBrowserDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\LevelBrowserDialog.Designer.cs">
+      <DependentUpon>LevelBrowserDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\MessageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +240,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\InfoCard.resx">
       <DependentUpon>InfoCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LevelBrowser.resx">
+      <DependentUpon>LevelBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\LevelBrowserDialog.resx">
+      <DependentUpon>LevelBrowserDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\MessageDialog.resx">
       <DependentUpon>MessageDialog.cs</DependentUpon>
