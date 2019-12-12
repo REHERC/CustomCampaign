@@ -27,7 +27,7 @@ namespace MaterialSkin.Controls
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.Clear(SkinManager.GetApplicationBackgroundColor());
+            e.Graphics.Clear(BackColor);
         }
     }
 }

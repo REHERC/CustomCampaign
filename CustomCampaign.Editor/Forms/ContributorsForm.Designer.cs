@@ -44,7 +44,7 @@
             this.FlowLayout.Size = new System.Drawing.Size(1084, 522);
             this.FlowLayout.TabIndex = 0;
             // 
-            // PizzaForm
+            // ContributorsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -52,13 +52,12 @@
             this.Bar = false;
             this.ClientSize = new System.Drawing.Size(1084, 562);
             this.Controls.Add(this.FlowLayout);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.MinimizeBox = false;
-            this.Name = "PizzaForm";
+            this.Name = "ContributorsForm";
             this.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
             this.Sizable = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Title = "They contributed directly or indirectly to custom campaigns";
             this.ResumeLayout(false);
 

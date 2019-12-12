@@ -1,5 +1,6 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -21,10 +22,7 @@ namespace CustomCampaign.Editor.Controls
         [Category("Pizza")]
         public Image Picture
         {
-            get
-            {
-                return _picture;
-            }
+            get => _picture;
             set
             {
                 _picture = value;
@@ -53,10 +51,7 @@ namespace CustomCampaign.Editor.Controls
         [Category("Pizza")]
         public string Title
         {
-            get
-            {
-                return _title;
-            }
+            get => _title;
             set
             {
                 _title = value;
@@ -68,10 +63,7 @@ namespace CustomCampaign.Editor.Controls
         [Category("Pizza")]
         public string Description
         {
-            get
-            {
-                return _description;
-            }
+            get => _description;
             set
             {
                 _description = value;
@@ -79,8 +71,32 @@ namespace CustomCampaign.Editor.Controls
             }
         }
 
+        private bool _contrast = false;
+        [Category("Pizza")]
+        public bool Contrast
+        {
+            get => _contrast;
+            set
+            {
+                _contrast = value;
+                ProfilePicture.BackColor = Color.FromArgb(128, 192, 192, 192);
+                Invalidate();
+            }
+        }
 
-        Font TitleFont => new Font(SkinManager.GetFont(15, true), FontStyle.Bold);
+        private bool _round = true;
+        [Category("Pizza")]
+        public bool Round
+        {
+            get => _round;
+            set
+            {
+                _round = value;
+                Invalidate();
+            }
+        }
+
+        Font TitleFont => new Font(SkinManager.GetFont(14, true), FontStyle.Bold);
         Font DescriptionFont => new Font(SkinManager.GetFont(12, false), FontStyle.Regular);
 
         protected override void OnPaint(PaintEventArgs e)
@@ -115,9 +131,12 @@ namespace CustomCampaign.Editor.Controls
 
         private void ProfilePicture_Paint(object sender, PaintEventArgs e)
         {
-            GraphicsPath path = new GraphicsPath();
-            path.AddEllipse(0, 0, ProfilePicture.ClientSize.Width, ProfilePicture.ClientSize.Height);
-            ProfilePicture.Region = new Region(path);
+            if (Round)
+            {
+                GraphicsPath path = new GraphicsPath();
+                path.AddEllipse(0, 0, ProfilePicture.ClientSize.Width, ProfilePicture.ClientSize.Height);
+                ProfilePicture.Region = new Region(path);
+            }
         }
 
         private Brush GetTextBrugh()

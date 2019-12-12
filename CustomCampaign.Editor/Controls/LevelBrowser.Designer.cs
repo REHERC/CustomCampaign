@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.MainPanel = new MaterialSkin.Controls.MaterialTableLayoutPanel();
+            this.ListPanel = new MaterialSkin.Controls.MaterialPanel();
+            this.Levels = new MaterialSkin.Controls.MaterialListBox();
             this.PreviewPanel = new MaterialSkin.Controls.MaterialPanel();
             this.LevelAuthor = new MaterialSkin.Controls.MaterialLabel();
             this.LevelName = new MaterialSkin.Controls.MaterialLabel();
             this.Thumbnail = new System.Windows.Forms.PictureBox();
-            this.ListPanel = new MaterialSkin.Controls.MaterialPanel();
-            this.Levels = new MaterialSkin.Controls.MaterialListBox();
             this.MainPanel.SuspendLayout();
+            this.ListPanel.SuspendLayout();
             this.PreviewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Thumbnail)).BeginInit();
-            this.ListPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -56,69 +56,9 @@
             this.MainPanel.Padding = new System.Windows.Forms.Padding(8);
             this.MainPanel.RowCount = 2;
             this.MainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 128F));
-            this.MainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 96F));
             this.MainPanel.Size = new System.Drawing.Size(640, 480);
             this.MainPanel.TabIndex = 0;
-            // 
-            // PreviewPanel
-            // 
-            this.PreviewPanel.Controls.Add(this.LevelAuthor);
-            this.PreviewPanel.Controls.Add(this.LevelName);
-            this.PreviewPanel.Controls.Add(this.Thumbnail);
-            this.PreviewPanel.Depth = 0;
-            this.PreviewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PreviewPanel.Location = new System.Drawing.Point(8, 344);
-            this.PreviewPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.PreviewPanel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.PreviewPanel.Name = "PreviewPanel";
-            this.PreviewPanel.Padding = new System.Windows.Forms.Padding(8);
-            this.PreviewPanel.Size = new System.Drawing.Size(624, 128);
-            this.PreviewPanel.TabIndex = 0;
-            // 
-            // LevelAuthor
-            // 
-            this.LevelAuthor.AutoSize = true;
-            this.LevelAuthor.Depth = 0;
-            this.LevelAuthor.Font = new System.Drawing.Font("Roboto", 14F);
-            this.LevelAuthor.FontSize = 14;
-            this.LevelAuthor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LevelAuthor.FormLabel = false;
-            this.LevelAuthor.Location = new System.Drawing.Point(225, 38);
-            this.LevelAuthor.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.LevelAuthor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LevelAuthor.Name = "LevelAuthor";
-            this.LevelAuthor.Size = new System.Drawing.Size(91, 24);
-            this.LevelAuthor.TabIndex = 2;
-            this.LevelAuthor.Text = "By Author";
-            // 
-            // LevelName
-            // 
-            this.LevelName.AutoSize = true;
-            this.LevelName.Depth = 0;
-            this.LevelName.Font = new System.Drawing.Font("Roboto", 18F);
-            this.LevelName.FontSize = 18;
-            this.LevelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LevelName.FormLabel = false;
-            this.LevelName.Location = new System.Drawing.Point(224, 8);
-            this.LevelName.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.LevelName.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LevelName.Name = "LevelName";
-            this.LevelName.Size = new System.Drawing.Size(136, 29);
-            this.LevelName.TabIndex = 1;
-            this.LevelName.Text = "Level name";
-            // 
-            // Thumbnail
-            // 
-            this.Thumbnail.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Thumbnail.Image = global::CustomCampaign.Editor.Resx.Resources.NoPreview;
-            this.Thumbnail.Location = new System.Drawing.Point(8, 8);
-            this.Thumbnail.Margin = new System.Windows.Forms.Padding(8);
-            this.Thumbnail.Name = "Thumbnail";
-            this.Thumbnail.Size = new System.Drawing.Size(200, 112);
-            this.Thumbnail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Thumbnail.TabIndex = 0;
-            this.Thumbnail.TabStop = false;
             // 
             // ListPanel
             // 
@@ -130,7 +70,7 @@
             this.ListPanel.MouseState = MaterialSkin.MouseState.HOVER;
             this.ListPanel.Name = "ListPanel";
             this.ListPanel.Padding = new System.Windows.Forms.Padding(8);
-            this.ListPanel.Size = new System.Drawing.Size(624, 336);
+            this.ListPanel.Size = new System.Drawing.Size(624, 368);
             this.ListPanel.TabIndex = 1;
             // 
             // Levels
@@ -146,8 +86,67 @@
             this.Levels.Margin = new System.Windows.Forms.Padding(4);
             this.Levels.MouseState = MaterialSkin.MouseState.HOVER;
             this.Levels.Name = "Levels";
-            this.Levels.Size = new System.Drawing.Size(608, 320);
+            this.Levels.Size = new System.Drawing.Size(608, 352);
             this.Levels.TabIndex = 0;
+            // 
+            // PreviewPanel
+            // 
+            this.PreviewPanel.Controls.Add(this.LevelAuthor);
+            this.PreviewPanel.Controls.Add(this.LevelName);
+            this.PreviewPanel.Controls.Add(this.Thumbnail);
+            this.PreviewPanel.Depth = 0;
+            this.PreviewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PreviewPanel.Location = new System.Drawing.Point(8, 376);
+            this.PreviewPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.PreviewPanel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.PreviewPanel.Name = "PreviewPanel";
+            this.PreviewPanel.Padding = new System.Windows.Forms.Padding(8);
+            this.PreviewPanel.Size = new System.Drawing.Size(624, 96);
+            this.PreviewPanel.TabIndex = 0;
+            // 
+            // LevelAuthor
+            // 
+            this.LevelAuthor.AutoSize = true;
+            this.LevelAuthor.Depth = 0;
+            this.LevelAuthor.Font = new System.Drawing.Font("Roboto", 14F);
+            this.LevelAuthor.FontSize = 14;
+            this.LevelAuthor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.LevelAuthor.FormLabel = false;
+            this.LevelAuthor.Location = new System.Drawing.Point(156, 38);
+            this.LevelAuthor.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.LevelAuthor.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LevelAuthor.Name = "LevelAuthor";
+            this.LevelAuthor.Size = new System.Drawing.Size(91, 24);
+            this.LevelAuthor.TabIndex = 2;
+            this.LevelAuthor.Text = "By Author";
+            // 
+            // LevelName
+            // 
+            this.LevelName.AutoSize = true;
+            this.LevelName.Depth = 0;
+            this.LevelName.Font = new System.Drawing.Font("Roboto", 18F);
+            this.LevelName.FontSize = 18;
+            this.LevelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.LevelName.FormLabel = false;
+            this.LevelName.Location = new System.Drawing.Point(155, 8);
+            this.LevelName.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.LevelName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LevelName.Name = "LevelName";
+            this.LevelName.Size = new System.Drawing.Size(136, 29);
+            this.LevelName.TabIndex = 1;
+            this.LevelName.Text = "Level name";
+            // 
+            // Thumbnail
+            // 
+            this.Thumbnail.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Thumbnail.Image = global::CustomCampaign.Editor.Resx.Resources.NoPreview;
+            this.Thumbnail.Location = new System.Drawing.Point(8, 8);
+            this.Thumbnail.Margin = new System.Windows.Forms.Padding(8);
+            this.Thumbnail.Name = "Thumbnail";
+            this.Thumbnail.Size = new System.Drawing.Size(142, 80);
+            this.Thumbnail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Thumbnail.TabIndex = 0;
+            this.Thumbnail.TabStop = false;
             // 
             // LevelBrowser
             // 
@@ -155,10 +154,10 @@
             this.Name = "LevelBrowser";
             this.Size = new System.Drawing.Size(640, 480);
             this.MainPanel.ResumeLayout(false);
+            this.ListPanel.ResumeLayout(false);
             this.PreviewPanel.ResumeLayout(false);
             this.PreviewPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Thumbnail)).EndInit();
-            this.ListPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

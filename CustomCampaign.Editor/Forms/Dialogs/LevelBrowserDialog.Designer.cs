@@ -32,14 +32,12 @@
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.ProjectTab = new System.Windows.Forms.TabPage();
             this.ProjectBrowser = new CustomCampaign.Editor.Controls.LevelBrowser();
-            this.MyLevelsTab = new System.Windows.Forms.TabPage();
-            this.MyLevelsBrowser = new CustomCampaign.Editor.Controls.LevelBrowser();
-            this.ImportTab = new System.Windows.Forms.TabPage();
             this.BottomActions = new MaterialSkin.Controls.MaterialPanel();
             this.CancelBtn = new MaterialSkin.Controls.MaterialFlatButton();
+            this.ActionsDivider = new MaterialSkin.Controls.MaterialDivider();
+            this.ImportBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TabControl.SuspendLayout();
             this.ProjectTab.SuspendLayout();
-            this.MyLevelsTab.SuspendLayout();
             this.BottomActions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,15 +56,13 @@
             // TabControl
             // 
             this.TabControl.Controls.Add(this.ProjectTab);
-            this.TabControl.Controls.Add(this.MyLevelsTab);
-            this.TabControl.Controls.Add(this.ImportTab);
             this.TabControl.Depth = 0;
             this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl.Location = new System.Drawing.Point(0, 76);
             this.TabControl.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(843, 299);
+            this.TabControl.Size = new System.Drawing.Size(843, 298);
             this.TabControl.TabIndex = 1;
             // 
             // ProjectTab
@@ -74,7 +70,7 @@
             this.ProjectTab.Controls.Add(this.ProjectBrowser);
             this.ProjectTab.Location = new System.Drawing.Point(4, 22);
             this.ProjectTab.Name = "ProjectTab";
-            this.ProjectTab.Size = new System.Drawing.Size(835, 273);
+            this.ProjectTab.Size = new System.Drawing.Size(835, 272);
             this.ProjectTab.TabIndex = 0;
             this.ProjectTab.Text = "Project Resources";
             this.ProjectTab.UseVisualStyleBackColor = true;
@@ -87,48 +83,19 @@
             this.ProjectBrowser.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProjectBrowser.Name = "ProjectBrowser";
             this.ProjectBrowser.SearchLocation = CustomCampaign.Editor.Enums.LevelBrowserLocation.Project;
-            this.ProjectBrowser.Size = new System.Drawing.Size(835, 273);
+            this.ProjectBrowser.Size = new System.Drawing.Size(835, 272);
             this.ProjectBrowser.TabIndex = 0;
-            // 
-            // MyLevelsTab
-            // 
-            this.MyLevelsTab.Controls.Add(this.MyLevelsBrowser);
-            this.MyLevelsTab.Location = new System.Drawing.Point(4, 22);
-            this.MyLevelsTab.Name = "MyLevelsTab";
-            this.MyLevelsTab.Size = new System.Drawing.Size(835, 273);
-            this.MyLevelsTab.TabIndex = 1;
-            this.MyLevelsTab.Text = "My Levels";
-            this.MyLevelsTab.UseVisualStyleBackColor = true;
-            // 
-            // MyLevelsBrowser
-            // 
-            this.MyLevelsBrowser.Depth = 0;
-            this.MyLevelsBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MyLevelsBrowser.Location = new System.Drawing.Point(0, 0);
-            this.MyLevelsBrowser.MouseState = MaterialSkin.MouseState.HOVER;
-            this.MyLevelsBrowser.Name = "MyLevelsBrowser";
-            this.MyLevelsBrowser.SearchLocation = CustomCampaign.Editor.Enums.LevelBrowserLocation.MyLevels;
-            this.MyLevelsBrowser.Size = new System.Drawing.Size(835, 273);
-            this.MyLevelsBrowser.TabIndex = 1;
-            // 
-            // ImportTab
-            // 
-            this.ImportTab.Location = new System.Drawing.Point(4, 22);
-            this.ImportTab.Name = "ImportTab";
-            this.ImportTab.Size = new System.Drawing.Size(835, 273);
-            this.ImportTab.TabIndex = 2;
-            this.ImportTab.Text = "Import From File";
-            this.ImportTab.UseVisualStyleBackColor = true;
             // 
             // BottomActions
             // 
+            this.BottomActions.Controls.Add(this.ImportBtn);
             this.BottomActions.Controls.Add(this.CancelBtn);
             this.BottomActions.Depth = 0;
             this.BottomActions.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomActions.Location = new System.Drawing.Point(0, 375);
             this.BottomActions.MouseState = MaterialSkin.MouseState.HOVER;
             this.BottomActions.Name = "BottomActions";
-            this.BottomActions.Padding = new System.Windows.Forms.Padding(0, 8, 16, 16);
+            this.BottomActions.Padding = new System.Windows.Forms.Padding(16, 8, 16, 16);
             this.BottomActions.Size = new System.Drawing.Size(843, 64);
             this.BottomActions.TabIndex = 2;
             // 
@@ -150,11 +117,42 @@
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             // 
+            // ActionsDivider
+            // 
+            this.ActionsDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ActionsDivider.Depth = 0;
+            this.ActionsDivider.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ActionsDivider.Location = new System.Drawing.Point(0, 374);
+            this.ActionsDivider.MaximumSize = new System.Drawing.Size(0, 1);
+            this.ActionsDivider.MinimumSize = new System.Drawing.Size(0, 1);
+            this.ActionsDivider.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ActionsDivider.Name = "ActionsDivider";
+            this.ActionsDivider.Size = new System.Drawing.Size(843, 1);
+            this.ActionsDivider.TabIndex = 3;
+            this.ActionsDivider.Text = "materialDivider1";
+            // 
+            // ImportBtn
+            // 
+            this.ImportBtn.AutoSize = true;
+            this.ImportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ImportBtn.Depth = 0;
+            this.ImportBtn.Header = false;
+            this.ImportBtn.Icon = null;
+            this.ImportBtn.Location = new System.Drawing.Point(17, 12);
+            this.ImportBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ImportBtn.Name = "ImportBtn";
+            this.ImportBtn.Primary = true;
+            this.ImportBtn.Size = new System.Drawing.Size(143, 36);
+            this.ImportBtn.TabIndex = 2;
+            this.ImportBtn.Text = "Import from file";
+            this.ImportBtn.UseVisualStyleBackColor = true;
+            // 
             // LevelBrowserDialog
             // 
             this.Bar = false;
             this.ClientSize = new System.Drawing.Size(843, 439);
             this.Controls.Add(this.TabControl);
+            this.Controls.Add(this.ActionsDivider);
             this.Controls.Add(this.BottomActions);
             this.Controls.Add(this.TabSelector);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
@@ -162,11 +160,11 @@
             this.Name = "LevelBrowserDialog";
             this.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Title = "Select a level";
             this.TabControl.ResumeLayout(false);
             this.ProjectTab.ResumeLayout(false);
-            this.MyLevelsTab.ResumeLayout(false);
             this.BottomActions.ResumeLayout(false);
             this.BottomActions.PerformLayout();
             this.ResumeLayout(false);
@@ -178,11 +176,10 @@
         private MaterialSkin.Controls.MaterialTabSelector TabSelector;
         private MaterialSkin.Controls.MaterialTabControl TabControl;
         private System.Windows.Forms.TabPage ProjectTab;
-        private System.Windows.Forms.TabPage MyLevelsTab;
-        private System.Windows.Forms.TabPage ImportTab;
         private MaterialSkin.Controls.MaterialPanel BottomActions;
         private MaterialSkin.Controls.MaterialFlatButton CancelBtn;
         private Controls.LevelBrowser ProjectBrowser;
-        private Controls.LevelBrowser MyLevelsBrowser;
+        private MaterialSkin.Controls.MaterialDivider ActionsDivider;
+        private MaterialSkin.Controls.MaterialRaisedButton ImportBtn;
     }
 }

@@ -397,6 +397,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Modified.ico" />
+    <Content Include="Resources\Knightbane.png" />
+    <Content Include="Resources\Omaneye.png" />
     <None Include="Resources\SpookSlow.gif" />
   </ItemGroup>
   <ItemGroup>

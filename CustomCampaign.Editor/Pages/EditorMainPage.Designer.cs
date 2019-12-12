@@ -419,6 +419,7 @@ namespace CustomCampaign.Editor.Pages
             // 
             // Overview
             // 
+            this.Overview.Contrast = true;
             this.Overview.Depth = 0;
             this.Overview.Description = "Campaign description";
             this.Overview.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -427,6 +428,7 @@ namespace CustomCampaign.Editor.Pages
             this.Overview.MouseState = MaterialSkin.MouseState.HOVER;
             this.Overview.Name = "Overview";
             this.Overview.Picture = null;
+            this.Overview.Round = false;
             this.Overview.ShowPicture = false;
             this.Overview.Size = new System.Drawing.Size(616, 72);
             this.Overview.TabIndex = 0;

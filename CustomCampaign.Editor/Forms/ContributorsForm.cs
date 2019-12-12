@@ -18,14 +18,16 @@ namespace CustomCampaign.Editor.Forms
             AddMember("Ciastex", "The wise anarchist\nVdd", ProfilePictures.Ciastex);
             AddMember("Fzeroman", "", ProfilePictures.Fzeroman);
             AddMember("Ghostly", "Pizza chef", ProfilePictures.Ghostly);
-            AddMember("I beg your pardon", "Äctüàl dôçtôs\nIgregyourpardon", ProfilePictures.Ibegyourpardon, 2);
+            AddMember("Ibegyourpardon", "Äctüàl dôçtôs\nIgregyourpardon", ProfilePictures.Ibegyourpardon);
             AddMember("Jay2a", "Probably exists\nJay2a got wrecked", ProfilePictures.Jay2a);
+            AddMember("Knightbane (Noah)", "Noah the chonker", ProfilePictures.Knightbane);
             AddMember("Krispy", "", ProfilePictures.Krispy);
             AddMember("Mr Mii", "MrWii", ProfilePictures.Mrmii);
+            AddMember("Omaneye", "", ProfilePictures.Omaneye);
             AddMember("Pinapl", "The yellow one\nKing Pin Pinapl\nMekkler", ProfilePictures.Pinapl);
             AddMember("Pines of chaos", "Long burger CEO\nπnes", ProfilePictures.Pinesofchaos);
             AddMember("Plasmawario", "Distributor of pant", ProfilePictures.Plasmawario);
-            AddMember("Reherc", "Shitpost with code", ProfilePictures.Reherc);
+            AddMember("Reherc", "Shitpost with code\nDecorative plant", ProfilePictures.Reherc);
             AddMember("Semtex4ya", "Lord of brightness", ProfilePictures.Semtex4ya);
             AddMember("Sperzieboon", "A festive biotec CEO", ProfilePictures.Sperzieboon);
             AddMember("Spzi", "Big spin", ProfilePictures.Spzi);
@@ -36,13 +38,15 @@ namespace CustomCampaign.Editor.Forms
         {
             const int padding = 4;
 
-            FlowLayout.Controls.Add(new InfoCard() {
+            FlowLayout.Controls.Add(new InfoCard()
+            {
                 Margin = new Padding(padding),
                 Width = 256 * tile + 2 * padding * (tile - 1),
                 Height = 96,
                 Title = title,
                 Description = description,
-                Picture = picture
+                Picture = picture,
+                TabStop = false
             });
         }
     }
