@@ -2,6 +2,7 @@
 {
     class Constants
     {
+        public const string LevelDialogFilter = "Distance level file|*.bytes";
         public const string CampaignDialogFilter = "Project file|Campaign.json";
         public const string ExportDialogFilter = "Compressed campaign|*.campaign";
 

@@ -1,4 +1,6 @@
-﻿using CustomCampaign.Models;
+﻿#pragma warning disable IDE1006
+
+using CustomCampaign.Models;
 
 namespace CustomCampaign.Editor
 {

@@ -33,9 +33,10 @@
             this.ProjectTab = new System.Windows.Forms.TabPage();
             this.ProjectBrowser = new CustomCampaign.Editor.Controls.LevelBrowser();
             this.BottomActions = new MaterialSkin.Controls.MaterialPanel();
+            this.ImportBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.CancelBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.ActionsDivider = new MaterialSkin.Controls.MaterialDivider();
-            this.ImportBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.RefreshBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TabControl.SuspendLayout();
             this.ProjectTab.SuspendLayout();
             this.BottomActions.SuspendLayout();
@@ -82,7 +83,6 @@
             this.ProjectBrowser.Location = new System.Drawing.Point(0, 0);
             this.ProjectBrowser.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProjectBrowser.Name = "ProjectBrowser";
-            this.ProjectBrowser.SearchLocation = CustomCampaign.Editor.Enums.LevelBrowserLocation.Project;
             this.ProjectBrowser.Size = new System.Drawing.Size(835, 272);
             this.ProjectBrowser.TabIndex = 0;
             // 
@@ -98,6 +98,23 @@
             this.BottomActions.Padding = new System.Windows.Forms.Padding(16, 8, 16, 16);
             this.BottomActions.Size = new System.Drawing.Size(843, 64);
             this.BottomActions.TabIndex = 2;
+            // 
+            // ImportBtn
+            // 
+            this.ImportBtn.AutoSize = true;
+            this.ImportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ImportBtn.Depth = 0;
+            this.ImportBtn.Header = false;
+            this.ImportBtn.Icon = null;
+            this.ImportBtn.Location = new System.Drawing.Point(17, 12);
+            this.ImportBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ImportBtn.Name = "ImportBtn";
+            this.ImportBtn.Primary = true;
+            this.ImportBtn.Size = new System.Drawing.Size(143, 36);
+            this.ImportBtn.TabIndex = 2;
+            this.ImportBtn.Text = "Import from file";
+            this.ImportBtn.UseVisualStyleBackColor = true;
+            this.ImportBtn.Click += new System.EventHandler(this.ImportBtn_Click);
             // 
             // CancelBtn
             // 
@@ -131,26 +148,29 @@
             this.ActionsDivider.TabIndex = 3;
             this.ActionsDivider.Text = "materialDivider1";
             // 
-            // ImportBtn
+            // RefreshBtn
             // 
-            this.ImportBtn.AutoSize = true;
-            this.ImportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ImportBtn.Depth = 0;
-            this.ImportBtn.Header = false;
-            this.ImportBtn.Icon = null;
-            this.ImportBtn.Location = new System.Drawing.Point(17, 12);
-            this.ImportBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ImportBtn.Name = "ImportBtn";
-            this.ImportBtn.Primary = true;
-            this.ImportBtn.Size = new System.Drawing.Size(143, 36);
-            this.ImportBtn.TabIndex = 2;
-            this.ImportBtn.Text = "Import from file";
-            this.ImportBtn.UseVisualStyleBackColor = true;
+            this.RefreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RefreshBtn.AutoSize = true;
+            this.RefreshBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RefreshBtn.Depth = 0;
+            this.RefreshBtn.Header = true;
+            this.RefreshBtn.Icon = null;
+            this.RefreshBtn.Location = new System.Drawing.Point(749, 34);
+            this.RefreshBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.RefreshBtn.Name = "RefreshBtn";
+            this.RefreshBtn.Primary = true;
+            this.RefreshBtn.Size = new System.Drawing.Size(79, 36);
+            this.RefreshBtn.TabIndex = 3;
+            this.RefreshBtn.Text = "Refresh";
+            this.RefreshBtn.UseVisualStyleBackColor = true;
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
             // LevelBrowserDialog
             // 
             this.Bar = false;
             this.ClientSize = new System.Drawing.Size(843, 439);
+            this.Controls.Add(this.RefreshBtn);
             this.Controls.Add(this.TabControl);
             this.Controls.Add(this.ActionsDivider);
             this.Controls.Add(this.BottomActions);
@@ -168,6 +188,7 @@
             this.BottomActions.ResumeLayout(false);
             this.BottomActions.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -181,5 +202,6 @@
         private Controls.LevelBrowser ProjectBrowser;
         private MaterialSkin.Controls.MaterialDivider ActionsDivider;
         private MaterialSkin.Controls.MaterialRaisedButton ImportBtn;
+        private MaterialSkin.Controls.MaterialRaisedButton RefreshBtn;
     }
 }

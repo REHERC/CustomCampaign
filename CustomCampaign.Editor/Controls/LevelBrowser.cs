@@ -1,31 +1,57 @@
-﻿using CustomCampaign.Editor.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using System.IO;
 
 namespace CustomCampaign.Editor.Controls
 {
     public partial class LevelBrowser : MaterialSkin.Controls.MaterialUserControl
     {
-        private LevelBrowserLocation _searchLocation = LevelBrowserLocation.Project;
-        public LevelBrowserLocation SearchLocation
-        {
-            get => _searchLocation;
-            set
-            {
-                _searchLocation = value;
-
-            }
-        }
-
-
         public LevelBrowser()
         {
             InitializeComponent();
+        }
+
+
+        public void RefreshList()
+        {
+            Levels.Items.Clear();
+                AddRecursive(Editor.current_path);
+        }
+
+        public void AddRecursive(string folder, int step = 16)
+        {
+            if (step <= 0) return;
+            var info = new DirectoryInfo(folder);
+            if (!info.Exists) return;
+
+            foreach (var file in info.GetFiles("*.bytes"))
+            {
+                Levels.Items.Add(file.FullName.Substring(1+Editor.current_path.Length));
+            }
+            foreach (var subfolder in info.GetDirectories())
+            {
+                AddRecursive(subfolder.FullName, step - 1);
+            }
+        }
+
+        private void Levels_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string item = Levels.Items[Levels.SelectedIndex].ToString();
+
+            string thumbnail = Path.Combine(Editor.current_path, $"{item}.png");
+            if (File.Exists(thumbnail))
+                Thumbnail.Image = Image.FromFile(thumbnail);
+            else
+                Thumbnail.Image = Resx.Resources.NoPreview;
+        }
+
+        private void LevelBrowser_Load(object sender, EventArgs e)
+        {
+            if (!DesignMode)
+                RefreshList();
         }
     }
 }

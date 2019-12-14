@@ -118,7 +118,6 @@
       <DependentUpon>LevelBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor.cs" />
-    <Compile Include="Enums\LevelBrowserLocation.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Forms\Dialogs\LevelBrowserDialog.cs">
       <SubType>Form</SubType>
@@ -407,6 +406,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enums\" />
   </ItemGroup>
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
