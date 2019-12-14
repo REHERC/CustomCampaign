@@ -19,6 +19,7 @@ namespace CustomCampaign.Editor.Controls
         {
             Levels.Items.Clear();
                 AddRecursive(Editor.current_path);
+            Levels.SelectedIndex = -1;
         }
 
         public void AddRecursive(string folder, int step = 16)
@@ -39,6 +40,12 @@ namespace CustomCampaign.Editor.Controls
 
         private void Levels_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Levels.SelectedIndex < 0)
+            {
+                Thumbnail.Image = Resx.Resources.NoPreview;
+                return;
+            }
+
             string item = Levels.Items[Levels.SelectedIndex].ToString();
 
             string thumbnail = Path.Combine(Editor.current_path, $"{item}.png");
