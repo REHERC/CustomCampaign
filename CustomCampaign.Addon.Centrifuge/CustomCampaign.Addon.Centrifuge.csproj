@@ -57,7 +57,7 @@
       <HintPath>..\packages\LitJson.0.15.0\lib\net35\LitJSON.dll</HintPath>
     </Reference>
     <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Centrifuge.Mod.SDK.2.0.2\lib\net35\Reactor.API.dll</HintPath>
+      <HintPath>..\packages\Centrifuge.Mod.SDK.2.2.0\lib\net35\Reactor.API.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
