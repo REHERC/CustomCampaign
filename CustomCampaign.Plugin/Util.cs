@@ -205,8 +205,8 @@ namespace CustomCampaign
 
             foreach (Assembly asm in assemblies)
             {
-                Type[] exportedTypes = asm.GetExportedTypes();
-                foreach (Type type in exportedTypes)
+                Type[] asmTypes = asm.GetTypes();
+                foreach (Type type in asmTypes)
                     if (baseType.IsAssignableFrom(type) && type != baseType)
                         typeList.Add(type);
             }

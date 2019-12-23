@@ -13,7 +13,7 @@ namespace CustomCampaign.Storage
 
             foreach (Type type in Util.GetExportedTypesOfType(typeof(AddedComponent)))
             {
-                AddComponentToPrefab(type, ref host);
+                AddComponentToPrefab(type, host);
                 AddToTypeMap(type);
             }
         }
@@ -29,7 +29,7 @@ namespace CustomCampaign.Storage
             }
         }
 
-        static void AddComponentToPrefab(Type value, ref GameObject host)
+        static void AddComponentToPrefab(Type value, GameObject host)
         {
             if (host.GetComponents(value).Length == 0)
                 host.AddComponent(value);
