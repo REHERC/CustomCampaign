@@ -2,9 +2,11 @@
 using CustomCampaign.Storage;
 using CustomCampaign.Systems;
 using Harmony;
+using LevelEditorTools;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 #pragma warning disable CS0168, RCS1003, RCS1001, IDE0051, IDE0060, IDE0059
@@ -376,6 +378,23 @@ namespace CustomCampaign
             DiscordRpc.UpdatePresence(ref __instance.presence);
 
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(GUtils), "GetExportedTypesOfType")]
+    public class GetExportedTypesOfType
+    {
+        static void Postfix(Type baseType, ref Type[] __result)
+        {
+            List<Type> types = __result.ToList();
+
+            if (new List<Type>() {
+                typeof(ISerializable),
+                typeof(LevelEditorTool)
+            }.Contains(baseType))
+                types.AddRange(Util.GetExportedTypesOfType(baseType));
+
+            __result = types.ToArray();
         }
     }
 }

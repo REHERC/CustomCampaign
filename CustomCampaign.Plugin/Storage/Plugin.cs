@@ -60,6 +60,7 @@ namespace CustomCampaign.Storage
                 }
             }
             AddonSystem.LoadAddons();
+            LevelEditor.Initialize();
         }
     }
 }

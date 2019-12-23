@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Campaigns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Events.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\LevelEditor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Plugin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Variables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\AddonSystem\AddonSystem.Calls.cs" />

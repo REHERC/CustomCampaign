@@ -11,17 +11,18 @@ using UnityEngine;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using static Accessors;
+using System.Linq;
 
 namespace CustomCampaign
 {
     public static class Util
     {
-        #region Game Manager Fields
+#region Game Manager Fields
         public static string LevelFile => G.Sys.GameManager_.LevelPath_;
         public static string LastLevelFile => G.Sys.GameManager_.LastLevelPath_;
         public static string NextLevelFile => G.Sys.GameManager_.LastLevelPath_;
-        #endregion
-        #region Campaign Utils
+#endregion
+#region Campaign Utils
         public static CampaignInfo GetCampaign(string levelfile)
         {
             string file = levelfile.NormPath(true);
@@ -193,6 +194,26 @@ namespace CustomCampaign
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
         }
-#endregion
+
+        public static List<Type> GetExportedTypesOfType(Type baseType)
+        {
+            List<Type> typeList = new List<Type>();
+
+            List<Assembly> assemblies = new List<Assembly>();
+            assemblies.AddRange(AddonSystem.GetAssemblies().Select((entry) => entry.Key.Object));
+            assemblies.Add(Assembly.GetAssembly(typeof(Entry)));
+
+            foreach (Assembly asm in assemblies)
+            {
+                Type[] exportedTypes = asm.GetExportedTypes();
+                foreach (Type type in exportedTypes)
+                    if (baseType.IsAssignableFrom(type) && type != baseType)
+                        typeList.Add(type);
+            }
+
+            
+            return typeList;
+        }
+        #endregion
     }
 }
