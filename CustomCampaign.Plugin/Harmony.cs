@@ -390,7 +390,8 @@ namespace CustomCampaign
 
             if (new List<Type>() {
                 typeof(ISerializable),
-                typeof(LevelEditorTool)
+                typeof(LevelEditorTool),
+                typeof(AddedComponent)
             }.Contains(baseType))
                 types.AddRange(Util.GetExportedTypesOfType(baseType));
 

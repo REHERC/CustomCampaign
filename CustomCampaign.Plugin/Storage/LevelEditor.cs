@@ -9,7 +9,7 @@ namespace CustomCampaign.Storage
     {
         public static void Initialize()
         {
-            GameObject host = G.Sys.ResourceManager_.AddedComponentsPrefab_;
+            GameObject host = G.Sys.ResourceManager_.addedComponentsPrefab_;
 
             foreach (Type type in Util.GetExportedTypesOfType(typeof(AddedComponent)))
             {
