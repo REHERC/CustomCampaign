@@ -199,8 +199,9 @@ namespace CustomCampaign
     {
         public static void Postfix(LevelIntroTitleLogic __instance)
         {
+            TextDecodeInLogic[] decode = __instance.GetComponentsInChildren<TextDecodeInLogic>(true);
             string path = G.Sys.GameManager_.LevelPath_;
-            if (Util.IsCustomCampaignLevel(path))
+            if (Util.IsCustomCampaignLevel(path) && decode.Length <= 0)
             {
                 __instance.titleLabel_.text = Util.GetLevelTitle(path).Space(1);
                 __instance.subtitleText_.text = Util.GetLevelSubTitle(path).Space(1);
