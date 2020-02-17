@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Editor.Forms;
+﻿#pragma warning disable SecurityIntelliSenseCS
+using CustomCampaign.Editor.Forms;
 using CustomCampaign.Editor.Pages;
 using MaterialSkin;
 using System;
@@ -46,7 +47,7 @@ namespace CustomCampaign.Editor
                 return false;
             }
 
-            if (!file.ToLower().EndsWith(".bytes"))
+            if (!file.EndsWith(".bytes", StringComparison.OrdinalIgnoreCase))
             {
                 error = "The selected file isn't a .bytes file.";
                 return false;

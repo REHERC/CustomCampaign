@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CustomCampaign.Models")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Custom Campaign - Data Models")]
+[assembly: AssemblyDescription("Data models (Spectrum)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CustomCampaign.Models")]
+[assembly: AssemblyProduct("Custom Campaign for Distance")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

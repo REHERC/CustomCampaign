@@ -24,16 +24,17 @@ namespace CustomCampaign.Storage
                     Events.Mod.CampaignLevelStarted.Broadcast(new Events.Mod.CampaignLevelStarted.Data(campaign));
                 }
             });
-            Events.Mod.CampaignLevelStarted.Subscribe((data) =>
-            {
-                AddonSystem.LevelLoaded(data.campaign);
-            });
+            Events.Mod.CampaignLevelStarted.Subscribe((data) => AddonSystem.LevelLoaded(data.campaign));
             Events.Mod.CampaignLoaded.Subscribe((data) =>
             {
                 if (CampaignSystem.Current != null)
+                {
                     AddonSystem.EnableAddons(CampaignSystem.Current.Id);
+                }
                 else if (CampaignSystem.Last != null)
+                {
                     AddonSystem.DisableAddons(CampaignSystem.Last.Id);
+                }
             });
         }
     }

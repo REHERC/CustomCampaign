@@ -22,6 +22,8 @@ Portions of this software are (c) 2011 Sven Walter, http://github.com/viperneo
  */
 #endregion
 
+#pragma warning disable RCS1154, RCS1234, RCS1135
+
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -30,7 +32,7 @@ namespace MaterialSkin.Native
 {
     // JT: do not make this class public if we have [SuppressUnmanagedCodeSecurity] applied
     [SuppressUnmanagedCodeSecurity]
-    internal static class WinApi
+    internal static class NativeMethods
     {
         #region Structs
 
@@ -103,20 +105,24 @@ namespace MaterialSkin.Native
         public struct MINMAXINFO
         {
             public Point ptReserved;
+
             /// <summary>
             ///     The size a window should be maximized to. This depends on the screen it will end up, 
             ///     so the window manager will request this info when we move the window around.
             /// </summary>
             public Size MaxSize;
+
             /// <summary>
             ///     The position of the window when maximized. Must be relative to the current screen, 
             ///     so it's often (0,0) or close to that if the task bar is in the way.
             /// </summary>
             public Point MaxPosition;
+
             /// <summary>
             ///     The minimum size a window should be allowed to be resized to by dragging it's border or resize handle.
             /// </summary>
             public Size MinTrackSize;
+
             /// <summary>
             ///     The maximum size a window should be allowed to be resized to by dragging it's border or resize handle.
             ///     This is usually the maximum dimensions of the virtual screen, i.e. the bounding box containing all screens.
@@ -690,26 +696,36 @@ namespace MaterialSkin.Native
         {
             /// <summary>Retains the current size (ignores the w and h parameters).</summary>
             NOSIZE = 0x0001,
+
             /// <summary>Retains the current position (ignores X and Y parameters).</summary>
             NOMOVE = 0x0002,
+
             /// <summary>Retains the current Z order (ignores the hWndInsertAfter parameter).</summary>
             NOZORDER = 0x0004,
+
             /// <summary>Does not redraw changes. If this flag is set, no repainting of any kind occurs. This applies to the client area, the nonclient area (including the title bar and scroll bars),</summary>
             NOREDRAW = 0x0008,
+
             /// <summary>Does not activate the window.</summary> 
             NOACTIVATE = 0x0010,
             DRAWFRAME = 0x0020,
+
             /// <summary>Applies new frame styles set using the SetWindowLong function. Sends a WM_NCCALCSIZE message to the window, even if the window's size is not being changed. If this flag is not specified, WM_NCCALCSIZE is sent only when the window's size is being changed.</summary>
             FRAMECHANGED = 0x0020,
+
             /// <summary>Displays the window.</summary>
             SHOWWINDOW = 0x0040,
+
             /// <summary>Hides the window.</summary>
             HIDEWINDOW = 0x0080,
             NOCOPYBITS = 0x0100,
+
             /// <summary>Does not change the owner window's position in the Z order.</summary>
             NOOWNERZORDER = 0x0200,
+
             /// <summary>Same as the SWP_NOOWNERZORDER flag.</summary>
             NOREPOSITION = 0x0200,
+
             /// <summary>Prevents the window from receiving the WM_WINDOWPOSCHANGING message.</summary>
             NOSENDCHANGING = 0x0400,
             DEFERERASE = 0x2000,

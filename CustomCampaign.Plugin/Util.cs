@@ -1,4 +1,4 @@
-﻿#pragma warning disable CS0168, RCS1001, RCS1206
+﻿#pragma warning disable SecurityIntelliSenseCS, CSCS0168, RCS1001, RCS1206
 
 using CustomCampaign.Data;
 using CustomCampaign.Storage;
@@ -31,6 +31,7 @@ namespace CustomCampaign
                     return campaign.Value;
             return null;
         }
+
         public static CampaignInfo GetCampaignByGuid(string guid)
         {
             foreach (var campaign in Campaigns.Items)
@@ -38,6 +39,7 @@ namespace CustomCampaign
                     return campaign.Value;
             return null;
         }
+
         public static CampaignInfo GetCampaign(Assembly source)
         {
             foreach (var assembly in AddonSystem.GetAssemblies())
@@ -45,6 +47,7 @@ namespace CustomCampaign
                     return GetCampaignByGuid(assembly.Value);
             return null;
         }
+
         public static CampaignInfo GetCampaignInline() => GetCampaign(Assembly.GetCallingAssembly());
 
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -60,28 +63,40 @@ namespace CustomCampaign
                     return item.Value;
             return string.Empty;
         }
+
         public static string GetCampaignName(string levelfile) => GetCampaign(levelfile)?.Name;
+
         public static string GetCampaignName() => GetCampaign(Assembly.GetCallingAssembly())?.Name;
+
         public static string GetCampaignDescription(string levelfile) => GetCampaign(levelfile)?.Description;
+
         public static string GetCampaignDescription() => GetCampaign(Assembly.GetCallingAssembly())?.Description;
+
 #if !LIMITED_COMPATIBILITY
         public static Texture GetCampaignLogo(string levelfile) => GetCampaign(levelfile)?.Logo;
+
         public static Texture GetCampaignLogo() =>GetCampaign(Assembly.GetCallingAssembly())?.Logo;
 #endif
         public static string GetCampaignId(string levelfile) => GetCampaign(levelfile)?.Id;
+
         public static string GetCampaignId() => GetCampaign(Assembly.GetCallingAssembly())?.Id;
+
         public static string[] GetCampaignAuthors(string levelfile) => GetCampaign(levelfile)?.Authors;
+
         public static string[] GetCampaignAuthors() => GetCampaign(Assembly.GetCallingAssembly())?.Authors;
+
         public static Campaign.UnlockStyle GetCampaignUnlockMode(string levelfile)
         {
             CampaignInfo campaign = GetCampaign(levelfile);
             return campaign != null ? campaign.LockMode : Campaign.UnlockStyle.Campaign;
         }
+
         public static Campaign.UnlockStyle GetCampaignUnlockMode()
         {
             CampaignInfo campaign = GetCampaign(Assembly.GetCallingAssembly());
             return campaign != null ? campaign.LockMode : Campaign.UnlockStyle.Campaign;
         }
+
         public static Models.Level GetLevelInfo(string levelfile)
         {
             string file = levelfile.NormPath(true);
@@ -91,15 +106,23 @@ namespace CustomCampaign
                     return level;
             return new Models.Level();
         }
+
         public static string GetLevelTitle(string levelfile) => GetLevelInfo(levelfile).levelname;
+
         public static string GetLevelSubTitle(string levelfile) => GetLevelInfo(levelfile).levelname_sub;
+
 #if !LIMITED_COMPATIBILITY
         public static string GetLevelWallpaperPath(string levelfile) => GetLevelInfo(levelfile).loading_wallpaper;
+
         public static Texture GetLevelWallpaper(string levelfile) =>LoadTexture(GetLevelWallpaperPath(levelfile));
 #endif
+
         public static bool GetLevelDisplayIntroState(string levelfile) => GetLevelInfo(levelfile).display_intro_title;
+
         public static bool GetLevelLoadingTextState(string levelfile) => GetLevelInfo(levelfile).overwrite_loading_text;
+
         public static string GetLevelLoadingText(string levelfile) => GetLevelInfo(levelfile).loading_text;
+
         public static int GetLevelIndex(string levelfile)
         {
             try
@@ -115,9 +138,13 @@ namespace CustomCampaign
                 }
                 return index;
             }
-            catch (Exception pizza) { Plugin.Log.Exception(pizza); }
+            catch (NullReferenceException nre)
+            {
+                Plugin.Log.Exception(nre);
+            }
             return -1;
         }
+
         public static bool IsCustomCampaignLevel(string levelfile) =>!(GetCampaign(levelfile) is null);
 #endregion
 #region Api Utils
@@ -155,6 +182,7 @@ namespace CustomCampaign
                     return go as GameObject;
             return null;
         }
+
         public static LevelInfo LevelInfoFromPath(string path)
         {
             LevelSettings settings = LevelSettings.CreateAndLoadFromPath(path, out bool _);
@@ -173,6 +201,7 @@ namespace CustomCampaign
             }
             return result;
         }
+
 #endif
 #if API_CENTRIFUGE && !LIMITED_COMPATIBILITY
         public static Texture LoadTexture(string filepath)
@@ -211,7 +240,6 @@ namespace CustomCampaign
                         typeList.Add(type);
             }
 
-            
             return typeList;
         }
         #endregion

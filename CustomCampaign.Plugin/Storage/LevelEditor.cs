@@ -25,14 +25,18 @@ namespace CustomCampaign.Storage
             {
                 ComponentID key = (ComponentID)method.Invoke((object)null, (object[])null);
                 if (!BinaryDeserializer.idToSerializableTypeMap_.ContainsKey(key) && !BinaryDeserializer.idToSerializableTypeMap_.ContainsValue(value))
+                {
                     BinaryDeserializer.idToSerializableTypeMap_.Add(key, value);
+                }
             }
         }
 
-        static void AddComponentToPrefab(Type value, GameObject host)
+        private static void AddComponentToPrefab(Type value, GameObject host)
         {
             if (host.GetComponents(value).Length == 0)
+            {
                 host.AddComponent(value);
+            }
         }
     }
 }

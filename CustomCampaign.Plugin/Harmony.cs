@@ -9,11 +9,11 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-#pragma warning disable CS0168, RCS1003, RCS1001, IDE0051, IDE0060, IDE0059
+#pragma warning disable CS0168, IDE0051, IDE0060, IDE0059
 namespace CustomCampaign
 {
     [HarmonyPatch(typeof(LevelGridMenu), "CreateEntries")]
-    public class LevelGridMenuCreateEntries
+    internal static class LevelGridMenuCreateEntries
     {
         public const LevelGridMenu.PlaylistEntry.UnlockStyle unlock_mode = LevelGridMenu.PlaylistEntry.UnlockStyle.PreviousLevels;
         public const LevelGridMenu.PlaylistEntry.UnlockStyle sprint_unlock_mode = LevelGridMenu.PlaylistEntry.UnlockStyle.SprintCampaign;
@@ -26,13 +26,18 @@ namespace CustomCampaign
             if (__instance.isCampaignMode_)
             {
                 foreach (var campaign in Campaigns.Items)
+                {
                     if (campaign.Value.Enabled)
+                    {
                         __instance.CreateAndAddCampaignLevelSet(campaign.Value.GetLevelSet(campaign.Value.GameMode, false), campaign.Value.Name, true, unlock_mode, campaign.Value.GameMode);
+                    }
+                }
             }
             else if (__instance.modeID_ == GameModeID.Sprint)
             {
                 foreach (var campaign in Campaigns.Items)
-                    if (campaign.Value.Enabled)
+                {
+                    if (campaign.Value.Enabled && campaign.Value.ShowInArcade)
                     {
                         LevelSet set = campaign.Value.GetLevelSet(GameModeID.Sprint, true);
 
@@ -41,15 +46,16 @@ namespace CustomCampaign
                         bool unlocked = LockingSystem.IsCampaignComplete(campaign.Value.Id);
                         __instance.CreateAndAddEntry(playlist, LevelGridMenu.PlaylistEntry.Type.Campaign, unlocked, sprint_unlock_mode);
                     }
+                }
             }
             __instance.buttonList_.SortAndUpdateVisibleButtons();
         }
     }
 
     [HarmonyPatch(typeof(LevelInfos), "LoadPersonalLevelInfos")]
-    public class LoadPersonalLevelInfos
+    internal static class LoadPersonalLevelInfos
     {
-        static void Postfix(ref LevelInfos __result)
+        internal static void Postfix(ref LevelInfos __result)
         {
             foreach (var path in Campaigns.LevelPaths)
             {
@@ -61,16 +67,21 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelSetsManager), "SaveLevelInfos")]
-    public class SaveLevelInfos
+    internal static class SaveLevelInfos
     {
-        static bool Prefix(ref LevelSetsManager __instance)
+        internal static bool Prefix(ref LevelSetsManager __instance)
         {
             if (!__instance.communityLevelInfos_)
                 return true;
             LevelInfos temp = LevelInfos.Create();
             foreach (var level in __instance.communityLevelInfos_.LevelPathsToLevelInfos_)
+            {
                 if (!Campaigns.LevelPaths.Contains(level.Key))
+                {
                     temp.levelPathsToLevelInfos_.Add(level.Key, level.Value);
+                }
+            }
+
             temp.SavePersonalLevelInfos();
             temp.Destroy();
             return false;
@@ -78,9 +89,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(Resource), "IsWorkshopLevelPath")]
-    public class IsWorkshopLevelPath
+    internal static class IsWorkshopLevelPath
     {
-        static bool Prefix(string levelPath, ref bool __result)
+        internal static bool Prefix(string levelPath, ref bool __result)
         {
             if (Campaigns.LevelPaths.Contains(levelPath))
             {
@@ -92,9 +103,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(Resource), "GetLevelType")]
-    public class GetLevelType
+    internal static class GetLevelType
     {
-        static bool Prefix(string normalizedLevelPath, ref LevelType __result)
+        internal static bool Prefix(string normalizedLevelPath, ref LevelType __result)
         {
             if (Campaigns.LevelPaths.Contains(normalizedLevelPath))
             {
@@ -106,11 +117,11 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(Resource), "GetRelativeLevelPath", new Type[] { typeof(string), typeof(bool) })]
-    public class GetRelativeLevelPath
+    internal static class GetRelativeLevelPath
     {
-        static bool Prefix(ref string absoluteLevelPath, ref string __result)
+        internal static bool Prefix(ref string absoluteLevelPath, ref string __result)
         {
-            if (Campaigns.LevelPaths != null && Campaigns.LevelPaths.Contains(absoluteLevelPath))
+            if (Campaigns.LevelPaths?.Contains(absoluteLevelPath) == true)
             {
                 __result = absoluteLevelPath;
                 return false;
@@ -120,9 +131,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelSetsManager), "Start")]
-    public class LevelSetsManagerStart
+    internal static class LevelSetsManagerStart
     {
-        static void Postfix(LevelSetsManager __instance)
+        internal static void Postfix(LevelSetsManager __instance)
         {
             foreach (var path in Campaigns.LevelPaths)
             {
@@ -136,9 +147,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(Resource), "GetAbsoluteLevelPath")]
-    public class GetAbsoluteLevelPath
+    internal static class GetAbsoluteLevelPath
     {
-        static bool Prefix(string relativeLevelPath, ref string __result)
+        internal static bool Prefix(string relativeLevelPath, ref string __result)
         {
             if (!string.IsNullOrEmpty(relativeLevelPath))
             {
@@ -154,9 +165,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelEditorLevelNameSelectMenuLogic.LevelPathEntry), "Create")]
-    public class CreateLevelPathEntry
+    internal static class CreateLevelPathEntry
     {
-        static void Postfix(string absoluteLevelPath, ref LevelEditorLevelNameSelectMenuLogic.LevelPathEntry __result)
+        internal static void Postfix(string absoluteLevelPath, ref LevelEditorLevelNameSelectMenuLogic.LevelPathEntry __result)
         {
             if (Campaigns.LevelPaths.Contains(absoluteLevelPath))
             {
@@ -168,9 +179,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelInfo), "Create")]
-    public class CreateLevelInfo
+    internal static class CreateLevelInfo
     {
-        static void Postfix(string levelPath, ref LevelInfo __result)
+        internal static void Postfix(string levelPath, ref LevelInfo __result)
         {
             if (Campaigns.LevelPaths.Contains(levelPath))
             {
@@ -182,26 +193,32 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelGridMenu), "CreateAndAddLevelSet", new Type[] { typeof(LevelSet), typeof(string), typeof(LevelGridMenu.PlaylistEntry.Type), typeof(LevelGroupFlags) })]
-    public class CreateAndAddLevelSet
+    internal static class CreateAndAddLevelSet
     {
         public static void Prefix(
             ref LevelSet set, ref LevelGridMenu.PlaylistEntry.Type type)
         {
             if (type != LevelGridMenu.PlaylistEntry.Type.Campaign)
+            {
                 foreach (var level in set.GetAllLevelNameAndPathPairs())
+                {
                     if (Campaigns.LevelPaths.Contains(level.levelPath_.NormPath(true)))
+                    {
                         set.RemoveLevel(level.levelPath_.Normalize());
+                    }
+                }
+            }
         }
     }
 
     [HarmonyPatch(typeof(LevelIntroTitleLogic), "Update")]
-    public class LevelIntroTitleLogic__Update__Patch
+    internal static class LevelIntroTitleLogic__Update__Patch
     {
         public static void Postfix(LevelIntroTitleLogic __instance)
         {
             TextDecodeInLogic[] decode = __instance.GetComponentsInChildren<TextDecodeInLogic>(true);
             string path = G.Sys.GameManager_.LevelPath_;
-            if (Util.IsCustomCampaignLevel(path) && decode.Length <= 0)
+            if (Util.IsCustomCampaignLevel(path) && decode.Length is 0)
             {
                 __instance.titleLabel_.text = Util.GetLevelTitle(path).Space(1);
                 __instance.subtitleText_.text = Util.GetLevelSubTitle(path).Space(1);
@@ -213,7 +230,7 @@ namespace CustomCampaign
 
 #if !LIMITED_COMPATIBILITY
     [HarmonyPatch(typeof(LevelGridMenu), "SetDisplayedInfoForSelectedPlaylist")]
-    public class LevelGridMenuSetDisplayedInfoForSelectedPlaylist
+    internal static class LevelGridMenuSetDisplayedInfoForSelectedPlaylist
     {
         public static void Postfix(LevelGridMenu __instance)
         {
@@ -232,7 +249,10 @@ namespace CustomCampaign
                             __instance.campaignLogo_.mainTexture = Util.GetCampaignLogo(level);
                         }
                     }
-                    catch (Exception pizza) { Plugin.Log.Exception(pizza); }
+                    catch (NullReferenceException nre)
+                    {
+                        Plugin.Log.Exception(nre);
+                    }
                 }
             }
         }
@@ -240,7 +260,7 @@ namespace CustomCampaign
 #endif
 
     [HarmonyPatch(typeof(LevelGridCell), "OnDisplayedVirtual")]
-    public class LevelGridCellOnDisplayedVirtual
+    internal static class LevelGridCellOnDisplayedVirtual
     {
         public static void Postfix(LevelGridCell __instance, ref UIButton ___button_)
         {
@@ -259,20 +279,27 @@ namespace CustomCampaign
                         ___button_.onClick.Clear();
                         string leveltitle = "";
                         foreach (var c in entry.LevelInfo_.levelName_)
+                        {
                             leveltitle += c.ToString() == " " ? " " : "?";
+                        }
                         __instance.soloTitleLabel_.text = leveltitle;
                     }
                     else
+                    {
                         __instance.soloTitleLabel_.text = entry.LevelInfo_.levelName_;
+                    }
                 }
             }
-            catch (Exception pizza) { Plugin.Log.Exception(pizza); }
+            catch (NullReferenceException nre)
+            {
+                Plugin.Log.Exception(nre);
+            }
         }
     }
 
 #if !LIMITED_COMPATIBILITY
     [HarmonyPatch(typeof(BlackFadeLogic), "FinishFadeOut")]
-    public class BlackFadeLogicFinishFadeOut
+    internal static class BlackFadeLogicFinishFadeOut
     {
         public static void Postfix(BlackFadeLogic __instance)
         {
@@ -290,7 +317,7 @@ namespace CustomCampaign
 #endif
 
     [HarmonyPatch(typeof(PauseMenuLogic), "Update")]
-    public class PauseMenuLogicUpdate
+    internal static class PauseMenuLogicUpdate
     {
         public static void Postfix(PauseMenuLogic __instance)
         {
@@ -306,23 +333,25 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(LevelGridMenu), "OnGridCellClicked")]
-    public class LevelGridMenuOnGridCellClicked
+    internal static class LevelGridMenuOnGridCellClicked
     {
         public static bool Prefix(LevelGridMenu __instance, ref int index)
         {
-            bool result = false;
             LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
             string level = playlist.Playlist_[index].levelNameAndPath_.levelPath_;
             if (Util.GetCampaignUnlockMode(level) == Models.Campaign.UnlockStyle.LevelSet)
-                result = true;
+            {
+                return true;
+            }
             else
             {
                 bool flag = Util.IsCustomCampaignLevel(level) && LockingSystem.IsLevelLocked(level);
                 if (flag)
+                {
                     G.Sys.MenuPanelManager_.ShowTimedOk(10, Constants.Strings.LevelLocked_Message, Constants.Strings.LevelLocked_Title);
-                result = !flag;
+                }
+                return !flag;
             }
-            return result;
         }
     }
 
@@ -349,7 +378,7 @@ namespace CustomCampaign
     [HarmonyPatch(typeof(DiscordController), "OnEventPostLoad")]
     internal static class OnEventPostLoad
     {
-        public static bool Prefix(DiscordController __instance, Events.Level.PostLoad.Data data)
+        public static bool Prefix(DiscordController __instance)
         {
             bool rpc_overwrite = Util.IsCustomCampaignLevel(Util.LevelFile);
             if (!rpc_overwrite) return true;
@@ -359,7 +388,7 @@ namespace CustomCampaign
 
             string rpc_imagekey = G.Sys.GameManager_.ModeID_ == GameModeID.Sprint ? "community_level" : "official_level";
             string rpc_mode = rpc_imagekey == "community_level" ? "Sprint" : info.Name;
-            
+
             __instance.presence.state = "Custom Campaign";
             __instance.presence.largeImageKey = rpc_imagekey;
 
@@ -375,7 +404,7 @@ namespace CustomCampaign
             {
                 __instance.presence.details = $"{rpc_mode} | {__instance.GetGameTypeString()}";
             }
-            
+
             DiscordRpc.UpdatePresence(ref __instance.presence);
 
             return false;
@@ -383,9 +412,9 @@ namespace CustomCampaign
     }
 
     [HarmonyPatch(typeof(GUtils), "GetExportedTypesOfType")]
-    public class GetExportedTypesOfType
+    internal static class GetExportedTypesOfType
     {
-        static void Postfix(Type baseType, ref Type[] __result)
+        internal static void Postfix(Type baseType, ref Type[] __result)
         {
             List<Type> types = __result.ToList();
 
@@ -394,8 +423,9 @@ namespace CustomCampaign
                 typeof(LevelEditorTool),
                 typeof(AddedComponent)
             }.Contains(baseType))
+            {
                 types.AddRange(Util.GetExportedTypesOfType(baseType));
-
+            }
             __result = types.ToArray();
         }
     }

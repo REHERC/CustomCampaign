@@ -8,15 +8,17 @@ namespace CustomCampaign.Editor.Forms
     public partial class MessageDialog : MaterialSkin.Controls.MaterialForm
     {
         [DllImport("user32")]
-        static new extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
-        [DllImport("user32")]
-        static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
+        private static new extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
 
-        const int MF_BYCOMMAND = 0;
-        const int MF_DISABLED = 2;
-        const int SC_CLOSE = 0xF060;
+        [DllImport("user32")]
+        private static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
+
+        public const int MF_BYCOMMAND = 0;
+        public const int MF_DISABLED = 2;
+        public const int SC_CLOSE = 0xF060;
 
         private string message_content = "";
+
         public string Message
         {
             get => message_content;
@@ -36,7 +38,7 @@ namespace CustomCampaign.Editor.Forms
             InitializeComponent();
             EnableMenuItem(GetSystemMenu(Handle, false), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED);
         }
-        
+
         public void Setup(MessageBoxButtons buttons)
         {
             foreach (Control control in BottomActions.Controls)
@@ -84,10 +86,10 @@ namespace CustomCampaign.Editor.Forms
         }
 
         public override Font Font => SkinManager.GetFont(11);
-        Rectangle render_bounds;
-        Rectangle text_bounds;
+        private Rectangle render_bounds;
+        private Rectangle text_bounds;
 
-        readonly TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.Top | TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl;
+        private readonly TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.Top | TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl;
 
         private void MainPanel_Paint(object sender, PaintEventArgs e)
         {

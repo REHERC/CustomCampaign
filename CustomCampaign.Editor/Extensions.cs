@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable RCS1110
+using System;
+using System.Text;
 using System.IO;
 using System.IO.Compression;
 using System.Security.Cryptography;
@@ -36,5 +38,12 @@ public static class Extensions
     {
         using (StreamReader reader = new StreamReader(entry.Open()))
             return reader.ReadToEnd();
+    }
+
+    public static string ToFileSize(this long file_size)
+    {
+        StringBuilder sb = new StringBuilder(20);
+        NativeMethods.StrFormatByteSize(file_size, sb, 20);
+        return sb.ToString();
     }
 }

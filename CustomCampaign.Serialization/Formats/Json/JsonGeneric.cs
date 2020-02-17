@@ -16,22 +16,28 @@ namespace Photon.Serialization
         public void Serialize(SERIALIZER_TYPE DATA, string FilePath)
         {
             if (File.Exists(FilePath))
+            {
                 File.Delete(FilePath);
+            }
 #if JSON_NEWTONSOFT
             JsonSerializer SERIALIZER = new JsonSerializer
             {
                 NullValueHandling = NullValueHandling.Include,
             };
             using (StreamWriter FILE_STREAM = new StreamWriter(FilePath))
+            {
                 using (JsonWriter JSON_WRITER = new JsonTextWriter(FILE_STREAM))
                 {
                     JSON_WRITER.Formatting = Formatting.Indented;
                     SERIALIZER.Serialize(JSON_WRITER, DATA);
                 }
+            }
 #endif
 #if JSON_LITJSON
             using (StreamWriter FILE_STREAM = new StreamWriter(FilePath))
+            {
                 FILE_STREAM.WriteLine(JsonMapper.ToJson(DATA));
+            }
 #endif
         }
 
@@ -40,10 +46,16 @@ namespace Photon.Serialization
             SERIALIZER_TYPE RESULT = null;
 
             if (!File.Exists(FilePath))
+            {
                 if (ShowError)
+                {
                     throw new FileNotFoundException();
+                }
                 else
+                {
                     return new SERIALIZER_TYPE();
+                }
+            }
             string SERIALIZED_TEXT = "";
             using (StreamReader READER = new StreamReader(FilePath))
                 SERIALIZED_TEXT = READER.ReadToEnd();

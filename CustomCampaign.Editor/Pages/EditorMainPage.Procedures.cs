@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Data;
+﻿#pragma warning disable SecurityIntelliSenseCS, CS0436
+using CustomCampaign.Data;
 using CustomCampaign.Editor.Forms;
 using CustomCampaign.Models;
 using Newtonsoft.Json;
@@ -10,15 +11,15 @@ using System.IO;
 using System.IO.Compression;
 using System.Windows.Forms;
 
-#pragma warning disable CS0436
-
 namespace CustomCampaign.Editor.Pages
 {
-    partial class EditorMainPage
+    public partial class EditorMainPage
     {
         public void GoToSettingsTab() => EditorTabs.SelectedTab = SettingsTab;
+
         public void GoToFileTab() => EditorTabs.SelectedTab = FileTab;
-        DialogResult ClosseDialog() => MessageDialog.Show("Are you sure you want to close this project?\nAny unsaved changes will be discarded!", "Close project", MessageBoxButtons.YesNo);
+
+        internal DialogResult ClosseDialog() => MessageDialog.Show("Are you sure you want to close this project?\nAny unsaved changes will be discarded!", "Close project", MessageBoxButtons.YesNo);
 
         #region Save and Load
         public void LoadCampaign(string path)
@@ -42,6 +43,7 @@ namespace CustomCampaign.Editor.Pages
             CampaignDescription.Text = Editor.current_campaign.description;
             CampaignLogo.Text = Editor.current_campaign.logopath;
             CampaignAuthors.Text = Editor.current_campaign.authors;
+            SprintPlaylist.Checked = Editor.current_campaign.sprint_playlist;
 
             CampaignUnlockStyle.SelectedIndex = Editor.current_campaign.lockmode;
             CampaignGamemode.SelectedIndex = GameModeId.GetIndexFromId(Editor.current_campaign.gamemode);
@@ -54,30 +56,30 @@ namespace CustomCampaign.Editor.Pages
 
             Levels.SelectedIndex = -1;
             Addons.SelectedIndex = -1;
-            Levels_SelectedIndexChanged(Levels, new EventArgs());
-            Addons_SelectedIndexChanged(Levels, new EventArgs());
-
-            
+            Levels_SelectedIndexChanged(Levels, EventArgs.Empty);
+            Addons_SelectedIndexChanged(Levels, EventArgs.Empty);
         }
 
         public Campaign UpdateWorkingstate()
         {
-            Campaign _ = Editor.current_campaign;
+            Campaign campaign = Editor.current_campaign;
 
-            _.name = CampaignName.Text;
-            _.description = CampaignDescription.Text;
-            _.logopath = CampaignLogo.Text;
-            _.authors = CampaignAuthors.Text;
-            _.lockmode = CampaignUnlockStyle.SelectedIndex;
-            _.gamemode = GameModeId.GetIdFromIndex(CampaignGamemode.SelectedIndex);
+            campaign.build = DateTime.UtcNow.ToFileTime();
+            campaign.name = CampaignName.Text;
+            campaign.description = CampaignDescription.Text;
+            campaign.logopath = CampaignLogo.Text;
+            campaign.authors = CampaignAuthors.Text;
+            campaign.lockmode = CampaignUnlockStyle.SelectedIndex;
+            campaign.gamemode = GameModeId.GetIdFromIndex(CampaignGamemode.SelectedIndex);
+            campaign.sprint_playlist = SprintPlaylist.Checked;
 
-            _.levels = new List<Level>();
-            Levels.Items.Cast<Level>().ToList().ForEach((level) => _.levels.Add(level));
+            campaign.levels = new List<Level>();
+            Levels.Items.Cast<Level>().ToList().ForEach((level) => campaign.levels.Add(level));
 
-            _.addons = new List<Addon>();
-            Addons.Items.Cast<Addon>().ToList().ForEach((addon) => _.addons.Add(addon));
+            campaign.addons = new List<Addon>();
+            Addons.Items.Cast<Addon>().ToList().ForEach((addon) => campaign.addons.Add(addon));
 
-            return (Editor.current_campaign = _);
+            return Editor.current_campaign = campaign;
         }
 
         public void SaveCampaign()
@@ -89,7 +91,7 @@ namespace CustomCampaign.Editor.Pages
             };
             serializer.Save();
         }
-        
+
         public void UpdateOverviewList()
         {
             void SetDataSource(object value)
@@ -138,8 +140,9 @@ namespace CustomCampaign.Editor.Pages
                         }
                         archive.CreateEntry("manifest").WriteContent
                         (
-                            JsonConvert.SerializeObject(new Models.Manifest()
+                            JsonConvert.SerializeObject(new Manifest()
                             {
+                                build = campaign.build,
                                 name = campaign.name,
                                 description = campaign.description,
                                 authors = campaign.authors,
@@ -179,12 +182,15 @@ namespace CustomCampaign.Editor.Pages
         private void AddLevel_Run()
         {
             int index = Levels.SelectedIndex;
+
+            UpdateWorkingstate();
+
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup(new Level(), "Add a level");
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
                 if (result == DialogResult.OK)
                     Levels.Items.Insert(index + 1, data);
                 Globals.MainWindow.SetPage("pages:editormain");
-                Levels_SelectedIndexChanged(Levels, new EventArgs());
+                Levels_SelectedIndexChanged(Levels, EventArgs.Empty);
                 UpdateOverviewList();
             };
             Globals.MainWindow.SetPage("pages:editlevel");
@@ -194,14 +200,16 @@ namespace CustomCampaign.Editor.Pages
         {
             int index = Levels.SelectedIndex;
 
-            if (!(index > -1 & index < Levels.Items.Count)) return;
+            if (!(index > -1 && index < Levels.Items.Count)) return;
+
+            UpdateWorkingstate();
 
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup((Level)Levels.Items[index], "Edit a level", true);
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
                 if (result == DialogResult.OK)
                     Levels.Items[index] = data;
                 Globals.MainWindow.SetPage("pages:editormain");
-                Levels_SelectedIndexChanged(Levels, new EventArgs());
+                Levels_SelectedIndexChanged(Levels, EventArgs.Empty);
                 UpdateOverviewList();
             };
             Globals.MainWindow.SetPage("pages:editlevel");
@@ -224,7 +232,7 @@ namespace CustomCampaign.Editor.Pages
                 if (result == DialogResult.OK)
                     Addons.Items.Insert(index + 1, data);
                 Globals.MainWindow.SetPage("pages:editormain");
-                Addons_SelectedIndexChanged(Addons, new EventArgs());
+                Addons_SelectedIndexChanged(Addons, EventArgs.Empty);
             };
             Globals.MainWindow.SetPage("pages:editaddon");
         }
@@ -233,14 +241,14 @@ namespace CustomCampaign.Editor.Pages
         {
             int index = Addons.SelectedIndex;
 
-            if (!(index > -1 & index < Addons.Items.Count)) return;
+            if (!(index > -1 && index < Addons.Items.Count)) return;
 
             Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").Setup((Addon)Addons.Items[index], "Edit an addon");
             Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").PageClosed = (result, data) => {
                 if (result == DialogResult.OK)
                     Addons.Items[index] = data;
                 Globals.MainWindow.SetPage("pages:editormain");
-                Addons_SelectedIndexChanged(Addons, new EventArgs());
+                Addons_SelectedIndexChanged(Addons, EventArgs.Empty);
             };
             Globals.MainWindow.SetPage("pages:editaddon");
         }

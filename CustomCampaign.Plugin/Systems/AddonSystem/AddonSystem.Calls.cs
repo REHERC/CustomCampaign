@@ -16,7 +16,7 @@ namespace CustomCampaign.Systems
                 CampaignInfo info = Util.GetCampaign(item.Key);
                 item.Key.Object.Info = info;
                 try
-                { 
+                {
                     item.Key.Object.OnInit(info);
                     item.Key.Object.Initialized = true;
                 }
@@ -33,7 +33,7 @@ namespace CustomCampaign.Systems
             foreach (var item in GetAddons(guid))
             {
                 try
-                { 
+                {
                     item.Key.Object.Enable();
                 }
                 catch (System.Exception error)
@@ -48,7 +48,7 @@ namespace CustomCampaign.Systems
             foreach (var item in GetAddons(guid))
             {
                 try
-                { 
+                {
                     item.Key.Object.Disable();
                 }
                 catch (System.Exception error)

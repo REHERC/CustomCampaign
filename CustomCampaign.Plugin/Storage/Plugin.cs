@@ -1,4 +1,5 @@
-﻿#if API_SPECTRUM
+﻿#pragma warning disable SecurityIntelliSenseCS
+#if API_SPECTRUM
 using Spectrum.API.Logging;
 using Spectrum.API.Storage;
 #endif

@@ -14,8 +14,10 @@ namespace MaterialSkin.Controls
         //Properties for managing the material design properties
         [Browsable(false)]
         public int Depth { get; set; }
+
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
+
         [Browsable(false)]
         public MouseState MouseState { get; set; }
 
@@ -32,7 +34,7 @@ namespace MaterialSkin.Controls
         internal Point AnimationSource;
 
         public delegate void ItemClickStart(object sender, ToolStripItemClickedEventArgs e);
-        public event ItemClickStart OnItemClickStart;
+        public event System.EventHandler<ToolStripItemClickedEventArgs> OnItemClickStart;
 
         public MaterialContextMenuStrip()
         {
@@ -43,8 +45,8 @@ namespace MaterialSkin.Controls
                 Increment = 0.07,
                 AnimationType = AnimationType.Linear
             };
-            AnimationManager.OnAnimationProgress += sender => Invalidate();
-            AnimationManager.OnAnimationFinished += sender => OnItemClicked(_delayesArgs);
+            AnimationManager.OnAnimationProgress += _ => Invalidate();
+            AnimationManager.OnAnimationFinished += _ => OnItemClicked(_delayesArgs);
 
             BackColor = SkinManager.GetApplicationBackgroundColor();
         }
@@ -57,6 +59,7 @@ namespace MaterialSkin.Controls
         }
 
         private ToolStripItemClickedEventArgs _delayesArgs;
+
         protected override void OnItemClicked(ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem != null && !(e.ClickedItem is ToolStripSeparator))
@@ -108,7 +111,6 @@ namespace MaterialSkin.Controls
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
         public MouseState MouseState { get; set; }
 
-
         protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
         {
             var g = e.Graphics;
@@ -145,7 +147,7 @@ namespace MaterialSkin.Controls
                         var animationValue = animationManager.GetProgress(i);
                         var rippleBrush = new SolidBrush(Color.FromArgb((int)(51 - (animationValue * 50)), Color.Black));
                         var rippleSize = (int)(animationValue * itemRect.Width * 2.5);
-                        g.FillEllipse(rippleBrush, new Rectangle(animationSource.X - rippleSize / 2, itemRect.Y - itemRect.Height, rippleSize, itemRect.Height * 3));
+                        g.FillEllipse(rippleBrush, new Rectangle(animationSource.X - (rippleSize / 2), itemRect.Y - itemRect.Height, rippleSize, itemRect.Height * 3));
                     }
                 }
             }
@@ -181,7 +183,7 @@ namespace MaterialSkin.Controls
             var g = e.Graphics;
             const int ARROW_SIZE = 4;
 
-            var arrowMiddle = new Point(e.ArrowRectangle.X + e.ArrowRectangle.Width / 2, e.ArrowRectangle.Y + e.ArrowRectangle.Height / 2);
+            var arrowMiddle = new Point(e.ArrowRectangle.X + (e.ArrowRectangle.Width / 2), e.ArrowRectangle.Y + (e.ArrowRectangle.Height / 2));
             var arrowBrush = e.Item.Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush();
             using (var arrowPath = new GraphicsPath())
             {

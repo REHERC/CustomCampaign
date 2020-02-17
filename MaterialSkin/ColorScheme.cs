@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿#pragma warning disable RCS1154
+using System.Drawing;
 
 namespace MaterialSkin
 {

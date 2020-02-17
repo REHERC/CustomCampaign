@@ -88,6 +88,7 @@ namespace CustomCampaign.Editor.Pages
             this.EditAddon = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveAddon = new System.Windows.Forms.ToolStripMenuItem();
             this.TabDivider = new MaterialSkin.Controls.MaterialDivider();
+            this.SprintPlaylist = new MaterialSkin.Controls.MaterialCheckBox();
             this.EditorLayout.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.FileTab.SuspendLayout();
@@ -464,6 +465,7 @@ namespace CustomCampaign.Editor.Pages
             // 
             // SettingsLayout
             // 
+            this.SettingsLayout.Controls.Add(this.SprintPlaylist);
             this.SettingsLayout.Controls.Add(this.CampaignGamemode);
             this.SettingsLayout.Controls.Add(this.CampaignUnlockStyle);
             this.SettingsLayout.Controls.Add(this.CampaignAuthors);
@@ -1012,6 +1014,21 @@ namespace CustomCampaign.Editor.Pages
             this.TabDivider.TabIndex = 2;
             this.TabDivider.Text = "materialDivider1";
             // 
+            // SprintPlaylist
+            // 
+            this.SprintPlaylist.Depth = 0;
+            this.SprintPlaylist.Font = new System.Drawing.Font("Roboto", 11F);
+            this.SprintPlaylist.Location = new System.Drawing.Point(16, 222);
+            this.SprintPlaylist.Margin = new System.Windows.Forms.Padding(0);
+            this.SprintPlaylist.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.SprintPlaylist.MouseState = MaterialSkin.MouseState.HOVER;
+            this.SprintPlaylist.Name = "SprintPlaylist";
+            this.SprintPlaylist.Ripple = true;
+            this.SprintPlaylist.Size = new System.Drawing.Size(738, 30);
+            this.SprintPlaylist.TabIndex = 6;
+            this.SprintPlaylist.Text = "Create arcade mode sprint playlist";
+            this.SprintPlaylist.UseVisualStyleBackColor = true;
+            // 
             // EditorMainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1105,5 +1122,6 @@ namespace CustomCampaign.Editor.Pages
         private MaterialLabel OverviewLbl;
         private MaterialLabel OverviewLevelsLbl;
         private MaterialListBox OverviewLevels;
+        private MaterialCheckBox SprintPlaylist;
     }
 }

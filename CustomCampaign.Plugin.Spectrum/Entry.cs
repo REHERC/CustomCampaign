@@ -8,9 +8,10 @@ using Spectrum.API.Interfaces.Systems;
 
 namespace CustomCampaign
 {
-    public class Entry : IPlugin 
+    public class Entry : IPlugin
     {
         public static IManager Manager = null;
+
         public void Initialize(IManager manager, string ipcIdentifier)
         {
             Manager = manager;

@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Storage;
+﻿#pragma warning disable SecurityIntelliSenseCS
+using CustomCampaign.Storage;
 #if API_SPECTRUM
 using Spectrum.API.Configuration;
 using Spectrum.API.Logging;

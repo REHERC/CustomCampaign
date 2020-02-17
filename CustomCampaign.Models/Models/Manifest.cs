@@ -2,6 +2,7 @@
 {
     public class Manifest
     {
+        public long build;
         public string name = "";
         public string description = "";
         public string authors;

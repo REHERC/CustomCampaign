@@ -8,11 +8,11 @@ using System.Windows.Forms;
 using MaterialSkin.Controls;
 using MaterialSkin.Properties;
 
-#pragma warning disable IDE0052
+#pragma warning disable IDE0052, RCS1213, CA1822
 
 namespace MaterialSkin
 {
-    public class MaterialSkinManager
+    public sealed class MaterialSkinManager
     {
         //Singleton instance
         private static MaterialSkinManager _instance;
@@ -22,6 +22,7 @@ namespace MaterialSkin
 
         //Theme
         private Themes _theme;
+
         public Themes Theme
         {
             get { return _theme; }
@@ -33,6 +34,7 @@ namespace MaterialSkin
         }
 
         private ColorScheme _colorScheme;
+
         public ColorScheme ColorScheme
         {
             get { return _colorScheme; }
@@ -254,7 +256,6 @@ namespace MaterialSkin
             return new Font(LoadFont(regular ? Resources.Roboto_Regular : Resources.Roboto_Medium), size);
         }
 
-
         private MaterialSkinManager()
         {
             ROBOTO_MEDIUM_12 = new Font(LoadFont(Resources.Roboto_Medium), 12f);
@@ -311,11 +312,10 @@ namespace MaterialSkin
             foreach (ToolStripItem control in toolStrip.Items)
             {
                 control.BackColor = newBackColor;
-                if (control is MaterialToolStripMenuItem && (control as MaterialToolStripMenuItem).HasDropDown)
+                if (control is MaterialToolStripMenuItem && (bool)(control as MaterialToolStripMenuItem)?.HasDropDown)
                 {
-
                     //recursive call
-                    UpdateToolStrip((control as MaterialToolStripMenuItem).DropDown, newBackColor);
+                    UpdateToolStrip((control as MaterialToolStripMenuItem)?.DropDown, newBackColor);
                 }
             }
         }
@@ -344,7 +344,6 @@ namespace MaterialSkin
             if (controlToUpdate is MaterialListView)
             {
                 controlToUpdate.BackColor = newBackColor;
-
             }
 
             //recursive call

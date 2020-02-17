@@ -1,29 +1,42 @@
-﻿using CustomCampaign.Storage;
+﻿#pragma warning disable SecurityIntelliSenseCS, RCS1001, CA1819
+using CustomCampaign.Storage;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-
-#pragma warning disable RCS1001
 
 namespace CustomCampaign.Data
 {
     public class CampaignInfo
     {
         internal bool Enabled { get; private set; } = true;
+
         public Models.Campaign Data { get; internal set; }
+
         public string Location { get; set; }
+
         public List<Models.Level> Levels => Data.levels;
+
         public List<Models.Addon> Addons => Data.addons;
+
         public List<string> LevelPaths => Levels.Select((Level) => Level.file.NormPath(true)).ToList();
+
 #if !LIMITED_COMPATIBILITY
         public Texture2D Logo { get; set; }
 #endif
+
         public string Id => Data.guid;
+
         public string Name => Data.name;
+
         public string Description => Data.description;
+
         public string[] Authors => Data.authors.Split(';');
+
+        public bool ShowInArcade => Data.sprint_playlist;
+
         public Models.Campaign.UnlockStyle LockMode => (Models.Campaign.UnlockStyle)Data.lockmode;
+
         public GameModeID GameMode => (GameModeID)Data.gamemode;
 
         public CampaignInfo(string data_dir, Models.Campaign data)
@@ -60,7 +73,6 @@ namespace CustomCampaign.Data
                 string file = level.file.NormPath(true);
                 set.AddLevel(file, file, LevelType.Official);
             }
-                
             return set;
         }
 

@@ -52,7 +52,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Modified.ico</ApplicationIcon>
+    <ApplicationIcon>Editor.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|AnyCPU'">
     <OutputPath>bin\AppVeyor\</OutputPath>
@@ -177,6 +177,7 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Pages\EditAddonPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -395,7 +396,7 @@
     <None Include="Resources\Crab.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Modified.ico" />
+    <Content Include="Editor.ico" />
     <Content Include="Resources\Knightbane.png" />
     <Content Include="Resources\Omaneye.png" />
     <None Include="Resources\SpookSlow.gif" />

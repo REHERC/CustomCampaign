@@ -36,7 +36,7 @@ namespace CustomCampaign.Editor.Pages
 
         private Level data = new Level();
 
-        public Action<DialogResult, Level> PageClosed = (result, level) => { };
+        public Action<DialogResult, Level> PageClosed = (_, __) => { };
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
@@ -54,22 +54,46 @@ namespace CustomCampaign.Editor.Pages
                 }
             }
         }
+
         private void CancelBtn_Click(object sender, EventArgs e) => PageClosed(DialogResult.Cancel, data);
+
         private void LevelFile_TextChanged(object sender, EventArgs e) => data.file = LevelFile.Text;
+
         private void DisplayIntro_CheckedChanged(object sender, EventArgs e) => data.display_intro_title = DisplayIntro.Checked;
+
         private void LevelName_TextChanged(object sender, EventArgs e) => data.levelname = LevelName.Text;
+
         private void LevelSector_TextChanged(object sender, EventArgs e) => data.levelname_sub = LevelSector.Text;
+
         private void LoadingBackground_TextChanged(object sender, EventArgs e) => data.loading_wallpaper = LoadingBackground.Text;
+
         private void OverwriteLoadingText_CheckedChanged(object sender, EventArgs e) => data.overwrite_loading_text = OverwriteLoadingText.Checked;
+
         private void LoadingText_TextChanged(object sender, EventArgs e) => data.loading_text = LoadingText.Text;
+
         private void HideInSprint_CheckedChanged(object sender, EventArgs e) => data.hide_in_sprint = HideInSprint.Checked;
+
         private bool ValidateFields()
         {
-            bool result = true;
+            bool valid = true;
 
-            result &= LevelFile.Text.Length > 0;
+            valid &= LevelFile.Text.Length > 0;
 
-            return result;
+            if (!valid)
+            {
+                MessageDialog.Show("You must provide a file name to continue.", "Error", MessageBoxButtons.OK);
+                return false;
+            }
+
+            valid &= !Editor.current_campaign.levels.Select((level) => level.file.ToLower()).Contains(LevelFile.Text.ToLower());
+
+            if (!valid)
+            {
+                MessageDialog.Show("You can't add the same level file twice in a campaign.", "Error", MessageBoxButtons.OK);
+                return false;
+            }
+
+            return valid;
         }
 
         private void LocateLevel_Click(object sender, EventArgs e)

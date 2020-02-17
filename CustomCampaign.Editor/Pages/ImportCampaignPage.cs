@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Editor.Classes;
+﻿#pragma warning disable CS0436, IDE0069, RCS1197, CA1031
+using CustomCampaign.Editor.Classes;
 using CustomCampaign.Models;
 using MaterialSkin;
 using Newtonsoft.Json;
@@ -9,8 +10,6 @@ using System.IO.Compression;
 using System.Text;
 using System.Windows.Forms;
 using Photon.Serialization;
-
-#pragma warning disable CS0436, IDE0069
 
 namespace CustomCampaign.Editor.Pages
 {
@@ -34,6 +33,7 @@ namespace CustomCampaign.Editor.Pages
         protected ZipArchive open_archive;
         protected Manifest manifest;
         protected string file_path;
+
         public void ImportFile(string path)
         {
             open_archive = ZipFile.OpenRead(path);
@@ -54,8 +54,8 @@ namespace CustomCampaign.Editor.Pages
                     {
                         ZipArchiveEntry check_entry = open_archive.GetEntry(data_path);
 
-                        string check_md5 = entry.GetMD5().ToString().Substring(0, 32);
-                        string data_md5 = check_entry.ReadContent().ToString().Substring(0, 32);
+                        string check_md5 = entry.GetMD5().Substring(0, 32);
+                        string data_md5 = check_entry.ReadContent().Substring(0, 32);
 
                         md5_validity &= check_entry != null && data_md5.Equals(check_md5, StringComparison.InvariantCultureIgnoreCase);
                     }
@@ -81,9 +81,12 @@ namespace CustomCampaign.Editor.Pages
 
             display.AppendLine($"{manifest.name} by {manifest.authors}");
             display.AppendLine($"{manifest.description}");
-            display.AppendLine($"This campaign has {manifest.levels} level{(manifest.levels > 1 ? "s" : "")}");
+            display.Append($"This campaign has {manifest.levels} level{(manifest.levels > 1 ? "s" : "")}");
             if (manifest.useaddons)
-                display.Append($" and uses custom code to add features");
+            {
+                display.Append(" and uses custom code to add features");
+            }
+            display.AppendLine("");
             DisplayText.Text = display.ToString();
         }
 
@@ -98,7 +101,7 @@ namespace CustomCampaign.Editor.Pages
             UpdateTextColors();
         }
 
-        void UpdateTextColors()
+        private void UpdateTextColors()
         {
             DisplayText.BackColor = SkinManager.GetApplicationBackgroundColor();
             DisplayText.ForeColor = SkinManager.GetPrimaryTextColor();

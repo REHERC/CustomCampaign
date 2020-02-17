@@ -1,4 +1,7 @@
 ﻿using CustomCampaign.Models.Validators;
+#if JSON_NEWTONSOFT
+using Newtonsoft.Json;
+#endif
 using Photon.Serialization;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +12,8 @@ namespace CustomCampaign.Models
     {
         public ulong version = 1;
 
+        public long build = 0;
+
         public string guid = "";
         public string name = "";
         public string description = "";
@@ -16,11 +21,17 @@ namespace CustomCampaign.Models
         public string logopath = "";
 #endif
         public string authors = "";
+
+        public bool sprint_playlist = true;
+
         public int lockmode = 0;
         public int gamemode = 15;
         public List<Level> levels = new List<Level>();
         public List<Addon> addons = new List<Addon>();
 
+#if JSON_NEWTONSOFT
+        [JsonIgnore]
+#endif
         public readonly FileValidator FileIncludeValidator = new FileValidator();
 
         public static Campaign FromFile(string file)

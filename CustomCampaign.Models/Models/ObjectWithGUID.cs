@@ -22,7 +22,7 @@ namespace CustomCampaign.Models
         // https://stackoverflow.com/questions/1700361/how-to-convert-a-guid-to-a-string-in-c
         public string GetGuid(string format = "D") => GetGuid().ToString(format);
 
-        public static ObjectWithGUID<T> Create(T value) => new ObjectWithGUID<T>(value); 
+        public static ObjectWithGUID<T> Create(T value) => new ObjectWithGUID<T>(value);
 
         public static implicit operator T (ObjectWithGUID<T> instance) => instance.value;
     }

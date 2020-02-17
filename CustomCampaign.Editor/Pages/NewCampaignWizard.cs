@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Editor.Classes;
+﻿#pragma warning disable SecurityIntelliSenseCS, CS0436, CA1031
+using CustomCampaign.Editor.Classes;
 using CustomCampaign.Editor.Forms;
 using CustomCampaign.Models;
 using Photon.Serialization;
@@ -7,8 +8,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-
-#pragma warning disable CS0436
 
 namespace CustomCampaign.Editor.Pages
 {

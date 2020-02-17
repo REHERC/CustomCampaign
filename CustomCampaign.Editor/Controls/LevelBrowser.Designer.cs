@@ -32,7 +32,7 @@
             this.ListPanel = new MaterialSkin.Controls.MaterialPanel();
             this.Levels = new MaterialSkin.Controls.MaterialListBox();
             this.PreviewPanel = new MaterialSkin.Controls.MaterialPanel();
-            this.LevelAuthor = new MaterialSkin.Controls.MaterialLabel();
+            this.FileSize = new MaterialSkin.Controls.MaterialLabel();
             this.LevelName = new MaterialSkin.Controls.MaterialLabel();
             this.Thumbnail = new System.Windows.Forms.PictureBox();
             this.Divider = new MaterialSkin.Controls.MaterialDivider();
@@ -94,7 +94,7 @@
             // 
             // PreviewPanel
             // 
-            this.PreviewPanel.Controls.Add(this.LevelAuthor);
+            this.PreviewPanel.Controls.Add(this.FileSize);
             this.PreviewPanel.Controls.Add(this.LevelName);
             this.PreviewPanel.Controls.Add(this.Thumbnail);
             this.PreviewPanel.Depth = 0;
@@ -107,25 +107,27 @@
             this.PreviewPanel.Size = new System.Drawing.Size(640, 96);
             this.PreviewPanel.TabIndex = 0;
             // 
-            // LevelAuthor
+            // FileSize
             // 
-            this.LevelAuthor.AutoSize = true;
-            this.LevelAuthor.Depth = 0;
-            this.LevelAuthor.Font = new System.Drawing.Font("Roboto", 14F);
-            this.LevelAuthor.FontSize = 14;
-            this.LevelAuthor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LevelAuthor.FormLabel = false;
-            this.LevelAuthor.Location = new System.Drawing.Point(164, 38);
-            this.LevelAuthor.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.LevelAuthor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LevelAuthor.Name = "LevelAuthor";
-            this.LevelAuthor.Size = new System.Drawing.Size(91, 24);
-            this.LevelAuthor.TabIndex = 2;
-            this.LevelAuthor.Text = "By Author";
+            this.FileSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FileSize.Depth = 0;
+            this.FileSize.Font = new System.Drawing.Font("Roboto", 14F);
+            this.FileSize.FontSize = 14;
+            this.FileSize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.FileSize.FormLabel = false;
+            this.FileSize.Location = new System.Drawing.Point(164, 38);
+            this.FileSize.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.FileSize.MouseState = MaterialSkin.MouseState.HOVER;
+            this.FileSize.Name = "FileSize";
+            this.FileSize.Size = new System.Drawing.Size(468, 24);
+            this.FileSize.TabIndex = 2;
+            this.FileSize.Text = "0 Kb";
             // 
             // LevelName
             // 
-            this.LevelName.AutoSize = true;
+            this.LevelName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LevelName.Depth = 0;
             this.LevelName.Font = new System.Drawing.Font("Roboto", 18F);
             this.LevelName.FontSize = 18;
@@ -135,7 +137,7 @@
             this.LevelName.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.LevelName.MouseState = MaterialSkin.MouseState.HOVER;
             this.LevelName.Name = "LevelName";
-            this.LevelName.Size = new System.Drawing.Size(136, 29);
+            this.LevelName.Size = new System.Drawing.Size(469, 29);
             this.LevelName.TabIndex = 1;
             this.LevelName.Text = "Level name";
             // 
@@ -175,7 +177,6 @@
             this.MainPanel.ResumeLayout(false);
             this.ListPanel.ResumeLayout(false);
             this.PreviewPanel.ResumeLayout(false);
-            this.PreviewPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Thumbnail)).EndInit();
             this.ResumeLayout(false);
 
@@ -187,9 +188,9 @@
         private MaterialSkin.Controls.MaterialPanel PreviewPanel;
         private System.Windows.Forms.PictureBox Thumbnail;
         private MaterialSkin.Controls.MaterialLabel LevelName;
-        private MaterialSkin.Controls.MaterialLabel LevelAuthor;
         private MaterialSkin.Controls.MaterialPanel ListPanel;
         private MaterialSkin.Controls.MaterialListBox Levels;
         private MaterialSkin.Controls.MaterialDivider Divider;
+        private MaterialSkin.Controls.MaterialLabel FileSize;
     }
 }
