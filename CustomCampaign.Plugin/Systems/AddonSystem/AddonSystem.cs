@@ -1,11 +1,10 @@
-﻿using CustomCampaign.Data;
+﻿#pragma warning disable IDE0044, CA1031
+using CustomCampaign.Data;
 using CustomCampaign.Models;
 using CustomCampaign.Storage;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-
-#pragma warning disable IDE0044
 
 namespace CustomCampaign.Systems
 {
@@ -25,14 +24,19 @@ namespace CustomCampaign.Systems
         {
             Plugin.Log.Warning($"Registering campaign {campaign.Name}");
 
-            if (campaign.Addons.Count < 1) return;
+            if (campaign.Addons.Count < 1)
+            {
+                return;
+            }
 
             Plugin.Log.Info($"This campaign has {campaign.Addons.Count} addon{(campaign.Addons.Count > 1 ? "s" : "")}");
             foreach (var addon in campaign.Addons)
+            {
                 Plugin.Log.Info($"{addon.name}");
+            }
 
             var modules = new List<string>();
-            var requisites = new List<string>(); 
+            var requisites = new List<string>();
             var dependencies = new List<string>();
 
             foreach (var addon in campaign.Addons)
@@ -55,13 +59,20 @@ namespace CustomCampaign.Systems
             FillList(campaign, requisites, Requisites);
             FillList(campaign, dependencies, Dependencies);
         }
+
         private static void FillList(CampaignInfo campaign, List<string> source, Dictionary<string, string> dest)
         {
             foreach (var item in source)
+            {
                 if (!dest.ContainsKey(item))
+                {
                     dest.Add(item, campaign.Id);
+                }
+            }
         }
+
         private static void AddAssembly(Assembly assembly, string id) => Assemblies.Add(ObjectWithGUID<Assembly>.Create(assembly), id);
+
         internal static void LoadAddons()
         {
             LoadAddons(Dependencies);
@@ -70,6 +81,7 @@ namespace CustomCampaign.Systems
 
             InitializeAddons();
         }
+
         private static void LoadAddons(Dictionary<string, string> files)
         {
             foreach (var item in files)
@@ -83,7 +95,7 @@ namespace CustomCampaign.Systems
                 }
                 catch (Exception e)
                 {
-                    if (info != null && info.Enabled)
+                    if (info?.Enabled == true)
                     {
                         Plugin.Log.Error($"Couldn't load target module assembly \"{item.Key}\" for campaign \"{info.Name}\". The exception has been logged and the campaign has been disabled.");
                         Plugin.Log.Exception(e);
@@ -96,15 +108,24 @@ namespace CustomCampaign.Systems
             {
                 CampaignInfo info = Util.GetCampaignByGuid(item.Value);
                 if (info.Enabled)
+                {
                     LoadAddons(item.Key, item.Value);
+                }
             }
         }
+
         private static void LoadAddons(Assembly assembly, string id)
         {
-            foreach(var type in assembly.GetExportedTypes())
+            foreach (var type in assembly.GetExportedTypes())
+            {
                 if (type.IsSubclassOf(typeof(Api.Addon)))
+                {
                     if (Activator.CreateInstance(type) is Api.Addon addon)
+                    {
                         Addons.Add(ObjectWithGUID<Api.Addon>.Create(addon), id);
+                    }
+                }
+            }
         }
     }
 }

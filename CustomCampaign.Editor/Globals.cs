@@ -81,7 +81,6 @@ namespace CustomCampaign.Editor
             File.Copy(import_bytes.FullName, import_path);
             File.Copy(import_thumbnail.FullName, $"{import_path}.png");
 
-
             return true;
         }
 
