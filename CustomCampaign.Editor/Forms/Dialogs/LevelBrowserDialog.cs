@@ -34,7 +34,7 @@ namespace CustomCampaign.Editor.Forms.Dialogs
                 {
                     if (!Globals.ImportLevel(dlg.FileName, out string error))
                     {
-                        MessageDialog.Show(error, "Import a level");
+                        MessageDialog.Show(error, "Error");
                     }
                     ProjectBrowser.RefreshList();
                 }

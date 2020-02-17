@@ -31,13 +31,13 @@
             this.TabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.ProjectTab = new System.Windows.Forms.TabPage();
-            this.ProjectBrowser = new CustomCampaign.Editor.Controls.LevelBrowser();
             this.BottomActions = new MaterialSkin.Controls.MaterialPanel();
             this.SelectBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.ImportBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.CancelBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.ActionsDivider = new MaterialSkin.Controls.MaterialDivider();
             this.RefreshBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.ProjectBrowser = new CustomCampaign.Editor.Controls.LevelBrowser();
             this.TabControl.SuspendLayout();
             this.ProjectTab.SuspendLayout();
             this.BottomActions.SuspendLayout();
@@ -76,16 +76,6 @@
             this.ProjectTab.TabIndex = 0;
             this.ProjectTab.Text = "Project Resources";
             this.ProjectTab.UseVisualStyleBackColor = true;
-            // 
-            // ProjectBrowser
-            // 
-            this.ProjectBrowser.Depth = 0;
-            this.ProjectBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProjectBrowser.Location = new System.Drawing.Point(0, 0);
-            this.ProjectBrowser.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ProjectBrowser.Name = "ProjectBrowser";
-            this.ProjectBrowser.Size = new System.Drawing.Size(835, 272);
-            this.ProjectBrowser.TabIndex = 0;
             // 
             // BottomActions
             // 
@@ -134,7 +124,6 @@
             this.ImportBtn.TabIndex = 2;
             this.ImportBtn.Text = "Import from file";
             this.ImportBtn.UseVisualStyleBackColor = true;
-            this.ImportBtn.Visible = false;
             this.ImportBtn.Click += new System.EventHandler(this.ImportBtn_Click);
             // 
             // CancelBtn
@@ -187,6 +176,16 @@
             this.RefreshBtn.Text = "Refresh";
             this.RefreshBtn.UseVisualStyleBackColor = true;
             this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
+            // 
+            // ProjectBrowser
+            // 
+            this.ProjectBrowser.Depth = 0;
+            this.ProjectBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProjectBrowser.Location = new System.Drawing.Point(0, 0);
+            this.ProjectBrowser.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ProjectBrowser.Name = "ProjectBrowser";
+            this.ProjectBrowser.Size = new System.Drawing.Size(835, 272);
+            this.ProjectBrowser.TabIndex = 0;
             // 
             // LevelBrowserDialog
             // 

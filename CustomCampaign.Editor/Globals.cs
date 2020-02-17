@@ -64,20 +64,23 @@ namespace CustomCampaign.Editor
 
             if (!import_thumbnail.Exists)
             {
-                error = "The selected file didn't have a thumbnail.";
+                error = $"The selected file didn't have a thumbnail.\n\"{import_thumbnail.FullName}\" couldn't be found!";
                 return false;
             }
 
-            var file_name = Guid.NewGuid().ToString("N");
+            var file_name = $"{Guid.NewGuid().ToString("N")}/{import_bytes.Name}";
 
-            var import_dir = new DirectoryInfo(Path.Combine(Editor.current_path, "levels/imported/"));
+            var import_dir = new FileInfo(Path.Combine(Editor.current_path, "levels/imported/", file_name)).Directory;
             if (!import_dir.Exists)
+            {
                 import_dir.Create();
+            }
 
-            var import_path = Path.Combine(import_dir.FullName, $"{file_name}.bytes");
+            var import_path = Path.Combine(import_dir.FullName, $"{import_bytes.Name}");
 
             File.Copy(import_bytes.FullName, import_path);
             File.Copy(import_thumbnail.FullName, $"{import_path}.png");
+
 
             return true;
         }
