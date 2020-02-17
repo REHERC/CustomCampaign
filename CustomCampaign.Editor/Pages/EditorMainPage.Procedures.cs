@@ -206,8 +206,13 @@ namespace CustomCampaign.Editor.Pages
 
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup((Level)Levels.Items[index], "Edit a level", true);
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
-                if (result == DialogResult.OK)
+                MessageDialog.Show(result.ToString());
+
+                if (result is DialogResult.OK)
+                {
+                    MessageDialog.Show(data.levelname);
                     Levels.Items[index] = data;
+                }
                 Globals.MainWindow.SetPage("pages:editormain");
                 Levels_SelectedIndexChanged(Levels, EventArgs.Empty);
                 UpdateOverviewList();

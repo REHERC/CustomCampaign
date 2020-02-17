@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Editor.Forms;
+﻿#pragma warning disable RCS1163
+using CustomCampaign.Editor.Forms;
 using CustomCampaign.Editor.Forms.Dialogs;
 using CustomCampaign.Models;
 using System;
@@ -10,7 +11,7 @@ namespace CustomCampaign.Editor.Pages
 {
     public partial class EditLevelPage : Classes.Page
     {
-        private bool editing = false;
+        private bool editing;
 
         public EditLevelPage()
         {
@@ -21,8 +22,19 @@ namespace CustomCampaign.Editor.Pages
         {
             editing = editflag;
 
-            data = level;
+            //data = level;
+            data = new Level();
+
             PageTitle = title;
+
+            data.file = level.file;
+            data.display_intro_title = level.display_intro_title;
+            data.levelname = level.levelname;
+            data.levelname_sub = level.levelname_sub;
+            data.loading_wallpaper = level.loading_wallpaper;
+            data.overwrite_loading_text = level.overwrite_loading_text;
+            data.loading_text = level.loading_text;
+            data.hide_in_sprint = level.hide_in_sprint;
 
             LevelFile.Text = data.file;
             DisplayIntro.Checked = data.display_intro_title;
@@ -36,7 +48,7 @@ namespace CustomCampaign.Editor.Pages
 
         private Level data = new Level();
 
-        public Action<DialogResult, Level> PageClosed = (_, __) => { };
+        public Action<DialogResult, Level> PageClosed = (result, data) => { };
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
@@ -85,7 +97,7 @@ namespace CustomCampaign.Editor.Pages
                 return false;
             }
 
-            valid &= !Editor.current_campaign.levels.Select((level) => level.file.ToLower()).Contains(LevelFile.Text.ToLower());
+            valid &= (editing || !Editor.current_campaign.levels.Select((level) => level.file.ToLower()).Contains(LevelFile.Text.ToLower()));
 
             if (!valid)
             {
@@ -98,7 +110,7 @@ namespace CustomCampaign.Editor.Pages
 
         private void LocateLevel_Click(object sender, EventArgs e)
         {
-            using (LevelBrowserDialog dlg = new LevelBrowserDialog())
+            using (LevelBrowserDialog dlg = new LevelBrowserDialog(LevelFile.Text))
             {
                 DialogResult result = dlg.ShowDialog();
             }

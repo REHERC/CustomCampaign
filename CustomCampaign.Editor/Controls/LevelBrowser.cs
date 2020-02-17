@@ -1,4 +1,5 @@
 ﻿#pragma warning disable SecurityIntelliSenseCS
+using CustomCampaign.Editor.Forms;
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -15,11 +16,18 @@ namespace CustomCampaign.Editor.Controls
             InitializeComponent();
         }
 
-        public void RefreshList()
+        public void RefreshList(bool reset_index = true)
         {
             Levels.Items.Clear();
+            {
                 AddRecursive(Editor.current_path);
-            Levels.SelectedIndex = -1;
+            }
+
+            if (reset_index)
+            {
+                Levels.SelectedIndex = -1;
+                Levels_SelectedIndexChanged(Levels, EventArgs.Empty);
+            }
         }
 
         public void AddRecursive(string folder, int step = 16)
@@ -70,15 +78,19 @@ namespace CustomCampaign.Editor.Controls
             FileSize.Text = size;
         }
 
-        public void SetSelection(string selected)
+        public void SetSelection(string value)
         {
-            foreach(string level in Levels.Items )
+            string selected = value.Replace('/','\\').ToLower();
+            foreach (var level in Levels.Items)
             {
                 int index = Levels.Items.IndexOf(level);
-                string file = Levels.Items[index].ToString();
-                if (string.Equals(file, selected, StringComparison.OrdinalIgnoreCase))
+                string file = level.ToString();
+
+                if (string.Equals(file, selected, StringComparison.InvariantCultureIgnoreCase))
                 {
                     Levels.SelectedIndex = index;
+                    Levels.SelectedItem = level;
+
                     return;
                 }
             }
@@ -96,10 +108,10 @@ namespace CustomCampaign.Editor.Controls
 
         private void LevelBrowser_Load(object sender, EventArgs e)
         {
-            if (!DesignMode)
+            /*if (!DesignMode)
             {
-                RefreshList();
-            }
+                RefreshList(false);
+            }*/
         }
     }
 }

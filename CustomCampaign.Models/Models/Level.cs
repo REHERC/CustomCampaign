@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿#pragma warning disable SecurityIntelliSenseCS
+using System.Drawing;
 using System.IO;
 
 namespace CustomCampaign.Models

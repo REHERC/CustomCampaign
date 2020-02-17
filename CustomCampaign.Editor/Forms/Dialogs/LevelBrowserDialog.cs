@@ -6,9 +6,14 @@ namespace CustomCampaign.Editor.Forms.Dialogs
 {
     public partial class LevelBrowserDialog : MaterialSkin.Controls.MaterialForm
     {
-        public LevelBrowserDialog()
+        public string filename = string.Empty;
+
+        public LevelBrowserDialog(string file)
         {
             InitializeComponent();
+            filename = file;
+            ProjectBrowser.RefreshList();
+            ProjectBrowser.SetSelection(filename);
         }
 
         private void ImportBtn_Click(object sender, EventArgs e)
