@@ -1,10 +1,9 @@
-﻿using System;
+﻿#pragma warning disable IDE0059, IDE0067, CA1034, CA1031, RCS1096
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-
-#pragma warning disable IDE0059, IDE0067
 
 namespace MaterialSkin.Controls
 {
@@ -12,12 +11,16 @@ namespace MaterialSkin.Controls
     {
         [Browsable(false)]
         public int Depth { get; set; }
+
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
+
         [Browsable(false)]
         public MouseState MouseState { get; set; }
+
         [Browsable(false)]
         public Point MouseLocation { get; set; }
+
         [Browsable(false)]
         private ListViewItem HoveredItem { get; set; }
 
@@ -42,7 +45,7 @@ namespace MaterialSkin.Controls
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer, true);
 
             //Fix for hovers, by default it doesn't redraw
-            //TODO: should only redraw when the hovered line changed, this to reduce unnecessary redraws
+            //-TODO: should only redraw when the hovered line changed, this to reduce unnecessary redraws
             MouseLocation = new Point(-1, -1);
             MouseState = MouseState.OUT;
             MouseEnter += delegate
@@ -58,7 +61,7 @@ namespace MaterialSkin.Controls
             };
             MouseDown += delegate { MouseState = MouseState.DOWN; };
             MouseUp += delegate { MouseState = MouseState.HOVER; };
-            MouseMove += delegate (object sender, MouseEventArgs args)
+            MouseMove += (object sender, MouseEventArgs args) =>
             {
                 MouseLocation = args.Location;
                 var currentHoveredItem = this.GetItemAt(MouseLocation.X, MouseLocation.Y);
@@ -76,11 +79,12 @@ namespace MaterialSkin.Controls
             e.Graphics.DrawString(e.Header.Text,
                 SkinManager.ROBOTO_MEDIUM_10,
                 SkinManager.GetSecondaryTextBrush(),
-                new Rectangle(e.Bounds.X + ITEM_PADDING, e.Bounds.Y + ITEM_PADDING, e.Bounds.Width - ITEM_PADDING * 2, e.Bounds.Height - ITEM_PADDING * 2),
+                new Rectangle(e.Bounds.X + ITEM_PADDING, e.Bounds.Y + ITEM_PADDING, e.Bounds.Width - (ITEM_PADDING * 2), e.Bounds.Height - (ITEM_PADDING * 2)),
                 GetStringFormat());
         }
 
         private const int ITEM_PADDING = 12;
+
         protected override void OnDrawItem(DrawListViewItemEventArgs e)
         {
             //We draw the current line of items (= item with subitems) on a temp bitmap, then draw the bitmap at once. This is to reduce flickering.
@@ -101,7 +105,6 @@ namespace MaterialSkin.Controls
                 g.FillRectangle(SkinManager.GetFlatButtonHoverBackgroundBrush(), new Rectangle(new Point(e.Bounds.X, 0), e.Bounds.Size));
             }
 
-
             //Draw separator
             g.DrawLine(new Pen(SkinManager.GetDividersColor()), e.Bounds.Left, 0, e.Bounds.Right, 0);
 
@@ -109,7 +112,7 @@ namespace MaterialSkin.Controls
             {
                 //Draw text
                 g.DrawString(subItem.Text, SkinManager.ROBOTO_MEDIUM_10, SkinManager.GetPrimaryTextBrush(),
-                                 new Rectangle(subItem.Bounds.X + ITEM_PADDING, ITEM_PADDING, subItem.Bounds.Width - 2 * ITEM_PADDING, subItem.Bounds.Height - 2 * ITEM_PADDING),
+                                 new Rectangle(subItem.Bounds.X + ITEM_PADDING, ITEM_PADDING, subItem.Bounds.Width - (2 * ITEM_PADDING), subItem.Bounds.Height - (2 * ITEM_PADDING)),
                                  GetStringFormat());
             }
 
@@ -145,6 +148,7 @@ namespace MaterialSkin.Controls
             public byte lfClipPrecision = 0;
             public byte lfQuality = 0;
             public byte lfPitchAndFamily = 0;
+
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
             public string lfFaceName = string.Empty;
         }
