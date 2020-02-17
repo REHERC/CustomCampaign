@@ -33,7 +33,9 @@ namespace CustomCampaign.Editor.Forms.Dialogs
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     if (!Globals.ImportLevel(dlg.FileName, out string error))
+                    {
                         MessageDialog.Show(error, "Import a level");
+                    }
                     ProjectBrowser.RefreshList();
                 }
             }
@@ -42,6 +44,29 @@ namespace CustomCampaign.Editor.Forms.Dialogs
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
             ProjectBrowser.RefreshList();
+        }
+
+        private void LevelBrowserDialog_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageDialog.Show(ProjectBrowser.GetSelection());
+        }
+
+        private void SelectBtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ProjectBrowser.GetSelection()))
+            {
+                MessageDialog.Show("You must select a level to continue.", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+            filename = ProjectBrowser.GetSelection();
+
+            Close(DialogResult.OK);
+        }
+
+        private void CancelBtn_Click(object sender, EventArgs e)
+        {
+            Close(DialogResult.Cancel);
         }
     }
 }

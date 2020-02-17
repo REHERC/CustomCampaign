@@ -7,19 +7,19 @@ namespace CustomCampaign.Editor.Forms.Dialogs
     public partial class InputDialog : MaterialSkin.Controls.MaterialForm
     {
         [DllImport("user32")]
-        static new extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
-        [DllImport("user32")]
-        static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
+        private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
 
-        const int MF_BYCOMMAND = 0;
-        const int MF_DISABLED = 2;
-        const int SC_CLOSE = 0xF060;
+        [DllImport("user32")]
+        private static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
+
+        private const int MF_BYCOMMAND = 0;
+        private const int MF_DISABLED = 2;
+        private const int SC_CLOSE = 0xF060;
 
         public InputDialog()
         {
             InitializeComponent();
             EnableMenuItem(GetSystemMenu(Handle, false), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED);
-
         }
 
         private void SubmitBtn_Click(object sender, EventArgs e)

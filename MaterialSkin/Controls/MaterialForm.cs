@@ -11,16 +11,27 @@ namespace MaterialSkin.Controls
 {
     public class MaterialForm : Form, IMaterialControl
     {
+        public void Close(DialogResult result)
+        {
+            DialogResult = result;
+            Close();
+        }
+
         [Browsable(false)]
         public int Depth { get; set; }
+
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
+
         [Browsable(false)]
         public MouseState MouseState { get; set; }
+
         public new FormBorderStyle FormBorderStyle { get { return base.FormBorderStyle; } set { base.FormBorderStyle = value; } }
+
         public bool Sizable { get; set; }
 
         private bool _header = true;
+
         public bool Header {
             get => _header;
             set {
@@ -30,6 +41,7 @@ namespace MaterialSkin.Controls
         }
 
         private string _title = "";
+
         [Category("Appearance")]
         public string Title
         {
@@ -42,6 +54,7 @@ namespace MaterialSkin.Controls
         }
 
         private bool _bar = true;
+
         public bool Bar
         {
             get => _bar;
@@ -53,25 +66,25 @@ namespace MaterialSkin.Controls
         }
 
         [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
         [DllImport("user32.dll")]
-        public static extern IntPtr SendMessage(IntPtr hwnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        private static extern IntPtr SendMessage(IntPtr hwnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
+        private static extern bool ReleaseCapture();
 
         [DllImport("user32.dll")]
-        public static extern int TrackPopupMenuEx(IntPtr hmenu, uint fuFlags, int x, int y, IntPtr hwnd, IntPtr lptpm);
+        private static extern int TrackPopupMenuEx(IntPtr hmenu, uint fuFlags, int x, int y, IntPtr hwnd, IntPtr lptpm);
 
         [DllImport("user32.dll")]
-        public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+        private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
 
         [DllImport("user32.dll")]
-        public static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
+        private static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
 
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
-        public static extern bool GetMonitorInfo(HandleRef hmonitor, [In, Out] MONITORINFOEX info);
+        private static extern bool GetMonitorInfo(HandleRef hmonitor, [In, Out] MONITORINFOEX info);
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -127,18 +140,19 @@ namespace MaterialSkin.Controls
         private const int MONITOR_DEFAULTTONEAREST = 2;
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto, Pack = 4)]
-        public class MONITORINFOEX
+        internal class MONITORINFOEX
         {
             public int cbSize = Marshal.SizeOf(typeof(MONITORINFOEX));
             public RECT rcMonitor = new RECT();
             public RECT rcWork = new RECT();
             public int dwFlags = 0;
+
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
             public char[] szDevice = new char[32];
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
+        internal struct RECT
         {
             public int left;
             public int top;
@@ -222,13 +236,17 @@ namespace MaterialSkin.Controls
 
                     var mousePoint = PointToClient(Cursor.Position);
                     if (mousePoint.X < Width / 2)
+                    {
                         Location = mousePoint.X < _previousSize.Width / 2 ?
                             new Point(Cursor.Position.X - mousePoint.X, Cursor.Position.Y - mousePoint.Y) :
-                            new Point(Cursor.Position.X - _previousSize.Width / 2, Cursor.Position.Y - mousePoint.Y);
+                            new Point(Cursor.Position.X - (_previousSize.Width / 2), Cursor.Position.Y - mousePoint.Y);
+                    }
                     else
+                    {
                         Location = Width - mousePoint.X < _previousSize.Width / 2 ?
                             new Point(Cursor.Position.X - _previousSize.Width + Width - mousePoint.X, Cursor.Position.Y - mousePoint.Y) :
-                            new Point(Cursor.Position.X - _previousSize.Width / 2, Cursor.Position.Y - mousePoint.Y);
+                            new Point(Cursor.Position.X - (_previousSize.Width / 2), Cursor.Position.Y - mousePoint.Y);
+                    }
 
                     Size = _previousSize;
                     ReleaseCapture();
@@ -300,18 +318,26 @@ namespace MaterialSkin.Controls
         {
             base.OnMouseDown(e);
 
-            if (DesignMode || !Bar) return;
+            if (DesignMode || !Bar)
+            {
+                return;
+            }
+
             UpdateButtons(e);
 
             if (e.Button == MouseButtons.Left && !_maximized)
+            {
                 ResizeForm(_resizeDir);
-            
+            }
         }
 
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
-            if (DesignMode || !Bar) return;
+            if (DesignMode || !Bar)
+            {
+                return;
+            }
             _buttonState = ButtonState.None;
             Invalidate();
         }
@@ -320,7 +346,10 @@ namespace MaterialSkin.Controls
         {
             base.OnMouseMove(e);
 
-            if (DesignMode || !Bar) return;
+            if (DesignMode || !Bar)
+            {
+                return;
+            }
 
             if (Sizable)
             {
@@ -418,7 +447,6 @@ namespace MaterialSkin.Controls
 
                     if (oldState == ButtonState.MaxDown && up)
                         MaximizeWindow(!_maximized);
-
                 }
                 else if (Bar && ControlBox && _xButtonBounds.Contains(e.Location))
                 {
@@ -427,15 +455,24 @@ namespace MaterialSkin.Controls
                     if (oldState == ButtonState.XDown && up)
                         Close();
                 }
-                else _buttonState = ButtonState.None;
+                else
+                {
+                    _buttonState = ButtonState.None;
+                }
             }
 
-            if (oldState != _buttonState) Invalidate();
+            if (oldState != _buttonState)
+            {
+                Invalidate();
+            }
         }
 
         private void MaximizeWindow(bool maximize)
         {
-            if (!MaximizeBox || !ControlBox || !Bar) return;
+            if (!MaximizeBox || !ControlBox || !Bar)
+            {
+                return;
+            }
 
             _maximized = maximize;
 
@@ -454,12 +491,14 @@ namespace MaterialSkin.Controls
                 Size = _previousSize;
                 Location = _previousLocation;
             }
-
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            if (DesignMode || !Bar) return;
+            if (DesignMode || !Bar)
+            {
+                return;
+            }
             UpdateButtons(e, true);
 
             base.OnMouseUp(e);
@@ -468,7 +507,10 @@ namespace MaterialSkin.Controls
 
         private void ResizeForm(ResizeDirection direction)
         {
-            if (DesignMode || !Bar) return;
+            if (DesignMode || !Bar)
+            {
+                return;
+            }
             var dir = -1;
             switch (direction)
             {
@@ -505,9 +547,9 @@ namespace MaterialSkin.Controls
 
         protected void RecalculateBounds()
         {
-            _minButtonBounds = new Rectangle((Width - SkinManager.FORM_PADDING / 2) - 3 * STATUS_BAR_BUTTON_WIDTH, 0, STATUS_BAR_BUTTON_WIDTH, STATUS_BAR_HEIGHT);
-            _maxButtonBounds = new Rectangle((Width - SkinManager.FORM_PADDING / 2) - 2 * STATUS_BAR_BUTTON_WIDTH, 0, STATUS_BAR_BUTTON_WIDTH, STATUS_BAR_HEIGHT);
-            _xButtonBounds = new Rectangle((Width - SkinManager.FORM_PADDING / 2) - STATUS_BAR_BUTTON_WIDTH, 0, STATUS_BAR_BUTTON_WIDTH, STATUS_BAR_HEIGHT);
+            _minButtonBounds = new Rectangle(Width - (SkinManager.FORM_PADDING / 2) - (3 * STATUS_BAR_BUTTON_WIDTH), 0, STATUS_BAR_BUTTON_WIDTH, STATUS_BAR_HEIGHT);
+            _maxButtonBounds = new Rectangle(Width - (SkinManager.FORM_PADDING / 2) - (2 * STATUS_BAR_BUTTON_WIDTH), 0, STATUS_BAR_BUTTON_WIDTH, STATUS_BAR_HEIGHT);
+            _xButtonBounds = new Rectangle(Width - (SkinManager.FORM_PADDING / 2) - STATUS_BAR_BUTTON_WIDTH, 0, STATUS_BAR_BUTTON_WIDTH, STATUS_BAR_HEIGHT);
             _statusBarBounds = new Rectangle(0, 0, Width, STATUS_BAR_HEIGHT);
             _actionBarBounds = new Rectangle(0, Bar ? STATUS_BAR_HEIGHT : 0, Width, ACTION_BAR_HEIGHT);
         }
@@ -623,19 +665,15 @@ namespace MaterialSkin.Controls
     {
         private const int WM_MOUSEMOVE = 0x0200;
 
-        public static event MouseEventHandler MouseMove;
+        public static event EventHandler<MouseEventArgs> MouseMove;
 
         public bool PreFilterMessage(ref Message m)
         {
-
-            if (m.Msg == WM_MOUSEMOVE)
+            if (m.Msg == WM_MOUSEMOVE && MouseMove != null)
             {
-                if (MouseMove != null)
-                {
-                    int x = Control.MousePosition.X, y = Control.MousePosition.Y;
+                int x = Control.MousePosition.X, y = Control.MousePosition.Y;
 
-                    MouseMove(null, new MouseEventArgs(MouseButtons.None, 0, x, y, 0));
-                }
+                MouseMove(null, new MouseEventArgs(MouseButtons.None, 0, x, y, 0));
             }
             return false;
         }

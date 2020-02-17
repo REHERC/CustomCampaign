@@ -108,10 +108,10 @@ namespace CustomCampaign.Editor.Controls
 
         private void LevelBrowser_Load(object sender, EventArgs e)
         {
-            /*if (!DesignMode)
-            {
-                RefreshList(false);
-            }*/
+            //if (!DesignMode)
+            //{
+            //    RefreshList(false);
+            //}
         }
     }
 }

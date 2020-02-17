@@ -1,9 +1,10 @@
-﻿#pragma warning disable RCS1163
+﻿#pragma warning disable SecurityIntelliSenseCS, RCS1163
 using CustomCampaign.Editor.Forms;
 using CustomCampaign.Editor.Forms.Dialogs;
 using CustomCampaign.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace CustomCampaign.Editor.Pages
     public partial class EditLevelPage : Classes.Page
     {
         private bool editing;
+        private string filename;
 
         public EditLevelPage()
         {
@@ -26,6 +28,8 @@ namespace CustomCampaign.Editor.Pages
             data = new Level();
 
             PageTitle = title;
+
+            filename = FileFullPath(level.file);
 
             data.file = level.file;
             data.display_intro_title = level.display_intro_title;
@@ -97,7 +101,7 @@ namespace CustomCampaign.Editor.Pages
                 return false;
             }
 
-            valid &= (editing || !Editor.current_campaign.levels.Select((level) => level.file.ToLower()).Contains(LevelFile.Text.ToLower()));
+            valid &= (editing && string.Equals(filename, FileFullPath(LevelFile.Text), StringComparison.InvariantCultureIgnoreCase)) || CheckFileDuplicates() == 0;
 
             if (!valid)
             {
@@ -108,11 +112,39 @@ namespace CustomCampaign.Editor.Pages
             return valid;
         }
 
+        private int CheckFileDuplicates()
+        {
+            string current = FileFullPath(LevelFile.Text);
+            Dictionary<string, int> occurences = new Dictionary<string, int>()
+            {
+                {current,0}
+            };
+            foreach (Level level in Editor.current_campaign.levels)
+            {
+                string item = FileFullPath(level.file);
+
+                if (!occurences.ContainsKey(item))
+                {
+                    occurences.Add(item, 0);
+                }
+                occurences[item] ++;
+            }
+            return occurences[current];
+        }
+
+        private string FileFullPath(string file)
+        {
+            return Path.GetFullPath(Path.Combine(Editor.current_path, file.Replace('\\', '/'))).ToLower();
+        }
+
         private void LocateLevel_Click(object sender, EventArgs e)
         {
             using (LevelBrowserDialog dlg = new LevelBrowserDialog(LevelFile.Text))
             {
-                DialogResult result = dlg.ShowDialog();
+                if (dlg.ShowDialog() is DialogResult.OK)
+                {
+                    LevelFile.Text = dlg.filename;
+                }
             }
         }
     }

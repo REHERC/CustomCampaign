@@ -8,7 +8,7 @@ namespace CustomCampaign.Editor.Forms
     public partial class MessageDialog : MaterialSkin.Controls.MaterialForm
     {
         [DllImport("user32")]
-        private static new extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+        private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
 
         [DllImport("user32")]
         private static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
