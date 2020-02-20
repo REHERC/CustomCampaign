@@ -1,12 +1,6 @@
 ﻿using CustomCampaign.Api;
 using CustomCampaign.Data;
 using System;
-#if API_SPECTRUM
-using Spectrum.API.Logging;
-#endif
-#if API_CENTRIFUGE
-using Reactor.API.Logging;
-#endif
 
 namespace CustomCampaign.SampleAddon
 {
@@ -15,7 +9,6 @@ namespace CustomCampaign.SampleAddon
         public override void OnInit(CampaignInfo info)
         {
             Console.WriteLine($"Hello World from {info.Name}");
-
             Console.WriteLine($"{Info.Name} - OnInit");
         }
 
