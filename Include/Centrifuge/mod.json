@@ -6,7 +6,9 @@
   "Priority": 10,
   "Dependencies": [
     "CustomCampaign.Models.dll",
-    "UnityEngine.dll"
+    "UnityEngine.dll",
+    "0Harmony.dll",
+    "SharpCompress.dll"
   ],
   "SkipLoad": false
 }

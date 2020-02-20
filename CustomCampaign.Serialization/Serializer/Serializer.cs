@@ -6,8 +6,7 @@ namespace Photon.Serialization
 {
     public class Serializer<DATA_TYPE> : ICloneable where DATA_TYPE : class, new()
     {
-        private readonly string FilePath;
-        public string FileName => FilePath;
+        public string FileName { get; }
         public DATA_TYPE Data;
         private readonly ISerializer<DATA_TYPE> DataSerializer;
 
@@ -49,27 +48,31 @@ namespace Photon.Serialization
             if (!AbsolutePath)
             {
                 string StartPath = AppDomain.CurrentDomain.BaseDirectory;
-                FilePath = $@"{StartPath}\{FileName}.{Type.ToString().ToLowerInvariant()}";
+                this.FileName = $@"{StartPath}\{FileName}.{Type.ToString().ToLowerInvariant()}";
             }
             else
             {
-                FilePath = FileName;
+                this.FileName = FileName;
             }
 
             if (LoadOnCtor)
+            {
                 Load();
+            }
             else
+            {
                 Data = new DATA_TYPE();
+            }
         }
 
         public void Save()
         {
-            DataSerializer.Serialize(Data, FilePath);
+            DataSerializer.Serialize(Data, FileName);
         }
 
         public void Load()
         {
-            Data = DataSerializer.Deserialize(FilePath, false);
+            Data = DataSerializer.Deserialize(FileName, false);
         }
 
         public object Clone()

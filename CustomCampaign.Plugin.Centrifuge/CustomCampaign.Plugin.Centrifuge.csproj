@@ -53,11 +53,14 @@
     <Reference Include="Assembly-CSharp.dev">
       <HintPath>..\Referenced Assemblies\Assembly-CSharp.dev.dll</HintPath>
     </Reference>
-    <Reference Include="LitJSON, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LitJson.0.15.0\lib\net35\LitJSON.dll</HintPath>
+    <Reference Include="LitJSON, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.16.0\lib\net35\LitJSON.dll</HintPath>
     </Reference>
     <Reference Include="Reactor.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Centrifuge.Mod.SDK.2.2.0\lib\net35\Reactor.API.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.24.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.24.0\lib\net35\SharpCompress.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -106,6 +109,7 @@ CALL :COPY "%25INCLUDE%25\Centrifuge\mod.json" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25CustomCampaign.dll" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25CustomCampaign.Models.dll" "%25PACKAGES%25\Dependencies"
 CALL :COPY "%25BUILD%25UnityEngine.dll" "%25PACKAGES%25\Dependencies"
+CALL :COPY "%25BUILD%25SharpCompress.dll" "%25PACKAGES%25\Dependencies"
 
 EXIT 0
 

@@ -1,8 +1,6 @@
-﻿#pragma warning disable IDE0060, RCS1163
+﻿#pragma warning disable IDE0060, RCS1163, CA1822, CA1031
 using System;
-using System.Reflection;
 using CustomCampaign.Storage;
-using Harmony;
 using Reactor.API.Attributes;
 using Reactor.API.Interfaces.Systems;
 using Reactor.API.Runtime.Patching;
@@ -13,6 +11,7 @@ namespace CustomCampaign
     public class Entry
     {
         public static IManager Manager = null;
+
         public void Initialize(IManager manager)
         {
             Manager = manager;

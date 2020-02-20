@@ -142,6 +142,7 @@ namespace CustomCampaign.Editor.Pages
                         (
                             JsonConvert.SerializeObject(new Manifest()
                             {
+                                guid = campaign.guid,
                                 build = campaign.build,
                                 name = campaign.name,
                                 description = campaign.description,

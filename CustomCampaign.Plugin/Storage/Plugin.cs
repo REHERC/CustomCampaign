@@ -39,6 +39,7 @@ namespace CustomCampaign.Storage
 
         internal static void LoadCampaigns()
         {
+            PreloaderSystem.PrepareCampaigns();
             string campaign_root = Variables.CampaignsDataFolder();
             foreach (var campaign_directory in Directory.GetDirectories(campaign_root))
             {

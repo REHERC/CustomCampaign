@@ -11,7 +11,9 @@ public static class Extensions
     {
         if (!file.Exists) return string.Empty;
         using (var stream = File.OpenRead(file.FullName))
+        {
             return stream.GetMD5();
+        }
     }
 
     public static string GetMD5(this ZipArchiveEntry entry)
@@ -31,13 +33,17 @@ public static class Extensions
     public static void WriteContent(this ZipArchiveEntry entry, string value)
     {
         using (StreamWriter writer = new StreamWriter(entry.Open()))
+        {
             writer.Write(value);
+        }
     }
 
     public static string ReadContent(this ZipArchiveEntry entry)
     {
         using (StreamReader reader = new StreamReader(entry.Open()))
+        {
             return reader.ReadToEnd();
+        }
     }
 
     public static string ToFileSize(this long file_size)

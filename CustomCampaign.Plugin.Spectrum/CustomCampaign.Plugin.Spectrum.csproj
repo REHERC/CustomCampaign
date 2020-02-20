@@ -53,6 +53,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCompress, Version=0.24.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.24.0\lib\net35\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="Spectrum.API">
       <HintPath>..\Referenced Assemblies\Spectrum.API.dll</HintPath>
     </Reference>
@@ -80,6 +83,9 @@
       <Name>CustomCampaign.Models.Spectrum</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="..\CustomCampaign.Plugin\CustomCampaign.Plugin.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Reflection\CustomCampaign.Reflection.projitems" Label="Shared" />
@@ -101,6 +107,7 @@ CALL :COPY "%25BUILD%25CustomCampaign.dll" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25CustomCampaign.Models.dll" "%25PACKAGES%25\Dependencies"
 CALL :COPY "%25BUILD%250Harmony.dll" "%25PACKAGES%25\Dependencies"
 CALL :COPY "%25BUILD%25Newtonsoft.Json.dll" "%25PACKAGES%25\Dependencies"
+CALL :COPY "%25BUILD%25SharpCompress.dll" "%25PACKAGES%25\Dependencies"
 
 EXIT 0
 

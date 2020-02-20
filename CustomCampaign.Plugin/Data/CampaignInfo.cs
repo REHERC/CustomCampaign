@@ -46,7 +46,9 @@ namespace CustomCampaign.Data
 #if !LIMITED_COMPATIBILITY
             string logo_path = Path.Combine(Location, Data.logopath).NormPath(true);
             if (File.Exists(logo_path))
+            {
                 Logo = Util.LoadTexture(logo_path) as Texture2D;
+            }
 #endif
         }
 
@@ -57,7 +59,9 @@ namespace CustomCampaign.Data
             Plugin.Log.Info($"\"{Description}\"");
             Plugin.Log.Info($"Made by:");
             foreach (var author in Authors)
+            {
                 Plugin.Log.Info($"\t  - {author}");
+            }
         }
 
         public LevelSet GetLevelSet(GameModeID gamemode = GameModeID.Nexus, bool sprint = false)
@@ -68,7 +72,10 @@ namespace CustomCampaign.Data
             };
             foreach (var level in Levels)
             {
-                if (sprint && level.hide_in_sprint) continue;
+                if (sprint && level.hide_in_sprint)
+                {
+                    continue;
+                }
 
                 string file = level.file.NormPath(true);
                 set.AddLevel(file, file, LevelType.Official);
@@ -76,6 +83,9 @@ namespace CustomCampaign.Data
             return set;
         }
 
-        public void SetEnabled(bool value) => Enabled = value;
+        public void SetEnabled(bool value)
+        {
+            Enabled = value;
+        }
     }
 }

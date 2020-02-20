@@ -10,7 +10,8 @@
   "Dependencies": [
     "CustomCampaign.Models.dll",
     "Newtonsoft.Json.dll",
-    "0Harmony.dll"
+    "0Harmony.dll",
+    "SharpCompress.dll"
   ],
   "SkipLoad": false
 }

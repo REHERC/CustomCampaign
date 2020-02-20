@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Data;
+﻿#pragma warning disable CS0168, IDE0051, IDE0060, IDE0059
+using CustomCampaign.Data;
 using CustomCampaign.Storage;
 using CustomCampaign.Systems;
 using Harmony;
@@ -9,7 +10,6 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-#pragma warning disable CS0168, IDE0051, IDE0060, IDE0059
 namespace CustomCampaign
 {
     [HarmonyPatch(typeof(LevelGridMenu), "CreateEntries")]
@@ -20,7 +20,10 @@ namespace CustomCampaign
 
         public static void Postfix(LevelGridMenu __instance)
         {
-            if (__instance.DisplayType_ == LevelSelectMenuAbstract.DisplayType.GameLobby) return;
+            if (__instance.DisplayType_ == LevelSelectMenuAbstract.DisplayType.GameLobby)
+            {
+                return;
+            }
 
             LockingSystem.CreateProfile();
             if (__instance.isCampaignMode_)
@@ -60,7 +63,9 @@ namespace CustomCampaign
             foreach (var path in Campaigns.LevelPaths)
             {
                 if (__result.LevelPathsToLevelInfos_.ContainsKey(path))
+                {
                     __result.LevelPathsToLevelInfos_.Remove(path);
+                }
                 __result.LevelPathsToLevelInfos_.Add(path, Util.LevelInfoFromPath(path));
             }
         }
@@ -72,7 +77,9 @@ namespace CustomCampaign
         internal static bool Prefix(ref LevelSetsManager __instance)
         {
             if (!__instance.communityLevelInfos_)
+            {
                 return true;
+            }
             LevelInfos temp = LevelInfos.Create();
             foreach (var level in __instance.communityLevelInfos_.LevelPathsToLevelInfos_)
             {
@@ -235,24 +242,21 @@ namespace CustomCampaign
         public static void Postfix(LevelGridMenu __instance)
         {
             bool flag_campaignmode = __instance.isCampaignMode_;
-            if (flag_campaignmode)
+            if (flag_campaignmode && __instance.isActiveAndEnabled)
             {
-                if (__instance.isActiveAndEnabled)
+                try
                 {
-                    try
+                    LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
+                    string level = playlist.GetLevelSet()[0].levelPath_.NormPath(true);
+                    if (Util.IsCustomCampaignLevel(level))
                     {
-                        LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
-                        string level = playlist.GetLevelSet()[0].levelPath_.NormPath(true);
-                        if (Util.IsCustomCampaignLevel(level))
-                        {
-                            __instance.modeDescription_.text = __instance.gridDescription_.text = Util.GetCampaignDescription(level);
-                            __instance.campaignLogo_.mainTexture = Util.GetCampaignLogo(level);
-                        }
+                        __instance.modeDescription_.text = __instance.gridDescription_.text = Util.GetCampaignDescription(level);
+                        __instance.campaignLogo_.mainTexture = Util.GetCampaignLogo(level);
                     }
-                    catch (NullReferenceException nre)
-                    {
-                        Plugin.Log.Exception(nre);
-                    }
+                }
+                catch (NullReferenceException nre)
+                {
+                    Plugin.Log.Exception(nre);
                 }
             }
         }
@@ -381,7 +385,10 @@ namespace CustomCampaign
         public static bool Prefix(DiscordController __instance)
         {
             bool rpc_overwrite = Util.IsCustomCampaignLevel(Util.LevelFile);
-            if (!rpc_overwrite) return true;
+            if (G.Sys.GameManager_.IsLevelEditorMode_ || !rpc_overwrite)
+            {
+                return true;
+            }
 
             CampaignInfo info = Util.GetCampaign(Util.LevelFile);
             Models.Level level = Util.GetLevelInfo(Util.LevelFile);

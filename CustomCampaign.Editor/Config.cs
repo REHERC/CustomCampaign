@@ -15,11 +15,16 @@ namespace CustomCampaign.Editor
         public static void AppendRecentFile(string path)
         {
             FileInfo file = new FileInfo(path);
-            if (!file.Exists) return;
+            if (!file.Exists)
+            {
+                return;
+            }
 
             RecentFileList data = RecentFileList.Data;
             if (data.elements.Contains(file.FullName))
+            {
                 data.elements.RemoveAll((string recent) => recent == file.FullName);
+            }
             data.elements.Insert(0, file.FullName);
 
             data.elements = data.elements.Take(8).ToList();

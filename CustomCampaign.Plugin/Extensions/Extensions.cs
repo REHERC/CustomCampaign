@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpCompress.Archives.Zip;
+using System;
 using System.IO;
 
 #pragma warning disable RCS1224, RCS1110, RCS1001
@@ -7,14 +8,18 @@ public static partial class Extensions
     public static string TrimStart(this string input, string cut)
     {
         if (input.StartsWith(cut))
+        {
             return input.Substring(cut.Length - 1);
+        }
         return input;
     }
 
     public static string TrimEnd(this string input, string cut)
     {
         if (input.EndsWith(cut))
+        {
             return input.Substring(0, input.Length - cut.Length);
+        }
         return input;
     }
 
@@ -22,7 +27,9 @@ public static partial class Extensions
     {
         string output = input;
         while (output.StartsWith(cut))
+        {
             output = output.TrimStart(cut);
+        }
         return output;
     }
 
@@ -30,7 +37,9 @@ public static partial class Extensions
     {
         string output = input;
         while (output.EndsWith(cut))
+        {
             output = output.TrimEnd(cut);
+        }
         return output;
     }
 
@@ -63,24 +72,33 @@ public static partial class Extensions
     public static string NormPath(this string input, bool file = true)
     {
         string output = input.GetForwardPath().LowerCase().CutEnd('/');
-        if (input.Length == 0) return "";
+        if (input.Length == 0)
+        {
+            return "";
+        }
         bool directory = !file || input.EndsWith(Path.DirectorySeparatorChar) || input.EndsWith(Path.AltDirectorySeparatorChar);
         while (output.Contains("//"))
+        {
             output = output.Replace("//", "/");
+        }
         return output + (directory ? "/" : "");
     }
 
     public static void CopyFile(string source, string destination, bool overwrite = true)
     {
         if (File.Exists(source))
+        {
             File.Copy(source, destination, overwrite);
+        }
     }
 
     public static string Cipher(this string input, int key, int mod = 32)
     {
         string output = string.Empty;
         foreach (var ch in input)
+        {
             output += (char)(ch - (key % mod));
+        }
         return output;
     }
 
@@ -98,9 +116,13 @@ public static partial class Extensions
         string cipher_val = reader.ReadString();
         string value = cipher_val.Cipher(-length);
         if (value.Length == length)
+        {
             return value;
+        }
         else
+        {
             throw new FormatException("File content invalid !");
+        }
     }
 
     public static string Space(this string input, int value, int maxlength = -1)
@@ -109,12 +131,34 @@ public static partial class Extensions
         for (int i = 0; i < input.Length; i++)
         {
             if (i > 0)
+            {
                 for (int j = 0; j < value; j++)
+                {
                     output += ' ';
+                }
+            }
             output += input[i];
         }
         if (maxlength > 0 && output.Length > maxlength)
+        {
             return input;
+        }
         return output;
+    }
+
+    public static void WriteContent(this ZipArchiveEntry entry, string value)
+    {
+        using (StreamWriter writer = new StreamWriter(entry.OpenEntryStream()))
+        {
+            writer.Write(value);
+        }
+    }
+
+    public static string ReadContent(this ZipArchiveEntry entry)
+    {
+        using (StreamReader reader = new StreamReader(entry.OpenEntryStream()))
+        {
+            return reader.ReadToEnd();
+        }
     }
 }

@@ -1,11 +1,11 @@
-﻿using CustomCampaign.Data;
+﻿#pragma warning disable SecurityIntelliSenseCS, RCS1001, CS0436, CA1031
+using CustomCampaign.Data;
 using CustomCampaign.Storage;
 using Photon.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-#pragma warning disable RCS1001, CS0436
 namespace CustomCampaign.Systems
 {
     internal static class LockingSystem
@@ -40,7 +40,9 @@ namespace CustomCampaign.Systems
                 int completion = GetCampaignProgress(campaign);
                 return Util.GetLevelIndex(levelfile) > completion;
             }
-            catch (Exception pizza) { Plugin.Log.Exception(pizza); }
+            catch (Exception pizza) {
+                Plugin.Log.Exception(pizza);
+            }
             return false;
         }
 
