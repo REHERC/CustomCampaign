@@ -115,7 +115,7 @@ CALL :COPY "%25BUILD%25CustomCampaign.dll" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25CustomCampaign.Models.dll" "%25PACKAGES%25\Dependencies"
 CALL :COPY "%25BUILD%250Harmony.dll" "%25PACKAGES%25\Dependencies"
 CALL :COPY "%25BUILD%25Newtonsoft.Json.dll" "%25PACKAGES%25\Dependencies"
-CALL :COPY "%25BUILD%25SharpCompress.dll" "%25PACKAGES%25\Dependencies"
+CALL :COPY "%25BUILD%25Ionic.Zip.Reduced.dll" "%25PACKAGES%25\Dependencies"
 
 EXIT 0
 
