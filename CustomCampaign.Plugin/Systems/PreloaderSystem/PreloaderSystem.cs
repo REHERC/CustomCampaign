@@ -5,8 +5,7 @@ using Photon.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using SharpCompress.Archives.Zip;
-using static SharpCompress.Archives.IArchiveExtensions;
+using Ionic.Zip;
 using System;
 #if JSON_NEWTONSOFT
 using Newtonsoft.Json;
@@ -21,6 +20,7 @@ namespace CustomCampaign.Systems
     {
         internal static void PrepareCampaigns()
         {
+            Console.WriteLine("001");
             Dictionary<string, KeyValuePair<long, string>> installed_campaigns = new Dictionary<string, KeyValuePair<long, string>>();
             Dictionary<string, KeyValuePair<long, string>> packaged_campaigns = new Dictionary<string, KeyValuePair<long, string>>();
 
@@ -42,9 +42,9 @@ namespace CustomCampaign.Systems
             {
                 try
                 {
-                    using (ZipArchive archive = ZipArchive.Open(packaged))
+                    using (ZipFile archive = ZipFile.Read(packaged.FullName))
                     {
-                        foreach (ZipArchiveEntry entry in from item in archive.Entries where string.Equals(item.Key, "manifest", StringComparison.InvariantCultureIgnoreCase) select item)
+                        foreach (ZipEntry entry in from item in archive.Entries where string.Equals(item.FileName, "manifest", StringComparison.InvariantCultureIgnoreCase) select item)
                         {
                             string manifest_data = entry.ReadContent();
                             Manifest manifest = null;
@@ -89,17 +89,17 @@ namespace CustomCampaign.Systems
                 {
                     if (package.Value.Key > installed_campaigns[package.Key].Key)
                     {
-                        using (ZipArchive archive = ZipArchive.Open(package.Value.Value))
+                        using (ZipFile archive = ZipFile.Read(package.Value.Value))
                         {
-                            archive.WriteToDirectory(installed_campaigns[package.Key].Value);
+                            archive.ExtractAll(installed_campaigns[package.Key].Value);
                         }
                     }
                 }
                 else
                 {
-                    using (ZipArchive archive = ZipArchive.Open(package.Value.Value))
+                    using (ZipFile archive = ZipFile.Read(package.Value.Value))
                     {
-                        archive.WriteToDirectory(installed_campaigns[package.Key].Value);
+                        archive.ExtractAll(installed_campaigns[package.Key].Value);
                     }
                 }
             }
