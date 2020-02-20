@@ -8,7 +8,7 @@
     "CustomCampaign.Models.dll",
     "UnityEngine.dll",
     "0Harmony.dll",
-    "Ionic.Zip.Reduced.dll"
+    "SharpCompress.dll"
   ],
   "SkipLoad": false
 }

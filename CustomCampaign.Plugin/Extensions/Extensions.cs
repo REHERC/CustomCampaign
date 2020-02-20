@@ -1,4 +1,4 @@
-﻿using Ionic.Zip;
+﻿using SharpCompress.Archives.Zip;
 using System;
 using System.IO;
 
@@ -146,17 +146,17 @@ public static partial class Extensions
         return output;
     }
 
-    public static void WriteContent(this ZipEntry entry, string value)
+    public static void WriteContent(this ZipArchiveEntry entry, string value)
     {
-        using (StreamWriter writer = new StreamWriter(entry.OpenReader()))
+        using (StreamWriter writer = new StreamWriter(entry.OpenEntryStream()))
         {
             writer.Write(value);
         }
     }
 
-    public static string ReadContent(this ZipEntry entry)
+    public static string ReadContent(this ZipArchiveEntry entry)
     {
-        using (StreamReader reader = new StreamReader(entry.OpenReader()))
+        using (StreamReader reader = new StreamReader(entry.OpenEntryStream()))
         {
             return reader.ReadToEnd();
         }

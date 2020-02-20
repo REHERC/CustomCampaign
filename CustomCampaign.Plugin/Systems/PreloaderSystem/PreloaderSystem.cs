@@ -5,7 +5,8 @@ using Photon.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Ionic.Zip;
+using SharpCompress.Archives.Zip;
+using static SharpCompress.Archives.IArchiveExtensions;
 using System;
 #if JSON_NEWTONSOFT
 using Newtonsoft.Json;
@@ -20,7 +21,6 @@ namespace CustomCampaign.Systems
     {
         internal static void PrepareCampaigns()
         {
-            Console.WriteLine("001");
             Dictionary<string, KeyValuePair<long, string>> installed_campaigns = new Dictionary<string, KeyValuePair<long, string>>();
             Dictionary<string, KeyValuePair<long, string>> packaged_campaigns = new Dictionary<string, KeyValuePair<long, string>>();
 
@@ -42,9 +42,9 @@ namespace CustomCampaign.Systems
             {
                 try
                 {
-                    using (ZipFile archive = ZipFile.Read(packaged.FullName))
+                    using (ZipArchive archive = ZipArchive.Open(packaged))
                     {
-                        foreach (ZipEntry entry in from item in archive.Entries where string.Equals(item.FileName, "manifest", StringComparison.InvariantCultureIgnoreCase) select item)
+                        foreach (ZipArchiveEntry entry in from item in archive.Entries where string.Equals(item.Key, "manifest", StringComparison.InvariantCultureIgnoreCase) select item)
                         {
                             string manifest_data = entry.ReadContent();
                             Manifest manifest = null;
@@ -85,21 +85,21 @@ namespace CustomCampaign.Systems
             // Extract campaigns and update already installed ones if needed
             foreach (var package in packaged_campaigns)
             {
-                if (installed_campaigns.ContainsKey(package.Key)) 
+                if (installed_campaigns.ContainsKey(package.Key))
                 {
                     if (package.Value.Key > installed_campaigns[package.Key].Key)
                     {
-                        using (ZipFile archive = ZipFile.Read(package.Value.Value))
+                        using (ZipArchive archive = ZipArchive.Open(package.Value.Value))
                         {
-                            archive.ExtractAll(installed_campaigns[package.Key].Value);
+                            archive.WriteToDirectory(installed_campaigns[package.Key].Value);
                         }
                     }
                 }
                 else
                 {
-                    using (ZipFile archive = ZipFile.Read(package.Value.Value))
+                    using (ZipArchive archive = ZipArchive.Open(package.Value.Value))
                     {
-                        archive.ExtractAll(installed_campaigns[package.Key].Value);
+                        archive.WriteToDirectory(installed_campaigns[package.Key].Value);
                     }
                 }
             }

@@ -11,7 +11,7 @@
     "CustomCampaign.Models.dll",
     "Newtonsoft.Json.dll",
     "0Harmony.dll",
-    "Ionic.Zip.Reduced.dll"
+    "SharpCompress.dll"
   ],
   "SkipLoad": false
 }
