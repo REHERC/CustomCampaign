@@ -85,7 +85,7 @@ namespace CustomCampaign.Systems
             // Extract campaigns and update already installed ones if needed
             foreach (var package in packaged_campaigns)
             {
-                if (installed_campaigns.ContainsKey(package.Key))
+                if (installed_campaigns.ContainsKey(package.Key)) 
                 {
                     if (package.Value.Key > installed_campaigns[package.Key].Key)
                     {
