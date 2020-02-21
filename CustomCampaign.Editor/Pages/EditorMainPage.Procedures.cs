@@ -8,8 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.IO.Compression;
 using System.Windows.Forms;
+using SharpCompress.Writers;
+using SharpCompress.Common;
 
 namespace CustomCampaign.Editor.Pages
 {
@@ -127,20 +128,27 @@ namespace CustomCampaign.Editor.Pages
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     if (File.Exists(dlg.FileName))
-                        File.Delete(dlg.FileName);
-
-                    using (ZipArchive archive = ZipFile.Open(dlg.FileName, ZipArchiveMode.Create))
                     {
-                        foreach (string file in campaign.IncludedFiles(Editor.current_path))
-                        {
-                            FileInfo include = new FileInfo(Path.Combine(Editor.current_path, file));
-                            archive.CreateEntryFromFile(include.FullName, $"data/{file}");
+                        File.Delete(dlg.FileName);
+                    }
 
-                            archive.CreateEntry($".check/{file}.md5").WriteContent(include.GetMD5());
-                        }
-                        archive.CreateEntry("manifest").WriteContent
-                        (
-                            JsonConvert.SerializeObject(new Manifest()
+                    using (FileStream zip = File.Create(dlg.FileName))
+                    {
+                        using (IWriter zip_writer = WriterFactory.Open(zip, ArchiveType.Zip, Constants.COMPRESSION_MODE))
+                        {
+                            foreach (string file in campaign.IncludedFiles(Editor.current_path))
+                            {
+                                FileInfo include = new FileInfo(Path.Combine(Editor.current_path, file));
+
+                                zip_writer.Write($"data/{file}", include);
+
+                                using (Stream checksum = include.GetMD5().GetStream())
+                                {
+                                    zip_writer.Write($".check/{file}.md5", checksum);
+                                }
+                            }
+
+                            string manifest_data = JsonConvert.SerializeObject(new Manifest()
                             {
                                 guid = campaign.guid,
                                 build = campaign.build,
@@ -150,10 +158,20 @@ namespace CustomCampaign.Editor.Pages
                                 useaddons = campaign.addons.Count > 0,
                                 levels = campaign.levels.Count,
                                 logo = $"data/{campaign.logopath}"
-                            }, Formatting.Indented)
-                        );
+                            }, Formatting.Indented);
 
-                        archive.CreateEntry("readme.txt").WriteContent("Don't modify the content of this archive manually or it might not work anymore!");
+                            using (Stream manifest_stream = manifest_data.GetStream())
+                            {
+                                zip_writer.Write("manifest", manifest_stream);
+                            }
+
+                            const string readme = "Don't modify the content of this archive manually or it might not work anymore!";
+
+                            using (Stream readme_stream = readme.GetStream())
+                            {
+                                zip_writer.Write("readme.txt", readme_stream);
+                            }
+                        }
                     }
                 }
             }

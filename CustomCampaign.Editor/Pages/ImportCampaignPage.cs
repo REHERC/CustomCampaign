@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
-using System.IO.Compression;
+using SharpCompress.Archives.Zip;
 using System.Text;
 using System.Windows.Forms;
 using Photon.Serialization;
@@ -36,8 +36,7 @@ namespace CustomCampaign.Editor.Pages
 
         public void ImportFile(string path)
         {
-            open_archive = ZipFile.OpenRead(path);
-
+            open_archive = ZipArchive.Open(path);
             file_path = path;
 
             manifest = new Manifest();
@@ -46,13 +45,13 @@ namespace CustomCampaign.Editor.Pages
 
             foreach (var entry in open_archive.Entries)
             {
-                if (entry.FullName.StartsWith("data/"))
+                if (entry.Key.StartsWith("data/"))
                 {
-                    string data_path = $".check/{entry.FullName.Substring("data/".Length)}.md5";
+                    string data_path = $".check/{entry.Key.Substring("data/".Length)}.md5";
 
                     try
                     {
-                        ZipArchiveEntry check_entry = open_archive.GetEntry(data_path);
+                        ZipArchiveEntry check_entry = open_archive.Entries.Get(data_path);
 
                         string check_md5 = entry.GetMD5().Substring(0, 32);
                         string data_md5 = check_entry.ReadContent().Substring(0, 32);
@@ -64,7 +63,7 @@ namespace CustomCampaign.Editor.Pages
                         md5_validity = false;
                     }
                 }
-                else if (entry.FullName == "manifest")
+                else if (string.Equals(entry.Key, "manifest", StringComparison.InvariantCultureIgnoreCase))
                 {
                     manifest = JsonConvert.DeserializeObject<Manifest>(entry.ReadContent());
                 }
@@ -116,11 +115,14 @@ namespace CustomCampaign.Editor.Pages
                 dlg.RootFolder = Environment.SpecialFolder.MyComputer;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (ZipArchiveEntry entry in from item in open_archive.Entries where item.FullName.StartsWith("data/") select item)
+                    foreach (ZipArchiveEntry entry in from item in open_archive.Entries where item.Key.StartsWith("data/") select item)
                     {
-                        FileInfo out_file = new FileInfo($@"{dlg.SelectedPath}\{entry.FullName.Substring("data/".Length)}");
+                        FileInfo out_file = new FileInfo($@"{dlg.SelectedPath}\{entry.Key.Substring("data/".Length)}");
                         DirectoryInfo out_dir = new DirectoryInfo(out_file.DirectoryName);
-                        if (!out_dir.Exists) out_dir.Create();
+                        if (!out_dir.Exists)
+                        {
+                            out_dir.Create();
+                        }
                         entry.ExtractToFile(out_file.FullName, out_file.Exists);
                     }
 

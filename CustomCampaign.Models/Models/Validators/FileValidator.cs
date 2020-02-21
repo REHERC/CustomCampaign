@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-#pragma warning disable IDE0028
+#pragma warning disable SecurityIntelliSenseCS, IDE0028, CS1822, CA1822
 
 namespace CustomCampaign.Models.Validators
 {
@@ -14,7 +14,9 @@ namespace CustomCampaign.Models.Validators
             result.Add("campaign.json");
 #if !LIMITED_COMPATIBILITY
             if (!string.IsNullOrEmpty(campaign.logopath))
+            {
                 result.Add(campaign.logopath);
+            }
 #endif
             foreach (Level level in campaign.levels)
             {
@@ -26,11 +28,15 @@ namespace CustomCampaign.Models.Validators
                     string musicfile = $"{level.file}.{extension}";
                     FileInfo file = new FileInfo(Path.Combine(rootdirectory, musicfile));
                     if (file.Exists)
+                    {
                         result.Add(musicfile);
+                    }
                 }
 #if !LIMITED_COMPATIBILITY
                 if (!string.IsNullOrEmpty(level.loading_wallpaper))
+                {
                     result.Add(level.loading_wallpaper);
+                }
 #endif
             }
 
@@ -54,7 +60,10 @@ namespace CustomCampaign.Models.Validators
             {
                 FileInfo info = new FileInfo(Path.Combine(rootdirectory, file));
                 result &= info.Exists;
-                if (!info.Exists) missingfiles.Add(info.FullName);
+                if (!info.Exists)
+                {
+                    missingfiles.Add(info.FullName);
+                }
             }
 
             return result;

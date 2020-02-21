@@ -20,7 +20,9 @@ namespace CustomCampaign.Editor
             Globals.SkinManager.Theme = Config.AppSettings.Data.darkmode ? MaterialSkinManager.Themes.DARK : MaterialSkinManager.Themes.LIGHT;
 
             if (Themes.Values.TryGetValue(Config.AppSettings.Data.theme, out ColorScheme theme))
+            {
                 Globals.SkinManager.ColorScheme = theme;
+            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

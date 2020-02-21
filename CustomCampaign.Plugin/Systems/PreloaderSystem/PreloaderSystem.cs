@@ -82,6 +82,8 @@ namespace CustomCampaign.Systems
                 }
             }
 
+            return;
+
             // Extract campaigns and update already installed ones if needed
             foreach (var package in packaged_campaigns)
             {

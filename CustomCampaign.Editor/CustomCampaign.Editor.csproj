@@ -70,6 +70,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCompress, Version=0.24.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.24.0\lib\net45\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -425,6 +428,7 @@ CALL :COPY "%25BUILD%25CustomCampaign.Editor.exe.config" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25CustomCampaign.Models.dll" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25MaterialSkin.dll" "%25PACKAGES%25"
 CALL :COPY "%25BUILD%25Newtonsoft.Json.dll" "%25PACKAGES%25"
+CALL :COPY "%25BUILD%25SharpCompress.dll" "%25PACKAGES%25"
 
 EXIT 0
 
