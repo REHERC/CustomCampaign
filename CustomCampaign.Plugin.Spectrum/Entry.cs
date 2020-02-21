@@ -1,4 +1,4 @@
-﻿#pragma warning disable IDE0060, RCS1163
+﻿#pragma warning disable IDE0060, RCS1163, CA1031
 using System;
 using System.Reflection;
 using CustomCampaign.Storage;
@@ -17,13 +17,13 @@ namespace CustomCampaign
             Manager = manager;
             try
             {
+                HarmonyInstance Harmony = HarmonyInstance.Create(MOD_ID);
+                Harmony.PatchAll(Assembly.GetExecutingAssembly());
+
                 Plugin.Init();
                 Plugin.LoadCampaigns();
 
                 EventSubscriber.SubscribeAll();
-
-                HarmonyInstance Harmony = HarmonyInstance.Create(MOD_ID);
-                Harmony.PatchAll(Assembly.GetExecutingAssembly());
             }
             catch (Exception e)
             {

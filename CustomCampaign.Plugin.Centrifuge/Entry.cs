@@ -1,4 +1,4 @@
-﻿#pragma warning disable IDE0060, RCS1163, CA1822, CA1031
+﻿#pragma warning disable IDE0060, RCS1163, CA1822, CA1031, RCS1129
 using System;
 using CustomCampaign.Storage;
 using Reactor.API.Attributes;
@@ -21,12 +21,12 @@ namespace CustomCampaign
         {
             try
             {
+                RuntimePatcher.AutoPatch();
+
                 Plugin.Init();
                 Plugin.LoadCampaigns();
 
                 EventSubscriber.SubscribeAll();
-
-                RuntimePatcher.AutoPatch();
             }
             catch (Exception e)
             {

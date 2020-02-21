@@ -34,7 +34,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppVeyor|AnyCPU'">
     <OutputPath>bin\AppVeyor\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;SERIALIZER_JSON API_SPECTRUM JSON_NEWTONSOFT</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SERIALIZER_JSON API_SPECTRUM JSON_NEWTONSOFT BRIDGING</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <DebugType>full</DebugType>
@@ -96,6 +96,7 @@
   <Import Project="..\CustomCampaign.Plugin\CustomCampaign.Plugin.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Reflection\CustomCampaign.Reflection.projitems" Label="Shared" />
+  <Import Project="..\CustomCampaign.CommonPatches\CustomCampaign.CommonPatches.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SET INCLUDE=$(SolutionDir)Include\

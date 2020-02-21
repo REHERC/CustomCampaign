@@ -1,18 +1,22 @@
 ﻿using CustomCampaign.Editor.Forms;
+using Harmony;
 using MaterialSkin;
 using System;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Editor
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
+            HarmonyInstance harmony = HarmonyInstance.Create("com.editor.customcampaign");
+            harmony.PatchAll(typeof(Program).Assembly);
+
             Control.CheckForIllegalCrossThreadCalls = false;
 
             Config.AppSettings.Load();

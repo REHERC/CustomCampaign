@@ -136,18 +136,6 @@ namespace CustomCampaign.Editor.Pages
                     {
                         using (IWriter zip_writer = WriterFactory.Open(zip, ArchiveType.Zip, Constants.COMPRESSION_MODE))
                         {
-                            foreach (string file in campaign.IncludedFiles(Editor.current_path))
-                            {
-                                FileInfo include = new FileInfo(Path.Combine(Editor.current_path, file));
-
-                                zip_writer.Write($"data/{file}", include);
-
-                                using (Stream checksum = include.GetMD5().GetStream())
-                                {
-                                    zip_writer.Write($".check/{file}.md5", checksum);
-                                }
-                            }
-
                             string manifest_data = JsonConvert.SerializeObject(new Manifest()
                             {
                                 guid = campaign.guid,
@@ -165,6 +153,17 @@ namespace CustomCampaign.Editor.Pages
                                 zip_writer.Write("manifest", manifest_stream);
                             }
 
+                            foreach (string file in campaign.IncludedFiles(Editor.current_path))
+                            {
+                                FileInfo include = new FileInfo(Path.Combine(Editor.current_path, file));
+
+                                zip_writer.Write($"data/{file}", include);
+
+                                using (Stream checksum = include.GetMD5().GetStream())
+                                {
+                                    zip_writer.Write($".check/{file}.md5", checksum);
+                                }
+                            }
                             const string readme = "Don't modify the content of this archive manually or it might not work anymore!";
 
                             using (Stream readme_stream = readme.GetStream())

@@ -34,12 +34,15 @@ namespace CustomCampaign.Systems
                 {
                     Serializer<Campaign> manifest = new Serializer<Campaign>(SerializerType.Json, manifest_file.FullName, true);
                     installed_campaigns[manifest.Data.guid] = new KeyValuePair<long, string>(manifest.Data.build, installed.FullName);
+                    Plugin.Log.Info($"Campaign installation detected: {manifest.Data.name} ({manifest.Data.guid})");
                 }
             }
 
             // List packaged campaigns
             foreach (FileInfo packaged in campaign_root.GetFiles("*.campaign", SearchOption.TopDirectoryOnly))
             {
+                Plugin.Log.Info($"Campaign package: {packaged.Name}");
+
                 try
                 {
                     using (ZipArchive archive = ZipArchive.Open(packaged))
@@ -66,11 +69,13 @@ namespace CustomCampaign.Systems
                                     if (manifest.build > listed_version)
                                     {
                                         packaged_campaigns[manifest.guid] = new KeyValuePair<long, string>(manifest.build, packaged.FullName);
+                                        break;
                                     }
                                 }
                                 else
                                 {
                                     packaged_campaigns.Add(manifest.guid, new KeyValuePair<long, string>(manifest.build, packaged.FullName));
+                                    break;
                                 }
                             }
                         }
@@ -82,26 +87,53 @@ namespace CustomCampaign.Systems
                 }
             }
 
-            return;
-
             // Extract campaigns and update already installed ones if needed
             foreach (var package in packaged_campaigns)
             {
+                FileInfo campaign_package = new FileInfo(package.Value.Value);
                 if (installed_campaigns.ContainsKey(package.Key))
                 {
                     if (package.Value.Key > installed_campaigns[package.Key].Key)
                     {
-                        using (ZipArchive archive = ZipArchive.Open(package.Value.Value))
-                        {
-                            archive.WriteToDirectory(installed_campaigns[package.Key].Value);
-                        }
+                        DirectoryInfo extract_dir = new DirectoryInfo(installed_campaigns[package.Key].Value);
+
+                        ExtractCampaign(campaign_package, extract_dir);
                     }
                 }
                 else
                 {
-                    using (ZipArchive archive = ZipArchive.Open(package.Value.Value))
+                    string extract_dir = Path.Combine(campaign_root.FullName, $"{package.Key}");
+
+                    ExtractCampaign(campaign_package, new DirectoryInfo(extract_dir));
+                }
+            }
+        }
+
+        internal static void ExtractCampaign(FileInfo archive_path, DirectoryInfo extract_path)
+        {
+            Plugin.Log.Info($"Extracting \"{archive_path.FullName}\" to \"{extract_path.FullName}\"");
+
+            if (!extract_path.Exists)
+            {
+                extract_path.Create();
+            }
+
+            using (ZipArchive archive = ZipArchive.Open(archive_path.FullName))
+            {
+                foreach (ZipArchiveEntry entry in archive.Entries)
+                {
+                    if (!entry.IsDirectory && entry.Key.StartsWith("data/", StringComparison.OrdinalIgnoreCase))
                     {
-                        archive.WriteToDirectory(installed_campaigns[package.Key].Value);
+                        string relative_name = entry.Key.Substring("data/".Length);
+                        FileInfo extract = new FileInfo(Path.Combine(extract_path.FullName, $"{relative_name}"));
+
+                        if (!extract.Directory.Exists)
+                        {
+                            extract.Directory.Create();
+                        }
+
+                        Plugin.Log.Info($"Extracting file: \"{entry.Key}\" to \"{extract.FullName}\"");
+                        entry.ExtractToFile(extract.FullName, true);
                     }
                 }
             }

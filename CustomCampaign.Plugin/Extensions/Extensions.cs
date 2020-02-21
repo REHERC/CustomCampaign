@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-#pragma warning disable RCS1224, RCS1110, RCS1001
+#pragma warning disable RCS1224, RCS1110, RCS1001, RCS1005
 public static partial class Extensions
 {
     public static string TrimStart(this string input, string cut)
@@ -159,6 +159,43 @@ public static partial class Extensions
         using (StreamReader reader = new StreamReader(entry.OpenEntryStream()))
         {
             return reader.ReadToEnd();
+        }
+    }
+
+    public static void SaveFileStream(this Stream stream, string path)
+    {
+        using (FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write))
+        {
+            using (BinaryReader reader = new BinaryReader(stream))
+            {
+                using (BinaryWriter writer = new BinaryWriter(file))
+                {
+                    while (reader.BaseStream.Position < reader.BaseStream.Length)
+                    {
+                        writer.Write(reader.ReadByte());
+                    }
+                }
+            }
+        }
+    }
+
+    public static void ExtractToFile(this ZipArchiveEntry entry, string path, bool overwrite)
+    {
+        if (File.Exists(path))
+        {
+            if (overwrite)
+            {
+                File.Delete(path);
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
+        }
+
+        using (Stream stream = entry.OpenEntryStream())
+        {
+            stream.SaveFileStream(path);
         }
     }
 }
