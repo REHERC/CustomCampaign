@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using SharpCompress.Archives.Zip;
-using static SharpCompress.Archives.IArchiveExtensions;
 using System;
 #if JSON_NEWTONSOFT
 using Newtonsoft.Json;
@@ -34,14 +33,15 @@ namespace CustomCampaign.Systems
                 {
                     Serializer<Campaign> manifest = new Serializer<Campaign>(SerializerType.Json, manifest_file.FullName, true);
                     installed_campaigns[manifest.Data.guid] = new KeyValuePair<long, string>(manifest.Data.build, installed.FullName);
-                    Plugin.Log.Info($"Campaign installation detected: {manifest.Data.name} ({manifest.Data.guid})");
+                    Plugin.Log.Warning($"Campaign installation detected: {manifest.Data.name} ({manifest.Data.guid}_{manifest.Data.build})");
                 }
             }
+            Plugin.Log.Error($"{installed_campaigns.Count} installed campaign(s) detected");
 
             // List packaged campaigns
             foreach (FileInfo packaged in campaign_root.GetFiles("*.campaign", SearchOption.TopDirectoryOnly))
             {
-                Plugin.Log.Info($"Campaign package: {packaged.Name}");
+                Plugin.Log.Warning($"Reading {packaged.Name}");
 
                 try
                 {
@@ -57,6 +57,7 @@ namespace CustomCampaign.Systems
 #if JSON_LITJSON
                             manifest = JsonMapper.ToObject<Manifest>(manifest_data);
 #endif
+                            Plugin.Log.Warning($"Campaign package: {packaged.Name} ({manifest.guid}_{manifest.build})");
                             if (manifest is null)
                             {
                                 break;
@@ -68,14 +69,19 @@ namespace CustomCampaign.Systems
                                     long listed_version = packaged_campaigns[manifest.guid].Key;
                                     if (manifest.build > listed_version)
                                     {
+                                        Plugin.Log.Warning($"Updating {manifest.name} ({manifest.guid}_{manifest.build})");
                                         packaged_campaigns[manifest.guid] = new KeyValuePair<long, string>(manifest.build, packaged.FullName);
                                         break;
                                     }
                                 }
                                 else
                                 {
-                                    packaged_campaigns.Add(manifest.guid, new KeyValuePair<long, string>(manifest.build, packaged.FullName));
-                                    break;
+                                    if (!installed_campaigns.ContainsKey(manifest.guid) || manifest.build > installed_campaigns[manifest.guid].Key)
+                                    {
+                                        Plugin.Log.Warning($"Adding {manifest.name} ({manifest.guid}_{manifest.build})");
+                                        packaged_campaigns[manifest.guid] = new KeyValuePair<long, string>(manifest.build, packaged.FullName);
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -86,6 +92,7 @@ namespace CustomCampaign.Systems
                     Plugin.Log.Exception(e);
                 }
             }
+            Plugin.Log.Error($"{packaged_campaigns.Count} packaged campaign(s) registered");
 
             // Extract campaigns and update already installed ones if needed
             foreach (var package in packaged_campaigns)
@@ -97,21 +104,40 @@ namespace CustomCampaign.Systems
                     {
                         DirectoryInfo extract_dir = new DirectoryInfo(installed_campaigns[package.Key].Value);
 
-                        ExtractCampaign(campaign_package, extract_dir);
+                        ExtractCampaign(campaign_package, extract_dir, package.Value.Key);
                     }
                 }
                 else
                 {
-                    string extract_dir = Path.Combine(campaign_root.FullName, $"{package.Key}");
+                    string extract_dir = Path.Combine(campaign_root.FullName, package.Key);
 
-                    ExtractCampaign(campaign_package, new DirectoryInfo(extract_dir));
+                    ExtractCampaign(campaign_package, new DirectoryInfo(extract_dir), package.Value.Key);
                 }
             }
         }
 
-        internal static void ExtractCampaign(FileInfo archive_path, DirectoryInfo extract_path)
+        internal static void ExtractCampaign(FileInfo archive_path, DirectoryInfo extract_path, long package_build = 0)
         {
             Plugin.Log.Info($"Extracting \"{archive_path.FullName}\" to \"{extract_path.FullName}\"");
+
+            FileInfo campaign_manifest_file = new FileInfo(Path.Combine(extract_path.FullName, "campaign.json"));
+
+            Plugin.Log.Info($"Searching for file: \"{campaign_manifest_file.FullName}\"");
+
+            if (campaign_manifest_file.Exists)
+            {
+                Plugin.Log.Warning($"Campaign manifest file found: \"{campaign_manifest_file.FullName}\"");
+
+                Serializer<Campaign> campaign_manifest = new Serializer<Campaign>(SerializerType.Json, campaign_manifest_file.FullName, true);
+
+                Plugin.Log.Warning($"Installed version: {campaign_manifest.Data.build}");
+                Plugin.Log.Warning($"Packaged version  : {package_build}");
+
+                if (package_build <= campaign_manifest.Data.build)
+                {
+                    Plugin.Log.Error($"Package build inferior to installed version, skipping extraction.");
+                }
+            }
 
             if (!extract_path.Exists)
             {

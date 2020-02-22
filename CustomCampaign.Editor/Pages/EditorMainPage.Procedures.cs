@@ -61,11 +61,12 @@ namespace CustomCampaign.Editor.Pages
             Addons_SelectedIndexChanged(Levels, EventArgs.Empty);
         }
 
-        public Campaign UpdateWorkingstate()
+        public Campaign UpdateWorkingstate(bool overwrite_date = true)
         {
             Campaign campaign = Editor.current_campaign;
+            long build = Editor.current_campaign.build;
 
-            campaign.build = DateTime.UtcNow.ToFileTime();
+            campaign.build = overwrite_date ? DateTime.UtcNow.ToFileTime() : build;
             campaign.name = CampaignName.Text;
             campaign.description = CampaignDescription.Text;
             campaign.logopath = CampaignLogo.Text;
@@ -109,7 +110,7 @@ namespace CustomCampaign.Editor.Pages
         #region Export and Validation
         public void ExportToZip()
         {
-            Campaign campaign = UpdateWorkingstate();
+            Campaign campaign = UpdateWorkingstate(false);
 
             if (!campaign.Validate(Editor.current_path, out List<string> missingfiles))
             {
