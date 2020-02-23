@@ -1,5 +1,5 @@
 # Custom Campaign
-> **Create your own campaigns for Distance using this mod**
+> **Create your own campaigns for Distance**
 ![Repository logo](repository_thumbnail.png)
 
 # Download the mod
@@ -10,3 +10,6 @@
 
 # Example campaigns
 > You can find example campaign [here](https://drive.google.com/drive/folders/1jT8SzfCGSIh3ttxVWv0EVETN_ZhUeD7W?usp=sharing) to get an idea of how the editor works (use the import button)
+
+# Documentation
+> The wiki is currently outdated, a new version will be written once the editor is completely done
