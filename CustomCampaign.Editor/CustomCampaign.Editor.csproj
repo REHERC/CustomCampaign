@@ -124,6 +124,12 @@
     </Compile>
     <Compile Include="Editor.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Forms\Dialogs\CountdownSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\CountdownSelector.Designer.cs">
+      <DependentUpon>CountdownSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\LevelBrowserDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LevelBrowser.resx">
       <DependentUpon>LevelBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\CountdownSelector.resx">
+      <DependentUpon>CountdownSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\LevelBrowserDialog.resx">
       <DependentUpon>LevelBrowserDialog.cs</DependentUpon>

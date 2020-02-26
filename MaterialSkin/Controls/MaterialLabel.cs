@@ -11,6 +11,7 @@ namespace MaterialSkin.Controls
     public class MaterialLabel : Label, IMaterialControl
     {
         private bool _formLabel = false;
+
         public bool FormLabel
         {
             get => _formLabel;
@@ -24,12 +25,15 @@ namespace MaterialSkin.Controls
 
         [Browsable(false)]
         public int Depth { get; set; }
+
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
+
         [Browsable(false)]
         public MouseState MouseState { get; set; }
 
         private int _fontSize = 11;
+
         public int FontSize
         {
             get
@@ -63,7 +67,7 @@ namespace MaterialSkin.Controls
             BackColorChanged += (sender, args) => ForeColor = TextColor;
         }
 
-        Color TextColor => FormLabel ? SkinManager.GetSecondaryTextColor() : SkinManager.GetPrimaryTextColor();
+        private Color TextColor => FormLabel ? SkinManager.GetSecondaryTextColor() : SkinManager.GetPrimaryTextColor();
 
         protected override void OnPaint(PaintEventArgs e)
         {

@@ -12,13 +12,17 @@ namespace MaterialSkin.Controls
     {
         [Browsable(false)]
         public int Depth { get; set; }
+
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
+
         [Browsable(false)]
         public MouseState MouseState { get; set; }
+
         public bool Primary { get; set; }
 
         private bool _header = false;
+
         public bool Header
         {
             get => _header;
@@ -34,6 +38,7 @@ namespace MaterialSkin.Controls
         private SizeF _textSize;
 
         private Image _icon;
+
         public Image Icon
         {
             get { return _icon; }
@@ -55,7 +60,7 @@ namespace MaterialSkin.Controls
                 Increment = 0.03,
                 AnimationType = AnimationType.EaseOut
             };
-            _animationManager.OnAnimationProgress += sender => Invalidate();
+            _animationManager.OnAnimationProgress += _ => Invalidate();
 
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             AutoSize = true;
@@ -106,7 +111,7 @@ namespace MaterialSkin.Controls
                     var animationSource = _animationManager.GetSource(i);
                     var rippleBrush = new SolidBrush(Color.FromArgb((int)(51 - (animationValue * 50)), Color.White));
                     var rippleSize = (int)(animationValue * Width * 2);
-                    g.FillEllipse(rippleBrush, new Rectangle(animationSource.X - rippleSize / 2, animationSource.Y - rippleSize / 2, rippleSize, rippleSize));
+                    g.FillEllipse(rippleBrush, new Rectangle(animationSource.X - (rippleSize / 2), animationSource.Y - (rippleSize / 2), rippleSize, rippleSize));
                 }
             }
 
@@ -114,11 +119,15 @@ namespace MaterialSkin.Controls
             var iconRect = new Rectangle(8, 6, 24, 24);
 
             if (string.IsNullOrEmpty(Text))
-                // Center Icon
+            // Center Icon
+            {
                 iconRect.X += 2;
+            }
 
             if (Icon != null)
+            {
                 g.DrawImage(Icon, iconRect);
+            }
 
             //Text
             var textRect = ClientRectangle;
@@ -160,9 +169,11 @@ namespace MaterialSkin.Controls
             var extra = 16;
 
             if (Icon != null)
-                // 24 is for icon size
-                // 4 is for the space between icon & text
+            // 24 is for icon size
+            // 4 is for the space between icon & text
+            {
                 extra += 24 + 4;
+            }
 
             return new Size((int)Math.Ceiling(_textSize.Width) + extra, 36);
         }

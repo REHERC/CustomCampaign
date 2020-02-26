@@ -1,4 +1,6 @@
-﻿namespace CustomCampaign.Editor.Forms
+﻿using MaterialSkin.Controls;
+
+namespace CustomCampaign.Editor.Forms
 {
     partial class SettingsForm
     {

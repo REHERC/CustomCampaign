@@ -12,14 +12,18 @@ namespace MaterialSkin.Controls
     {
         [Browsable(false)]
         public int Depth { get; set; }
+
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
+
         [Browsable(false)]
         public MouseState MouseState { get; set; }
+
         [Browsable(false)]
         public Point MouseLocation { get; set; }
 
         private bool _ripple;
+
         [Category("Behavior")]
         public bool Ripple
         {
@@ -61,13 +65,10 @@ namespace MaterialSkin.Controls
                 Increment = 0.10,
                 SecondaryIncrement = 0.08
             };
-            _animationManager.OnAnimationProgress += sender => Invalidate();
-            _rippleAnimationManager.OnAnimationProgress += sender => Invalidate();
+            _animationManager.OnAnimationProgress += _ => Invalidate();
+            _rippleAnimationManager.OnAnimationProgress += _ => Invalidate();
 
-            CheckedChanged += (sender, args) =>
-            {
-                _animationManager.StartNewAnimation(Checked ? AnimationDirection.In : AnimationDirection.Out);
-            };
+            CheckedChanged += (sender, args) => _animationManager.StartNewAnimation(Checked ? AnimationDirection.In : AnimationDirection.Out);
 
             Ripple = true;
             MouseLocation = new Point(-1, -1);
@@ -77,7 +78,7 @@ namespace MaterialSkin.Controls
         {
             base.OnSizeChanged(e);
 
-            _boxOffset = Height / 2 - 9;
+            _boxOffset = (Height / 2) - 9;
             _boxRectangle = new Rectangle(_boxOffset, _boxOffset, CHECKBOX_SIZE - 1, CHECKBOX_SIZE - 1);
         }
 
@@ -89,6 +90,7 @@ namespace MaterialSkin.Controls
 
         private static readonly Point[] CheckmarkLine = { new Point(3, 8), new Point(7, 12), new Point(14, 5) };
         private const int TEXT_OFFSET = 22;
+
         protected override void OnPaint(PaintEventArgs pevent)
         {
             var g = pevent.Graphics;
@@ -116,10 +118,10 @@ namespace MaterialSkin.Controls
                 {
                     var animationValue = _rippleAnimationManager.GetProgress(i);
                     var animationSource = new Point(CHECKBOX_CENTER, CHECKBOX_CENTER);
-                    var rippleBrush = new SolidBrush(Color.FromArgb((int)((animationValue * 40)), ((bool)_rippleAnimationManager.GetData(i)[0]) ? Color.Black : brush.Color));
+                    var rippleBrush = new SolidBrush(Color.FromArgb((int)(animationValue * 40), ((bool)_rippleAnimationManager.GetData(i)[0]) ? Color.Black : brush.Color));
                     var rippleHeight = (Height % 2 == 0) ? Height - 3 : Height - 2;
                     var rippleSize = (_rippleAnimationManager.GetDirection(i) == AnimationDirection.InOutIn) ? (int)(rippleHeight * (0.8d + (0.2d * animationValue))) : rippleHeight;
-                    using (var path = DrawHelper.CreateRoundRect(animationSource.X - rippleSize / 2, animationSource.Y - rippleSize / 2, rippleSize, rippleSize, rippleSize / 2))
+                    using (var path = DrawHelper.CreateRoundRect(animationSource.X - (rippleSize / 2), animationSource.Y - (rippleSize / 2), rippleSize, rippleSize, rippleSize / 2))
                     {
                         g.FillPath(rippleBrush, path);
                     }
@@ -165,7 +167,7 @@ namespace MaterialSkin.Controls
                 Text,
                 SkinManager.ROBOTO_REGULAR_11,
                 Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(),
-                _boxOffset + TEXT_OFFSET, Height / 2 - stringSize.Height / 2);
+                _boxOffset + TEXT_OFFSET, (Height / 2) - (stringSize.Height / 2));
 
             // dispose used paint objects
             pen.Dispose();
@@ -215,10 +217,7 @@ namespace MaterialSkin.Controls
             if (DesignMode) return;
 
             MouseState = MouseState.OUT;
-            MouseEnter += (sender, args) =>
-            {
-                MouseState = MouseState.HOVER;
-            };
+            MouseEnter += (sender, args) => MouseState = MouseState.HOVER;
             MouseLeave += (sender, args) =>
             {
                 MouseLocation = new Point(-1, -1);
@@ -245,6 +244,5 @@ namespace MaterialSkin.Controls
                 Cursor = IsMouseInCheckArea() ? Cursors.Hand : Cursors.Default;
             };
         }
-
     }
 }

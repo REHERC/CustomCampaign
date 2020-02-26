@@ -14,14 +14,18 @@ namespace MaterialSkin.Controls
     {
         [Browsable(false)]
         public int Depth { get; set; }
+
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
+
         [Browsable(false)]
         public MouseState MouseState { get; set; }
+
         [Browsable(false)]
         public Point MouseLocation { get; set; }
 
         private bool ripple;
+
         [Category("Behavior")]
         public bool Ripple
         {
@@ -69,8 +73,8 @@ namespace MaterialSkin.Controls
                 Increment = 0.10,
                 SecondaryIncrement = 0.08
             };
-            _animationManager.OnAnimationProgress += sender => Invalidate();
-            _rippleAnimationManager.OnAnimationProgress += sender => Invalidate();
+            _animationManager.OnAnimationProgress += _ => Invalidate();
+            _rippleAnimationManager.OnAnimationProgress += _ => Invalidate();
 
             CheckedChanged += (sender, args) => _animationManager.StartNewAnimation(Checked ? AnimationDirection.In : AnimationDirection.Out);
 
@@ -79,9 +83,10 @@ namespace MaterialSkin.Controls
             Ripple = true;
             MouseLocation = new Point(-1, -1);
         }
+
         private void OnSizeChanged(object sender, EventArgs eventArgs)
         {
-            _boxOffset = Height / 2 - (int)Math.Ceiling(RADIOBUTTON_SIZE / 2d);
+            _boxOffset = (Height / 2) - (int)Math.Ceiling(RADIOBUTTON_SIZE / 2d);
             _radioButtonBounds = new Rectangle(_boxOffset, _boxOffset, RADIOBUTTON_SIZE, RADIOBUTTON_SIZE);
         }
 
@@ -120,10 +125,10 @@ namespace MaterialSkin.Controls
                 {
                     var animationValue = _rippleAnimationManager.GetProgress(i);
                     var animationSource = new Point(RADIOBUTTON_CENTER, RADIOBUTTON_CENTER);
-                    var rippleBrush = new SolidBrush(Color.FromArgb((int)((animationValue * 40)), ((bool)_rippleAnimationManager.GetData(i)[0]) ? Color.Black : brush.Color));
+                    var rippleBrush = new SolidBrush(Color.FromArgb((int)(animationValue * 40), ((bool)_rippleAnimationManager.GetData(i)[0]) ? Color.Black : brush.Color));
                     var rippleHeight = (Height % 2 == 0) ? Height - 3 : Height - 2;
                     var rippleSize = (_rippleAnimationManager.GetDirection(i) == AnimationDirection.InOutIn) ? (int)(rippleHeight * (0.8d + (0.2d * animationValue))) : rippleHeight;
-                    using (var path = DrawHelper.CreateRoundRect(animationSource.X - rippleSize / 2, animationSource.Y - rippleSize / 2, rippleSize, rippleSize, rippleSize / 2))
+                    using (var path = DrawHelper.CreateRoundRect(animationSource.X - (rippleSize / 2), animationSource.Y - (rippleSize / 2), rippleSize, rippleSize, rippleSize / 2))
                     {
                         g.FillPath(rippleBrush, path);
                     }
@@ -160,7 +165,7 @@ namespace MaterialSkin.Controls
                 }
             }
             SizeF stringSize = g.MeasureString(Text, SkinManager.ROBOTO_MEDIUM_10);
-            g.DrawString(Text, SkinManager.ROBOTO_MEDIUM_10, Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(), _boxOffset + 22, Height / 2 - stringSize.Height / 2);
+            g.DrawString(Text, SkinManager.ROBOTO_MEDIUM_10, Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(), _boxOffset + 22, (Height / 2) - (stringSize.Height / 2));
 
             brush.Dispose();
             pen.Dispose();
@@ -179,10 +184,7 @@ namespace MaterialSkin.Controls
             if (DesignMode) return;
 
             MouseState = MouseState.OUT;
-            MouseEnter += (sender, args) =>
-            {
-                MouseState = MouseState.HOVER;
-            };
+            MouseEnter += (sender, args) => MouseState = MouseState.HOVER;
             MouseLeave += (sender, args) =>
             {
                 MouseLocation = new Point(-1, -1);

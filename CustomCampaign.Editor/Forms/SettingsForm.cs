@@ -1,8 +1,7 @@
-﻿using MaterialSkin;
+﻿#pragma warning disable CA1031, RCS1075, CA1063
+using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
-using System.Linq;
-using System.Windows;
 
 namespace CustomCampaign.Editor.Forms
 {
@@ -33,7 +32,9 @@ namespace CustomCampaign.Editor.Forms
             Config.AppSettings.Save();
 
             if (Themes.Values.TryGetValue(theme, out ColorScheme scheme))
+            {
                 Globals.SkinManager.ColorScheme = scheme;
+            }
         }
 
         private void CloseBtn_Click(object sender, System.EventArgs e)
@@ -45,13 +46,14 @@ namespace CustomCampaign.Editor.Forms
         private void SettingsForm_Shown(object sender, EventArgs e)
         {
             DarkMode.Checked = Config.AppSettings.Data.darkmode;
-            
             int themeindex = 0, i = 0;
             foreach (var theme in Themes.Values)
             {
                 ThemeList.Items.AddRange(new object[] {theme.Key});
-                if (theme.Key.ToLower() == Config.AppSettings.Data.theme.ToLower())
+                if (string.Equals(theme.Key, Config.AppSettings.Data.theme, StringComparison.CurrentCultureIgnoreCase))
+                {
                     themeindex = i;
+                }
                 i++;
             }
             try

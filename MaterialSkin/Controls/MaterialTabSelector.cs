@@ -13,12 +13,15 @@ namespace MaterialSkin.Controls
     {
         [Browsable(false)]
         public int Depth { get; set; }
+
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
+
         [Browsable(false)]
         public MouseState MouseState { get; set; }
 
         private bool _primary = true;
+
         public bool Primary
         {
             get => _primary;
@@ -30,18 +33,22 @@ namespace MaterialSkin.Controls
         }
 
         private MaterialTabControl _baseTabControl;
+
         public MaterialTabControl BaseTabControl
         {
-            get { return _baseTabControl; }
+            get
+            {
+                return _baseTabControl;
+            }
             set
             {
                 _baseTabControl = value;
-                if (_baseTabControl == null) return;
-                _previousSelectedTabIndex = _baseTabControl.SelectedIndex;
-                _baseTabControl.Deselected += (sender, args) =>
+                if (_baseTabControl == null)
                 {
-                    _previousSelectedTabIndex = _baseTabControl.SelectedIndex;
-                };
+                    return;
+                }
+                _previousSelectedTabIndex = _baseTabControl.SelectedIndex;
+                _baseTabControl.Deselected += (sender, args) => _previousSelectedTabIndex = _baseTabControl.SelectedIndex;
                 _baseTabControl.SelectedIndexChanged += (sender, args) =>
                 {
                     _animationManager.SetProgress(0);
@@ -76,14 +83,13 @@ namespace MaterialSkin.Controls
                 AnimationType = AnimationType.EaseOut,
                 Increment = 0.04
             };
-            _animationManager.OnAnimationProgress += sender => Invalidate();
+            _animationManager.OnAnimationProgress += _ => Invalidate();
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             var g = e.Graphics;
             g.TextRenderingHint = TextRenderingHint.AntiAlias;
-
 
             if (Primary)
                 g.Clear(SkinManager.ColorScheme.PrimaryColor);
@@ -104,7 +110,7 @@ namespace MaterialSkin.Controls
                 var rippleSize = (int)(animationProgress * _tabRects[_baseTabControl.SelectedIndex].Width * 1.75);
 
                 g.SetClip(_tabRects[_baseTabControl.SelectedIndex]);
-                g.FillEllipse(rippleBrush, new Rectangle(_animationSource.X - rippleSize / 2, _animationSource.Y - rippleSize / 2, rippleSize, rippleSize));
+                g.FillEllipse(rippleBrush, new Rectangle(_animationSource.X - (rippleSize / 2), _animationSource.Y - (rippleSize / 2), rippleSize, rippleSize));
                 g.ResetClip();
                 rippleBrush.Dispose();
             }
@@ -180,10 +186,10 @@ namespace MaterialSkin.Controls
             {
                 using (var g = Graphics.FromImage(b))
                 {
-                    _tabRects.Add(new Rectangle(SkinManager.FORM_PADDING, 0, TAB_HEADER_PADDING * 2 + (int)g.MeasureString(_baseTabControl.TabPages[0].Text, SkinManager.ROBOTO_MEDIUM_10).Width, Height));
+                    _tabRects.Add(new Rectangle(SkinManager.FORM_PADDING, 0, (TAB_HEADER_PADDING * 2) + (int)g.MeasureString(_baseTabControl.TabPages[0].Text, SkinManager.ROBOTO_MEDIUM_10).Width, Height));
                     for (int i = 1; i < _baseTabControl.TabPages.Count; i++)
                     {
-                        _tabRects.Add(new Rectangle(_tabRects[i - 1].Right, 0, TAB_HEADER_PADDING * 2 + (int)g.MeasureString(_baseTabControl.TabPages[i].Text, SkinManager.ROBOTO_MEDIUM_10).Width, Height));
+                        _tabRects.Add(new Rectangle(_tabRects[i - 1].Right, 0, (TAB_HEADER_PADDING * 2) + (int)g.MeasureString(_baseTabControl.TabPages[i].Text, SkinManager.ROBOTO_MEDIUM_10).Width, Height));
                     }
                 }
             }

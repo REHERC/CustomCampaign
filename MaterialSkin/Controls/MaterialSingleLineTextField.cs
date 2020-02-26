@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using MaterialSkin.Animations;
 
-#pragma warning disable IDE0059
+#pragma warning disable IDE0059, RCS1159
 
 namespace MaterialSkin.Controls
 {
@@ -14,8 +14,10 @@ namespace MaterialSkin.Controls
         //Properties for managing the material design properties
         [Browsable(false)]
         public int Depth { get; set; }
+
         [Browsable(false)]
         public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
+
         [Browsable(false)]
         public MouseState MouseState { get; set; }
 
@@ -48,7 +50,6 @@ namespace MaterialSkin.Controls
         public void SelectAll() { _baseTextBox.SelectAll(); }
         public void Clear() { _baseTextBox.Clear(); }
         public new void Focus() { _baseTextBox.Focus(); }
-
 
         # region Forwarding events to baseTextBox
         public event EventHandler AcceptsTabChanged
@@ -962,7 +963,7 @@ namespace MaterialSkin.Controls
                 AnimationType = AnimationType.EaseInOut,
                 InterruptAnimation = false
             };
-            _animationManager.OnAnimationProgress += sender => Invalidate();
+            _animationManager.OnAnimationProgress += _ => Invalidate();
 
             _baseTextBox = new BaseTextBox
             {
@@ -1009,7 +1010,7 @@ namespace MaterialSkin.Controls
                 //Animate
                 int animationWidth = (int)(_baseTextBox.Width * _animationManager.GetProgress());
                 int halfAnimationWidth = animationWidth / 2;
-                int animationStart = _baseTextBox.Location.X + _baseTextBox.Width / 2;
+                int animationStart = _baseTextBox.Location.X + (_baseTextBox.Width / 2);
 
                 //Unfocused background
                 g.FillRectangle(SkinManager.GetDividersBrush(), _baseTextBox.Location.X, lineY, _baseTextBox.Width, 1);
@@ -1039,7 +1040,7 @@ namespace MaterialSkin.Controls
 
         private class BaseTextBox : TextBox
         {
-            [DllImport("user32.dll", CharSet = CharSet.Auto)]
+            [DllImport("user32.dll", CharSet = CharSet.Unicode)]
             private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
 
             private const int EM_SETCUEBANNER = 0x1501;
@@ -1048,6 +1049,7 @@ namespace MaterialSkin.Controls
             private const char NonVisualStylePasswordChar = '\u002A';
 
             private string hint = string.Empty;
+
             public string Hint
             {
                 get { return hint; }
@@ -1059,6 +1061,7 @@ namespace MaterialSkin.Controls
             }
 
             private char _passwordChar = EmptyChar;
+
             public new char PasswordChar
             {
                 get { return _passwordChar; }
@@ -1071,22 +1074,20 @@ namespace MaterialSkin.Controls
 
             public new void SelectAll()
             {
-                BeginInvoke((MethodInvoker)delegate ()
+                BeginInvoke((MethodInvoker)(() =>
                 {
                     base.Focus();
                     base.SelectAll();
-                });
+                }));
             }
 
             public new void Focus()
             {
-                BeginInvoke((MethodInvoker)delegate ()
-                {
-                    base.Focus();
-                });
+                BeginInvoke((MethodInvoker)(() => base.Focus()));
             }
 
             private char _useSystemPasswordChar = EmptyChar;
+
             public new bool UseSystemPasswordChar
             {
                 get { return _useSystemPasswordChar != EmptyChar; }
