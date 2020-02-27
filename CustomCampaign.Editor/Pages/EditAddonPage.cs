@@ -19,7 +19,7 @@ namespace CustomCampaign.Editor.Pages
         {
             base.OnDisplay();
 
-            Dependencies_SelectedIndexChanged(Dependencies, new EventArgs());
+            Dependencies_SelectedIndexChanged(Dependencies, EventArgs.Empty);
         }
 
         public void Setup(Addon addon, string title)
@@ -36,7 +36,7 @@ namespace CustomCampaign.Editor.Pages
 
         private Addon data = new Addon();
 
-        public Action<DialogResult, Addon> PageClosed = (result, level) => { };
+        public Action<DialogResult, Addon> PageClosed = (_, __) => { };
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
@@ -47,17 +47,17 @@ namespace CustomCampaign.Editor.Pages
         private void CancelBtn_Click(object sender, EventArgs e) => PageClosed(DialogResult.Cancel, data);
         private void AddonName_TextChanged(object sender, EventArgs e) => data.name = AddonName.Text;
         private void AddonFile_TextChanged(object sender, EventArgs e) => data.module = AddonFile.Text;
+
         private void Dependencies_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool flag = true;
-            flag &= Dependencies.SelectedIndex > -1; 
+            flag &= Dependencies.SelectedIndex > -1;
             flag &= Dependencies.SelectedIndex < Dependencies.Items.Count;
 
             EditBtn.Enabled = RemoveBtn.Enabled = flag;
-            
         }
 
-        void UpdateDataDependencies() => data.dependencies = Dependencies.Items.Cast<string>().ToList();
+        private void UpdateDataDependencies() => data.dependencies = Dependencies.Items.Cast<string>().ToList();
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
@@ -83,6 +83,7 @@ namespace CustomCampaign.Editor.Pages
                 Dependencies.Items.RemoveAt(index);
             UpdateDataDependencies();
         }
+
         private bool ValidateFields()
         {
             bool result = true;

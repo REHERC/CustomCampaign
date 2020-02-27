@@ -112,4 +112,30 @@ public static class Extensions
     {
         return new MemoryStream(Encoding.UTF8.GetBytes(input));
     }
+
+    public static string ToFormattedTime(this double value)
+    {
+        return TimeSpan.FromSeconds(value).GetDisplayTime();
+    }
+
+    public static string GetDisplayTime(this TimeSpan value)
+    {
+        int hours = value.Hours + (24 * value.Days);
+
+        return $"{hours.GetFormated()} hour{(hours is 1 ? string.Empty : "s")} {value.Minutes.GetFormated()} minute{(value.Minutes is 1 ? string.Empty : "s")} {value.Seconds.GetFormated()}.{value.Milliseconds.GetFormated(3, false)} second{(value.Seconds is 1 && value.Milliseconds is 0 ? string.Empty : "s")}";
+    }
+
+    public static string GetFormated(this int value, int length = 2, bool left = true)
+    {
+        string temp = value.ToString();
+        while (temp.Length < length)
+        {
+            temp = $"{(left ? "0" : string.Empty)}{temp}{(!left ? "0" : string.Empty)}";
+        }
+        if (temp.Length > length)
+        {
+            temp = temp.Substring(0, length);
+        }
+        return temp;
+    }
 }

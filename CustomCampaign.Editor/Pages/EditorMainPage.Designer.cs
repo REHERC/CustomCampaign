@@ -53,8 +53,9 @@ namespace CustomCampaign.Editor.Pages
             this.OverviewLevels = new MaterialSkin.Controls.MaterialListBox();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.SettingsLayout = new MaterialSkin.Controls.MaterialPanel();
-            this.CampaignGamemode = new MaterialDropDown();
-            this.CampaignUnlockStyle = new MaterialDropDown();
+            this.SprintPlaylist = new MaterialSkin.Controls.MaterialCheckBox();
+            this.CampaignGamemode = new MaterialSkin.Controls.MaterialDropDown();
+            this.CampaignUnlockStyle = new MaterialSkin.Controls.MaterialDropDown();
             this.CampaignAuthors = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.CampaignLogo = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.CampaignDescription = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -88,7 +89,6 @@ namespace CustomCampaign.Editor.Pages
             this.EditAddon = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveAddon = new System.Windows.Forms.ToolStripMenuItem();
             this.TabDivider = new MaterialSkin.Controls.MaterialDivider();
-            this.SprintPlaylist = new MaterialSkin.Controls.MaterialCheckBox();
             this.EditorLayout.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.FileTab.SuspendLayout();
@@ -482,6 +482,21 @@ namespace CustomCampaign.Editor.Pages
             this.SettingsLayout.Padding = new System.Windows.Forms.Padding(16);
             this.SettingsLayout.Size = new System.Drawing.Size(776, 308);
             this.SettingsLayout.TabIndex = 1;
+            // 
+            // SprintPlaylist
+            // 
+            this.SprintPlaylist.Depth = 0;
+            this.SprintPlaylist.Font = new System.Drawing.Font("Roboto", 11F);
+            this.SprintPlaylist.Location = new System.Drawing.Point(16, 222);
+            this.SprintPlaylist.Margin = new System.Windows.Forms.Padding(0);
+            this.SprintPlaylist.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.SprintPlaylist.MouseState = MaterialSkin.MouseState.HOVER;
+            this.SprintPlaylist.Name = "SprintPlaylist";
+            this.SprintPlaylist.Ripple = true;
+            this.SprintPlaylist.Size = new System.Drawing.Size(738, 30);
+            this.SprintPlaylist.TabIndex = 6;
+            this.SprintPlaylist.Text = "Create arcade mode sprint playlist";
+            this.SprintPlaylist.UseVisualStyleBackColor = true;
             // 
             // CampaignGamemode
             // 
@@ -1014,21 +1029,6 @@ namespace CustomCampaign.Editor.Pages
             this.TabDivider.TabIndex = 2;
             this.TabDivider.Text = "materialDivider1";
             // 
-            // SprintPlaylist
-            // 
-            this.SprintPlaylist.Depth = 0;
-            this.SprintPlaylist.Font = new System.Drawing.Font("Roboto", 11F);
-            this.SprintPlaylist.Location = new System.Drawing.Point(16, 222);
-            this.SprintPlaylist.Margin = new System.Windows.Forms.Padding(0);
-            this.SprintPlaylist.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.SprintPlaylist.MouseState = MaterialSkin.MouseState.HOVER;
-            this.SprintPlaylist.Name = "SprintPlaylist";
-            this.SprintPlaylist.Ripple = true;
-            this.SprintPlaylist.Size = new System.Drawing.Size(738, 30);
-            this.SprintPlaylist.TabIndex = 6;
-            this.SprintPlaylist.Text = "Create arcade mode sprint playlist";
-            this.SprintPlaylist.UseVisualStyleBackColor = true;
-            // 
             // EditorMainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1065,63 +1065,64 @@ namespace CustomCampaign.Editor.Pages
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialTabSelector TabSelector;
-        private MaterialTableLayoutPanel EditorLayout;
-        private MaterialSkin.Controls.MaterialTabControl EditorTabs;
-        private System.Windows.Forms.TabPage SettingsTab;
-        private MaterialPanel SettingsLayout;
-        private MaterialDropDown CampaignGamemode;
-        private MaterialDropDown CampaignUnlockStyle;
-        private MaterialSkin.Controls.MaterialSingleLineTextField CampaignAuthors;
-        private MaterialSkin.Controls.MaterialSingleLineTextField CampaignLogo;
-        private MaterialSkin.Controls.MaterialSingleLineTextField CampaignDescription;
-        private MaterialSkin.Controls.MaterialSingleLineTextField CampaignName;
-        private System.Windows.Forms.TabPage LevelsTab;
-        private System.Windows.Forms.TabPage AddonsTab;
-        private System.Windows.Forms.TabPage FileTab;
-        private MaterialTableLayoutPanel FileLayout;
-        private MaterialPanel ActionsPanel;
-        private MaterialSkin.Controls.MaterialFlatButton CloseBtn;
-        private MaterialSkin.Controls.MaterialFlatButton PackBtn;
-        private MaterialSkin.Controls.MaterialFlatButton SaveBtn;
-        private MaterialSkin.Controls.MaterialFlatButton OpenBtn;
-        private MaterialSkin.Controls.MaterialFlatButton NewBtn;
-        private MaterialSkin.Controls.MaterialDivider MenuDivider;
-        private MaterialSkin.Controls.MaterialDivider TabDivider;
-        private MaterialTableLayoutPanel FileRightSide;
-        private Controls.InfoCard Overview;
-        private MaterialContextMenuStrip LevelsMenu;
-        private System.Windows.Forms.ToolStripMenuItem AddLevel;
-        private System.Windows.Forms.ToolStripMenuItem EditLevel;
-        private System.Windows.Forms.ToolStripMenuItem RemoveLevel;
-        private MaterialFlatButton FolderBtn;
-        private MaterialFlatButton ImportBtn;
-        private MaterialTableLayoutPanel LevelsLayout;
-        private MaterialPanel LevelActions;
-        private MaterialFlatButton RemoveLevelBtn;
-        private MaterialFlatButton EditLevelBtn;
-        private MaterialFlatButton AddLevelBtn;
-        private MaterialDivider materialDivider1;
-        public LevelBox Levels;
-        private MaterialFlatButton ValidateBtn;
-        private MaterialTableLayoutPanel AddonsLayout;
-        private MaterialPanel AddonActions;
-        private MaterialFlatButton RemoveAddonBtn;
-        private MaterialFlatButton EditAddonBtn;
-        private MaterialFlatButton AddAddonBtn;
-        private MaterialDivider materialDivider2;
-        private MaterialFlatButton MoveLevelDownBtn;
-        private MaterialFlatButton MoveLevelUpBtn;
-        private MaterialContextMenuStrip AddonsMenu;
-        private System.Windows.Forms.ToolStripMenuItem AddAddon;
-        private System.Windows.Forms.ToolStripMenuItem EditAddon;
-        private System.Windows.Forms.ToolStripMenuItem RemoveAddon;
-        private AddonBox Addons;
-        private MaterialFlatButton MoveAddonDownBtn;
-        private MaterialFlatButton MoveAddonUpBtn;
-        private MaterialLabel OverviewLbl;
-        private MaterialLabel OverviewLevelsLbl;
-        private MaterialListBox OverviewLevels;
-        private MaterialCheckBox SprintPlaylist;
+
+        internal MaterialTabSelector TabSelector;
+        internal MaterialTableLayoutPanel EditorLayout;
+        internal MaterialTabControl EditorTabs;
+        internal System.Windows.Forms.TabPage SettingsTab;
+        internal MaterialPanel SettingsLayout;
+        internal MaterialDropDown CampaignGamemode;
+        internal MaterialDropDown CampaignUnlockStyle;
+        internal MaterialSingleLineTextField CampaignAuthors;
+        internal MaterialSingleLineTextField CampaignLogo;
+        internal MaterialSingleLineTextField CampaignDescription;
+        internal MaterialSingleLineTextField CampaignName;
+        internal System.Windows.Forms.TabPage LevelsTab;
+        internal System.Windows.Forms.TabPage AddonsTab;
+        internal System.Windows.Forms.TabPage FileTab;
+        internal MaterialTableLayoutPanel FileLayout;
+        internal MaterialPanel ActionsPanel;
+        internal MaterialFlatButton CloseBtn;
+        internal MaterialFlatButton PackBtn;
+        internal MaterialFlatButton SaveBtn;
+        internal MaterialFlatButton OpenBtn;
+        internal MaterialFlatButton NewBtn;
+        internal MaterialDivider MenuDivider;
+        internal MaterialDivider TabDivider;
+        internal MaterialTableLayoutPanel FileRightSide;
+        internal InfoCard Overview;
+        internal MaterialContextMenuStrip LevelsMenu;
+        internal System.Windows.Forms.ToolStripMenuItem AddLevel;
+        internal System.Windows.Forms.ToolStripMenuItem EditLevel;
+        internal System.Windows.Forms.ToolStripMenuItem RemoveLevel;
+        internal MaterialFlatButton FolderBtn;
+        internal MaterialFlatButton ImportBtn;
+        internal MaterialTableLayoutPanel LevelsLayout;
+        internal MaterialPanel LevelActions;
+        internal MaterialFlatButton RemoveLevelBtn;
+        internal MaterialFlatButton EditLevelBtn;
+        internal MaterialFlatButton AddLevelBtn;
+        internal MaterialDivider materialDivider1;
+        internal LevelBox Levels;
+        internal MaterialFlatButton ValidateBtn;
+        internal MaterialTableLayoutPanel AddonsLayout;
+        internal MaterialPanel AddonActions;
+        internal MaterialFlatButton RemoveAddonBtn;
+        internal MaterialFlatButton EditAddonBtn;
+        internal MaterialFlatButton AddAddonBtn;
+        internal MaterialDivider materialDivider2;
+        internal MaterialFlatButton MoveLevelDownBtn;
+        internal MaterialFlatButton MoveLevelUpBtn;
+        internal MaterialContextMenuStrip AddonsMenu;
+        internal System.Windows.Forms.ToolStripMenuItem AddAddon;
+        internal System.Windows.Forms.ToolStripMenuItem EditAddon;
+        internal System.Windows.Forms.ToolStripMenuItem RemoveAddon;
+        internal AddonBox Addons;
+        internal MaterialFlatButton MoveAddonDownBtn;
+        internal MaterialFlatButton MoveAddonUpBtn;
+        internal MaterialLabel OverviewLbl;
+        internal MaterialLabel OverviewLevelsLbl;
+        internal MaterialListBox OverviewLevels;
+        internal MaterialCheckBox SprintPlaylist;
     }
 }

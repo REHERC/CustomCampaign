@@ -38,9 +38,9 @@
             this.SecondsLbl = new MaterialSkin.Controls.MaterialLabel();
             this.MilisecondsLbl = new MaterialSkin.Controls.MaterialLabel();
             this.ActionPanel = new MaterialSkin.Controls.MaterialPanel();
+            this.ButttonsLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.ConfirmBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.CancelBtn = new MaterialSkin.Controls.MaterialFlatButton();
-            this.ButttonsLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.NoteLbl = new MaterialSkin.Controls.MaterialLabel();
             this.MainLayout.SuspendLayout();
             this.ActionPanel.SuspendLayout();
@@ -80,6 +80,7 @@
             this.Seconds.SelectionStart = 0;
             this.Seconds.Size = new System.Drawing.Size(137, 26);
             this.Seconds.TabIndex = 2;
+            this.Seconds.TabStop = false;
             this.Seconds.Text = "0";
             this.Seconds.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.Seconds.Value = new decimal(new int[] {
@@ -121,6 +122,7 @@
             this.Minutes.SelectionStart = 0;
             this.Minutes.Size = new System.Drawing.Size(137, 26);
             this.Minutes.TabIndex = 1;
+            this.Minutes.TabStop = false;
             this.Minutes.Text = "0";
             this.Minutes.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.Minutes.Value = new decimal(new int[] {
@@ -162,6 +164,7 @@
             this.Hours.SelectionStart = 0;
             this.Hours.Size = new System.Drawing.Size(137, 26);
             this.Hours.TabIndex = 0;
+            this.Hours.TabStop = false;
             this.Hours.Text = "0";
             this.Hours.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.Hours.Value = new decimal(new int[] {
@@ -233,6 +236,7 @@
             this.Miliseconds.SelectionStart = 0;
             this.Miliseconds.Size = new System.Drawing.Size(139, 26);
             this.Miliseconds.TabIndex = 3;
+            this.Miliseconds.TabStop = false;
             this.Miliseconds.Text = "0";
             this.Miliseconds.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.Miliseconds.Value = new decimal(new int[] {
@@ -323,42 +327,6 @@
             this.ActionPanel.Size = new System.Drawing.Size(646, 64);
             this.ActionPanel.TabIndex = 4;
             // 
-            // ConfirmBtn
-            // 
-            this.ConfirmBtn.AutoSize = true;
-            this.ConfirmBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ConfirmBtn.Depth = 0;
-            this.ConfirmBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ConfirmBtn.Header = false;
-            this.ConfirmBtn.Icon = null;
-            this.ConfirmBtn.Location = new System.Drawing.Point(464, 0);
-            this.ConfirmBtn.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.ConfirmBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ConfirmBtn.Name = "ConfirmBtn";
-            this.ConfirmBtn.Primary = true;
-            this.ConfirmBtn.Size = new System.Drawing.Size(81, 36);
-            this.ConfirmBtn.TabIndex = 6;
-            this.ConfirmBtn.Text = "Confirm";
-            this.ConfirmBtn.UseVisualStyleBackColor = true;
-            // 
-            // CancelBtn
-            // 
-            this.CancelBtn.AutoSize = true;
-            this.CancelBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CancelBtn.Depth = 0;
-            this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CancelBtn.Icon = null;
-            this.CancelBtn.Location = new System.Drawing.Point(553, 0);
-            this.CancelBtn.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.CancelBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Primary = false;
-            this.CancelBtn.Size = new System.Drawing.Size(73, 36);
-            this.CancelBtn.TabIndex = 7;
-            this.CancelBtn.Text = "Cancel";
-            this.CancelBtn.UseVisualStyleBackColor = true;
-            // 
             // ButttonsLayout
             // 
             this.ButttonsLayout.AutoSize = true;
@@ -380,6 +348,44 @@
             this.ButttonsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ButttonsLayout.Size = new System.Drawing.Size(626, 36);
             this.ButttonsLayout.TabIndex = 5;
+            // 
+            // ConfirmBtn
+            // 
+            this.ConfirmBtn.AutoSize = true;
+            this.ConfirmBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ConfirmBtn.Depth = 0;
+            this.ConfirmBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ConfirmBtn.Header = false;
+            this.ConfirmBtn.Icon = null;
+            this.ConfirmBtn.Location = new System.Drawing.Point(464, 0);
+            this.ConfirmBtn.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.ConfirmBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ConfirmBtn.Name = "ConfirmBtn";
+            this.ConfirmBtn.Primary = true;
+            this.ConfirmBtn.Size = new System.Drawing.Size(81, 36);
+            this.ConfirmBtn.TabIndex = 6;
+            this.ConfirmBtn.Text = "Confirm";
+            this.ConfirmBtn.UseVisualStyleBackColor = true;
+            this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
+            // 
+            // CancelBtn
+            // 
+            this.CancelBtn.AutoSize = true;
+            this.CancelBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelBtn.Depth = 0;
+            this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.CancelBtn.Icon = null;
+            this.CancelBtn.Location = new System.Drawing.Point(553, 0);
+            this.CancelBtn.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.CancelBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Primary = false;
+            this.CancelBtn.Size = new System.Drawing.Size(73, 36);
+            this.CancelBtn.TabIndex = 7;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // NoteLbl
             // 
@@ -408,10 +414,12 @@
             this.Controls.Add(this.MainLayout);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(670, 0);
             this.Name = "CountdownSelector";
             this.Padding = new System.Windows.Forms.Padding(4, 40, 4, 0);
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Title = "Countdown configuration";
             this.MainLayout.ResumeLayout(false);

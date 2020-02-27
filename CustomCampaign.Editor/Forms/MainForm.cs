@@ -61,24 +61,31 @@ namespace CustomCampaign.Editor.Forms
             }
         }
 
-        readonly Queue<Keys> KeyStrokes = new Queue<Keys>();
-        DateTime LastInput = DateTime.UtcNow;
+        private readonly Queue<Keys> KeyStrokes = new Queue<Keys>();
+        private DateTime LastInput = DateTime.UtcNow;
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if ((DateTime.UtcNow - LastInput).TotalSeconds > 1.5f)
+            {
                 KeyStrokes.Clear();
+            }
             KeyStrokes.Enqueue(keyData);
 
             string code = "";
             foreach (Keys key in KeyStrokes)
+            {
                 code = $"{code}{key.ToString()}";
+            }
 
             foreach (var item in Secrets)
+            {
                 if (code.Contains(item.Key))
                 {
                     item.Value();
                     KeyStrokes.Clear();
                 }
+            }
 
             LastInput = DateTime.UtcNow;
 
@@ -96,7 +103,9 @@ namespace CustomCampaign.Editor.Forms
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Globals.IsFileOpened && MessageDialog.Show("Are you sure you want to close this window?\nAny unsaved changes will be discarded!", "Quit application?", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
                 e.Cancel = true;
+            }
         }
     }
 }

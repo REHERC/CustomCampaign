@@ -208,7 +208,7 @@ namespace CustomCampaign.Editor.Pages
             this.TutorialsBtn.Primary = false;
             this.TutorialsBtn.Size = new System.Drawing.Size(192, 28);
             this.TutorialsBtn.TabIndex = 7;
-            this.TutorialsBtn.Text = "Online Tutorials";
+            this.TutorialsBtn.Text = "Tutorials";
             this.TutorialsBtn.UseVisualStyleBackColor = true;
             this.TutorialsBtn.Click += new System.EventHandler(this.TutorialsBtn_Click);
             // 

@@ -39,6 +39,7 @@ namespace CustomCampaign.Editor.Pages
             data.overwrite_loading_text = level.overwrite_loading_text;
             data.loading_text = level.loading_text;
             data.hide_in_sprint = level.hide_in_sprint;
+            data.countdown = level.countdown;
 
             LevelFile.Text = data.file;
             DisplayIntro.Checked = data.display_intro_title;
@@ -48,6 +49,9 @@ namespace CustomCampaign.Editor.Pages
             OverwriteLoadingText.Checked = data.overwrite_loading_text;
             LoadingText.Text = data.loading_text;
             HideInSprint.Checked = data.hide_in_sprint;
+            HideInSprint.Visible = Globals.MainWindow.GetPage<EditorMainPage>("pages:editormain").SprintPlaylist.Checked;
+
+            SetTimerDisplay();
         }
 
         private Level data = new Level();
@@ -75,7 +79,12 @@ namespace CustomCampaign.Editor.Pages
 
         private void LevelFile_TextChanged(object sender, EventArgs e) => data.file = LevelFile.Text;
 
-        private void DisplayIntro_CheckedChanged(object sender, EventArgs e) => data.display_intro_title = DisplayIntro.Checked;
+        private void DisplayIntro_CheckedChanged(object sender, EventArgs e)
+        {
+            LevelName.Visible = DisplayIntro.Checked;
+            LevelSector.Visible = DisplayIntro.Checked;
+            data.display_intro_title = DisplayIntro.Checked;
+        }
 
         private void LevelName_TextChanged(object sender, EventArgs e) => data.levelname = LevelName.Text;
 
@@ -83,7 +92,11 @@ namespace CustomCampaign.Editor.Pages
 
         private void LoadingBackground_TextChanged(object sender, EventArgs e) => data.loading_wallpaper = LoadingBackground.Text;
 
-        private void OverwriteLoadingText_CheckedChanged(object sender, EventArgs e) => data.overwrite_loading_text = OverwriteLoadingText.Checked;
+        private void OverwriteLoadingText_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadingText.Visible = OverwriteLoadingText.Checked;
+            data.overwrite_loading_text = OverwriteLoadingText.Checked;
+        }
 
         private void LoadingText_TextChanged(object sender, EventArgs e) => data.loading_text = LoadingText.Text;
 
@@ -144,6 +157,24 @@ namespace CustomCampaign.Editor.Pages
                 if (dlg.ShowDialog() is DialogResult.OK)
                 {
                     LevelFile.Text = dlg.filename;
+                }
+            }
+        }
+
+        private void SetTimerDisplay()
+        {
+            TimerValue.Text = data.countdown == 0.0d ? "Standard sprint stopwatch" : TimeSpan.FromSeconds(data.countdown).GetDisplayTime();
+        }
+
+        private void TimerBtn_Click(object sender, EventArgs e)
+        {
+            using (CountdownSelector dlg = new CountdownSelector())
+            {
+                dlg.SetValue(data.countdown);
+                if (dlg.ShowDialog() is DialogResult.OK)
+                {
+                    data.countdown = dlg.GetValue();
+                    SetTimerDisplay();
                 }
             }
         }
