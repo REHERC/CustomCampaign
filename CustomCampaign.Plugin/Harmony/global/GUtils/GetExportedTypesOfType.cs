@@ -19,7 +19,7 @@ namespace CustomCampaign.Harmony
                 typeof(AddedComponent)
             }.Contains(baseType))
             {
-                types.AddRange(Util.GetExportedTypesOfType(baseType));
+                types.AddRange(Utils.Common.GetExportedTypesOfType(baseType));
             }
             __result = types.ToArray();
         }

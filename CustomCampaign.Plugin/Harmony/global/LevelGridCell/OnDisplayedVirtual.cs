@@ -14,7 +14,7 @@ namespace CustomCampaign.Harmony
             {
                 LevelGridGrid.LevelEntry entry = __instance.entry_ as LevelGridGrid.LevelEntry;
                 string path = entry.AbsolutePath_;
-                if (Util.IsCustomCampaignLevel(path))
+                if (Utils.Campaign.IsCustomCampaignLevel(path))
                 {
                     __instance.titleLabel_.enabled = false;
                     __instance.authorLabel_.enabled = false;

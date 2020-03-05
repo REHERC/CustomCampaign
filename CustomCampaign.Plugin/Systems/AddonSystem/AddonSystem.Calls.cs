@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Data;
+﻿#pragma warning disable CA1031
+using CustomCampaign.Data;
 using CustomCampaign.Storage;
 
 namespace CustomCampaign.Systems
@@ -13,7 +14,7 @@ namespace CustomCampaign.Systems
                 // Avoid multiple initialization calls
                 if (item.Key.Object.Initialized) return;
 
-                CampaignInfo info = Util.GetCampaign(item.Key);
+                CampaignInfo info = Utils.Campaign.GetCampaign(item.Key);
                 item.Key.Object.Info = info;
                 try
                 {
@@ -64,7 +65,7 @@ namespace CustomCampaign.Systems
             {
                 try
                 {
-                    item.Key.Object.OnLevelStart(Util.GetLevelInfo(Util.LevelFile), G.Sys.GameManager_.ModeID_ == GameModeID.Sprint);
+                    item.Key.Object.OnLevelStart(Utils.Campaign.GetLevelInfo(Utils.Common.LevelFile), G.Sys.GameManager_.ModeID_ == GameModeID.Sprint);
                 }
                 catch (System.Exception error)
                 {

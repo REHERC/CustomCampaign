@@ -17,10 +17,10 @@ namespace CustomCampaign.Harmony
                 {
                     LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
                     string level = playlist.GetLevelSet()[0].levelPath_.NormPath(true);
-                    if (Util.IsCustomCampaignLevel(level))
+                    if (Utils.Campaign.IsCustomCampaignLevel(level))
                     {
-                        __instance.modeDescription_.text = __instance.gridDescription_.text = Util.GetCampaignDescription(level);
-                        __instance.campaignLogo_.mainTexture = Util.GetCampaignLogo(level);
+                        __instance.modeDescription_.text = __instance.gridDescription_.text = Utils.Campaign.GetCampaignDescription(level);
+                        __instance.campaignLogo_.mainTexture = Utils.Campaign.GetCampaignLogo(level);
                     }
                 }
                 catch (NullReferenceException nre)

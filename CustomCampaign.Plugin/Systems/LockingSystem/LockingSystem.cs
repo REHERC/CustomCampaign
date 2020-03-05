@@ -14,18 +14,27 @@ namespace CustomCampaign.Systems
         {
             Serializer<Dictionary<string, int>> progress = GetProgress();
             foreach (var campaign in Campaigns.Items)
+            {
                 if (!progress.Data.ContainsKey(campaign.Value.Id))
+                {
                     progress.Data.Add(campaign.Value.Id, 0);
+                }
+            }
             progress.Save();
         }
 
         internal static bool IsCampaignComplete(string guid)
         {
-            CampaignInfo info = Util.GetCampaignByGuid(guid);
-            if (info is null) return false;
+            CampaignInfo info = Utils.Campaign.GetCampaignByGuid(guid);
+            if (info is null)
+            {
+                return false;
+            }
             bool flag = true;
             foreach (var level in info.Levels)
+            {
                 flag &= !IsLevelLocked(level.file);
+            }
             return flag;
         }
 
@@ -34,11 +43,13 @@ namespace CustomCampaign.Systems
             string file = levelfile.NormPath(true);
             try
             {
-                if (Util.GetCampaignUnlockMode(levelfile) == Models.Campaign.UnlockStyle.LevelSet)
+                if (Utils.Campaign.GetCampaignUnlockMode(levelfile) == Models.Campaign.UnlockStyle.LevelSet)
+                {
                     return false;
-                string campaign = Util.GetCampaignId(file);
+                }
+                string campaign = Utils.Campaign.GetCampaignId(file);
                 int completion = GetCampaignProgress(campaign);
-                return Util.GetLevelIndex(levelfile) > completion;
+                return Utils.Campaign.GetLevelIndex(levelfile) > completion;
             }
             catch (Exception pizza) {
                 Plugin.Log.Exception(pizza);
@@ -67,11 +78,13 @@ namespace CustomCampaign.Systems
         internal static void UnlockLevel(string levelfile)
         {
             Serializer<Dictionary<string, int>> progress = GetProgress();
-            string campaign = Util.GetCampaignId(levelfile);
-            int index = Util.GetLevelIndex(levelfile);
+            string campaign = Utils.Campaign.GetCampaignId(levelfile);
+            int index = Utils.Campaign.GetLevelIndex(levelfile);
             int campaign_progress = GetCampaignProgress(campaign);
             if (index > campaign_progress)
+            {
                 progress.Data[campaign] = index;
+            }
             progress.Save();
         }
 

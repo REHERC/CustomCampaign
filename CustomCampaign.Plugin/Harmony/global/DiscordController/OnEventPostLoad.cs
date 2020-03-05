@@ -9,13 +9,13 @@ namespace CustomCampaign.Harmony
     {
         public static bool Prefix(DiscordController __instance)
         {
-            bool rpc_overwrite = Util.IsCustomCampaignLevel(Util.LevelFile);
+            bool rpc_overwrite = Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile);
             if (G.Sys.GameManager_.IsLevelEditorMode_ || !rpc_overwrite)
             {
                 return true;
             }
 
-            CampaignInfo info = Util.GetCampaign(Util.LevelFile);
+            CampaignInfo info = Utils.Campaign.GetCampaign(Utils.Common.LevelFile);
 
             string rpc_imagekey = G.Sys.GameManager_.ModeID_ == GameModeID.Sprint ? "community_level" : "official_level";
             string rpc_mode = rpc_imagekey == "community_level" ? "Sprint" : info.Name;

@@ -14,7 +14,7 @@ namespace CustomCampaign.Harmony
                 {
                     __result.LevelPathsToLevelInfos_.Remove(path);
                 }
-                __result.LevelPathsToLevelInfos_.Add(path, Util.LevelInfoFromPath(path));
+                __result.LevelPathsToLevelInfos_.Add(path, Utils.Common.LevelInfoFromPath(path));
             }
         }
     }

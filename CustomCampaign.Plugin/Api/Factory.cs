@@ -20,23 +20,23 @@ namespace CustomCampaign.Api
         public static Settings Settings(string file)
         {
             string directory = $"{GetCommonPath(Assembly.GetCallingAssembly())}/Settings";
-            Util.MakeDirectory(Path.Combine(Plugin.Files.RootDirectory, "Data/" + directory));
+            Utils.Common.MakeDirectory(Path.Combine(Plugin.Files.RootDirectory, "Data/" + directory));
             return new Settings($"../Data/{directory}/{file}");
         }
 
-        public static API_Storage.Assets Assets(string path) => API_Storage.Assets.FromUnsafePath(Util.GetFilePath(path));
+        public static API_Storage.Assets Assets(string path) => API_Storage.Assets.FromUnsafePath(Utils.Common.GetFilePath(path));
 
 #if API_SPECTRUM
         public static Logger Logger(string file, bool output = true)
         {
             string directory = $"{GetCommonPath(Assembly.GetCallingAssembly())}/Logs";
-            Util.MakeDirectory(Path.Combine(Plugin.Files.RootDirectory, "Data/" + directory));
+            Utils.Common.MakeDirectory(Path.Combine(Plugin.Files.RootDirectory, "Data/" + directory));
             return new Logger($"../Data/{directory}/{file}")
             {
                 WriteToConsole = output
             };
         }
 #endif
-        private static string GetCommonPath(Assembly assembly) => $"Common/{Util.GetCampaign(assembly).Id}";
+        private static string GetCommonPath(Assembly assembly) => $"Common/{Utils.Campaign.GetCampaign(assembly).Id}";
     }
 }

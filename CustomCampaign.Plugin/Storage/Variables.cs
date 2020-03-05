@@ -8,7 +8,7 @@ namespace CustomCampaign.Storage
         internal static string CampaignsDataFolder()
         {
             string path = $"{Plugin.Files.RootDirectory}/Data/Campaigns";
-            Util.MakeDirectory(path);
+            Utils.Common.MakeDirectory(path);
             return path;
         }
     }

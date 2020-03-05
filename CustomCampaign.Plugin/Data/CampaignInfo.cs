@@ -47,7 +47,7 @@ namespace CustomCampaign.Data
             string logo_path = Path.Combine(Location, Data.logopath).NormPath(true);
             if (File.Exists(logo_path))
             {
-                Logo = Util.LoadTexture(logo_path) as Texture2D;
+                Logo = Utils.Common.LoadTexture(logo_path) as Texture2D;
             }
 #endif
         }

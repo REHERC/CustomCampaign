@@ -86,12 +86,14 @@ namespace CustomCampaign.Systems
         {
             foreach (var item in files)
             {
-                CampaignInfo info = Util.GetCampaignByGuid(item.Value);
+                CampaignInfo info = Utils.Campaign.GetCampaignByGuid(item.Value);
 
                 try
                 {
                     if (info.Enabled)
+                    {
                         AddAssembly(Assembly.LoadFrom(item.Key), item.Value);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -106,7 +108,7 @@ namespace CustomCampaign.Systems
 
             foreach (var item in Assemblies)
             {
-                CampaignInfo info = Util.GetCampaignByGuid(item.Value);
+                CampaignInfo info = Utils.Campaign.GetCampaignByGuid(item.Value);
                 if (info.Enabled)
                 {
                     LoadAddons(item.Key, item.Value);

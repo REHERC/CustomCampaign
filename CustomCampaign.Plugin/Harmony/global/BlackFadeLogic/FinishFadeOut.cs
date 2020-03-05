@@ -10,13 +10,17 @@ namespace CustomCampaign.Harmony
         public static void Postfix(BlackFadeLogic __instance)
         {
             string path = G.Sys.GameManager_.NextLevelPath_;
-            if (Util.IsCustomCampaignLevel(path) && __instance.storedSceneToLoad_ != "MainMenu")
+            if (Utils.Campaign.IsCustomCampaignLevel(path) && __instance.storedSceneToLoad_ != "MainMenu")
             {
-                Texture background = Util.GetLevelWallpaper(path);
+                Texture background = Utils.Campaign.GetLevelWallpaper(path);
                 if (background != null)
+                {
                     __instance.menu_.loadingTexture_.mainTexture = background;
-                if (Util.GetLevelLoadingTextState(path))
-                    __instance.menu_.loadingLabel_.text = Util.GetLevelLoadingText(path);
+                }
+                if (Utils.Campaign.GetLevelLoadingTextState(path))
+                {
+                    __instance.menu_.loadingLabel_.text = Utils.Campaign.GetLevelLoadingText(path);
+                }
             }
         }
     }

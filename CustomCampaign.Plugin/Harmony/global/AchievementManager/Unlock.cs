@@ -24,7 +24,7 @@ namespace CustomCampaign.Harmony
 
         internal static bool Prefix(EAchievements a)
         {
-            if (Util.IsCustomCampaignLevel(Util.LevelFile) || Util.IsCustomCampaignLevel(Util.LastLevelFile))
+            if (Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) || Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LastLevelFile))
             {
                 if (blocked_achievements.Contains(a))
                 {

@@ -12,7 +12,7 @@ namespace CustomCampaign.Harmony
             {
                 __instance.allLevelPaths_.Add(path);
                 __instance.myLevelsLevelFilePaths_.Add(path);
-                LevelInfo info = Util.LevelInfoFromPath(path);
+                LevelInfo info = Utils.Common.LevelInfoFromPath(path);
                 __instance.AddLevelNameAndPathPair(path, info, __instance.allLevelNameAndPathPairs_);
                 __instance.AddLevelNameAndPathPair(path, info, __instance.myLevelsLevelNameAndPathPairs_);
             }

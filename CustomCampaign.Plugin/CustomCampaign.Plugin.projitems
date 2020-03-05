@@ -48,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Systems\CampaignSystem\CampaignSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\LockingSystem\LockingSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\PreloaderSystem\PreloaderSystem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Util.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Campaign.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Common.cs" />
   </ItemGroup>
 </Project>

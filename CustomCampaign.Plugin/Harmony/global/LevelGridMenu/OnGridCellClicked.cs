@@ -12,13 +12,13 @@ namespace CustomCampaign.Harmony
         {
             LevelPlaylist playlist = __instance.DisplayedEntry_.Playlist_;
             string level = playlist.Playlist_[index].levelNameAndPath_.levelPath_;
-            if (Util.GetCampaignUnlockMode(level) == Models.Campaign.UnlockStyle.LevelSet)
+            if (Utils.Campaign.GetCampaignUnlockMode(level) == Models.Campaign.UnlockStyle.LevelSet)
             {
                 return true;
             }
             else
             {
-                bool flag = Util.IsCustomCampaignLevel(level) && LockingSystem.IsLevelLocked(level);
+                bool flag = Utils.Campaign.IsCustomCampaignLevel(level) && LockingSystem.IsLevelLocked(level);
                 if (flag)
                 {
                     G.Sys.MenuPanelManager_.ShowTimedOk(10, Constants.Strings.LevelLocked_Message, Constants.Strings.LevelLocked_Title);

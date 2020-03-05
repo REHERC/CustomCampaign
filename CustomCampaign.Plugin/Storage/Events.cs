@@ -8,18 +8,14 @@ namespace CustomCampaign.Storage
     {
         internal static void SubscribeAll()
         {
-            Events.Level.PostLoad.Subscribe((data) =>
-            {
-                CampaignInfo campaign = Util.GetCampaign(Util.LevelFile);
-                CampaignSystem.Current = campaign;
-            });
+            Events.Level.PostLoad.Subscribe((data) => CampaignSystem.Current = Utils.Campaign.GetCampaign(Utils.Common.LevelFile));
 
             Events.Game.LevelLoaded.Subscribe((data) => {
-                string level = Util.LevelFile;
-                if (Util.IsCustomCampaignLevel(level))
+                string level = Utils.Common.LevelFile;
+                if (Utils.Campaign.IsCustomCampaignLevel(level))
                 {
                     LockingSystem.UnlockLevel(level);
-                    CampaignInfo campaign = Util.GetCampaign(level);
+                    CampaignInfo campaign = Utils.Campaign.GetCampaign(level);
 
                     Events.Mod.CampaignLevelStarted.Broadcast(new Events.Mod.CampaignLevelStarted.Data(campaign));
                 }

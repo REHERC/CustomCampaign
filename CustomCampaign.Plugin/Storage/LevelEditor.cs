@@ -11,7 +11,7 @@ namespace CustomCampaign.Storage
         {
             GameObject host = G.Sys.ResourceManager_.addedComponentsPrefab_;
 
-            foreach (Type type in Util.GetExportedTypesOfType(typeof(AddedComponent)))
+            foreach (Type type in Utils.Common.GetExportedTypesOfType(typeof(AddedComponent)))
             {
                 AddComponentToPrefab(type, host);
                 AddToTypeMap(type);

@@ -1,5 +1,4 @@
 ﻿using CustomCampaign.Editor.Forms;
-using CustomCampaign.Editor.Forms.Dialogs;
 using Harmony;
 using MaterialSkin;
 using System;
@@ -15,7 +14,7 @@ namespace CustomCampaign.Editor
         [STAThread]
         public static void Main()
         {
-            HarmonyInstance harmony = HarmonyInstance.Create("com.editor.customcampaign");
+            HarmonyInstance harmony = HarmonyInstance.Create("com.reherc.customcampaign.editor");
             harmony.PatchAll(typeof(Program).Assembly);
 
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -33,7 +32,6 @@ namespace CustomCampaign.Editor
             Application.SetCompatibleTextRenderingDefault(false);
 
             Application.Run(Globals.MainWindow = new MainForm());
-            //Application.Run(new CountdownSelector());
         }
     }
 }
