@@ -78,6 +78,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Reflection",
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.CommonPatches", "CustomCampaign.CommonPatches\CustomCampaign.CommonPatches.shproj", "{719075E8-8BE9-461E-8B27-BE3805DDEAFA}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.LevelEditor", "CustomCampaign.LevelEditor\CustomCampaign.LevelEditor.shproj", "{73D4F70A-BEFE-40C6-B283-BBF1632F793D}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.CommonPatches\CustomCampaign.CommonPatches.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4
@@ -86,6 +88,7 @@ Global
 		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{318aa704-ca8b-47db-b86d-43e839c3d27b}*SharedItemsImports = 4
 		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{63f30eea-6baa-4454-8e6c-58450c3d27d5}*SharedItemsImports = 13
 		CustomCampaign.CommonPatches\CustomCampaign.CommonPatches.projitems*{719075e8-8be9-461e-8b27-be3805ddeafa}*SharedItemsImports = 13
+		CustomCampaign.LevelEditor\CustomCampaign.LevelEditor.projitems*{73d4f70a-befe-40c6-b283-bbf1632f793d}*SharedItemsImports = 13
 		CustomCampaign.Addon\CustomCampaign.Addon.projitems*{73e5f207-5812-4d7d-9d51-21dafbc66fd0}*SharedItemsImports = 4
 		CustomCampaign.Reflection\CustomCampaign.Reflection.projitems*{74a6f071-26cf-43ab-9021-7ddfdd366bcd}*SharedItemsImports = 13
 		CustomCampaign.Models\CustomCampaign.Models.projitems*{83bdc586-d69d-4f07-8e5c-63c7bf9d2def}*SharedItemsImports = 13
@@ -94,10 +97,12 @@ Global
 		CustomCampaign.Models\CustomCampaign.Models.projitems*{b9843df8-26c9-4650-a39f-f9ddfb44a644}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{b9843df8-26c9-4650-a39f-f9ddfb44a644}*SharedItemsImports = 4
 		CustomCampaign.CommonPatches\CustomCampaign.CommonPatches.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
+		CustomCampaign.LevelEditor\CustomCampaign.LevelEditor.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
 		CustomCampaign.Reflection\CustomCampaign.Reflection.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{c72aaaea-a1d3-4809-b214-62113f24b252}*SharedItemsImports = 4
 		CustomCampaign.CommonPatches\CustomCampaign.CommonPatches.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
+		CustomCampaign.LevelEditor\CustomCampaign.LevelEditor.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
 		CustomCampaign.Plugin\CustomCampaign.Plugin.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
 		CustomCampaign.Reflection\CustomCampaign.Reflection.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4
 		CustomCampaign.Serialization\CustomCampaign.Serialization.projitems*{db9398d1-4f7a-4a75-92d4-0b92879d82c1}*SharedItemsImports = 4

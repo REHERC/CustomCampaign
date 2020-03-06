@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>73d4f70a-befe-40c6-b283-bbf1632f793d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CustomCampaign.LevelEditor</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\EditorPrefab.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EditorScript.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\PrefabType.cs" />
+  </ItemGroup>
+</Project>
