@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CustomCampaign.Common\T4\Build Properties\Version.cs">
+      <Link>T4\Build Properties\Version.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Version.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,4 +70,36 @@
   <Import Project="..\CustomCampaign.Models\CustomCampaign.Models.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <!-- 15.0 is for VS2017, adjust if necessary -->
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <!-- This is what will cause the templates to be transformed when the project is built (default is false) -->
+    <TransformOnBuild>true</TransformOnBuild>
+    <!-- Set to true to force overwriting of read-only output files, e.g. if they're not checked out (default is false) -->
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+    <!-- Set to false to transform files even if the output appears to be up-to-date (default is true)  -->
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" />
+  <ItemGroup>
+    <T4ParameterValues Include="SolutionDir">
+      <Value>$(SolutionDir)</Value>
+      <Visible>False</Visible>
+    </T4ParameterValues>
+    <T4ParameterValues Include="Configuration">
+      <Value>$(Configuration)</Value>
+      <Visible>False</Visible>
+    </T4ParameterValues>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CustomCampaign.Common\T4\Build Properties\Version.tt">
+      <Link>T4\Build Properties\Version.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Version.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
 </Project>

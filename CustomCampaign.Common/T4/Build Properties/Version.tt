@@ -1,0 +1,13 @@
+﻿<#@ template  debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Diagnostics" #>
+namespace CustomCampaign.BuildProperties
+{
+	public static class BuildProperties
+	{
+		<#
+			this.Write("public static ulong BuildNumber => " + DateTime.Now.ToString("yyyyMMddHHmmss") + ";\n"); 
+		#>
+	}
+}
