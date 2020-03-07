@@ -51,7 +51,8 @@ namespace CustomCampaign.Systems
                 int completion = GetCampaignProgress(campaign);
                 return Utils.Campaign.GetLevelIndex(levelfile) > completion;
             }
-            catch (Exception pizza) {
+            catch (Exception pizza)
+            {
                 Plugin.Log.Exception(pizza);
             }
             return false;

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MaterialSkin.Controls;
+using MaterialSkin.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using MaterialSkin.Controls;
-using MaterialSkin.Properties;
 
 #pragma warning disable IDE0052, RCS1213, CA1822
 

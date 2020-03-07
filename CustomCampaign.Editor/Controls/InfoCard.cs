@@ -1,6 +1,5 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
-using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -96,8 +95,9 @@ namespace CustomCampaign.Editor.Controls
             }
         }
 
-        Font TitleFont => new Font(SkinManager.GetFont(14, true), FontStyle.Bold);
-        Font DescriptionFont => new Font(SkinManager.GetFont(12, false), FontStyle.Regular);
+        private Font TitleFont => new Font(SkinManager.GetFont(14, true), FontStyle.Bold);
+
+        private Font DescriptionFont => new Font(SkinManager.GetFont(12, false), FontStyle.Regular);
 
         protected override void OnPaint(PaintEventArgs e)
         {

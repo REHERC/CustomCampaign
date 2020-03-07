@@ -24,6 +24,6 @@ namespace CustomCampaign.Models
 
         public static ObjectWithGUID<T> Create(T value) => new ObjectWithGUID<T>(value);
 
-        public static implicit operator T (ObjectWithGUID<T> instance) => instance.value;
+        public static implicit operator T(ObjectWithGUID<T> instance) => instance.value;
     }
 }

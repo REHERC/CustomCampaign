@@ -11,7 +11,8 @@ namespace CustomCampaign.Storage
         {
             Events.Level.PostLoad.Subscribe((data) => CampaignSystem.Current = Utils.Campaign.GetCampaign(Utils.Common.LevelFile));
 
-            Events.Game.LevelLoaded.Subscribe((data) => {
+            Events.Game.LevelLoaded.Subscribe((data) =>
+            {
                 string level = Utils.Common.LevelFile;
                 if (Utils.Campaign.IsCustomCampaignLevel(level))
                 {
@@ -36,7 +37,7 @@ namespace CustomCampaign.Storage
 
             Events.GameMode.ModeStarted.Subscribe((data) =>
             {
-            if (Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && Utils.Campaign.CampaignUsesOldLevelIntro(Utils.Common.LevelFile))
+                if (Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && Utils.Campaign.CampaignUsesOldLevelIntro(Utils.Common.LevelFile))
                 {
                     GameObject title = Resource.LoadPrefabInstance(Constants.Strings.LevelIntroPrefab_Name, true);
                     title.name = Constants.Strings.LevelIntroPrefabEA_Name;

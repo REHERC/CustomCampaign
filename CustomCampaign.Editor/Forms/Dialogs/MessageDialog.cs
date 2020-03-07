@@ -43,7 +43,7 @@ namespace CustomCampaign.Editor.Forms
         {
             foreach (Control control in BottomActions.Controls)
                 control.Visible = false;
-            switch(buttons)
+            switch (buttons)
             {
                 case MessageBoxButtons.OK:
                     OkBox.Visible = true;

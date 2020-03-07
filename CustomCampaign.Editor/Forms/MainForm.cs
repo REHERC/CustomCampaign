@@ -25,7 +25,8 @@ namespace CustomCampaign.Editor.Forms
 
             systemmenu = new SystemMenu(this);
 
-            systemmenu.AddCommand("h", () => {
+            systemmenu.AddCommand("h", () =>
+            {
                 MessageDialog.Show(Constants.BIG_SPIN_MESSAGE, "BIG SPIN");
                 Process.Start(Constants.BIG_SPIN);
             }, true, false);

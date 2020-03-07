@@ -22,11 +22,9 @@ Portions of this software are (c) 2011 Sven Walter, http://github.com/viperneo
  */
 #endregion
 
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
-using System.ComponentModel;
-using System.Collections.Generic;
 
 namespace MaterialSkin.Native
 {

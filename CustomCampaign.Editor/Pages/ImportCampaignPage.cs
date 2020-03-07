@@ -3,13 +3,13 @@ using CustomCampaign.Editor.Classes;
 using CustomCampaign.Models;
 using MaterialSkin;
 using Newtonsoft.Json;
+using Photon.Serialization;
+using SharpCompress.Archives.Zip;
 using System;
 using System.IO;
 using System.Linq;
-using SharpCompress.Archives.Zip;
 using System.Text;
 using System.Windows.Forms;
-using Photon.Serialization;
 
 namespace CustomCampaign.Editor.Pages
 {

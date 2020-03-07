@@ -1,11 +1,8 @@
 ﻿#pragma warning disable SecurityIntelliSenseCS
-using CustomCampaign.Editor.Forms;
 using System;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using static Extensions;
 
 namespace CustomCampaign.Editor.Controls
 {
@@ -38,7 +35,7 @@ namespace CustomCampaign.Editor.Controls
 
             foreach (var file in info.GetFiles("*.bytes"))
             {
-                Levels.Items.Add(file.FullName.Substring(1+Editor.current_path.Length));
+                Levels.Items.Add(file.FullName.Substring(1 + Editor.current_path.Length));
             }
             foreach (var subfolder in info.GetDirectories())
             {
@@ -74,13 +71,13 @@ namespace CustomCampaign.Editor.Controls
             LevelName.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
 
             string size = new FileInfo(file).Length.ToFileSize();
-            size = $"{size.Replace(',','.').Remove(size.Length - 1)}b";
+            size = $"{size.Replace(',', '.').Remove(size.Length - 1)}b";
             FileSize.Text = size;
         }
 
         public void SetSelection(string value)
         {
-            string selected = value.Replace('/','\\').ToLower();
+            string selected = value.Replace('/', '\\').ToLower();
             foreach (var level in Levels.Items)
             {
                 int index = Levels.Items.IndexOf(level);

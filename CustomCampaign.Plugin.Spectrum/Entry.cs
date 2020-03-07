@@ -1,10 +1,10 @@
 ﻿#pragma warning disable IDE0060, RCS1163, CA1031
-using System;
-using System.Reflection;
 using CustomCampaign.Storage;
 using Harmony;
 using Spectrum.API.Interfaces.Plugins;
 using Spectrum.API.Interfaces.Systems;
+using System;
+using System.Reflection;
 
 namespace CustomCampaign
 {

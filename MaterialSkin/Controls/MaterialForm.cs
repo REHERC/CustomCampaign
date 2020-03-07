@@ -32,9 +32,11 @@ namespace MaterialSkin.Controls
 
         private bool _header = true;
 
-        public bool Header {
+        public bool Header
+        {
             get => _header;
-            set {
+            set
+            {
                 _header = value;
                 Invalidate();
             }

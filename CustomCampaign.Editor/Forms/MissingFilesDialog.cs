@@ -31,7 +31,7 @@ namespace CustomCampaign.Editor.Forms
             UpdateTextColors();
         }
 
-        void UpdateTextColors()
+        private void UpdateTextColors()
         {
             DisplayText.BackColor = SkinManager.GetApplicationBackgroundColor();
             DisplayText.ForeColor = SkinManager.GetPrimaryTextColor();

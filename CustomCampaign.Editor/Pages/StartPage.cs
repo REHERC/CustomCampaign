@@ -38,7 +38,7 @@ namespace CustomCampaign.Editor.Pages
             SetupRecentList();
         }
 
-        void SetupRecentList()
+        private void SetupRecentList()
         {
             RecentList.Controls.Clear();
 
@@ -60,7 +60,8 @@ namespace CustomCampaign.Editor.Pages
                 });
 
                 menu = new MaterialContextMenuStrip();
-                menu.Items.Add("Remove", null, (sender, e) => {
+                menu.Items.Add("Remove", null, (sender, e) =>
+                {
                     Config.RemoveRecentFile(file);
                     SetupRecentList();
                 });

@@ -25,7 +25,7 @@ namespace CustomCampaign.Editor.Forms
         {
             try
             {
-                foreach(Page page in Pages)
+                foreach (Page page in Pages)
                 {
                     if (page.PageName == name)
                         return (T)page;

@@ -51,7 +51,8 @@ namespace CustomCampaign.Editor.Pages
 
         private void BrowseBtn_Click(object sender, System.EventArgs e)
         {
-            using (var dlg = new FolderBrowserDialog() {
+            using (var dlg = new FolderBrowserDialog()
+            {
                 Description = "Locate the directory where you want to create your custom campaign",
                 RootFolder = System.Environment.SpecialFolder.MyComputer
             })
@@ -93,7 +94,8 @@ namespace CustomCampaign.Editor.Pages
                     Data = campaign
                 }.Save();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 MessageDialog.Show($"{e.Message}\n----------\n{e.Source}\n{e.StackTrace}", e.Source);
                 return false;
             }

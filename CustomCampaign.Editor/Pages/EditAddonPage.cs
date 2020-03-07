@@ -2,7 +2,6 @@
 using CustomCampaign.Editor.Forms.Dialogs;
 using CustomCampaign.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 

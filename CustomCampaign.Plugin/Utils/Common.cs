@@ -6,21 +6,34 @@ using CustomCampaign.Systems;
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+/* Unmerged change from project 'CustomCampaign.Plugin.Centrifuge'
+Before:
 using UnityEngine;
-using System.Reflection;
+After:
 using System.Linq;
-using static Accessors;
+*/
+using System.Linq;
+
+/* Unmerged change from project 'CustomCampaign.Plugin.Centrifuge'
+Before:
+using System.Linq;
+After:
+using UnityEngine;
+*/
+using System.Reflection;
+using UnityEngine;
 
 namespace CustomCampaign.Utils
 {
     public static class Common
     {
-#region Game Manager Fields
+        #region Game Manager Fields
         public static string LevelFile => G.Sys.GameManager_.LevelPath_;
         public static string LastLevelFile => G.Sys.GameManager_.LastLevelPath_;
         public static string NextLevelFile => G.Sys.GameManager_.LastLevelPath_;
-#endregion
-#region Api Utils
+        #endregion
+        #region Api Utils
         public static string GetFilePath(string path, bool campaign_by_default = false)
         {
             if (string.IsNullOrEmpty(path) || path.Length < 2) return path;
@@ -46,8 +59,8 @@ namespace CustomCampaign.Utils
             }
             return result;
         }
-#endregion
-#region Unity And Game Utils
+        #endregion
+        #region Unity And Game Utils
         public static GameObject FindByName(string name)
         {
             foreach (var go in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
@@ -93,8 +106,8 @@ namespace CustomCampaign.Utils
             return result as Texture;
         }
 #endif
-#endregion
-#region Other Utils
+        #endregion
+        #region Other Utils
         public static void MakeDirectory(string directory)
         {
             if (!Directory.Exists(directory))

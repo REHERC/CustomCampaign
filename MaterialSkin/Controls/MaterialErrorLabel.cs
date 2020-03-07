@@ -18,7 +18,7 @@ namespace MaterialSkin.Controls
         private new Color ForeColor
         {
             get => ColorExtension.ToColor((int)Primary.Red700);
-            set { base.ForeColor = ColorExtension.ToColor((int)Primary.Red700);}
+            set { base.ForeColor = ColorExtension.ToColor((int)Primary.Red700); }
         }
         protected override void OnCreateControl()
         {

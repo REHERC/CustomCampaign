@@ -37,7 +37,7 @@ namespace CustomCampaign.Editor.Controls
             g.SmoothingMode = SmoothingMode.HighQuality;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-            g.FillRectangle(new SolidBrush(SkinManager.GetApplicationBackgroundColor()),e.Bounds);
+            g.FillRectangle(new SolidBrush(SkinManager.GetApplicationBackgroundColor()), e.Bounds);
             bool selected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
             g.DrawImageUnscaled(RenderItem(selected, e), e.Bounds.Location);
         }

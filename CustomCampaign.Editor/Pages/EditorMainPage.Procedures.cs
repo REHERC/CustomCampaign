@@ -4,13 +4,13 @@ using CustomCampaign.Editor.Forms;
 using CustomCampaign.Models;
 using Newtonsoft.Json;
 using Photon.Serialization;
+using SharpCompress.Common;
+using SharpCompress.Writers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
-using SharpCompress.Writers;
-using SharpCompress.Common;
 
 namespace CustomCampaign.Editor.Pages
 {
@@ -214,7 +214,8 @@ namespace CustomCampaign.Editor.Pages
             UpdateWorkingstate();
 
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup(new Level(), "Add a level");
-            Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
+            Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) =>
+            {
                 if (result == DialogResult.OK)
                     Levels.Items.Insert(index + 1, data);
                 Globals.MainWindow.SetPage("pages:editormain");
@@ -236,7 +237,8 @@ namespace CustomCampaign.Editor.Pages
             UpdateWorkingstate();
 
             Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").Setup((Level)Levels.Items[index], "Edit a level", true);
-            Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) => {
+            Globals.MainWindow.GetPage<EditLevelPage>("pages:editlevel").PageClosed = (result, data) =>
+            {
                 if (result is DialogResult.OK)
                 {
                     Levels.Items[index] = data;
@@ -263,7 +265,8 @@ namespace CustomCampaign.Editor.Pages
         {
             int index = Addons.SelectedIndex;
             Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").Setup(new Addon(), "Add an addon");
-            Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").PageClosed = (result, data) => {
+            Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").PageClosed = (result, data) =>
+            {
                 if (result == DialogResult.OK)
                 {
                     Addons.Items.Insert(index + 1, data);
@@ -281,7 +284,8 @@ namespace CustomCampaign.Editor.Pages
             if (!(index > -1 && index < Addons.Items.Count)) return;
 
             Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").Setup((Addon)Addons.Items[index], "Edit an addon");
-            Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").PageClosed = (result, data) => {
+            Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").PageClosed = (result, data) =>
+            {
                 if (result == DialogResult.OK)
                 {
                     Addons.Items[index] = data;

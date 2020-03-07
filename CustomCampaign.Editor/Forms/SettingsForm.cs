@@ -49,7 +49,7 @@ namespace CustomCampaign.Editor.Forms
             int themeindex = 0, i = 0;
             foreach (var theme in Themes.Values)
             {
-                ThemeList.Items.AddRange(new object[] {theme.Key});
+                ThemeList.Items.AddRange(new object[] { theme.Key });
                 if (string.Equals(theme.Key, Config.AppSettings.Data.theme, StringComparison.CurrentCultureIgnoreCase))
                 {
                     themeindex = i;

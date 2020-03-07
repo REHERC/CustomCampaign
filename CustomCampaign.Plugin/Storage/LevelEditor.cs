@@ -23,7 +23,7 @@ namespace CustomCampaign.Storage
             MethodInfo method = value.GetMethod("GetID", BindingFlags.Static | BindingFlags.Public);
             if (method != null)
             {
-                ComponentID key = (ComponentID)method.Invoke((object)null, (object[])null);
+                ComponentID key = (ComponentID)method.Invoke(null, null);
                 if (!BinaryDeserializer.idToSerializableTypeMap_.ContainsKey(key) && !BinaryDeserializer.idToSerializableTypeMap_.ContainsValue(value))
                 {
                     BinaryDeserializer.idToSerializableTypeMap_.Add(key, value);

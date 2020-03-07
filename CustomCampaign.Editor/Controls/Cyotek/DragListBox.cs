@@ -52,7 +52,7 @@ namespace CustomCampaign.Editor.Controls.Cyotek
         /// <param name="drgevent">A <see cref="T:System.Windows.Forms.DragEventArgs"/> that contains the event data. </param>
         protected override void OnDragDrop(DragEventArgs drgevent)
         {
-            
+
             if (this.IsDragging)
             {
                 try

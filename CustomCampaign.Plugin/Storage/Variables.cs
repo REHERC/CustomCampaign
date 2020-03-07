@@ -1,6 +1,4 @@
-﻿using System;
-
-#pragma warning disable RCS1110
+﻿#pragma warning disable RCS1110
 namespace CustomCampaign.Storage
 {
     internal static class Variables

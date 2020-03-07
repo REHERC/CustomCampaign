@@ -25,7 +25,7 @@ namespace CustomCampaign.Editor.Classes
 
         public Page()
         {
-            
+
         }
 
         [Category("Page Settings")]

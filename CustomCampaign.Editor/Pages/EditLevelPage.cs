@@ -140,7 +140,7 @@ namespace CustomCampaign.Editor.Pages
                 {
                     occurences.Add(item, 0);
                 }
-                occurences[item] ++;
+                occurences[item]++;
             }
             return occurences[current];
         }

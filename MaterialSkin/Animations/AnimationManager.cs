@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace MaterialSkin.Animations
 {
-    class AnimationManager
+    internal class AnimationManager
     {
         public bool InterruptAnimation { get; set; }
         public double Increment { get; set; }

@@ -6,7 +6,8 @@ namespace CustomCampaign.Systems
     {
         internal static CampaignInfo Last { get; set; } = null;
         private static CampaignInfo _current = null;
-        internal static CampaignInfo Current {
+        internal static CampaignInfo Current
+        {
             get => _current;
             set
             {

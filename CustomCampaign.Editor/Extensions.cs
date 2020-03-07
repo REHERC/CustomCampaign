@@ -1,11 +1,11 @@
 ﻿#pragma warning disable RCS1110
+using SharpCompress.Archives.Zip;
 using System;
-using System.Text;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using SharpCompress.Archives.Zip;
 using System.Security.Cryptography;
-using System.Collections.Generic;
+using System.Text;
 
 public static class Extensions
 {
