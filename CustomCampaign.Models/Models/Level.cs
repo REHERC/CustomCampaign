@@ -1,14 +1,16 @@
 ﻿#pragma warning disable SecurityIntelliSenseCS
+using System;
 using System.Drawing;
 using System.IO;
 
 namespace CustomCampaign.Models
 {
+    [Serializable]
     public class Level
     {
         public string file = "";
 
-        public double countdown = 0.0d;
+        public double countdown;
 
         public bool display_intro_title = true;
         public string levelname = "";
@@ -17,10 +19,10 @@ namespace CustomCampaign.Models
 #if !LIMITED_COMPATIBILITY
         public string loading_wallpaper = "";
 #endif
-        public bool overwrite_loading_text = false;
+        public bool overwrite_loading_text;
         public string loading_text = "";
 
-        public bool hide_in_sprint = false;
+        public bool hide_in_sprint;
 
         public Image GetThumbnail(string current_path)
         {

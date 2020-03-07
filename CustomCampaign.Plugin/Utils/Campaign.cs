@@ -1,5 +1,4 @@
 ﻿using CustomCampaign.Data;
-using CustomCampaign.Models;
 using CustomCampaign.Storage;
 using CustomCampaign.Systems;
 using System;
@@ -58,8 +57,7 @@ namespace CustomCampaign.Utils
 
         public static string GetAddonId(Api.Addon addon)
         {
-            List<KeyValuePair<ObjectWithGUID<Api.Addon>, string>> addons = AddonSystem.GetAddons();
-            foreach (var item in addons)
+            foreach (var item in AddonSystem.GetAddons())
             {
                 if (item.Key.Object == addon)
                 {
@@ -83,23 +81,46 @@ namespace CustomCampaign.Utils
         public static Texture GetCampaignLogo() => GetCampaign(Assembly.GetCallingAssembly())?.Logo;
 #endif
         public static string GetCampaignId(string levelfile) => GetCampaign(levelfile)?.Id;
-
         public static string GetCampaignId() => GetCampaign(Assembly.GetCallingAssembly())?.Id;
+
+        public static bool CampaignUsesOldLevelIntro(string levelfile)
+        {
+            CampaignInfo campaign = GetCampaign(levelfile);
+            return campaign && campaign.UseOldIntro;
+        }
+
+        public static bool CampaignAvailableInArcade()
+        {
+            CampaignInfo campaign = GetCampaign(Assembly.GetCallingAssembly());
+            return campaign && campaign.ShowInArcade;
+        }
+
+        public static bool CampaignAvailableInArcade(string levelfile)
+        {
+            CampaignInfo campaign = GetCampaign(levelfile);
+            return campaign && campaign.ShowInArcade;
+        }
+
+        public static bool CampaignUsesOldLevelIntro()
+        {
+            CampaignInfo campaign = GetCampaign(Assembly.GetCallingAssembly());
+            return campaign && campaign.UseOldIntro;
+        }
 
         public static string[] GetCampaignAuthors(string levelfile) => GetCampaign(levelfile)?.Authors;
 
         public static string[] GetCampaignAuthors() => GetCampaign(Assembly.GetCallingAssembly())?.Authors;
 
-        public static global::CustomCampaign.Models.Campaign.UnlockStyle GetCampaignUnlockMode(string levelfile)
+        public static Models.Campaign.UnlockStyle GetCampaignUnlockMode(string levelfile)
         {
             CampaignInfo campaign = GetCampaign(levelfile);
-            return campaign?.LockMode ?? global::CustomCampaign.Models.Campaign.UnlockStyle.Campaign;
+            return campaign?.LockMode ?? Models.Campaign.UnlockStyle.Campaign;
         }
 
-        public static global::CustomCampaign.Models.Campaign.UnlockStyle GetCampaignUnlockMode()
+        public static Models.Campaign.UnlockStyle GetCampaignUnlockMode()
         {
             CampaignInfo campaign = GetCampaign(Assembly.GetCallingAssembly());
-            return campaign?.LockMode ?? global::CustomCampaign.Models.Campaign.UnlockStyle.Campaign;
+            return campaign?.LockMode ?? Models.Campaign.UnlockStyle.Campaign;
         }
 
         public static Models.Level GetLevelInfo(string levelfile)

@@ -27,7 +27,10 @@ namespace CustomCampaign.Editor.Pages
         {
             #region File loading
             FileInfo file = new FileInfo(path);
-            if (!file.Exists) throw new FileNotFoundException($"The file \"{path}\" does not exist!");
+            if (!file.Exists)
+            {
+                throw new FileNotFoundException($"The file \"{path}\" does not exist!");
+            }
 
             Config.AppendRecentFile(file.FullName);
 
@@ -45,6 +48,7 @@ namespace CustomCampaign.Editor.Pages
             CampaignLogo.Text = Editor.current_campaign.logopath;
             CampaignAuthors.Text = Editor.current_campaign.authors;
             SprintPlaylist.Checked = Editor.current_campaign.sprint_playlist;
+            OldIntro.Checked = Editor.current_campaign.use_earlyaccess_levelintro;
 
             CampaignUnlockStyle.SelectedIndex = Editor.current_campaign.lockmode;
             CampaignGamemode.SelectedIndex = GameModeId.GetIndexFromId(Editor.current_campaign.gamemode);
@@ -74,6 +78,7 @@ namespace CustomCampaign.Editor.Pages
             campaign.lockmode = CampaignUnlockStyle.SelectedIndex;
             campaign.gamemode = GameModeId.GetIdFromIndex(CampaignGamemode.SelectedIndex);
             campaign.sprint_playlist = SprintPlaylist.Checked;
+            campaign.use_earlyaccess_levelintro = OldIntro.Checked;
 
             campaign.levels = new List<Level>();
             Levels.Items.Cast<Level>().ToList().ForEach((level) => campaign.levels.Add(level));
@@ -182,9 +187,13 @@ namespace CustomCampaign.Editor.Pages
             Campaign campaign = UpdateWorkingstate();
 
             if (campaign.Validate(Editor.current_path, out List<string> files))
+            {
                 MessageDialog.Show("File check complete, no files were missing.");
+            }
             else
+            {
                 ShowMissingFiles(files, "File check failed");
+            }
         }
 
         private void ShowMissingFiles(List<string> files, string title = "Campaign export failed")
@@ -219,7 +228,10 @@ namespace CustomCampaign.Editor.Pages
         {
             int index = Levels.SelectedIndex;
 
-            if (!(index > -1 && index < Levels.Items.Count)) return;
+            if (!(index > -1 && index < Levels.Items.Count))
+            {
+                return;
+            }
 
             UpdateWorkingstate();
 
@@ -239,7 +251,9 @@ namespace CustomCampaign.Editor.Pages
         private void RemoveLevel_Run()
         {
             if (Levels.SelectedIndex >= 0 && MessageDialog.Show("Are you sure you want to remove this level from the list?", "Remove level", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
                 Levels.Items.RemoveAt(Levels.SelectedIndex);
+            }
             UpdateOverviewList();
         }
         #endregion
@@ -251,7 +265,9 @@ namespace CustomCampaign.Editor.Pages
             Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").Setup(new Addon(), "Add an addon");
             Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").PageClosed = (result, data) => {
                 if (result == DialogResult.OK)
+                {
                     Addons.Items.Insert(index + 1, data);
+                }
                 Globals.MainWindow.SetPage("pages:editormain");
                 Addons_SelectedIndexChanged(Addons, EventArgs.Empty);
             };
@@ -267,7 +283,9 @@ namespace CustomCampaign.Editor.Pages
             Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").Setup((Addon)Addons.Items[index], "Edit an addon");
             Globals.MainWindow.GetPage<EditAddonPage>("pages:editaddon").PageClosed = (result, data) => {
                 if (result == DialogResult.OK)
+                {
                     Addons.Items[index] = data;
+                }
                 Globals.MainWindow.SetPage("pages:editormain");
                 Addons_SelectedIndexChanged(Addons, EventArgs.Empty);
             };
@@ -277,7 +295,9 @@ namespace CustomCampaign.Editor.Pages
         private void RemoveAddon_Run()
         {
             if (Addons.SelectedIndex >= 0 && MessageDialog.Show("Are you sure you want to remove this addon from the list?", "Remove addon", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
                 Addons.Items.RemoveAt(Addons.SelectedIndex);
+            }
         }
         #endregion
     }

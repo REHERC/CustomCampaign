@@ -65,7 +65,6 @@ namespace CustomCampaign.Models.Validators
                     missingfiles.Add(info.FullName);
                 }
             }
-
             return result;
         }
     }

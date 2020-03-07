@@ -1,5 +1,6 @@
 ﻿using CustomCampaign.Data;
 using CustomCampaign.Systems;
+using UnityEngine;
 
 #pragma warning disable RCS1163
 namespace CustomCampaign.Storage
@@ -30,6 +31,19 @@ namespace CustomCampaign.Storage
                 else if (CampaignSystem.Last != null)
                 {
                     AddonSystem.DisableAddons(CampaignSystem.Last.Id);
+                }
+            });
+
+            Events.GameMode.ModeStarted.Subscribe((data) =>
+            {
+            if (Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && Utils.Campaign.CampaignUsesOldLevelIntro(Utils.Common.LevelFile))
+                {
+                    GameObject title = Resource.LoadPrefabInstance(Constants.Strings.LevelIntroPrefab_Name, true);
+                    title.name = Constants.Strings.LevelIntroPrefabEA_Name;
+                    foreach (InterpolateUIPanelAlphaLogic component in title.GetComponentsInChildren<InterpolateUIPanelAlphaLogic>())
+                    {
+                        Object.DestroyImmediate(component);
+                    }
                 }
             });
         }

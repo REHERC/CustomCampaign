@@ -1,5 +1,8 @@
-﻿namespace CustomCampaign.Models
+﻿using System;
+
+namespace CustomCampaign.Models
 {
+    [Serializable]
     public class Manifest
     {
         public long build = 0;
@@ -11,6 +14,6 @@
         public string logo = "";
 #endif
         public bool useaddons;
-        public int levels = 0;
+        public int levels;
     }
 }

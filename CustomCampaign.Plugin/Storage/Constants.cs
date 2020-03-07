@@ -8,6 +8,9 @@
             internal const string LevelLocked_Title = "LEVEL LOCKED";
 
             internal const string CampaignEntry_Color = "[EBC715]";
+
+            internal const string LevelIntroPrefab_Name = "LevelIntroTitle";
+            internal const string LevelIntroPrefabEA_Name = "LevelIntroTitleEA";
         }
     }
 }

@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelGridMenu\SetDisplayedInfoForSelectedPlaylist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelInfos\LoadPersonalLevelInfos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelInfo\Create.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelIntroTitleLogic\SetIdlePosition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelIntroTitleLogic\Update.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelSetsManager\SaveLevelInfos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelSetsManager\Start.cs" />

@@ -3,11 +3,13 @@
 using Newtonsoft.Json;
 #endif
 using Photon.Serialization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace CustomCampaign.Models
 {
+    [Serializable]
     public class Campaign
     {
         public ulong version = 1;
@@ -17,12 +19,15 @@ namespace CustomCampaign.Models
         public string guid = "";
         public string name = "";
         public string description = "";
+
 #if !LIMITED_COMPATIBILITY
         public string logopath = "";
 #endif
+
         public string authors = "";
 
         public bool sprint_playlist = true;
+        public bool use_earlyaccess_levelintro;
 
         public int lockmode = 0;
         public int gamemode = 15;
@@ -32,6 +37,7 @@ namespace CustomCampaign.Models
 #if JSON_NEWTONSOFT
         [JsonIgnore]
 #endif
+        [NonSerialized]
         public readonly FileValidator FileIncludeValidator = new FileValidator();
 
         public static Campaign FromFile(string file)

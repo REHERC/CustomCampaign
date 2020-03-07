@@ -34,6 +34,7 @@ namespace CustomCampaign.Data
         public string[] Authors => Data.authors.Split(';');
 
         public bool ShowInArcade => Data.sprint_playlist;
+        public bool UseOldIntro => Data.use_earlyaccess_levelintro;
 
         public Models.Campaign.UnlockStyle LockMode => (Models.Campaign.UnlockStyle)Data.lockmode;
 
@@ -87,5 +88,7 @@ namespace CustomCampaign.Data
         {
             Enabled = value;
         }
+
+        public static implicit operator bool(CampaignInfo instance) => !(instance is null);
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿#pragma warning disable CA1031
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CustomCampaign.Data
 {
-    public class GameModeId
+    public static class GameModeId
     {
         // Links each available gamemode to the corresponding ID (GamemodeID from Assembly-CSharp.dll)
         public static Dictionary<string, int> ConversionTable = new Dictionary<string, int>()
