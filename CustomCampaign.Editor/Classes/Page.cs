@@ -6,9 +6,10 @@ namespace CustomCampaign.Editor.Classes
 {
     public class Page : MaterialUserControl
     {
-        public event Action<Page> TitleChanged = (sender) => { };
+        public event Action<Page> TitleChanged = (_) => { };
 
         private string _pageTitle;
+
         [Category("Page Settings")]
         public string PageTitle
         {
@@ -21,11 +22,6 @@ namespace CustomCampaign.Editor.Classes
                 _pageTitle = value;
                 TitleChanged(this);
             }
-        }
-
-        public Page()
-        {
-
         }
 
         [Category("Page Settings")]

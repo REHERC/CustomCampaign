@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-#pragma warning disable IDE0052, RCS1213, CA1822
+#pragma warning disable IDE0052, RCS1213, CA1822, CA1001
 
 namespace MaterialSkin
 {

@@ -1,4 +1,5 @@
-﻿#if SERIALIZER_JSON && (JSON_NEWTONSOFT || JSON_LITJSON)
+﻿#pragma warning disable IDE0063, RCS1001, CS0436, CA2202, CA0507
+#if SERIALIZER_JSON && (JSON_NEWTONSOFT || JSON_LITJSON)
 using System.IO;
 #if JSON_NEWTONSOFT
 using Newtonsoft.Json;
@@ -6,8 +7,6 @@ using Newtonsoft.Json;
 #if JSON_LITJSON
 using LitJson;
 #endif
-
-#pragma warning disable IDE0063, RCS1001, CS0436, CA2202
 
 namespace Photon.Serialization
 {

@@ -1,9 +1,10 @@
-﻿#pragma warning disable RCS1154
+﻿#pragma warning disable RCS1154, CA1001, CA1063
+using System;
 using System.Drawing;
 
 namespace MaterialSkin
 {
-    public class ColorScheme
+    public class ColorScheme : IDisposable
     {
         public readonly Color PrimaryColor, DarkPrimaryColor, LightPrimaryColor, AccentColor, TextColor;
         public readonly Pen PrimaryPen, DarkPrimaryPen, LightPrimaryPen, AccentPen, TextPen;
@@ -39,6 +40,23 @@ namespace MaterialSkin
             LightPrimaryBrush = new SolidBrush(LightPrimaryColor);
             AccentBrush = new SolidBrush(AccentColor);
             TextBrush = new SolidBrush(TextColor);
+        }
+
+        public void Dispose()
+        {
+            PrimaryPen.Dispose();
+            DarkPrimaryPen.Dispose();
+            LightPrimaryPen.Dispose();
+            AccentPen.Dispose();
+            TextPen.Dispose();
+
+            PrimaryBrush.Dispose();
+            DarkPrimaryBrush.Dispose();
+            LightPrimaryBrush.Dispose();
+            AccentBrush.Dispose();
+            TextBrush.Dispose();
+
+            GC.SuppressFinalize(this);
         }
     }
 

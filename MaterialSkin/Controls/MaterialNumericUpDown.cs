@@ -1,11 +1,10 @@
-﻿using MaterialSkin.Animations;
+﻿#pragma warning disable IDE0059, RCS1159, CA1009
+using MaterialSkin.Animations;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-
-#pragma warning disable IDE0059, RCS1159
 
 namespace MaterialSkin.Controls
 {
