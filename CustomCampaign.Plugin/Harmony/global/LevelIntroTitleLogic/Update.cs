@@ -7,12 +7,12 @@ namespace CustomCampaign.Harmony
     {
         public static void Postfix(LevelIntroTitleLogic __instance)
         {
+            string level = Utils.Common.LevelFile;
             TextDecodeInLogic[] decode = __instance.GetComponentsInChildren<TextDecodeInLogic>(true);
-            string path = G.Sys.GameManager_.LevelPath_;
-            if (Utils.Campaign.IsCustomCampaignLevel(path) && decode.Length is 0)
+            if (Utils.Campaign.IsCustomCampaignLevel(level) && decode.Length is 0 && !Utils.Campaign.CampaignUsesOldLevelIntro(level))
             {
-                __instance.titleLabel_.text = Utils.Campaign.GetLevelTitle(path).Space(1);
-                __instance.subtitleText_.text = Utils.Campaign.GetLevelSubTitle(path).Space(1);
+                __instance.titleLabel_.text = Utils.Campaign.GetLevelTitle(level).Space(1);
+                __instance.subtitleText_.text = Utils.Campaign.GetLevelSubTitle(level).Space(1);
                 __instance.subtitleText_.gameObject.SetActive(true);
                 __instance.subtitleText_.alpha = __instance.titleLabel_.alpha;
             }
