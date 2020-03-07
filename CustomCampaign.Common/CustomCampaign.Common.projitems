@@ -13,4 +13,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)T4\Build Properties\Version.cs" />
+  </ItemGroup>
 </Project>
