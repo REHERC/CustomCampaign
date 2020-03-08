@@ -17,19 +17,18 @@ namespace CustomCampaign.Harmony
                 return false;
             }
             __instance.hasEnded_ = true;
-            if (!__instance.countdownDisabled_)
+
+            bool flag_a = Utils.Campaign.IsCustomCampaignLevel(path) && Utils.Campaign.GetLevelCountdown(path) > 0;
+            flag_a |= !Utils.Campaign.IsCustomCampaignLevel(path);
+
+            if (!__instance.countdownDisabled_ && flag_a)
             {
                 int currentPlaylistIndex = __instance.gameMan_.GetCurrentPlaylistIndex();
                 PlayerDataLocal firstLocalPlayer = PlayerDataLocal.FirstLocalPlayer_;
 
-                bool flag = !Utils.Campaign.IsCustomCampaignLevel(path) && (currentPlaylistIndex == 0 || currentPlaylistIndex == __instance.gameMan_.LevelPlaylist_.Count_ - 1);
+                bool flag_b = !Utils.Campaign.IsCustomCampaignLevel(path) && (currentPlaylistIndex == 0 || currentPlaylistIndex == __instance.gameMan_.LevelPlaylist_.Count_ - 1);
 
-                if (flag || __instance.HasFinished(firstLocalPlayer) || firstLocalPlayer is null || (firstLocalPlayer.Car_ is null || __instance.finishTriggerObj_ is null))
-                {
-                    return false;
-                }
-
-                if (Utils.Campaign.IsCustomCampaignLevel(path) && Utils.Campaign.GetLevelCountdown(path) == 0)
+                if (flag_b || __instance.HasFinished(firstLocalPlayer) || firstLocalPlayer is null || (firstLocalPlayer.Car_ is null || __instance.finishTriggerObj_ is null))
                 {
                     return false;
                 }
