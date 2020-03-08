@@ -1,6 +1,9 @@
-﻿using MaterialSkin.Controls;
+﻿using CustomCampaign.Editor.Pages;
+using MaterialSkin.Controls;
 using System;
 using Result = System.Windows.Forms.DialogResult;
+using Buttons = System.Windows.Forms.MessageBoxButtons;
+using CustomCampaign.Data;
 
 namespace CustomCampaign.Editor.Forms.Dialogs
 {
@@ -49,6 +52,25 @@ namespace CustomCampaign.Editor.Forms.Dialogs
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
             Close(Result.OK);
+        }
+
+        private void CountdownSelector_Load(object sender, EventArgs e)
+        {
+            EditorMainPage page = Globals.MainWindow.GetPage<EditorMainPage>("pages:editormain");
+            int index = page.CampaignGamemode.SelectedIndex;
+            bool adventure_mode = GameModeId.GetIdFromIndex(index) == GameModeId.ConversionTable["Adventure"];
+
+            if (!adventure_mode)
+            {
+                if (MessageDialog.Show("The campaign must use the adventure game mode to use the countdown settings!\n\nDo you want to set the campaign mode to adventure?", "Error", Buttons.YesNo) == Result.Yes)
+                {
+                    page.CampaignGamemode.SelectedIndex = GameModeId.GetIndexFromId(GameModeId.ConversionTable["Adventure"]);
+                }
+                else
+                {
+                    Close(Result.Cancel);
+                }
+            }
         }
     }
 }

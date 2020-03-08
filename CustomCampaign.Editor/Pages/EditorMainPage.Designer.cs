@@ -52,13 +52,15 @@ namespace CustomCampaign.Editor.Pages
             this.Overview = new CustomCampaign.Editor.Controls.InfoCard();
             this.OverviewLevels = new MaterialSkin.Controls.MaterialListBox();
             this.SettingsTab = new System.Windows.Forms.TabPage();
+            this.SettingsLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.SprintPlaylist = new MaterialSkin.Controls.MaterialCheckBox();
-            this.CampaignGamemode = new MaterialSkin.Controls.MaterialDropDown();
-            this.CampaignUnlockStyle = new MaterialSkin.Controls.MaterialDropDown();
-            this.CampaignAuthors = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.CampaignLogo = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.CampaignDescription = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.CampaignName = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.CampaignGamemode = new MaterialSkin.Controls.MaterialDropDown();
+            this.CampaignDescription = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.CampaignUnlockStyle = new MaterialSkin.Controls.MaterialDropDown();
+            this.CampaignLogo = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.CampaignAuthors = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.OldIntro = new MaterialSkin.Controls.MaterialCheckBox();
             this.LevelsTab = new System.Windows.Forms.TabPage();
             this.LevelsLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
             this.Levels = new CustomCampaign.Editor.Controls.LevelBox();
@@ -88,8 +90,6 @@ namespace CustomCampaign.Editor.Pages
             this.EditAddon = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveAddon = new System.Windows.Forms.ToolStripMenuItem();
             this.TabDivider = new MaterialSkin.Controls.MaterialDivider();
-            this.SettingsLayout = new MaterialSkin.Controls.MaterialTableLayoutPanel();
-            this.OldIntro = new MaterialSkin.Controls.MaterialCheckBox();
             this.EditorLayout.SuspendLayout();
             this.EditorTabs.SuspendLayout();
             this.FileTab.SuspendLayout();
@@ -97,6 +97,7 @@ namespace CustomCampaign.Editor.Pages
             this.ActionsPanel.SuspendLayout();
             this.FileRightSide.SuspendLayout();
             this.SettingsTab.SuspendLayout();
+            this.SettingsLayout.SuspendLayout();
             this.LevelsTab.SuspendLayout();
             this.LevelsLayout.SuspendLayout();
             this.LevelsMenu.SuspendLayout();
@@ -105,7 +106,6 @@ namespace CustomCampaign.Editor.Pages
             this.AddonsLayout.SuspendLayout();
             this.AddonActions.SuspendLayout();
             this.AddonsMenu.SuspendLayout();
-            this.SettingsLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // EditorLayout
@@ -464,6 +464,38 @@ namespace CustomCampaign.Editor.Pages
             this.SettingsTab.TabIndex = 0;
             this.SettingsTab.Text = "Settings";
             // 
+            // SettingsLayout
+            // 
+            this.SettingsLayout.ColumnCount = 1;
+            this.SettingsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.SettingsLayout.Controls.Add(this.SprintPlaylist, 0, 6);
+            this.SettingsLayout.Controls.Add(this.CampaignName, 0, 0);
+            this.SettingsLayout.Controls.Add(this.CampaignGamemode, 0, 5);
+            this.SettingsLayout.Controls.Add(this.CampaignDescription, 0, 1);
+            this.SettingsLayout.Controls.Add(this.CampaignUnlockStyle, 0, 4);
+            this.SettingsLayout.Controls.Add(this.CampaignLogo, 0, 2);
+            this.SettingsLayout.Controls.Add(this.CampaignAuthors, 0, 3);
+            this.SettingsLayout.Controls.Add(this.OldIntro, 0, 7);
+            this.SettingsLayout.Depth = 0;
+            this.SettingsLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SettingsLayout.Location = new System.Drawing.Point(0, 0);
+            this.SettingsLayout.MouseState = MaterialSkin.MouseState.HOVER;
+            this.SettingsLayout.Name = "SettingsLayout";
+            this.SettingsLayout.Padding = new System.Windows.Forms.Padding(16);
+            this.SettingsLayout.RowCount = 10;
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.SettingsLayout.Size = new System.Drawing.Size(776, 308);
+            this.SettingsLayout.TabIndex = 2;
+            // 
             // SprintPlaylist
             // 
             this.SprintPlaylist.Depth = 0;
@@ -479,6 +511,26 @@ namespace CustomCampaign.Editor.Pages
             this.SprintPlaylist.TabIndex = 6;
             this.SprintPlaylist.Text = "Create arcade mode sprint playlist";
             this.SprintPlaylist.UseVisualStyleBackColor = true;
+            // 
+            // CampaignName
+            // 
+            this.CampaignName.Depth = 0;
+            this.CampaignName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignName.Hint = "Campaign name";
+            this.CampaignName.Location = new System.Drawing.Point(22, 22);
+            this.CampaignName.Margin = new System.Windows.Forms.Padding(6);
+            this.CampaignName.MaxLength = 32767;
+            this.CampaignName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CampaignName.Name = "CampaignName";
+            this.CampaignName.PasswordChar = '\0';
+            this.CampaignName.SelectedText = "";
+            this.CampaignName.SelectionLength = 0;
+            this.CampaignName.SelectionStart = 0;
+            this.CampaignName.Size = new System.Drawing.Size(732, 23);
+            this.CampaignName.TabIndex = 0;
+            this.CampaignName.TabStop = false;
+            this.CampaignName.UseSystemPasswordChar = false;
+            this.CampaignName.TextChanged += new System.EventHandler(this.CampaignInfoChanged);
             // 
             // CampaignGamemode
             // 
@@ -496,65 +548,6 @@ namespace CustomCampaign.Editor.Pages
             this.CampaignGamemode.Name = "CampaignGamemode";
             this.CampaignGamemode.Size = new System.Drawing.Size(732, 21);
             this.CampaignGamemode.TabIndex = 5;
-            // 
-            // CampaignUnlockStyle
-            // 
-            this.CampaignUnlockStyle.Depth = 0;
-            this.CampaignUnlockStyle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignUnlockStyle.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CampaignUnlockStyle.DropDownHeight = 58;
-            this.CampaignUnlockStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CampaignUnlockStyle.FormattingEnabled = true;
-            this.CampaignUnlockStyle.Hint = "Level unlocking style";
-            this.CampaignUnlockStyle.IntegralHeight = false;
-            this.CampaignUnlockStyle.Items.AddRange(new object[] {
-            "Campaign (unlock levels by completing previous ones)",
-            "Level set (every level unlocked by default)"});
-            this.CampaignUnlockStyle.Location = new System.Drawing.Point(22, 162);
-            this.CampaignUnlockStyle.Margin = new System.Windows.Forms.Padding(6);
-            this.CampaignUnlockStyle.MouseState = MaterialSkin.MouseState.OUT;
-            this.CampaignUnlockStyle.Name = "CampaignUnlockStyle";
-            this.CampaignUnlockStyle.Size = new System.Drawing.Size(732, 21);
-            this.CampaignUnlockStyle.TabIndex = 4;
-            // 
-            // CampaignAuthors
-            // 
-            this.CampaignAuthors.Depth = 0;
-            this.CampaignAuthors.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignAuthors.Hint = "Authors";
-            this.CampaignAuthors.Location = new System.Drawing.Point(22, 127);
-            this.CampaignAuthors.Margin = new System.Windows.Forms.Padding(6);
-            this.CampaignAuthors.MaxLength = 32767;
-            this.CampaignAuthors.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CampaignAuthors.Name = "CampaignAuthors";
-            this.CampaignAuthors.PasswordChar = '\0';
-            this.CampaignAuthors.SelectedText = "";
-            this.CampaignAuthors.SelectionLength = 0;
-            this.CampaignAuthors.SelectionStart = 0;
-            this.CampaignAuthors.Size = new System.Drawing.Size(732, 23);
-            this.CampaignAuthors.TabIndex = 3;
-            this.CampaignAuthors.TabStop = false;
-            this.CampaignAuthors.UseSystemPasswordChar = false;
-            // 
-            // CampaignLogo
-            // 
-            this.CampaignLogo.Depth = 0;
-            this.CampaignLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignLogo.Hint = "Campaign logo";
-            this.CampaignLogo.Location = new System.Drawing.Point(22, 92);
-            this.CampaignLogo.Margin = new System.Windows.Forms.Padding(6);
-            this.CampaignLogo.MaxLength = 32767;
-            this.CampaignLogo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CampaignLogo.Name = "CampaignLogo";
-            this.CampaignLogo.PasswordChar = '\0';
-            this.CampaignLogo.SelectedText = "";
-            this.CampaignLogo.SelectionLength = 0;
-            this.CampaignLogo.SelectionStart = 0;
-            this.CampaignLogo.Size = new System.Drawing.Size(732, 23);
-            this.CampaignLogo.TabIndex = 2;
-            this.CampaignLogo.TabStop = false;
-            this.CampaignLogo.UseSystemPasswordChar = false;
-            this.CampaignLogo.TextChanged += new System.EventHandler(this.CampaignLogo_TextChanged);
             // 
             // CampaignDescription
             // 
@@ -576,25 +569,82 @@ namespace CustomCampaign.Editor.Pages
             this.CampaignDescription.UseSystemPasswordChar = false;
             this.CampaignDescription.TextChanged += new System.EventHandler(this.CampaignInfoChanged);
             // 
-            // CampaignName
+            // CampaignUnlockStyle
             // 
-            this.CampaignName.Depth = 0;
-            this.CampaignName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CampaignName.Hint = "Campaign name";
-            this.CampaignName.Location = new System.Drawing.Point(22, 22);
-            this.CampaignName.Margin = new System.Windows.Forms.Padding(6);
-            this.CampaignName.MaxLength = 32767;
-            this.CampaignName.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CampaignName.Name = "CampaignName";
-            this.CampaignName.PasswordChar = '\0';
-            this.CampaignName.SelectedText = "";
-            this.CampaignName.SelectionLength = 0;
-            this.CampaignName.SelectionStart = 0;
-            this.CampaignName.Size = new System.Drawing.Size(732, 23);
-            this.CampaignName.TabIndex = 0;
-            this.CampaignName.TabStop = false;
-            this.CampaignName.UseSystemPasswordChar = false;
-            this.CampaignName.TextChanged += new System.EventHandler(this.CampaignInfoChanged);
+            this.CampaignUnlockStyle.Depth = 0;
+            this.CampaignUnlockStyle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignUnlockStyle.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CampaignUnlockStyle.DropDownHeight = 58;
+            this.CampaignUnlockStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CampaignUnlockStyle.FormattingEnabled = true;
+            this.CampaignUnlockStyle.Hint = "Level unlocking style";
+            this.CampaignUnlockStyle.IntegralHeight = false;
+            this.CampaignUnlockStyle.Items.AddRange(new object[] {
+            "Campaign (unlock levels by completing previous ones)",
+            "Level set (every level unlocked by default)"});
+            this.CampaignUnlockStyle.Location = new System.Drawing.Point(22, 162);
+            this.CampaignUnlockStyle.Margin = new System.Windows.Forms.Padding(6);
+            this.CampaignUnlockStyle.MouseState = MaterialSkin.MouseState.OUT;
+            this.CampaignUnlockStyle.Name = "CampaignUnlockStyle";
+            this.CampaignUnlockStyle.Size = new System.Drawing.Size(732, 21);
+            this.CampaignUnlockStyle.TabIndex = 4;
+            // 
+            // CampaignLogo
+            // 
+            this.CampaignLogo.Depth = 0;
+            this.CampaignLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignLogo.Hint = "Campaign logo";
+            this.CampaignLogo.Location = new System.Drawing.Point(22, 92);
+            this.CampaignLogo.Margin = new System.Windows.Forms.Padding(6);
+            this.CampaignLogo.MaxLength = 32767;
+            this.CampaignLogo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CampaignLogo.Name = "CampaignLogo";
+            this.CampaignLogo.PasswordChar = '\0';
+            this.CampaignLogo.SelectedText = "";
+            this.CampaignLogo.SelectionLength = 0;
+            this.CampaignLogo.SelectionStart = 0;
+            this.CampaignLogo.Size = new System.Drawing.Size(732, 23);
+            this.CampaignLogo.TabIndex = 2;
+            this.CampaignLogo.TabStop = false;
+            this.CampaignLogo.UseSystemPasswordChar = false;
+            this.CampaignLogo.TextChanged += new System.EventHandler(this.CampaignLogo_TextChanged);
+            // 
+            // CampaignAuthors
+            // 
+            this.CampaignAuthors.Depth = 0;
+            this.CampaignAuthors.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CampaignAuthors.Hint = "Authors";
+            this.CampaignAuthors.Location = new System.Drawing.Point(22, 127);
+            this.CampaignAuthors.Margin = new System.Windows.Forms.Padding(6);
+            this.CampaignAuthors.MaxLength = 32767;
+            this.CampaignAuthors.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CampaignAuthors.Name = "CampaignAuthors";
+            this.CampaignAuthors.PasswordChar = '\0';
+            this.CampaignAuthors.SelectedText = "";
+            this.CampaignAuthors.SelectionLength = 0;
+            this.CampaignAuthors.SelectionStart = 0;
+            this.CampaignAuthors.Size = new System.Drawing.Size(732, 23);
+            this.CampaignAuthors.TabIndex = 3;
+            this.CampaignAuthors.TabStop = false;
+            this.CampaignAuthors.UseSystemPasswordChar = false;
+            // 
+            // OldIntro
+            // 
+            this.OldIntro.Depth = 0;
+            this.OldIntro.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OldIntro.Font = new System.Drawing.Font("Roboto", 11F);
+            this.OldIntro.Location = new System.Drawing.Point(16, 252);
+            this.OldIntro.Margin = new System.Windows.Forms.Padding(0);
+            this.OldIntro.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.OldIntro.MouseState = MaterialSkin.MouseState.HOVER;
+            this.OldIntro.Name = "OldIntro";
+            this.OldIntro.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.OldIntro.Ripple = true;
+            this.OldIntro.Size = new System.Drawing.Size(744, 30);
+            this.OldIntro.TabIndex = 7;
+            this.OldIntro.Text = "Use early access intro title (black bars with level name in the bottom-left corne" +
+    "r)";
+            this.OldIntro.UseVisualStyleBackColor = true;
             // 
             // LevelsTab
             // 
@@ -1005,56 +1055,6 @@ namespace CustomCampaign.Editor.Pages
             this.TabDivider.TabIndex = 2;
             this.TabDivider.Text = "materialDivider1";
             // 
-            // SettingsLayout
-            // 
-            this.SettingsLayout.ColumnCount = 1;
-            this.SettingsLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SettingsLayout.Controls.Add(this.SprintPlaylist, 0, 6);
-            this.SettingsLayout.Controls.Add(this.CampaignName, 0, 0);
-            this.SettingsLayout.Controls.Add(this.CampaignGamemode, 0, 5);
-            this.SettingsLayout.Controls.Add(this.CampaignDescription, 0, 1);
-            this.SettingsLayout.Controls.Add(this.CampaignUnlockStyle, 0, 4);
-            this.SettingsLayout.Controls.Add(this.CampaignLogo, 0, 2);
-            this.SettingsLayout.Controls.Add(this.CampaignAuthors, 0, 3);
-            this.SettingsLayout.Controls.Add(this.OldIntro, 0, 7);
-            this.SettingsLayout.Depth = 0;
-            this.SettingsLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SettingsLayout.Location = new System.Drawing.Point(0, 0);
-            this.SettingsLayout.MouseState = MaterialSkin.MouseState.HOVER;
-            this.SettingsLayout.Name = "SettingsLayout";
-            this.SettingsLayout.Padding = new System.Windows.Forms.Padding(16);
-            this.SettingsLayout.RowCount = 10;
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.SettingsLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.SettingsLayout.Size = new System.Drawing.Size(776, 308);
-            this.SettingsLayout.TabIndex = 2;
-            // 
-            // OldIntro
-            // 
-            this.OldIntro.Depth = 0;
-            this.OldIntro.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OldIntro.Font = new System.Drawing.Font("Roboto", 11F);
-            this.OldIntro.Location = new System.Drawing.Point(16, 252);
-            this.OldIntro.Margin = new System.Windows.Forms.Padding(0);
-            this.OldIntro.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.OldIntro.MouseState = MaterialSkin.MouseState.HOVER;
-            this.OldIntro.Name = "OldIntro";
-            this.OldIntro.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.OldIntro.Ripple = true;
-            this.OldIntro.Size = new System.Drawing.Size(744, 30);
-            this.OldIntro.TabIndex = 7;
-            this.OldIntro.Text = "Use early access intro title (black bars with level name in the bottom-left corne" +
-    "r)";
-            this.OldIntro.UseVisualStyleBackColor = true;
-            // 
             // EditorMainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1075,6 +1075,7 @@ namespace CustomCampaign.Editor.Pages
             this.FileRightSide.ResumeLayout(false);
             this.FileRightSide.PerformLayout();
             this.SettingsTab.ResumeLayout(false);
+            this.SettingsLayout.ResumeLayout(false);
             this.LevelsTab.ResumeLayout(false);
             this.LevelsLayout.ResumeLayout(false);
             this.LevelsMenu.ResumeLayout(false);
@@ -1085,7 +1086,6 @@ namespace CustomCampaign.Editor.Pages
             this.AddonActions.ResumeLayout(false);
             this.AddonActions.PerformLayout();
             this.AddonsMenu.ResumeLayout(false);
-            this.SettingsLayout.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1148,8 +1148,8 @@ namespace CustomCampaign.Editor.Pages
         internal MaterialLabel OverviewLevelsLbl;
         internal MaterialListBox OverviewLevels;
         internal MaterialCheckBox SprintPlaylist;
-        private MaterialTableLayoutPanel SettingsLayout;
         internal MaterialSingleLineTextField CampaignDescription;
         internal MaterialCheckBox OldIntro;
+        internal MaterialTableLayoutPanel SettingsLayout;
     }
 }

@@ -422,6 +422,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Title = "Countdown configuration";
+            this.Load += new System.EventHandler(this.CountdownSelector_Load);
             this.MainLayout.ResumeLayout(false);
             this.MainLayout.PerformLayout();
             this.ActionPanel.ResumeLayout(false);

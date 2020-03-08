@@ -11,7 +11,7 @@ namespace CustomCampaign.Harmony
         {
             if (Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && Utils.Campaign.CampaignUsesOldLevelIntro(Utils.Common.LevelFile))
             {
-                if (__instance.gameObject.name is Constants.Strings.LevelIntroPrefabEA_Name)
+                if (__instance.gameObject.name == Constants.Strings.LevelIntroPrefabEA_Name)
                 {
                     return true;
                 }

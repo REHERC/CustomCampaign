@@ -435,9 +435,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enums\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\CustomCampaign.Serialization\CustomCampaign.Serialization.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.CommonPatches\CustomCampaign.CommonPatches.projitems" Label="Shared" />
   <Import Project="..\CustomCampaign.Reflection\CustomCampaign.Reflection.projitems" Label="Shared" />

@@ -16,6 +16,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Events\CampaignLoaded.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\AchievementManager\Unlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\AdventureMode\PostLoadLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\AdventureMode\GetDisplayTime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\AdventureMode\UpdateMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\BlackFadeLogic\FinishFadeOut.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\DiscordController\OnEventPostLoad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\GameManager\GetModeShowInLevelEditor.cs" />
@@ -28,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelGridMenu\SetDisplayedInfoForSelectedPlaylist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelInfos\LoadPersonalLevelInfos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelInfo\Create.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelIntroTitleLogic\Awake.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelIntroTitleLogic\SetIdlePosition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelIntroTitleLogic\Update.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelSetsManager\SaveLevelInfos.cs" />

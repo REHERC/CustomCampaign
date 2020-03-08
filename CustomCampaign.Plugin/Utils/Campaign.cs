@@ -153,6 +153,8 @@ namespace CustomCampaign.Utils
 
         public static string GetLevelLoadingText(string levelfile) => GetLevelInfo(levelfile).loading_text;
 
+        public static double GetLevelCountdown(string levelfile) => GetLevelInfo(levelfile).countdown;
+
         public static int GetLevelIndex(string levelfile)
         {
             try
