@@ -52,4 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Campaign.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Common.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Systems\EditorScriptSystem\" />
+  </ItemGroup>
 </Project>

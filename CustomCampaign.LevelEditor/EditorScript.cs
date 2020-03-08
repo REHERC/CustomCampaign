@@ -2,12 +2,14 @@
 
 namespace CustomCampaign.LevelEditor
 {
-    public abstract class EditorScript
+    public abstract class EditorScript : MonoBehaviour, ILevelEditorDrawable
     {
         public virtual string Id { get; }
         public virtual string Name { get; }
         public virtual string Description { get; }
         public virtual string Folder { get; }
+        protected virtual int Version { get; }
+        protected GameObject Instance { get; set; }
 
         public virtual void Visit(IVisitor visitor)
         {
@@ -18,6 +20,10 @@ namespace CustomCampaign.LevelEditor
         {
             error = string.Empty;
             return true;
+        }
+
+        public virtual void DrawInspected(GLDrawer drawer)
+        {
         }
     }
 }
