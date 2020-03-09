@@ -5,9 +5,9 @@ using UnityEngine;
 namespace CustomCampaign.Harmony
 {
     [HarmonyPatch(typeof(AdventureMode), "GetDisplayTime")]
-    internal static class GetAdventureModeCountdownTime
+    internal static class GetAdventureModeDisplayedTime
     {
-        public static bool Prefix(AdventureMode __instance, double __result)
+        public static bool Prefix(AdventureMode __instance, ref double __result)
         {
             string path = Utils.Common.LevelFile;
 
