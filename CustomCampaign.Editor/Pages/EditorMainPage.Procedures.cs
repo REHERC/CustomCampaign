@@ -1,4 +1,4 @@
-﻿#pragma warning disable SecurityIntelliSenseCS, CS0436
+﻿#pragma warning disable SecurityIntelliSenseCS, CS0436, CA1822
 using CustomCampaign.Data;
 using CustomCampaign.Editor.Forms;
 using CustomCampaign.Models;
@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Pages

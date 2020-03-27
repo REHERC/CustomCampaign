@@ -17,9 +17,9 @@ namespace CustomCampaign.Editor.Forms
             }
         }
 
-        Action<SaveFileDialog, Campaign, ExportProgressDialog> Routine;
-        SaveFileDialog Dialog;
-        Campaign Campaign;
+        private Action<SaveFileDialog, Campaign, ExportProgressDialog> Routine;
+        private SaveFileDialog Dialog;
+        private Campaign Campaign;
 
         public ExportProgressDialog()
         {
@@ -57,13 +57,8 @@ namespace CustomCampaign.Editor.Forms
 
         private void ExportProgressDialog_Load(object sender, EventArgs e)
         {
-            Task.Factory.StartNew(() =>
-            {
-                Routine(Dialog, Campaign, this);
-            }).ContinueWith((Task _) =>
-            {
-                Close();
-            });
+            Task.Factory.StartNew(() => Routine(Dialog, Campaign, this))
+                        .ContinueWith((Task _) => Close());
         }
     }
 }
