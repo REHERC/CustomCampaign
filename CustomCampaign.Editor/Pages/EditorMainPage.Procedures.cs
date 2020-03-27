@@ -155,10 +155,21 @@ namespace CustomCampaign.Editor.Pages
             {
                 using (IWriter zip_writer = WriterFactory.Open(zip, ArchiveType.Zip, Constants.COMPRESSION_MODE))
                 {
+                    void UpdateProgress(bool increment = false)
+                    {
+                        if (increment)
+                        {
+                            progress.IncrementProgress();
+                        }
+                        progress.SetTitle($"Exporting campaign \"{campaign.name}\"...");
+                    }
+
                     List<string> files = campaign.IncludedFiles(Editor.current_path);
 
                     progress.SetMaxProgress(files.Count + 1);
                     progress.SetProgress(0);
+
+                    UpdateProgress();
 
                     progress.SetStatus("Writing manifest...");
 
@@ -179,11 +190,11 @@ namespace CustomCampaign.Editor.Pages
                         zip_writer.Write("manifest", manifest_stream);
                     }
 
-                    progress.IncrementProgress();
+                    UpdateProgress(true);
 
                     foreach (string file in files)
                     {
-                        progress.SetStatus($"Exporting \"{file}\"...");
+                        progress.SetStatus($"Encoding file \"{file}\"...");
 
                         FileInfo include = new FileInfo(Path.Combine(Editor.current_path, file));
 
@@ -194,7 +205,7 @@ namespace CustomCampaign.Editor.Pages
                             zip_writer.Write($".check/{file}.md5", checksum);
                         }
 
-                        progress.IncrementProgress();
+                        UpdateProgress(true);
                     }
 
                     progress.SetStatus($"Finishing...");

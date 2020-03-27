@@ -5,60 +5,70 @@ using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Forms
 {
-    public partial class ExportProgressDialog : MaterialSkin.Controls.MaterialForm
-    {
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams base_params = base.CreateParams;
-                base_params.ClassStyle |= NativeMethods.CP_NOCLOSE_BUTTON;
-                return base_params;
-            }
-        }
+	public partial class ExportProgressDialog : MaterialSkin.Controls.MaterialForm
+	{
+		protected override CreateParams CreateParams
+		{
+			get
+			{
+				CreateParams base_params = base.CreateParams;
 
-        private Action<SaveFileDialog, Campaign, ExportProgressDialog> Routine;
-        private SaveFileDialog Dialog;
-        private Campaign Campaign;
+				if (!DesignMode)
+				{
+					base_params.ClassStyle |= NativeMethods.CP_NOCLOSE_BUTTON;
+				}
 
-        public ExportProgressDialog()
-        {
-            InitializeComponent();
-        }
+				return base_params;
+			}
+		}
 
-        public void ShowAndRunRoutine(SaveFileDialog dlg, Campaign campaign, Action<SaveFileDialog, Campaign, ExportProgressDialog> routine)
-        {
-            Routine = routine;
-            Dialog = dlg;
-            Campaign = campaign;
-            ShowDialog();
-        }
+		private Action<SaveFileDialog, Campaign, ExportProgressDialog> Routine;
+		private SaveFileDialog Dialog;
+		private Campaign Campaign;
 
-        public void SetMaxProgress(int value)
-        {
-            Progress.Maximum = value;
-            Refresh();
-        }
+		public ExportProgressDialog()
+		{
+			InitializeComponent();
+		}
 
-        public void SetProgress(int value)
-        {
-            Progress.Value = value;
-        }
+		public void ShowAndRunRoutine(SaveFileDialog dlg, Campaign campaign, Action<SaveFileDialog, Campaign, ExportProgressDialog> routine)
+		{
+			Routine = routine;
+			Dialog = dlg;
+			Campaign = campaign;
+			ShowDialog();
+		}
 
-        public void SetStatus(string text)
-        {
-            Status.Text = text;
-        }
+		public void SetMaxProgress(int value)
+		{
+			Progress.Maximum = value;
+			Refresh();
+		}
 
-        public void IncrementProgress()
-        {
-            Progress.Value = Math.Min(Progress.Value + 1, Progress.Maximum);
-        }
+		public void SetProgress(int value)
+		{
+			Progress.Value = value;
+		}
 
-        private void ExportProgressDialog_Load(object sender, EventArgs e)
-        {
-            Task.Factory.StartNew(() => Routine(Dialog, Campaign, this))
-                        .ContinueWith((Task _) => Close());
-        }
-    }
+		public void SetStatus(string text)
+		{
+			Status.Text = string.Format(text, Progress.Value, Progress.Maximum);
+		}
+
+		public void SetTitle(string text, bool progress = true)
+		{
+			Title = text + (progress ? $" ({Progress.Value}/{Progress.Maximum})" : "");
+		}
+
+		public void IncrementProgress()
+		{
+			Progress.Value = Math.Min(Progress.Value + 1, Progress.Maximum);
+		}
+
+		private void ExportProgressDialog_Load(object sender, EventArgs e)
+		{
+			Task.Factory.StartNew(() => Routine(Dialog, Campaign, this))
+						.ContinueWith((Task _) => Close());
+		}
+	}
 }
