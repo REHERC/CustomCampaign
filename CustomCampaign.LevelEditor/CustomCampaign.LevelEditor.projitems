@@ -15,4 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripts\TextMeshSettings\TextMeshSettings.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Tools\" />
+  </ItemGroup>
 </Project>

@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\AdventureMode\GetDisplayTime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\AdventureMode\UpdateMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\BlackFadeLogic\FinishFadeOut.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\BlackFadeLogic\GetSectorNames.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\DiscordController\OnEventPostLoad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\GameManager\GetModeShowInLevelEditor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\GUtils\GetExportedTypesOfType.cs" />
@@ -37,10 +38,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelSetsManager\SaveLevelInfos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelSetsManager\Start.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\PauseMenuLogic\Update.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\PrintSectorNumber\Start.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\Resource\GetAbsoluteLevelPath.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\Resource\GetLevelType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\Resource\GetRelativeLevelPath.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\Resource\IsWorkshopLevelPath.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\SectorPosterLogic\Start.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Campaigns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Events.cs" />

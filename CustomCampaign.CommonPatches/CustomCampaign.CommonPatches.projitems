@@ -9,6 +9,9 @@
     <Import_RootNamespace>CustomCampaign.CommonPatches</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)SharpCompress\Common\ArchiveEncoding\ctor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\SharpCompress\Common\ArchiveEncoding\ctor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Harmony\global\" />
   </ItemGroup>
 </Project>

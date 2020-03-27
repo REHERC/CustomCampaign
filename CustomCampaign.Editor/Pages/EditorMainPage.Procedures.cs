@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CustomCampaign.Editor.Pages
@@ -115,68 +116,94 @@ namespace CustomCampaign.Editor.Pages
         #region Export and Validation
         public void ExportToZip()
         {
-            Campaign campaign = UpdateWorkingstate(false);
-
-            if (!campaign.Validate(Editor.current_path, out List<string> missingfiles))
+            using (ExportProgressDialog progress = new ExportProgressDialog())
             {
-                ShowMissingFiles(missingfiles);
-                return;
+                Campaign campaign = UpdateWorkingstate(false);
+
+                if (!campaign.Validate(Editor.current_path, out List<string> missingfiles))
+                {
+                    ShowMissingFiles(missingfiles);
+                    return;
+                }
+
+                using (SaveFileDialog dlg = new SaveFileDialog())
+                {
+                    dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
+                    dlg.Filter = Constants.ExportDialogFilter;
+                    dlg.FilterIndex = 0;
+                    dlg.RestoreDirectory = true;
+                    dlg.OverwritePrompt = true;
+
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        progress.ShowAndRunRoutine(dlg, campaign, CreateZipFile);
+                    }
+                }
+                progress.Close();
+
+                Globals.MainWindow.Show();
+            }
+        }
+
+        public void CreateZipFile(SaveFileDialog dlg, Campaign campaign, ExportProgressDialog progress)
+        {
+            if (File.Exists(dlg.FileName))
+            {
+                File.Delete(dlg.FileName);
             }
 
-            using (SaveFileDialog dlg = new SaveFileDialog())
+            using (FileStream zip = File.Create(dlg.FileName))
             {
-                dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
-                dlg.Filter = Constants.ExportDialogFilter;
-                dlg.FilterIndex = 0;
-                dlg.RestoreDirectory = true;
-                dlg.OverwritePrompt = true;
-
-                if (dlg.ShowDialog() == DialogResult.OK)
+                using (IWriter zip_writer = WriterFactory.Open(zip, ArchiveType.Zip, Constants.COMPRESSION_MODE))
                 {
-                    if (File.Exists(dlg.FileName))
+                    List<string> files = campaign.IncludedFiles(Editor.current_path);
+
+                    progress.SetMaxProgress(files.Count + 1);
+                    progress.SetProgress(0);
+
+                    progress.SetStatus("Writing manifest...");
+
+                    string manifest_data = JsonConvert.SerializeObject(new Manifest()
                     {
-                        File.Delete(dlg.FileName);
+                        guid = campaign.guid,
+                        build = campaign.build,
+                        name = campaign.name,
+                        description = campaign.description,
+                        authors = campaign.authors,
+                        useaddons = campaign.addons.Count > 0,
+                        levels = campaign.levels.Count,
+                        logo = $"data/{campaign.logopath}"
+                    }, Formatting.Indented);
+
+                    using (Stream manifest_stream = manifest_data.GetStream())
+                    {
+                        zip_writer.Write("manifest", manifest_stream);
                     }
 
-                    using (FileStream zip = File.Create(dlg.FileName))
+                    progress.IncrementProgress();
+
+                    foreach (string file in files)
                     {
-                        using (IWriter zip_writer = WriterFactory.Open(zip, ArchiveType.Zip, Constants.COMPRESSION_MODE))
+                        progress.SetStatus($"Exporting \"{file}\"...");
+
+                        FileInfo include = new FileInfo(Path.Combine(Editor.current_path, file));
+
+                        zip_writer.Write($"data/{file}", include);
+
+                        using (Stream checksum = include.GetMD5().GetStream())
                         {
-                            string manifest_data = JsonConvert.SerializeObject(new Manifest()
-                            {
-                                guid = campaign.guid,
-                                build = campaign.build,
-                                name = campaign.name,
-                                description = campaign.description,
-                                authors = campaign.authors,
-                                useaddons = campaign.addons.Count > 0,
-                                levels = campaign.levels.Count,
-                                logo = $"data/{campaign.logopath}"
-                            }, Formatting.Indented);
-
-                            using (Stream manifest_stream = manifest_data.GetStream())
-                            {
-                                zip_writer.Write("manifest", manifest_stream);
-                            }
-
-                            foreach (string file in campaign.IncludedFiles(Editor.current_path))
-                            {
-                                FileInfo include = new FileInfo(Path.Combine(Editor.current_path, file));
-
-                                zip_writer.Write($"data/{file}", include);
-
-                                using (Stream checksum = include.GetMD5().GetStream())
-                                {
-                                    zip_writer.Write($".check/{file}.md5", checksum);
-                                }
-                            }
-                            const string readme = "Don't modify the content of this archive manually or it might not work anymore!";
-
-                            using (Stream readme_stream = readme.GetStream())
-                            {
-                                zip_writer.Write("readme.txt", readme_stream);
-                            }
+                            zip_writer.Write($".check/{file}.md5", checksum);
                         }
+
+                        progress.IncrementProgress();
+                    }
+
+                    progress.SetStatus($"Finishing...");
+                    const string readme = "Don't modify the content of this archive manually or it might not work anymore!";
+
+                    using (Stream readme_stream = readme.GetStream())
+                    {
+                        zip_writer.Write("readme.txt", readme_stream);
                     }
                 }
             }
