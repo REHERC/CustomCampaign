@@ -11,17 +11,33 @@ namespace CustomCampaign.Models.Validators
         {
             List<string> result = new List<string>();
 
+            void addfile(string value)
+            {
+                if (!result.Contains(value.ToLower()))
+                {
+                    result.Add(value.ToLower());
+                }
+            }
+
+            void addfiles(IEnumerable<string> values)
+            {
+                foreach (string value in values)
+                {
+                    addfile(value);
+                }
+            }
+
             result.Add("campaign.json");
 #if !LIMITED_COMPATIBILITY
             if (!string.IsNullOrEmpty(campaign.logopath))
             {
-                result.Add(campaign.logopath);
+                addfile(campaign.logopath);
             }
 #endif
             foreach (Level level in campaign.levels)
             {
-                result.Add(level.file);
-                result.Add($"{level.file}.png");
+                addfile(level.file);
+                addfile($"{level.file}.png");
 
                 foreach (string extension in new string[] { "mp3", "wav", "aiff" })
                 {
@@ -29,21 +45,21 @@ namespace CustomCampaign.Models.Validators
                     FileInfo file = new FileInfo(Path.Combine(rootdirectory, musicfile));
                     if (file.Exists)
                     {
-                        result.Add(musicfile);
+                        addfile(musicfile);
                     }
                 }
 #if !LIMITED_COMPATIBILITY
                 if (!string.IsNullOrEmpty(level.loading_wallpaper))
                 {
-                    result.Add(level.loading_wallpaper);
+                    addfile(level.loading_wallpaper);
                 }
 #endif
             }
 
             foreach (Addon addon in campaign.addons)
             {
-                result.Add(addon.module);
-                result.AddRange(addon.dependencies);
+                addfile(addon.module);
+                addfiles(addon.dependencies);
             }
 
             return result;

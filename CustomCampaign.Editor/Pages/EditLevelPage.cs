@@ -45,7 +45,7 @@ namespace CustomCampaign.Editor.Pages
             DisplayIntro.Checked = data.display_intro_title;
             LevelName.Text = data.levelname;
             LevelSector.Text = data.levelname_sub;
-            LoadingBackground.SelectedText = data.loading_wallpaper;
+            LoadingBackground.Text = data.loading_wallpaper;
             OverwriteLoadingText.Checked = data.overwrite_loading_text;
             LoadingText.Text = data.loading_text;
             HideInSprint.Checked = data.hide_in_sprint;

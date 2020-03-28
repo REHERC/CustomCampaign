@@ -1,4 +1,4 @@
-﻿#pragma warning disable SecurityIntelliSenseCS, CS0436
+﻿#pragma warning disable SecurityIntelliSenseCS, CS0436, CS0168, CA1031, IDE0059
 using CustomCampaign.Data;
 using CustomCampaign.Editor.Classes;
 using CustomCampaign.Models;
@@ -196,7 +196,14 @@ namespace CustomCampaign.Editor.Pages
             string file = Path.Combine(Editor.current_path, CampaignLogo.Text);
             if (File.Exists(file))
             {
-                Overview.Picture = Image.FromFile(file);
+                try
+                {
+                    Overview.Picture = Image.FromFile(file);
+                }
+                catch (Exception ex)
+                {
+                    Overview.Picture = null;
+                }
             }
             else
             {

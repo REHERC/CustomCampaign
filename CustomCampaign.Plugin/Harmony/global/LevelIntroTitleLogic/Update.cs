@@ -9,8 +9,14 @@ namespace CustomCampaign.Harmony
         {
             string level = Utils.Common.LevelFile;
             TextDecodeInLogic[] decode = __instance.GetComponentsInChildren<TextDecodeInLogic>(true);
-            if (Utils.Campaign.IsCustomCampaignLevel(level) && !Utils.Campaign.CampaignUsesOldLevelIntro(level) && decode.Length is 0)
+
+            if (Utils.Campaign.IsCustomCampaignLevel(level))
             {
+                if (Utils.Campaign.CampaignUsesOldLevelIntro(level) && decode.Length > 0)
+                {
+                    return;
+                }
+
                 __instance.titleLabel_.gameObject.SetActive(true);
                 __instance.titleLabel_.text = Utils.Campaign.GetLevelTitle(level).Space(1);
                 __instance.subtitleText_.gameObject.SetActive(true);

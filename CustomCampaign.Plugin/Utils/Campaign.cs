@@ -3,6 +3,7 @@ using CustomCampaign.Storage;
 using CustomCampaign.Systems;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -137,21 +138,23 @@ namespace CustomCampaign.Utils
             return new Models.Level();
         }
 
-        public static string GetLevelTitle(string levelfile) => GetLevelInfo(levelfile).levelname;
+        public static string GetLevelTitle(string levelfile) => GetLevelInfo(levelfile)?.levelname;
 
-        public static string GetLevelSubTitle(string levelfile) => GetLevelInfo(levelfile).levelname_sub;
+        public static string GetLevelSubTitle(string levelfile) => GetLevelInfo(levelfile)?.levelname_sub;
 
 #if !LIMITED_COMPATIBILITY
-        public static string GetLevelWallpaperPath(string levelfile) => GetLevelInfo(levelfile).loading_wallpaper;
+        public static string GetLevelWallpaperPath(string levelfile) => GetLevelInfo(levelfile)?.loading_wallpaper;
 
-        public static Texture GetLevelWallpaper(string levelfile) => Common.LoadTexture(GetLevelWallpaperPath(levelfile));
+        public static string GetLevelWallpaperFullPath(string levelfile) => new FileInfo($@"{GetCampaign(levelfile)?.Location}\{GetLevelInfo(levelfile)?.loading_wallpaper}").FullName;
+
+        public static Texture GetLevelWallpaper(string levelfile) => Common.LoadTexture(GetLevelWallpaperFullPath(levelfile));
 #endif
 
         public static bool GetLevelDisplayIntroState(string levelfile) => GetLevelInfo(levelfile).display_intro_title;
 
         public static bool GetLevelLoadingTextState(string levelfile) => GetLevelInfo(levelfile).overwrite_loading_text;
 
-        public static string GetLevelLoadingText(string levelfile) => GetLevelInfo(levelfile).loading_text;
+        public static string GetLevelLoadingText(string levelfile) => GetLevelInfo(levelfile)?.loading_text;
 
         public static double GetLevelCountdown(string levelfile) => GetLevelInfo(levelfile).countdown;
 
