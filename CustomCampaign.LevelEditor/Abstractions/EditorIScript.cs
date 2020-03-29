@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CustomCampaign.LevelEditor
+namespace CustomCampaign.LevelEditor.Abstractions
 {
     public abstract class EditorScript : MonoBehaviour, ILevelEditorDrawable
     {

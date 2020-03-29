@@ -1,4 +1,5 @@
 ﻿#pragma warning disable RCS1213, IDE0051
+using CustomCampaign.LevelEditor.Abstractions;
 using UnityEngine;
 
 namespace CustomCampaign.LevelEditor.Scripts
