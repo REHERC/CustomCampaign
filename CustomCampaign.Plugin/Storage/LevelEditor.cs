@@ -9,6 +9,8 @@ namespace CustomCampaign.Storage
     {
         public static void Initialize()
         {
+            CustomCampaign.LevelEditor.EditorToolset.Initialize();
+
             GameObject host = G.Sys.ResourceManager_.addedComponentsPrefab_;
 
             foreach (Type type in Utils.Common.GetExportedTypesOfType(typeof(AddedComponent)))

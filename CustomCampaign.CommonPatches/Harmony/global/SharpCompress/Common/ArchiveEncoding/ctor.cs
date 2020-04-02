@@ -4,7 +4,7 @@ using System.Text;
 namespace CustomCampaign.Harmony
 {
     [HarmonyPatch(typeof(global::SharpCompress.Common.ArchiveEncoding), MethodType.Constructor)]
-    internal static class Ctor
+    internal static class ConstructArchiveEncoding
     {
         internal static bool Prefix(global::SharpCompress.Common.ArchiveEncoding __instance)
         {

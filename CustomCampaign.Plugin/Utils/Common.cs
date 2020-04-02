@@ -111,7 +111,9 @@ namespace CustomCampaign.Utils
         public static void MakeDirectory(string directory)
         {
             if (!Directory.Exists(directory))
+            {
                 Directory.CreateDirectory(directory);
+            }
         }
 
         public static List<Type> GetExportedTypesOfType(Type baseType)
@@ -124,10 +126,13 @@ namespace CustomCampaign.Utils
 
             foreach (Assembly asm in assemblies)
             {
-                Type[] asmTypes = asm.GetTypes();
-                foreach (Type type in asmTypes)
+                foreach (Type type in asm.GetTypes())
+                {
                     if (baseType.IsAssignableFrom(type) && type != baseType)
+                    {
                         typeList.Add(type);
+                    }
+                }
             }
 
             return typeList;

@@ -44,6 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git", "Git", "{717D64D8-17F
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		README.md = README.md
+		repository_thumbnail.png = repository_thumbnail.png
 	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Plugin", "CustomCampaign.Plugin\CustomCampaign.Plugin.shproj", "{B5E14841-B7AB-4387-8563-4F928E1CF651}"

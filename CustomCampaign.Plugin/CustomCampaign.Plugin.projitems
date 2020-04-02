@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\GameManager\GetModeShowInLevelEditor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\GUtils\GetExportedTypesOfType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelEditorLevelNameSelectMenuLogic\LevelPathEntry\Create.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelEditor\Start.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelGridCell\OnDisplayedVirtual.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelGridMenu\CreateAndAddLevelSet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelGridMenu\CreateEntries.cs" />
@@ -44,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\Resource\GetRelativeLevelPath.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\Resource\IsWorkshopLevelPath.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\SectorPosterLogic\Start.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\ToolInputCombos\Load.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Campaigns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Events.cs" />
