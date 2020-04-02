@@ -18,13 +18,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\PrefabType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\LevelEditor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Harmony\Common.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\HierarchyTabItemsNGUI\InitializeHierarchyButtons.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelEditor\SelectObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\NGUIObjectInspectorTabAbstract\CreateComponentInspectorsOnObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripts\TextMeshSettings\TextMeshSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Edit\CreateEmptyGroupTool.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\View\Animator Stack\InspectParentNode.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\View\Animator Stack\InspectRoot.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\View\Animator Stack\InspectSubNodes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Tools\Edit\" />
