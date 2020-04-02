@@ -59,7 +59,7 @@ namespace CustomCampaign.Editor.Controls
 
             Addon data = (Addon)Items[e.Index];
 
-            int margin = 4;
+            const int margin = 4;
 
             string title = $"{data.name.ToUpper()}";
 
@@ -67,8 +67,8 @@ namespace CustomCampaign.Editor.Controls
             Size title_size = TextRenderer.MeasureText(title, title_font);
 
             g.DrawString(title, title_font, SkinManager.GetSecondaryTextBrush(), new PointF(margin, 0.5f * margin));
-            g.DrawString($"({data.module})", SkinManager.GetFont(12), SkinManager.GetSecondaryTextBrush(), new PointF(margin * 2.25f + title_size.Width, 1.1f * margin));
-            g.DrawString($"{data.dependencies.Count} dependencies", SkinManager.GetFont(12), SkinManager.GetSecondaryTextBrush(), new PointF(0.75f * margin + 4, 6.0f * margin));
+            g.DrawString($"({data.module})", SkinManager.GetFont(12), SkinManager.GetSecondaryTextBrush(), new PointF((margin * 2.25f) + title_size.Width, 1.1f * margin));
+            g.DrawString($"{data.dependencies.Count} dependencies", SkinManager.GetFont(12), SkinManager.GetSecondaryTextBrush(), new PointF((0.75f * margin) + 4, 6.0f * margin));
 
             return flag;
         }

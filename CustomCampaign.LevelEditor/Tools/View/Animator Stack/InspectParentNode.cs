@@ -2,6 +2,8 @@
 #pragma warning disable IDE1006
 using CustomCampaign.LevelEditor.Attributes;
 using LevelEditorTools;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace CustomCampaign.LevelEditor.Tools.View.Animator_Stack
 {
@@ -18,7 +20,17 @@ namespace CustomCampaign.LevelEditor.Tools.View.Animator_Stack
 
         public override bool Run()
         {
-            return true;
+            global::LevelEditor levelEditor = G.Sys.LevelEditor_;
+            List<GameObject> selection = levelEditor.SelectedNonTrackNodeAndNonOnlyAllowOneObjects_;
+
+            if (selection.Count == 1)
+            {
+                return Harmony.Common.HierarchyTabLogic.Tool.InspectParent(selection[0]);
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

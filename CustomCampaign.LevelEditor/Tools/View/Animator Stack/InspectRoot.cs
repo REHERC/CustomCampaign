@@ -17,6 +17,7 @@ namespace CustomCampaign.LevelEditor.Tools.View.Animator_Stack
 
         public override bool Run()
         {
+            Harmony.Common.HierarchyTabLogic.Tool.InspectRoot();
             return true;
         }
     }

@@ -12,11 +12,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\EditorPrefab.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Abstractions\EditorIScript.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ToolKeyboardShortcut.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Component Actions\VisitTransform.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Component Actions\VititGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EditorToolset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\PrefabType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\LevelEditor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\Common.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\HierarchyTabItemsNGUI\InitializeHierarchyButtons.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripts\TextMeshSettings\TextMeshSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Edit\CreateEmptyGroupTool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\View\Animator Stack\InspectParentNode.cs" />
