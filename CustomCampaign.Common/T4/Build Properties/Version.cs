@@ -2,6 +2,6 @@
 {
 	public static class BuildProperties
 	{
-		public static ulong BuildNumber => 20200403190824;
+		public static ulong BuildNumber => 20200404001539;
 	}
 }

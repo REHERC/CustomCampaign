@@ -89,6 +89,20 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Spectrum + Editor|AnyCPU'">
+    <OutputPath>bin\Spectrum + Editor\</OutputPath>
+    <DefineConstants>TRACE;SERIALIZER_JSON API_CENTRIFUGE JSON_LITJSON</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Centrifuge + Editor|AnyCPU'">
+    <OutputPath>bin\Centrifuge + Editor\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="LitJSON, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LitJson.0.15.0\lib\net35\LitJSON.dll</HintPath>
