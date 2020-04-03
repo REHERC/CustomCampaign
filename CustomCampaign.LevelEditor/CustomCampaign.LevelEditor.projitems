@@ -22,8 +22,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\NGUIObjectInspectorTabAbstract\CreateComponentInspectorsOnObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripts\TextMeshSettings\TextMeshSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Edit\CreateEmptyGroupTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\View\Quick Select\SaveSelectionToolBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\View\Quick Select\LoadSelectionToolBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Tools\Edit\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Tools\View\Quick Select\Instances\" />
   </ItemGroup>
 </Project>

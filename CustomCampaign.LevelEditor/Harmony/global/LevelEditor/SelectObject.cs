@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Harmony;
+﻿using Harmony;
 using UnityEngine;
 
 namespace CustomCampaign.LevelEditor.Harmony
@@ -25,7 +23,7 @@ namespace CustomCampaign.LevelEditor.Harmony
             if (!__instance.selectedObjects_.Contains(newObj))
             {
                 LevelLayer layerOfObject = __instance.workingLevel_.GetLayerOfObject(newObj);
-                if (layerOfObject != null && !layerOfObject.Frozen_)
+                if (layerOfObject?.Frozen_ == false)
                 {
                     __instance.AddObjectToSelectedList(newObj);
                     __result = true;

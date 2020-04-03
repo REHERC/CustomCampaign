@@ -1,5 +1,4 @@
 ﻿using Harmony;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CustomCampaign.LevelEditor.Component_Actions
@@ -28,9 +27,7 @@ namespace CustomCampaign.LevelEditor.Component_Actions
                             Name = $"[b]{CustomNameComponent.CustomName_}[/b]";
                         }
 
-                        visitor.VisitAction($"Inspect {Name} (#{Index})", () => {
-                            EditorToolset.Inspect(Children);
-                        }, null);
+                        visitor.VisitAction($"Inspect {Name} (#{Index})", () => EditorToolset.Inspect(Children), null);
 
                         ++Index;
                     }

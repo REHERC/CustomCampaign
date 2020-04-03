@@ -1,0 +1,47 @@
+﻿<#@ template  debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Diagnostics" #>
+#pragma warning disable IDE1006, CA1034
+
+using CustomCampaign.LevelEditor.Attributes;
+
+namespace CustomCampaign.LevelEditor.Tools.View.Quick_Select.Instances
+{
+<# for (int mem = 1; mem < 10; mem++) { #>
+    public static class QuickMemory<#= mem #>
+    {
+        public static int AccessIndex = <#= mem #>;
+
+        [ToolKeyboardShortcut("CTRL+ALPHA<#= mem #>")]
+        public class SaveMemory1 : SaveSelectionToolBase
+        {
+            internal static new ToolInfo info_ => new ToolInfo("Save Selection <#= mem #>", "Saves the inspected object into the memory.", ToolCategory.View, ToolButtonState.Button, true, <#= mem * 10 + 1100 #>);
+
+            public override ToolInfo Info_ => info_;
+
+            public override int QuickAccessIndex => AccessIndex;
+
+            public static new void Register()
+            {
+                G.Sys.LevelEditor_.RegisterTool(info_);
+            }
+        }
+
+        [ToolKeyboardShortcut("SHIFT+ALPHA<#= mem #>")]
+        public class LoadMemory1 : LoadSelectionToolBase
+        {
+            internal static new ToolInfo info_ => new ToolInfo("Load Selection <#= mem #>", "Inspects the object saved into the memory.", ToolCategory.View, ToolButtonState.Button, false, <#= mem * 10 + 1105 #>);
+
+            public override ToolInfo Info_ => info_;
+
+            public override int QuickAccessIndex => AccessIndex;
+
+            public static new void Register()
+            {
+                G.Sys.LevelEditor_.RegisterTool(info_);
+            }
+        }
+    }
+<# } #>
+}

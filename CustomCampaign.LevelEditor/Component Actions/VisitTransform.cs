@@ -22,7 +22,7 @@ namespace CustomCampaign.LevelEditor.Component_Actions
                         }
                         else
                         {
-                            G.Sys.MenuPanelManager_.ShowError("ERROR", "You must select only 1 object to ust this tool.");
+                            G.Sys.MenuPanelManager_.ShowError("ERROR", "You must select only 1 object to use this tool.");
                         }
                     }, null);
                 }
