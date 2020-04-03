@@ -12,12 +12,8 @@
     <None Include="$(MSBuildThisFileDirectory)T4\Build Properties\Version.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)T4\Tools\QuickMemory.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)T4\Build Properties\Version.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)T4\Tools\QuickMemory.cs" />
   </ItemGroup>
 </Project>

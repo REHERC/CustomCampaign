@@ -144,12 +144,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Version.tt</DependentUpon>
     </Compile>
-    <Compile Include="..\CustomCampaign.Common\T4\Tools\QuickMemory.cs">
-      <Link>T4\Tools\QuickMemory.cs</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuickMemory.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -199,13 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\CustomCampaign.Common\T4\Tools\QuickMemory.tt">
-      <Link>T4\Tools\QuickMemory.tt</Link>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickMemory.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>SET INCLUDE=$(SolutionDir)Include\
