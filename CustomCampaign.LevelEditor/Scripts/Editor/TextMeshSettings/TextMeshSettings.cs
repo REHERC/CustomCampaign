@@ -2,7 +2,7 @@
 using CustomCampaign.LevelEditor.Abstractions;
 using UnityEngine;
 
-namespace CustomCampaign.LevelEditor.Scripts
+namespace CustomCampaign.LevelEditor.Scripts.Editor
 {
     public class TextMeshSettings : EditorScript
     {

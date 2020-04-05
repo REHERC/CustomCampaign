@@ -10,6 +10,24 @@ namespace CustomCampaign.LevelEditor.Abstractions
         public virtual string Folder { get; }
         protected virtual int Version { get; }
         protected GameObject Instance { get; set; }
+        internal bool Fake { get; set; }
+
+        public static SCRIPT Create<SCRIPT>() where SCRIPT : EditorScript, new()
+        {
+            GameObject Prefab = new GameObject
+            {
+                name = $"{typeof(SCRIPT).FullName} (Virtual Fake Instance)"
+            };
+
+            GameObject Holder = Instantiate(Prefab);
+
+            SCRIPT Instance = Holder.AddComponent<SCRIPT>();
+
+            Instance.Fake = true;
+            DontDestroyOnLoad(Holder);
+
+            return Instance;
+        }
 
         public virtual void Visit(IVisitor visitor)
         {
