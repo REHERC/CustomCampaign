@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ToolKeyboardShortcut.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\PrefabType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\GameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\IVisitor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\LevelEditor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripts\TextMeshSettings\TextMeshSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Edit\CreateEmptyGroupTool.cs" />
