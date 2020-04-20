@@ -182,4 +182,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\ModuleInit.Fody.2.1.0\build\ModuleInit.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ModuleInit.Fody.2.1.0\build\ModuleInit.Fody.props'))" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>"$(SolutionDir)autoexec.cmd"
+EXIT 0</PreBuildEvent>
+  </PropertyGroup>
 </Project>

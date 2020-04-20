@@ -16,7 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\IVisitor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\LevelEditor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scripts\Base\EditorScriptHandlerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scripts\Base\EditorScriptHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripts\Editor\TextMeshSettings\TextMeshSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripts\ScriptManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Edit\CreateEmptyGroupTool.cs" />

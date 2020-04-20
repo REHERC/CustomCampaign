@@ -236,4 +236,8 @@ GOTO :EOF
 XCOPY /s /Y /v %251 %252
 GOTO :EOF</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>"$(SolutionDir)autoexec.cmd"
+EXIT 0</PreBuildEvent>
+  </PropertyGroup>
 </Project>
