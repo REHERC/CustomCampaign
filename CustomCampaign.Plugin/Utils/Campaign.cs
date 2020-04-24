@@ -105,7 +105,7 @@ namespace CustomCampaign.Utils
         public static bool CampaignUsesOldLevelIntro()
         {
             CampaignInfo campaign = GetCampaign(Assembly.GetCallingAssembly());
-            return campaign && campaign.UseOldIntro;
+            return campaign && campaign.UseOldIntro && !Common.IsInLevelEditor();
         }
 
         public static string[] GetCampaignAuthors(string levelfile) => GetCampaign(levelfile)?.Authors;
