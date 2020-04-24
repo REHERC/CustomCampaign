@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable CA1051, CA1720
+using System;
 
 namespace CustomCampaign.Models
 {

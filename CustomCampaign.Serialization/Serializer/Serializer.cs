@@ -1,14 +1,13 @@
-﻿using System;
-
-#pragma warning disable CS0436, CS0162
+﻿#pragma warning disable CS0436, CS0162, CA1051
+using System;
 
 namespace Photon.Serialization
 {
-    public class Serializer<DATA_TYPE> : ICloneable where DATA_TYPE : class, new()
+    public class Serializer<DATATYPE> : ICloneable where DATATYPE : class, new()
     {
         public string FileName { get; }
-        public DATA_TYPE Data;
-        private readonly ISerializer<DATA_TYPE> DataSerializer;
+        public DATATYPE Data;
+        private readonly ISerializer<DATATYPE> DataSerializer;
 
         public Serializer(SerializerType Type, string FileName, bool LoadOnCtor = false, bool AbsolutePath = true)
         {
@@ -21,7 +20,7 @@ namespace Photon.Serialization
 #endif
 #if SERIALIZER_JSON && (JSON_NEWTONSOFT || JSON_LITJSON)
                 case SerializerType.Json:
-                    DataSerializer = new JsonGenericSerializer<DATA_TYPE>();
+                    DataSerializer = new JsonGenericSerializer<DATATYPE>();
                     break;
 #endif
 #if SERIALIZER_BIN
@@ -61,7 +60,7 @@ namespace Photon.Serialization
             }
             else
             {
-                Data = new DATA_TYPE();
+                Data = new DATATYPE();
             }
         }
 

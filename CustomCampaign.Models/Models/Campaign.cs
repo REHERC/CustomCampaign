@@ -1,4 +1,5 @@
-﻿using CustomCampaign.Models.Validators;
+﻿#pragma warning disable CA1051
+using CustomCampaign.Models.Validators;
 #if JSON_NEWTONSOFT
 using Newtonsoft.Json;
 #endif

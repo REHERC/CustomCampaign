@@ -1,4 +1,4 @@
-﻿#pragma warning disable CA1031
+﻿#pragma warning disable CA1031, CA1303
 using CustomCampaign.Data;
 using CustomCampaign.Storage;
 
@@ -8,7 +8,7 @@ namespace CustomCampaign.Systems
     {
         internal static void InitializeAddons()
         {
-            Plugin.Log.Info($"Initializing addons...");
+            Plugin.Log.Info("Initializing addons...");
             foreach (var item in GetAddons())
             {
                 // Avoid multiple initialization calls
@@ -26,11 +26,16 @@ namespace CustomCampaign.Systems
                     Plugin.Log.Exception(error);
                 }
             }
-            Plugin.Log.Info($"Addons initialized!");
+            Plugin.Log.Info("Addons initialized!");
         }
 
         internal static void EnableAddons(string guid)
         {
+            if (Utils.Common.IsInLevelEditor())
+            {
+                return;
+            }
+
             foreach (var item in GetAddons(guid))
             {
                 try
@@ -50,7 +55,10 @@ namespace CustomCampaign.Systems
             {
                 try
                 {
-                    item.Key.Object.Disable();
+                    if (item.Key.Object.Enabled)
+                    {
+                        item.Key.Object.Disable();
+                    }
                 }
                 catch (System.Exception error)
                 {

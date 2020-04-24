@@ -1,4 +1,4 @@
-﻿#pragma warning disable SecurityIntelliSenseCS, CSCS0168, RCS1001, RCS1206
+﻿#pragma warning disable SecurityIntelliSenseCS, CSCS0168, RCS1001, RCS1206, CA1707
 
 using CustomCampaign.Data;
 using CustomCampaign.Storage;
@@ -6,23 +6,10 @@ using CustomCampaign.Systems;
 using System;
 using System.Collections.Generic;
 using System.IO;
-
-/* Unmerged change from project 'CustomCampaign.Plugin.Centrifuge'
-Before:
-using UnityEngine;
-After:
 using System.Linq;
-*/
-using System.Linq;
-
-/* Unmerged change from project 'CustomCampaign.Plugin.Centrifuge'
-Before:
-using System.Linq;
-After:
-using UnityEngine;
-*/
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CustomCampaign.Utils
 {
@@ -128,7 +115,7 @@ namespace CustomCampaign.Utils
             {
                 foreach (Type type in asm.GetTypes())
                 {
-                    if (baseType.IsAssignableFrom(type) && type != baseType)
+                    if (baseType?.IsAssignableFrom(type) == true && type != baseType)
                     {
                         typeList.Add(type);
                     }
@@ -136,6 +123,16 @@ namespace CustomCampaign.Utils
             }
 
             return typeList;
+        }
+
+        public static bool IsInLevelEditor()
+        {
+            bool flag = false;
+            flag |= G.Sys.GameManager_.IsLevelEditorMode_;
+            flag |= G.Sys.GameManager_.ModeID_ == GameModeID.LevelEditorPlay;
+            flag |= SceneManager.GetActiveScene().name == "LevelEditor";
+
+            return flag;
         }
         #endregion
     }
