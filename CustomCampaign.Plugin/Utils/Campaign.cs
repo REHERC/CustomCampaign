@@ -87,7 +87,7 @@ namespace CustomCampaign.Utils
         public static bool CampaignUsesOldLevelIntro(string levelfile)
         {
             CampaignInfo campaign = GetCampaign(levelfile);
-            return campaign && campaign.UseOldIntro;
+            return campaign && campaign.UseOldIntro && !Common.IsInLevelEditor() ;
         }
 
         public static bool CampaignAvailableInArcade()
