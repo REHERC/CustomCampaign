@@ -14,7 +14,7 @@ namespace CustomCampaign.Storage
             Events.Game.LevelLoaded.Subscribe((data) =>
             {
                 string level = Utils.Common.LevelFile;
-                if (Utils.Campaign.IsCustomCampaignLevel(level))
+                if (!Utils.Common.IsInLevelEditor() && Utils.Campaign.IsCustomCampaignLevel(level))
                 {
                     LockingSystem.UnlockLevel(level);
                     CampaignInfo campaign = Utils.Campaign.GetCampaign(level);

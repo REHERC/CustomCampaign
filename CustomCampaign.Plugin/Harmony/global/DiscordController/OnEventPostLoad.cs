@@ -9,7 +9,7 @@ namespace CustomCampaign.Harmony
     {
         public static bool Prefix(DiscordController __instance)
         {
-            bool rpc_overwrite = Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile);
+            bool rpc_overwrite = !Utils.Common.IsInLevelEditor() && Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile);
             if (G.Sys.GameManager_.IsLevelEditorMode_ || !rpc_overwrite)
             {
                 return true;

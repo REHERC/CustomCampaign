@@ -1,6 +1,6 @@
 ﻿using CustomCampaign.Data;
 
-#pragma warning disable CA1405
+#pragma warning disable CA1034, CA1405, CA1815
 
 namespace Events.Mod
 {
