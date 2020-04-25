@@ -7,7 +7,7 @@ namespace CustomCampaign.Harmony
     {
         internal static bool Prefix()
         {
-            return !Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile);
+            return !Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) || Utils.Common.IsInLevelEditor();
         }
     }
 }

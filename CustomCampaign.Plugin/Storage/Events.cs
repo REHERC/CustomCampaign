@@ -37,7 +37,7 @@ namespace CustomCampaign.Storage
 
             Events.GameMode.ModeStarted.Subscribe((data) =>
             {
-                if (G.Sys.GameManager_.ModeID_ != GameModeID.MainMenu && Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && Utils.Campaign.CampaignUsesOldLevelIntro(Utils.Common.LevelFile))
+                if (!Utils.Common.IsInLevelEditor() && G.Sys.GameManager_.ModeID_ != GameModeID.MainMenu && Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && Utils.Campaign.CampaignUsesOldLevelIntro(Utils.Common.LevelFile))
                 {
                     GameObject title = Resource.LoadPrefabInstance(Constants.Strings.LevelIntroPrefab_Name, true);
                     title.name = Constants.Strings.LevelIntroPrefabEA_Name;

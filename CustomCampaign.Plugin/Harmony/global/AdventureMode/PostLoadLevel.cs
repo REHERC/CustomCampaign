@@ -8,7 +8,7 @@ namespace CustomCampaign.Harmony
         public static void Postfix(AdventureMode __instance)
         {
             string path = Utils.Common.LevelFile;
-            if (Utils.Campaign.IsCustomCampaignLevel(path)) {
+            if (!Utils.Common.IsInLevelEditor() && Utils.Campaign.IsCustomCampaignLevel(path)) {
                 __instance.countdownDisabled_ = false;
                 double countdown = Utils.Campaign.GetLevelCountdown(path);
                 __instance.customTime_ = (float)countdown;

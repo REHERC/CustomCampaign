@@ -7,7 +7,7 @@ namespace CustomCampaign.Harmony
     {
         public static void Postfix(LevelIntroTitleLogic __instance)
         {
-            if (Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && __instance.adventureFinal_)
+            if (Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && __instance.adventureFinal_ && !Utils.Common.IsInLevelEditor())
             {
                 __instance.gameObject.SetActive(true);
             }

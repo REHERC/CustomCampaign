@@ -9,7 +9,7 @@ namespace CustomCampaign.Harmony
     {
         public static bool Prefix(LevelIntroTitleLogic __instance)
         {
-            if (Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && Utils.Campaign.CampaignUsesOldLevelIntro(Utils.Common.LevelFile))
+            if (!Utils.Common.IsInLevelEditor() && Utils.Campaign.IsCustomCampaignLevel(Utils.Common.LevelFile) && Utils.Campaign.CampaignUsesOldLevelIntro(Utils.Common.LevelFile))
             {
                 if (__instance.gameObject.name == Constants.Strings.LevelIntroPrefabEA_Name)
                 {

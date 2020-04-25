@@ -10,7 +10,7 @@ namespace CustomCampaign.Harmony
             string level = Utils.Common.LevelFile;
             TextDecodeInLogic[] decode = __instance.GetComponentsInChildren<TextDecodeInLogic>(true);
 
-            if (Utils.Campaign.IsCustomCampaignLevel(level))
+            if (Utils.Campaign.IsCustomCampaignLevel(level) && !Utils.Common.IsInLevelEditor())
             {
                 if (Utils.Campaign.CampaignUsesOldLevelIntro(level) && decode.Length > 0)
                 {
