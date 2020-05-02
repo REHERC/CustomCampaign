@@ -24,7 +24,7 @@ namespace CustomCampaign
                 RuntimePatcher.AutoPatch();
 
                 Plugin.Init();
-                Plugin.LoadCampaigns();
+                Events.Managers.GameManagerLoaded.Subscribe(OnGameManagerLoaded);
 
                 EventSubscriber.SubscribeAll();
             }
@@ -32,6 +32,17 @@ namespace CustomCampaign
             {
                 Plugin.Log.Exception(e);
             }
+        }
+
+        public void OnGameManagerLoaded(Events.Managers.GameManagerLoaded.Data data)
+        {
+            // TL;DR Delayed initialization of campaigns so the unity subsystems can load
+            // This is to avoid fatal errors when using Texture2D instances
+            // This is due to Centrifuge hooking to some unity call 
+            // and initializing mods when unity hasn't finished loading
+
+            Events.Managers.GameManagerLoaded.Unsubscribe(OnGameManagerLoaded);
+            Plugin.LoadCampaigns();
         }
 
         internal const string MOD_ID = "com.reherc.customcampaign";

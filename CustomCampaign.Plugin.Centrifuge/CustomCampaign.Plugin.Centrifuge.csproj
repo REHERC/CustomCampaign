@@ -149,6 +149,8 @@
       <DependentUpon>Version.tt</DependentUpon>
     </Compile>
     <Compile Include="Entry.cs" />
+    <Compile Include="Events\Managers\GameManagerLoaded.cs" />
+    <Compile Include="Harmony\global\GameManager\Awake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +200,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <PostBuildEvent>SET INCLUDE=$(SolutionDir)Include\
 SET BUILD=$(ProjectDir)$(OutDir)

@@ -12,8 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Api\Addon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Factory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\CampaignInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Events\CampaignLevelStarted.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Events\CampaignLoaded.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\Mod\CampaignLevelStarted.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\Mod\CampaignLoaded.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\AchievementManager\Unlock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\AdventureMode\PostLoadLevel.cs" />
@@ -40,6 +40,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\LevelSetsManager\Start.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\PauseMenuLogic\Update.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\PrintSectorNumber\Start.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\ResourceManager\GetAddedComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\ResourceManager\GetAddedComponents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\Resource\GetAbsoluteLevelPath.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\Resource\GetLevelType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Harmony\global\Resource\GetRelativeLevelPath.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Common.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Events\Mod\" />
     <Folder Include="$(MSBuildThisFileDirectory)Systems\EditorScriptSystem\" />
   </ItemGroup>
 </Project>

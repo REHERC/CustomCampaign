@@ -1,5 +1,4 @@
-﻿#if false
-using Serializers;
+﻿using Serializers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +7,59 @@ namespace CustomCampaign.LevelEditor.Extensions
 {
     public static class IVisitorEx
     {
+        public static void VisitArrayGeneric<T>(this IVisitor visitor, string elementName, ref T[] array, Serializer.VisitElement<T> visitElement) where T : new()
+        {
+            switch (visitor)
+            {
+                case Serializer serializer:
+                    int elementCount = array?.Length ?? 0;
+
+                    serializer.WriteArrayStart(nameof(T), elementCount);
+
+                    for (int index = 0; index < elementCount; ++index)
+                    {
+                        T obj = array[index];
+                        visitElement(elementName, ref obj, (string)null);
+                    }
+
+                    serializer.WriteArrayEnd();
+
+                    break;
+                case Deserializer deserializer:
+                    int newSize = deserializer.ReadArrayStart();
+
+                    if (newSize > 0)
+                    {
+                        Array.Resize(ref array, newSize);
+                        for (int index = 0; index < newSize; ++index)
+                        {
+                            array[index] = new T();
+                            visitElement(elementName, ref array[index], null);
+                        }
+                    }
+                    deserializer.ReadArrayEnd();
+
+                    break;
+            }
+        }
+
+        public static void VisitListGeneric<T>(this IVisitor visitor, string elementName, ref List<T> list, Serializer.VisitElement<T> visitElement) where T : new()
+        {
+            T[] array;
+            switch (visitor)
+            {
+                case Serializer serializer:
+                    array = list.ToArray();
+                    serializer.VisitArrayGeneric<T>(elementName, ref array, visitElement);
+                    break;
+                case Deserializer deserializer:
+                    array = new T[0];
+                    deserializer.VisitArrayGeneric<T>(elementName, ref array, visitElement);
+                    list = new List<T>(array);
+                    break;
+            }
+        }
+
         public static bool IsEditorInspector(this IVisitor visitor)
         {
             return visitor is NGUIComponentInspector;
@@ -282,7 +334,6 @@ namespace CustomCampaign.LevelEditor.Extensions
             }
         }
 
-        
         public static void VisitHidden(this IVisitor visitor, string name, ref Dictionary<GameModeID, MedalStatus> val, ref string keyOptions, ref string valueOptions)
         {
             if (!visitor.IsEditorInspector())
@@ -340,4 +391,3 @@ namespace CustomCampaign.LevelEditor.Extensions
         }
     }
 }
-#endif
