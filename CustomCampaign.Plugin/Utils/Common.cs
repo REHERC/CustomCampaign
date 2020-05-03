@@ -66,7 +66,7 @@ namespace CustomCampaign.Utils
             return LevelInfo.Create(path, settings);
         }
 
-#if API_SPECTRUM && !LIMITED_COMPATIBILITY
+        #if API_SPECTRUM && !LIMITED_COMPATIBILITY
         public static Texture LoadTexture(string filepath)
         {
             Texture2D result = null;
@@ -79,20 +79,20 @@ namespace CustomCampaign.Utils
             return result;
         }
 
-#endif
-#if API_CENTRIFUGE && !LIMITED_COMPATIBILITY
+        #endif
+        #if API_CENTRIFUGE && !LIMITED_COMPATIBILITY
         public static Texture LoadTexture(string filepath)
         {
             object result = null;
             if (File.Exists(filepath))
             {
                 byte[] imagedata = File.ReadAllBytes(filepath);
-                result = Bridge.Texture2D.CreateTexture2D(2, 2);
+                //result = Bridge.Texture2D.CreateTexture2D(2, 2);
                 result.CallMethod("LoadImage", imagedata);
             }
             return result as Texture;
         }
-#endif
+        #endif
         #endregion
         #region Other Utils
         public static void MakeDirectory(string directory)

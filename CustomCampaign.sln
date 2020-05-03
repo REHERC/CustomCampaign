@@ -83,6 +83,12 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.LevelEditor"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CustomCampaign.Common", "CustomCampaign.Common\CustomCampaign.Common.shproj", "{26B11E97-F6F6-4108-93F5-DB3DE267F9BB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup Scripts", "Setup Scripts", "{F233ACC5-DC86-4ADC-99D4-867AB0EFD01E}"
+	ProjectSection(SolutionItems) = preProject
+		autoexec.cmd = autoexec.cmd
+		nuget.exe = nuget.exe
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CustomCampaign.CommonPatches\CustomCampaign.CommonPatches.projitems*{1d739cf7-b0fe-4341-b89a-fb3d85a36d56}*SharedItemsImports = 4

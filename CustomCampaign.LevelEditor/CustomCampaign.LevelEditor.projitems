@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Abstractions\EditorIScript.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\HideComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ToolKeyboardShortcut.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\DataWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\PrefabType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\IVisitor.cs" />

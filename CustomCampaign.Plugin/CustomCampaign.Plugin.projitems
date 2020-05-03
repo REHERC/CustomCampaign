@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Api\Addon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Factory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\CampaignInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\IData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\Mod\CampaignLevelStarted.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\Mod\CampaignLoaded.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Extensions.cs" />
