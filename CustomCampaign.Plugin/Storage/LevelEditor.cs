@@ -1,4 +1,5 @@
-﻿using Serializers;
+﻿using CustomCampaign.LevelEditor.Components;
+using Serializers;
 using System;
 using System.Reflection;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace CustomCampaign.Storage
                 AddComponentToPrefab(type, host);
                 AddToTypeMap(type);
             }
+
+            DataWrapper.Register();
         }
 
         public static void AddToTypeMap(Type value)
