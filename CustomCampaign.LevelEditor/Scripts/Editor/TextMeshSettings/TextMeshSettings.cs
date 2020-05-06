@@ -1,5 +1,4 @@
 ﻿#pragma warning disable RCS1213, IDE0051
-using CustomCampaign.LevelEditor.Abstractions;
 using UnityEngine;
 
 namespace CustomCampaign.LevelEditor.Scripts.Editor
@@ -7,7 +6,7 @@ namespace CustomCampaign.LevelEditor.Scripts.Editor
     public class TextMeshSettings : EditorScript
     {
         public override string Id => "customcampaign.scripts.textmeshsettings";
-        public override string Folder => "Default Scripts/";
+        public override string Folder => "Default Scripts";
         public override string Name => "Text Mesh Settings";
         public override string Description => "Provides additional properties for text mesh objects.";
 

@@ -10,7 +10,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\EditorPrefab.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Abstractions\EditorIScript.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\ComponentWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\HierarchyComponentData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\HierarchyComponentFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\HierarchyComponentFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\HierarchyComponentSpecial.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\HierarchyLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scripts\EditorIScript.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\HideComponent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ToolKeyboardShortcut.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\DataWrapper.cs" />
@@ -18,13 +24,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\IVisitor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\LevelEditor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scripts\Base\EditorScriptHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripts\Editor\TextMeshSettings\TextMeshSettings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scripts\ScriptManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\Edit\CreateEmptyGroupTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\Edit\CreateEmptyGroup\CreateEmptyGroupTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\Others\AddCustomComponent\AddCustomComponentMenuLogic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\Others\AddCustomComponent\AddCustomComponentTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\Others\AddCustomComponent\CustomComponentSelectMenuButton.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Abstractions\" />
     <Folder Include="$(MSBuildThisFileDirectory)Scripts\Editor\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Tools\Edit\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Tools\Edit\CreateEmptyGroup\" />
   </ItemGroup>
 </Project>
