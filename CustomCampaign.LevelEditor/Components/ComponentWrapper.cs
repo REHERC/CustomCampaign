@@ -6,8 +6,8 @@ using LevelEditorTools;
 using Serializers;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
+using CustomCampaign.LevelEditor.Scripts;
 
 namespace CustomCampaign.LevelEditor.Components
 {
@@ -21,7 +21,7 @@ namespace CustomCampaign.LevelEditor.Components
         {
             foreach (var Type in Utils.Common.GetExportedTypesOfType(typeof(IData)))
             {
-                if (!Type.IsSubclassOf(typeof(Component)))
+                if (!Type.IsSubclassOf(typeof(EditorScript)))
                 {
                     IData Instance = Activator.CreateInstance(Type) as IData;
 
