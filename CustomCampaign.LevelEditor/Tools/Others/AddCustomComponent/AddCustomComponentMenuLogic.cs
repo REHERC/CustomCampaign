@@ -1,6 +1,8 @@
-﻿#pragma warning disable RCS1213, RCS1225, CA1034, IDE0051
+﻿#pragma warning disable RCS1213, RCS1225, CA1034, IDE0051, CA1822
 using CustomCampaign.LevelEditor.Data;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CustomCampaign.LevelEditor.Tools.Others
@@ -13,6 +15,19 @@ namespace CustomCampaign.LevelEditor.Tools.Others
         // Generic value type of action being returned when clicking ok
         private Action<HierarchyComponentData> entryCallback_;
         //private HierarchyComponentData root_;
+        public static HierarchyComponentFolder Root = new HierarchyComponentFolder("//Root", null)
+        {
+            Entries = new List<HierarchyComponentData>()
+            {
+                new HierarchyComponentFolder("Secret Folder", null),
+                new HierarchyComponentFolder("Default Components", null),
+                new HierarchyComponentFile("Lamp", "component.generic.lamp"),
+                new HierarchyComponentFile("Chair", "component.generic.chair"),
+                new HierarchyComponentFile("Sloth", "component.epic.speed"),
+                new HierarchyComponentFile("Crab", "component.skuttling.crustacean"),
+                new HierarchyComponentFile("H", "h.h.h")
+            }
+        };
 
         private void OnEnable()
         {
@@ -22,6 +37,11 @@ namespace CustomCampaign.LevelEditor.Tools.Others
         public void CloseWindow()
         {
             G.Sys.MenuPanelManager_.Pop(true);
+        }
+
+        public void ConfirmInput()
+        {
+            // BRUH
         }
 
         internal void Init(LevelEditorLevelNameSelectMenuLogic menuLogic)
@@ -41,6 +61,7 @@ namespace CustomCampaign.LevelEditor.Tools.Others
 
             closeButton.onClick.Add(new EventDelegate(CloseWindow));
             cancelButton.onClick = (_) => CloseWindow();
+            okButton.onClick = (_) => ConfirmInput();
         }
 
         public void Show(string headerText, Action<HierarchyComponentData> pathCallback)
@@ -56,15 +77,42 @@ namespace CustomCampaign.LevelEditor.Tools.Others
         {
             buttonList_.Clear();
 
-            for (int i = 0; i < 100; i++)
-            {
-                HierarchyComponentFile file = new HierarchyComponentFile($"File #{i}", $"component#{i}", null);
-                ComponentEntry entry = ComponentEntry.CreateEntry(file, ClickOnEntry, (_) => { }, true, Color.cyan);
-                entry.sortString_ = $"component#{i}";
-                buttonList_.Add(entry);
-            }
+            CreateButtons(Root);
 
             buttonList_.SortAndUpdateVisibleButtons();
+        }
+
+        private void CreateButtons(HierarchyComponentFolder folder)
+        {
+            int sortIndex = 1;
+            int sortLength = (folder.Entries.Count + sortIndex).ToString().Length;
+
+            var subfolders = (from entry in folder.Entries where entry is HierarchyComponentFolder select entry).ToList();
+            var files = (from entry in folder.Entries where entry is HierarchyComponentFile select entry).ToList();
+
+            subfolders.Sort((x, y) => string.Compare(x.Name, y.Name));
+            files.Sort((x, y) => string.Compare(x.Name, y.Name));
+
+            CreateEntries(subfolders, Colors.GreenColors.lime);
+            CreateEntries(files, Colors.white);
+
+            void CreateEntries(List<HierarchyComponentData> entries, Color color)
+            {
+                foreach (var entry in entries)
+                {
+                    string sort = sortIndex.ToString();
+                    while (sort.Length < sortLength)
+                    {
+                        sort = $"0{sort}";
+                    }
+
+                    ComponentEntry componentEntry = ComponentEntry.CreateEntry(entry, ClickOnEntry, DoubleClickOnEntry, true, color);
+                    componentEntry.sortString_ = sort;
+                    buttonList_.Add(componentEntry);
+
+                    ++sortIndex;
+                }
+            }
         }
 
         public void SetLevelPathInput(string name)
@@ -75,7 +123,13 @@ namespace CustomCampaign.LevelEditor.Tools.Others
         public void ClickOnEntry(UIExButtonContainer.Entry e)
         {
             ComponentEntry entry = e as ComponentEntry;
-            SetLevelPathInput(entry.item_.Name);
+            SetLevelPathInput(entry.item_.Path);
+        }
+
+        public void DoubleClickOnEntry(UIExButtonContainer.Entry e)
+        {
+            ClickOnEntry(e);
+            ConfirmInput();
         }
 
         public class ComponentEntry : UIExButtonContainer.Entry
@@ -104,7 +158,12 @@ namespace CustomCampaign.LevelEditor.Tools.Others
 
             public static ComponentEntry CreateEntry(HierarchyComponentData item, OnClickCallback onClick, OnClickCallback onDoubleClick, bool buttonIsClickable, Color color)
             {
-                return new ComponentEntry(string.Empty, item.Name, onClick, onDoubleClick, buttonIsClickable, item, color);
+                string name = item.Name;
+                if (item is HierarchyComponentFolder)
+                {
+                    name = $"/{name}";
+                }
+                return new ComponentEntry(string.Empty, name, onClick, onDoubleClick, buttonIsClickable, item, color);
             }
         }
     }

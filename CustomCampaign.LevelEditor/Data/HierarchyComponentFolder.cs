@@ -6,6 +6,8 @@ namespace CustomCampaign.LevelEditor.Data
     {
         public override HierarchyLevel Hierarchy => HierarchyLevel.Folder;
 
+        public override string Path => $"/{Name.ToLowerInvariant()}";
+
         public HierarchyComponentFolder(string name, HierarchyComponentFolder parent) : base(name, parent)
         {
             Entries = new List<HierarchyComponentData>();
