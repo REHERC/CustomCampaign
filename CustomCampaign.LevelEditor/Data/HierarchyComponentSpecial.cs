@@ -2,10 +2,9 @@
 {
     public class HierarchyComponentSpecial : HierarchyComponentData
     {
-        public override HierarchyLevel Hierarchy => HierarchyLevel.HierarchyParent;
+        public override HierarchyLevel Hierarchy => HierarchyLevel.Special;
 
-        private string path_;
-
+        private readonly string path_;
         public override string Path => path_;
 
         public HierarchyComponentSpecial(string name, string path, HierarchyComponentFolder parent) : base(name, parent)

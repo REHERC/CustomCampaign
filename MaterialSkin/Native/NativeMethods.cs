@@ -22,7 +22,7 @@ Portions of this software are (c) 2011 Sven Walter, http://github.com/viperneo
  */
 #endregion
 
-#pragma warning disable RCS1154, RCS1234, RCS1135
+#pragma warning disable RCS1154, RCS1234, RCS1135, CA2101
 
 using System;
 using System.Drawing;
@@ -68,7 +68,7 @@ namespace MaterialSkin.Native
             ///     IN: New window rectangle; OUT: New client rectangle (all in parent coordinates).
             /// </summary>
             /// <remarks>
-            ///     Contains the new coordinates of a window that has been moved or resized, that is, 
+            ///     Contains the new coordinates of a window that has been moved or resized, that is,
             ///     it is the proposed new window coordinates.
             ///     On return, Windows expects the new client rectangle (in parent coordinates).
             /// </remarks>
@@ -79,7 +79,7 @@ namespace MaterialSkin.Native
             /// </summary>
             /// <remarks>
             ///     Contains the coordinates of the window before it was moved or resized.
-            ///     When returning anything other than 0, Windows expects the 
+            ///     When returning anything other than 0, Windows expects the
             ///     client's new / destination rectangle (in parent coordinates).
             /// </remarks>
             public RECT rect1;
@@ -95,7 +95,7 @@ namespace MaterialSkin.Native
             public RECT rect2;
 
             /// <summary>
-            ///     Pointer to a <see cref="WINDOWPOS"/> structure that contains the size and position values specified 
+            ///     Pointer to a <see cref="WINDOWPOS"/> structure that contains the size and position values specified
             ///     in the operation that moved or resized the window.
             /// </summary>
             public IntPtr lpPos;
@@ -107,13 +107,13 @@ namespace MaterialSkin.Native
             public Point ptReserved;
 
             /// <summary>
-            ///     The size a window should be maximized to. This depends on the screen it will end up, 
+            ///     The size a window should be maximized to. This depends on the screen it will end up,
             ///     so the window manager will request this info when we move the window around.
             /// </summary>
             public Size MaxSize;
 
             /// <summary>
-            ///     The position of the window when maximized. Must be relative to the current screen, 
+            ///     The position of the window when maximized. Must be relative to the current screen,
             ///     so it's often (0,0) or close to that if the task bar is in the way.
             /// </summary>
             public Point MaxPosition;
@@ -646,7 +646,7 @@ namespace MaterialSkin.Native
         //---- SetClassLongPtr
 
         /// <summary>
-        ///     Replaces the specified value at the specified offset in the extra class memory or the WNDCLASSEX structure for 
+        ///     Replaces the specified value at the specified offset in the extra class memory or the WNDCLASSEX structure for
         ///     the class to which the specified window belongs.
         /// </summary>
         /// <remarks>
@@ -671,8 +671,8 @@ namespace MaterialSkin.Native
         /// Changes the size, position, and Z order of a child, pop-up or top-level window.
         /// </summary>
         /// <remarks>
-        ///     If you have changed certain window data using <seealso cref="SetWindowLongPtr"/>, 
-        ///     you must call this function with the following flags for the changes to take effect: 
+        ///     If you have changed certain window data using <seealso cref="SetWindowLongPtr"/>,
+        ///     you must call this function with the following flags for the changes to take effect:
         ///     <seealso cref="SetWindowPosFlags.NOMOVE"/> | <seealso cref="SetWindowPosFlags.NOSIZE"/> | <seealso cref="SetWindowPosFlags.NOZORDER"/> | <seealso cref="SetWindowPosFlags.FRAMECHANGED"/>.
         /// </remarks>
         /// <param name="hWnd">A handle to the window.</param>
@@ -706,7 +706,7 @@ namespace MaterialSkin.Native
             /// <summary>Does not redraw changes. If this flag is set, no repainting of any kind occurs. This applies to the client area, the nonclient area (including the title bar and scroll bars),</summary>
             NOREDRAW = 0x0008,
 
-            /// <summary>Does not activate the window.</summary> 
+            /// <summary>Does not activate the window.</summary>
             NOACTIVATE = 0x0010,
             DRAWFRAME = 0x0020,
 

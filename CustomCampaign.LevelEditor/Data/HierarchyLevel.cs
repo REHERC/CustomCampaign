@@ -2,7 +2,7 @@
 {
     public enum HierarchyLevel : uint
     {
-        HierarchyParent = 0,
+        Special = 0,
         Folder = 1,
         File = 2
     }

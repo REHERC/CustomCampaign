@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+
 namespace CustomCampaign.LevelEditor.Data
 {
     public abstract class HierarchyComponentData
@@ -13,7 +15,7 @@ namespace CustomCampaign.LevelEditor.Data
 
         protected HierarchyComponentData(string name, HierarchyComponentFolder parent)
         {
-            Name = name;
+            Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
             Parent = parent;
         }
     }
