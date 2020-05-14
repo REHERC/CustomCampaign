@@ -26,7 +26,7 @@ namespace CustomCampaign.LevelEditor.Data
             return (from ItemEntry in Entries where ItemEntry.Hierarchy == HierarchyLevel.File select ItemEntry).Cast<HierarchyComponentFile>().ToList();
         }
 
-        public HierarchyComponentFolder GetFolderOrCreate(string name)
+        public HierarchyComponentFolder GetOrCreateFolder(string name)
         {
             string SearchPath = $"/{name.ToLowerInvariant()}";
 
@@ -50,23 +50,54 @@ namespace CustomCampaign.LevelEditor.Data
             return null;
         }
 
-        public bool AddFile(string name, string id, bool overwrite = false, int stack = 2)
+        public HierarchyComponentFile CreateFile(string name, string id, bool overwrite = false, int stack = 2)
         {
-            HierarchyComponentFile File = GetFile(name);
+            HierarchyComponentFile file = GetFile(name);
 
-            if (File is null)
+            if (file is null)
             {
-                Entries.Add(new HierarchyComponentFile(name, id));
-                return true;
+                file = new HierarchyComponentFile(name, id);
+                Entries.Add(file);
+                return file;
             }
             else if (overwrite && stack > 0)
             {
-                Entries.Remove(File);
-                return AddFile(name, id, true, stack - 1);
+                Entries.Remove(file);
+                return CreateFile(name, id, true, stack - 1);
             }
             else
             {
-                return false;
+                return null;
+            }
+        }
+
+        public HierarchyComponentFile CreateFile(string path, string id)
+        {
+            string[] structure = (from entry in path.Split('/') where entry.Length > 0 select entry).ToArray();
+            if (structure.Length > 0)
+            {
+                return CreateFile(structure, id);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public HierarchyComponentFile CreateFile(IEnumerable<string> path, string id)
+        {
+            string name = path.First();
+            if (path.Count() > 1)
+            {
+                // Folder
+                HierarchyComponentFolder folder = GetOrCreateFolder(name);
+                return folder.CreateFile(path.Skip(1), id);
+            }
+            else
+            {
+                // File
+                HierarchyComponentFile file = CreateFile(name, id);
+                return file;
             }
         }
     }

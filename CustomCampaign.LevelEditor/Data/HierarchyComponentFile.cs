@@ -11,6 +11,7 @@ namespace CustomCampaign.LevelEditor.Data
         public override string Path => Id.ToLowerInvariant();
 
         public string Id { get; private set; }
+
         public Type ComponentType { get; private set; }
 
         public HierarchyComponentFile(string name, string id) : base(name, null)
