@@ -31,7 +31,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Others\AddCustomComponent\CustomComponentSelectMenuButton.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Abstractions\" />
     <Folder Include="$(MSBuildThisFileDirectory)Scripts\Editor\" />
     <Folder Include="$(MSBuildThisFileDirectory)Tools\Edit\CreateEmptyGroup\" />
   </ItemGroup>

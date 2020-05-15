@@ -1,4 +1,4 @@
-﻿#pragma warning disable RCS1110
+﻿#pragma warning disable RCS1110, RCS1192
 using SharpCompress.Archives.Zip;
 using System;
 using System.Collections.Generic;
@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 public static class Extensions
 {
@@ -137,5 +138,58 @@ public static class Extensions
             temp = temp.Substring(0, length);
         }
         return temp;
+    }
+
+    public static string GetForwardPath(this string path)
+    {
+        return path.Replace(Path.DirectorySeparatorChar, '/')
+                   .Replace(Path.AltDirectorySeparatorChar, '/');
+    }
+
+    public static string RemoveIllegalChars(this string value)
+    {
+        Regex chars_regex = new Regex(@"[\\/:*?""<>|]");
+        return chars_regex.Replace(value, "");
+    }
+
+    public static string RemoveIllegalPathChars(this string value)
+    {
+        Regex chars_regex = new Regex(@"[*?""<>|]");
+        return chars_regex.Replace(value, "");
+    }
+
+    //https://stackoverflow.com/a/51518619/9149821
+    private static readonly HashSet<string> RestrictedPathNames = new HashSet<string>
+    {
+        @"aux",
+        @"con",
+        @"clock$",
+        @"nul",
+        @"prn",
+
+        @"com1",
+        @"com2",
+        @"com3",
+        @"com4",
+        @"com5",
+        @"com6",
+        @"com7",
+        @"com8",
+        @"com9",
+
+        @"lpt1",
+        @"lpt2",
+        @"lpt3",
+        @"lpt4",
+        @"lpt5",
+        @"lpt6",
+        @"lpt7",
+        @"lpt8",
+        @"lpt9"
+    };
+
+    public static bool ContainsIllegalName(this string value)
+    {
+        return (from name in value.GetForwardPath().ToLowerInvariant().Split('/') where RestrictedPathNames.Contains(name) select name).Any();
     }
 }

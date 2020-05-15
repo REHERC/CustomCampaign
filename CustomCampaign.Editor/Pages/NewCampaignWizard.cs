@@ -1,5 +1,6 @@
 ﻿#pragma warning disable SecurityIntelliSenseCS, CS0436, CA1031
 using CustomCampaign.Editor.Classes;
+using CustomCampaign.Editor.Exceptions;
 using CustomCampaign.Editor.Forms;
 using CustomCampaign.Models;
 using Photon.Serialization;
@@ -68,7 +69,14 @@ namespace CustomCampaign.Editor.Pages
         {
             try
             {
-                DirectoryInfo directory = new DirectoryInfo(CampaignDirectory.Text);
+                string directory_path = $@"{CampaignDirectory.Text}\{CampaignName.Text}".RemoveIllegalPathChars();
+
+                if (directory_path.ContainsIllegalName())
+                {
+                    throw new ReservedFileNameException();
+                }
+
+                DirectoryInfo directory = new DirectoryInfo(directory_path);
 
                 if (new List<string>(from file in directory.GetFiles() select file.Name.ToLower()).Contains("campaign.json"))
                 {
@@ -93,6 +101,11 @@ namespace CustomCampaign.Editor.Pages
                 {
                     Data = campaign
                 }.Save();
+            }
+            catch (ReservedFileNameException rfne)
+            {
+                MessageDialog.Show(rfne.Message, "Invalid file name!");
+                return false;
             }
             catch (Exception e)
             {

@@ -179,6 +179,7 @@
       <DependentUpon>LevelBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor.cs" />
+    <Compile Include="Exceptions\ReservedFileNameException.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Forms\Dialogs\CountdownSelector.cs">
       <SubType>Form</SubType>

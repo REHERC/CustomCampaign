@@ -93,7 +93,7 @@ namespace CustomCampaign.LevelEditor.Tools.Others
             subfolders.Sort((x, y) => string.Compare(x.Name, y.Name));
             files.Sort((x, y) => string.Compare(x.Name, y.Name));
 
-            CreateEntries(subfolders, Colors.GreenColors.lime);
+            CreateEntries(subfolders, Colors.BlueCyanColors.lightSkyBlue);
             CreateEntries(files, Colors.white);
 
             void CreateEntries(List<HierarchyComponentData> entries, Color color)
