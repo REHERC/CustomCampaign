@@ -41,11 +41,11 @@ namespace CustomCampaign.Editor.Pages
             && !string.IsNullOrEmpty(CampaignDirectory.Text)
             && Directory.Exists(CampaignDirectory.Text);
 
-            if (flag && SetupProject())
+            if (flag && SetupProject(out string path))
             {
                 Globals.IsFileOpened = true;
                 Globals.MainWindow.GetPage<EditorMainPage>("pages:editormain").GoToFileTab();
-                Globals.MainWindow.GetPage<EditorMainPage>("pages:editormain").LoadCampaign(Path.Combine(CampaignDirectory.Text, "campaign.json"));
+                Globals.MainWindow.GetPage<EditorMainPage>("pages:editormain").LoadCampaign(path);
                 Globals.MainWindow.SetPage("pages:editormain");
             }
         }
@@ -65,11 +65,12 @@ namespace CustomCampaign.Editor.Pages
             }
         }
 
-        private bool SetupProject()
+        private bool SetupProject(out string campaign_file)
         {
+            campaign_file = string.Empty;
             try
             {
-                string directory_path = $@"{CampaignDirectory.Text}\{CampaignName.Text}".RemoveIllegalPathChars();
+                string directory_path = Path.Combine(CampaignDirectory.Text, CampaignName.Text).RemoveIllegalPathChars();
 
                 if (directory_path.ContainsIllegalName())
                 {
@@ -78,13 +79,17 @@ namespace CustomCampaign.Editor.Pages
 
                 DirectoryInfo directory = new DirectoryInfo(directory_path);
 
+                if (!directory.Exists)
+                {
+                    directory.Create();
+                }
+
                 if (new List<string>(from file in directory.GetFiles() select file.Name.ToLower()).Contains("campaign.json"))
                 {
                     MessageDialog.Show("A campaign project already exists in this folder.");
                     return false;
                 }
 
-                directory.Create();
                 directory.CreateSubdirectory("levels");
                 directory.CreateSubdirectory("addons");
 
@@ -95,8 +100,10 @@ namespace CustomCampaign.Editor.Pages
                     description = CampaignDescription.Text
                 };
 
+                campaign_file = Path.Combine(directory.FullName, "campaign.json");
+
                 new Serializer<Campaign>(SerializerType.Json,
-                    Path.Combine(CampaignDirectory.Text, "campaign.json")
+                    campaign_file
                     , false, true)
                 {
                     Data = campaign
