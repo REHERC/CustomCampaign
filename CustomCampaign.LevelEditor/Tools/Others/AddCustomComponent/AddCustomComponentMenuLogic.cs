@@ -15,22 +15,25 @@ namespace CustomCampaign.LevelEditor.Tools.Others
         // Generic value type of action being returned when clicking ok
         private Action<HierarchyComponentData> entryCallback_;
         //private HierarchyComponentData root_;
-        public static HierarchyComponentFolder Root = new HierarchyComponentFolder("//Root", null)
+        public static HierarchyComponentFolder Root { get; set; }
+        public static List<HierarchyComponentData> NavigationElements { get; set; }
+        public HierarchyComponentFolder Current;
+
+        static AddCustomComponentMenuLogic()
         {
-            Entries = new List<HierarchyComponentData>()
-            {
-                new HierarchyComponentFolder("Secret Folder", null),
-                new HierarchyComponentFolder("Default Components", null),
-                new HierarchyComponentFile("Lamp", "component.generic.lamp"),
-                new HierarchyComponentFile("Chair", "component.generic.chair"),
-                new HierarchyComponentFile("Sloth", "component.epic.speed"),
-                new HierarchyComponentFile("Crab", "component.skuttling.crustacean"),
-                new HierarchyComponentFile("H", "h.h.h")
-            }
-        };
+            NavigationElements = new List<HierarchyComponentData>();
+            NavigationElements.Add(new HierarchyComponentSpecial("Parent Folder", "parent-folder"));
+            NavigationElements.Add(new HierarchyComponentSpecial("Root Folder", "root-folder"));
+
+            Root = new HierarchyComponentFolder("#root#>", null);
+            Root.CreateFile("Text Effects/Advanced Text Mesh Settings", "com.customcampaign.textmeshsettings");
+            Root.CreateFile("Text Effects/Reveal Text Listener", "com.customcampaign.listeners/revealtext");
+            Root.CreateFile("Json Data", "com.customcampaign.generic/jsondata");
+        }
 
         private void OnEnable()
         {
+            Current = Root;
             GenerateComponentNameList();
         }
 
@@ -41,7 +44,36 @@ namespace CustomCampaign.LevelEditor.Tools.Others
 
         public void ConfirmInput()
         {
-            // BRUH
+            string path = levelPathInput_.value;
+
+            Predicate<HierarchyComponentData> search = (x) => string.Equals(x.Path, path, StringComparison.CurrentCultureIgnoreCase);
+
+            HierarchyComponentData item
+                = Current.Entries.Find(search)
+                ?? NavigationElements.Find(search);
+
+            if (item != null)
+            {
+                switch (item.Hierarchy)
+                {
+                    case HierarchyLevel.Folder:
+                        Current = item as HierarchyComponentFolder;
+                        GenerateComponentNameList();
+                        break;
+                    case HierarchyLevel.Special:
+                        switch (item.Path)
+                        {
+                            case "$parent-folder":
+                                Current = Current.Parent ?? Current;
+                                break;
+                            case "$root-folder":
+                                Current = Root;
+                                break;
+                        }
+                        GenerateComponentNameList();
+                        break;
+                }
+            }
         }
 
         internal void Init(LevelEditorLevelNameSelectMenuLogic menuLogic)
@@ -69,15 +101,16 @@ namespace CustomCampaign.LevelEditor.Tools.Others
             headerLabel_.text = headerText;
             entryCallback_ = pathCallback;
 
-            levelPathInput_.defaultText = "Enter Component Name";
+            levelPathInput_.defaultText = "Select Element";
             SetLevelPathInput(string.Empty);
         }
 
         private void GenerateComponentNameList()
         {
+            levelPathInput_.value = "";
             buttonList_.Clear();
 
-            CreateButtons(Root);
+            CreateButtons(Current);
 
             buttonList_.SortAndUpdateVisibleButtons();
         }
@@ -85,13 +118,18 @@ namespace CustomCampaign.LevelEditor.Tools.Others
         private void CreateButtons(HierarchyComponentFolder folder)
         {
             int sortIndex = 1;
-            int sortLength = (folder.Entries.Count + sortIndex).ToString().Length;
+            int sortLength = (folder.Entries.Count + NavigationElements.Count + sortIndex).ToString().Length;
 
             var subfolders = (from entry in folder.Entries where entry is HierarchyComponentFolder select entry).ToList();
             var files = (from entry in folder.Entries where entry is HierarchyComponentFile select entry).ToList();
 
             subfolders.Sort((x, y) => string.Compare(x.Name, y.Name));
             files.Sort((x, y) => string.Compare(x.Name, y.Name));
+
+            if (Current.Parent != null)
+            {
+                CreateEntries(NavigationElements, new Color(0.68f, 0.83f, 0.38f));
+            }
 
             CreateEntries(subfolders, Colors.BlueCyanColors.lightSkyBlue);
             CreateEntries(files, Colors.white);

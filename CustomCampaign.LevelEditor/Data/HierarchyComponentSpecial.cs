@@ -5,9 +5,9 @@
         public override HierarchyLevel Hierarchy => HierarchyLevel.Special;
 
         private readonly string path_;
-        public override string Path => path_;
+        public override string Path => $"${path_.ToLowerInvariant()}";
 
-        public HierarchyComponentSpecial(string name, string path, HierarchyComponentFolder parent) : base(name, parent)
+        public HierarchyComponentSpecial(string name, string path) : base(name, null)
         {
             path_ = path;
         }

@@ -50,7 +50,7 @@ namespace CustomCampaign.LevelEditor.Data
             return null;
         }
 
-        public HierarchyComponentFile CreateFile(string name, string id, bool overwrite = false, int stack = 2)
+        public HierarchyComponentFile AddFile(string name, string id, bool overwrite = false, int stack = 2)
         {
             HierarchyComponentFile file = GetFile(name);
 
@@ -63,7 +63,7 @@ namespace CustomCampaign.LevelEditor.Data
             else if (overwrite && stack > 0)
             {
                 Entries.Remove(file);
-                return CreateFile(name, id, true, stack - 1);
+                return AddFile(name, id, true, stack - 1);
             }
             else
             {
@@ -74,6 +74,8 @@ namespace CustomCampaign.LevelEditor.Data
         public HierarchyComponentFile CreateFile(string path, string id)
         {
             string[] structure = (from entry in path.Split('/') where entry.Length > 0 select entry).ToArray();
+            System.Console.WriteLine($"CreateFile {path} \t {id}");
+
             if (structure.Length > 0)
             {
                 return CreateFile(structure, id);
@@ -84,19 +86,22 @@ namespace CustomCampaign.LevelEditor.Data
             }
         }
 
-        public HierarchyComponentFile CreateFile(IEnumerable<string> path, string id)
+        public HierarchyComponentFile CreateFile(string[] path, string id)
         {
-            string name = path.First();
-            if (path.Count() > 1)
+            string name = path[0];
+
+            if (path.Length > 1)
             {
+                System.Console.WriteLine($"Folder {name}");
                 // Folder
                 HierarchyComponentFolder folder = GetOrCreateFolder(name);
-                return folder.CreateFile(path.Skip(1), id);
+                return folder.CreateFile(path.RemoveAt(0), id);
             }
             else
             {
+                System.Console.WriteLine($"File {name}");
                 // File
-                HierarchyComponentFile file = CreateFile(name, id);
+                HierarchyComponentFile file = AddFile(name, id);
                 return file;
             }
         }
